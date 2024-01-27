@@ -1,0 +1,734 @@
+fileFormatVersion: 2
+guid: 8bccc0ce58c8d9e458e4e2973c7a717b
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_0"
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 4071
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9eb6a8b132ca4b246bb3806b9cc575cc
+      internalID: 1328070753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_1"
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 4071
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 965145bf64ebd174194e35c81d58e19d
+      internalID: -169909249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_2"
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 3567
+        width: 176
+        height: 232
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47783b147f995e54f9ce5954bf791442
+      internalID: 699870259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_3"
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 3645
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad9103211bab7864099b5c8c2d769a1b
+      internalID: -905890503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_4"
+      rect:
+        serializedVersion: 2
+        x: 2551
+        y: 3653
+        width: 94
+        height: 272
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d9c6239d6566ae4f88a93a64bad35cf
+      internalID: 1254654983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_5"
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 3644
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4e4274c241e6ca47b1c1481eabed480
+      internalID: -128429162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_6"
+      rect:
+        serializedVersion: 2
+        x: 1228
+        y: 2949
+        width: 81
+        height: 329
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 332828f243b080c4fac8e7a26b5c89a2
+      internalID: -538069378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_7"
+      rect:
+        serializedVersion: 2
+        x: 2425
+        y: 3239
+        width: 92
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b607d3644cafab84cb6b7c7b0de7d7aa
+      internalID: 1660807847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_8"
+      rect:
+        serializedVersion: 2
+        x: 1689
+        y: 2881
+        width: 1672
+        height: 282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b16b4109209bc4248be14b00aeca3363
+      internalID: -299419801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_9"
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 2473
+        width: 64
+        height: 260
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 509c850bea7d78642b8df5b86aaa0188
+      internalID: 540372347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_10"
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 2491
+        width: 858
+        height: 346
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b55048909ce46c9438773bb53e7faf57
+      internalID: -651727910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_11"
+      rect:
+        serializedVersion: 2
+        x: 1661
+        y: 2491
+        width: 1696
+        height: 326
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acc70d614dced1f42b6a3d712f88ff14
+      internalID: -400970802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_12"
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 1965
+        width: 148
+        height: 269
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e34d44862ed58cb4fb01ee5e4afa891a
+      internalID: -200292373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_13"
+      rect:
+        serializedVersion: 2
+        x: 1661
+        y: 2109
+        width: 1632
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a4b2c2e8a497c74cb257ca3c6330fad
+      internalID: 2118089000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_14"
+      rect:
+        serializedVersion: 2
+        x: 1663
+        y: 1793
+        width: 1726
+        height: 248
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caf3375679f7f024b94b6de47e906ebc
+      internalID: 805032259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_15"
+      rect:
+        serializedVersion: 2
+        x: 3455
+        y: 1815
+        width: 216
+        height: 260
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6b45ce516bb82f479013a6513b4698e
+      internalID: 432664029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_16"
+      rect:
+        serializedVersion: 2
+        x: 563
+        y: 1481
+        width: 130
+        height: 260
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b843d73f66bf40945815572e142c75e5
+      internalID: -902735663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_17"
+      rect:
+        serializedVersion: 2
+        x: 2971
+        y: 1563
+        width: 524
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe19ef96c3dbfbc42b3e9e6e1b93de2b
+      internalID: 1681114012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_18"
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 1481
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd0f53d18b0e81048a950cc5e12010ea
+      internalID: -911558907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_19"
+      rect:
+        serializedVersion: 2
+        x: 723
+        y: 989
+        width: 272
+        height: 338
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 143988663c1dc2a48ae59fa01c697f20
+      internalID: -326896313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_20"
+      rect:
+        serializedVersion: 2
+        x: 1661
+        y: 905
+        width: 1704
+        height: 370
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2605643173967184d87c20f738b8f591
+      internalID: 1953297559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_21"
+      rect:
+        serializedVersion: 2
+        x: 1049
+        y: 907
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3284cccb1110f0b4cacd8e2444adac5e
+      internalID: -1309216498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_22"
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 505
+        width: 170
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d4467bf8d9eadc4c88a567b3378ceb5
+      internalID: 874474448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_23"
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 504
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d7de47c891ae3449abfdf846734f24b
+      internalID: 1221955633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_24"
+      rect:
+        serializedVersion: 2
+        x: 1653
+        y: 443
+        width: 1722
+        height: 366
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c66104fed9aefa7498898da57c2b7e5b
+      internalID: -1080744749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_25"
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 277
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d194a2bebe86315409382c3f4242bfcc
+      internalID: 641437718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC0AC\uBCF8 -Light theme spritesheet magazine_26"
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 25
+        width: 120
+        height: 282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57e73355671c8a04da8600c40fed669d
+      internalID: 11486222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_0": 1328070753
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_1": -169909249
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_10": -651727910
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_11": -400970802
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_12": -200292373
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_13": 2118089000
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_14": 805032259
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_15": 432664029
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_16": -902735663
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_17": 1681114012
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_18": -911558907
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_19": -326896313
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_2": 699870259
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_20": 1953297559
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_21": -1309216498
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_22": 874474448
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_23": 1221955633
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_24": -1080744749
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_25": 641437718
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_26": 11486222
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_3": -905890503
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_4": 1254654983
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_5": -128429162
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_6": -538069378
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_7": 1660807847
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_8": -299419801
+      "\uC0AC\uBCF8 -Light theme spritesheet magazine_9": 540372347
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
