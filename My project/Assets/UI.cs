@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
-    public UnityEngine.UI.Text text_Timer;
+    public TextMeshProUGUI text_Timer;
     private float time_start;
     private float time_current;
     private bool isEnded;
@@ -54,18 +54,19 @@ public class UI : MonoBehaviour
     {
         time_start = Time.time;
         time_current = 0;
-        text_Timer.text = $"{time_current:N2}";
+        text_Timer.text = $"{time_current:N2} sec";
         isEnded = false;
     }
 
     private void Check_Timer()
     {
         time_current = Time.time - time_start;
+        text_Timer.text = $"{time_current:N2} sec";
     }
 
     private void End_Timer()
     {
-        text_Timer.text = $"{time_current:N2}";
+        text_Timer.text = $"{time_current:N2} sec";
         isEnded = true;
     }
     
@@ -151,5 +152,6 @@ public class UI : MonoBehaviour
     void Update()
     {
         WeaponUI();
+        Check_Timer();
     }
 }

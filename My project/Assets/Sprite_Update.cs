@@ -24,6 +24,11 @@ public class SpriteUpdate : MonoBehaviour
     bool Landing = false;
     bool OnGround = false;
 
+    IEnumerator WaitforAnimationToFinish()
+    {
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife Fighting_1"))
+            yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -133,7 +138,8 @@ public class SpriteUpdate : MonoBehaviour
         else
         {
             anim.SetBool("isFencing_1", false);
-            //Knife.enabled = false;
+            WaitforAnimationToFinish();
+            Knife.enabled = false;
         }
 
         if (transform.GetComponent<GrapplingHook>().isHookActive)

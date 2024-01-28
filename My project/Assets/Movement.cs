@@ -153,7 +153,10 @@ public class Movement : MonoBehaviour
 
     void WeaponControl()
     {
-        if(Input.GetKeyDown(KeyCode.Tab) && !GetComponent<GrapplingHook>().isAttach) {
+        if(Input.GetKeyDown(KeyCode.Tab) && 
+            !GetComponent<GrapplingHook>().isAttach &&
+            !GetComponent<GrapplingHook>().isHookActive &&
+            !GetComponent<GrapplingHook>().isLineMax) {
             weaponPos++;
             if (weaponPos > 3)
                 weaponPos = 0;
@@ -179,7 +182,7 @@ public class Movement : MonoBehaviour
     {
         float x = Input.GetAxisRaw("Horizontal") * speed;
 
-        if (grappling.isAttach)
+        if (grappling.isAttach || grappling.isHookActive)
         {
             LineRenderer Line = GetComponent<GrapplingHook>().line;
             Vector2 lineVec = (transform.position - Line.GetPosition(1));
@@ -190,6 +193,7 @@ public class Movement : MonoBehaviour
 
             rigid.AddForce(new Vector2(x, rigid.velocity.y));
         }
+
         else
         {
             if (x > 0)
@@ -259,8 +263,7 @@ public class Movement : MonoBehaviour
         {
             LineRenderer Line = GetComponent<GrapplingHook>().line;
             Vector2 lineVec = (Line.GetPosition(1) - transform.position);
-            Debug.DrawLine(transform.position, Line.GetPosition(1));
-            Debug.DrawLine(Line.GetPosition(0), Line.GetPosition(1));
+
             if (lineVec.x < 0)
                 direction = Direction.LEFT;
             else

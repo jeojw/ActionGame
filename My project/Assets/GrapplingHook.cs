@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GrapplingHook : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class GrapplingHook : MonoBehaviour
     public bool isHookActive;
     public bool isLineMax;
     public bool isAttach;
+
+    public float MaxLine;
 
     public Movement.Weapons CurWeapon;
     // Start is called before the first frame update
@@ -29,7 +32,7 @@ public class GrapplingHook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CurWeapon = GameObject.Find("Player").GetComponent<Movement>().weapon;
+        CurWeapon = GetComponent<Movement>().weapon;
         if (CurWeapon == Movement.Weapons.ROPE)
         {
             line.SetPosition(0, hand.transform.position);
@@ -48,7 +51,7 @@ public class GrapplingHook : MonoBehaviour
             {
                 hook.Translate(mousedir.normalized * Time.deltaTime * 30);
 
-                if (Vector2.Distance(hand.transform.position, hook.position) > 15)
+                if (Vector2.Distance(hand.transform.position, hook.position) > MaxLine)
                 {
                     isLineMax = true;
                 }
@@ -80,5 +83,7 @@ public class GrapplingHook : MonoBehaviour
                 }
             }
         }
+
+        Debug.Log(Vector3.Angle(Camera.main.ScreenToWorldPoint(Input.mousePosition), hand.transform.position));
     }
 }
