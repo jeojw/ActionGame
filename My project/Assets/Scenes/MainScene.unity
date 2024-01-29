@@ -1546,6 +1546,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1329574780}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1670789329652286716}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
 --- !u!1 &380251150
 GameObject:
@@ -2443,8 +2446,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isReload: 0
   isZero: 0
-  Pistol_Cur_Magazine: 0
-  Pistol_Max_Magazine: 0
+  Pistol_Cur_Magazine: 6
+  Pistol_Max_Magazine: 6
   Rifle_Cur_Magazine: 0
   Rifle_Max_Magazine: 0
   IsZeroPistol: 0
@@ -2542,7 +2545,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 655444226}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2483cf71b53118f4fb671fad3e166ff8, type: 3}
   m_Name: 
@@ -4846,6 +4849,9 @@ MonoBehaviour:
   movement: {x: 0, y: 0}
   speed: 10
   jumpV: 10
+  ShotDelay: 1
+  ShotDelayStart: 0
+  delayElapsed: 0
   RunningInterval: 0.5
   direction: 1
   weapon: 0
@@ -5909,7 +5915,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 569652438277774488}
-  Bullet: {fileID: 0}
   Weapon: {fileID: 655444226}
 --- !u!1 &2109417902
 GameObject:
@@ -5983,6 +5988,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
   m_PrefabInstance: {fileID: 375782693}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1670789329652286716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569652438277774488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6170e50e9d54abe41ad2bdab84a38e2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Condition: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

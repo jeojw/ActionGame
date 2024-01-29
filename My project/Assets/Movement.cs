@@ -29,6 +29,10 @@ public class Movement : MonoBehaviour
     public float jumpV = 2f;
     private int weaponPos = 0;
 
+    public float ShotDelay = 0;
+    public float ShotDelayStart = 0;
+    public float delayElapsed = 0;
+
     private float KeyPressTime = 0;
     private float PerKeyPressTime = 0;
     private float KeyPressInterval = 0.5f;
@@ -139,16 +143,27 @@ public class Movement : MonoBehaviour
                 isGround = false;
             }
 
-            if (Input.GetKey(KeyCode.X))
+            if (Input.GetKey(KeyCode.X) && delayElapsed == 0)
             {
                 isAttack = true;
+                ShotDelayStart = Time.time;
             }
             else
             {
                 isAttack = false;
+                AttackCooldown();
             }
         }
 
+    }
+
+    void AttackCooldown()
+    {
+        delayElapsed = Time.time - ShotDelayStart;
+        if (delayElapsed >= ShotDelay) {
+            delayElapsed = 0;
+            ShotDelayStart = 0;
+        }
     }
 
     void WeaponControl()
@@ -221,6 +236,7 @@ public class Movement : MonoBehaviour
 
     void Attack()
     {
+
         if (weapon == Weapons.GUNS && isGround) { isShooting = true; }
         else { isShooting = false; }
         if (weapon == Weapons.KNIFE && isGround) { isFencing = true; }
@@ -251,10 +267,12 @@ public class Movement : MonoBehaviour
         }
         else
         {
+            
             isShooting = false;
             isFencing = false;
             isGrapplingShot= false;
         }
+        Debug.Log(delayElapsed);
     }
 
     void FixedUpdate()
@@ -289,6 +307,5 @@ public class Movement : MonoBehaviour
         {
             isLanding = false;
         }
-        //Debug.Log(KeyPressTime);
     }
 }
