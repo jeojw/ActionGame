@@ -5,56 +5,57 @@ using UnityEngine;
 public class BulletManage : MonoBehaviour
 {
     Movement.Direction direct;
+    SpriteRenderer BulletSprite;
+    BoxCollider2D BulletHitbox;
+    Rigidbody2D physics;
+
+    GameObject Player;
     public float BulletSpeed;
-    public bool Cooldown;
-    public SpriteRenderer BulletSprite;
-    public BoxCollider2D BulletHitbox;
-    public Rigidbody2D physics;
     public float Damage;
+    public bool isCollision = false;
+    public bool isOutCamera = false;
     // Start is called before the first frame update
     void Start()
     {
-        BulletHitbox.enabled = false;
-        BulletSprite.enabled = false;
+        physics = GetComponent<Rigidbody2D>();
+        BulletSprite = GetComponent<SpriteRenderer>();
+        BulletHitbox = GetComponent<BoxCollider2D>();
+        transform.position = GameObject.Find("PistolFirePosition").transform.position;
+        Player = GameObject.Find("Player");
+        direct = Player.GetComponent<Movement>().direction;
     }
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.collider.CompareTag("Enemy"))
-    //    {
-    //        BulletSprite.enabled = false;
-    //        BulletHitbox.enabled = false;
-    //    }
-    //}
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Ground"))
+        {
+            isCollision = true;
+            Destroy(gameObject);
+        }
+    }
+
 
     // Update is called once per frame
     void Update()
     {
-        BulletSprite.enabled = true;
-        BulletHitbox.enabled = true;
+        Vector3 Pos_Camera = Camera.main.WorldToViewportPoint(transform.position);
+        if (Pos_Camera.x < 0f || Pos_Camera.x > 1f)
+        {
+            isOutCamera = true;
+            Destroy(gameObject);
+        }
+            
+
+        float x = Input.GetAxisRaw("Horizontal");
         if (direct == Movement.Direction.LEFT)
         {
-            physics.AddForce(transform.right * BulletSpeed * (-1), ForceMode2D.Force);
+            BulletSprite.flipY = true;
+            physics.velocity = new Vector2(Vector2.left.x * BulletSpeed, 0);
         }
         else
         {
-            physics.AddForce(transform.right * BulletSpeed, ForceMode2D.Force);
+            physics.velocity = new Vector2(Vector2.right.x * BulletSpeed, 0);
         }
-
-        //Cooldown = GameObject.Find("Player").GetComponent<WeaponManage>().Cooldown;
-        //direct = GameObject.Find("Player").GetComponent<Movement>().direction;
-        //if (Cooldown)
-        //{
-        //    BulletSprite.enabled = true;
-        //    BulletHitbox.enabled = true;
-        //    if (direct == Movement.Direction.LEFT)
-        //    {
-        //        physics.AddForce(transform.right * BulletSpeed * (-1), ForceMode2D.Force);
-        //    }
-        //    else
-        //    {
-        //        physics.AddForce(transform.right * BulletSpeed, ForceMode2D.Force);
-        //    }
-        //}
+        
     }
 }

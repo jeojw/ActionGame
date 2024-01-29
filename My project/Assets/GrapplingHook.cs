@@ -83,7 +83,5 @@ public class GrapplingHook : MonoBehaviour
                 }
             }
         }
-
-        Debug.Log(Vector3.Angle(Camera.main.ScreenToWorldPoint(Input.mousePosition), hand.transform.position));
     }
 }

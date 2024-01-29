@@ -5,45 +5,54 @@ using UnityEngine;
 public class WeaponManage : MonoBehaviour
 {
     // Start is called before the first frame update\
+
+    public GameObject Player;
+
     public bool Cooldown;
     public bool isShooting;
     public bool MagazineZero;
+
     public float Pistol_Shot_Delay;
     private float Pistol_Delay_Cur = 0;
+    public int PistolcurMagazine;
+    public int PistolmaxMagazine;
 
+    public int RiflelcurMagazine;
+    public int RiflelmaxMagazine;
     public float Rifle_Shot_Delay;
 
     public float Reload_Delay;
     void Start()
     {
+        
         Pistol_Delay_Cur = 0;
+        PistolcurMagazine = PistolmaxMagazine;
     }
 
     void Pistol_Shot()
     {
-        isShooting = GetComponent<Movement>().isShooting;
+        isShooting = Player.GetComponent<Movement>().isShooting;
         if (isShooting)
         {
-            if (Pistol_Delay_Cur == 0)
+            if (PistolcurMagazine > 0)
+                PistolcurMagazine--;
+            else
             {
-                Pistol_Delay_Cur = Time.time;
-                Cooldown = false;
+                MagazineZero = true;
             }
-            else if (Pistol_Delay_Cur > Pistol_Shot_Delay)
-            {
-                Pistol_Delay_Cur = 0;
-                Cooldown = true;
-            }
+                
         }
-    }
-
-    void Pistol_Reload()
-    {
+        
     }
 
     void Rifle_Shot()
     {
-
+        if (MagazineZero)
+        {
+            Invoke("Pistol_Shot", 3f);
+            PistolcurMagazine = PistolmaxMagazine;
+            MagazineZero = false;
+        }
     }
 
     void Reload()

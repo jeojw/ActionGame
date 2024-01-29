@@ -22,7 +22,6 @@ public class Hookg : MonoBehaviour
         hookSpriteRotate = hookObject.GetComponent<Transform>();
         joint2D.maxDistanceOnly = true;
         joint2D.distance = grappling.MaxLine;
-        hookSprite.enabled = true;
     }
 
     // Update is called once per frame
