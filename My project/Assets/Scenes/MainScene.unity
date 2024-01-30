@@ -1578,6 +1578,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 384569608}
   - {fileID: 1943224305}
   - {fileID: 621540819}
   - {fileID: 1984484087}
@@ -1589,6 +1590,81 @@ RectTransform:
   m_AnchoredPosition: {x: -609, y: -288}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &384569607
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 384569608}
+  - component: {fileID: 384569610}
+  - component: {fileID: 384569609}
+  m_Layer: 5
+  m_Name: NoneUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &384569608
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384569607}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 380251151}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 328, y: 126}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &384569609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384569607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &384569610
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384569607}
+  m_CullTransparentMesh: 1
 --- !u!1 &395211503
 GameObject:
   m_ObjectHideFlags: 0
@@ -1650,7 +1726,7 @@ Transform:
   m_GameObject: {fileID: 406009213}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.13, y: 1.62, z: 0}
+  m_LocalPosition: {x: 3.133, y: 1.675, z: 0}
   m_LocalScale: {x: 0.019885413, y: 0.019885413, z: 0.019885413}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2406,6 +2482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text_Timer: {fileID: 510646464}
   MaxHealth: 0
+  None: {fileID: 384569609}
   Pistol: {fileID: 1943224306}
   Rifle: {fileID: 621540820}
   Knife: {fileID: 1984484090}
@@ -2444,12 +2521,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5efa3d8d80cf55a4db54af1b94216a4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isReload: 0
-  isZero: 0
-  Pistol_Cur_Magazine: 6
-  Pistol_Max_Magazine: 6
-  Rifle_Cur_Magazine: 0
-  Rifle_Max_Magazine: 0
+  PlayerInfo: {fileID: 569652438277774488}
+  PistolManage: {fileID: 655444226}
+  RifleManage: {fileID: 1706799846}
   IsZeroPistol: 0
   IsZeroRifle: 0
 --- !u!1 &655444226
@@ -2479,7 +2553,7 @@ Transform:
   m_GameObject: {fileID: 655444226}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.5, y: 0.078, z: 0}
+  m_LocalPosition: {x: -16.04, y: 0.1, z: 0}
   m_LocalScale: {x: 0.14263, y: 0.14263, z: 0.14263}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2545,21 +2619,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 655444226}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2483cf71b53118f4fb671fad3e166ff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 569652438277774488}
-  Cooldown: 0
-  isShooting: 0
+  WeaponUI: {fileID: 634688079}
+  isReload: 0
   MagazineZero: 0
-  Pistol_Shot_Delay: 0
-  PistolcurMagazine: 0
-  PistolmaxMagazine: 0
-  RiflelcurMagazine: 0
-  RiflelmaxMagazine: 0
-  Rifle_Shot_Delay: 0
+  curMagazine: 6
+  maxMagazine: 6
   Reload_Delay: 0
 --- !u!1 &729987377
 GameObject:
@@ -4846,6 +4916,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da4b0fc5cf7b0cf40bec0cc222e1e794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 1329574777}
+  WeaponUI: {fileID: 634688079}
   movement: {x: 0, y: 0}
   speed: 10
   jumpV: 10
@@ -4853,8 +4925,10 @@ MonoBehaviour:
   ShotDelayStart: 0
   delayElapsed: 0
   RunningInterval: 0.5
+  pressedFirstTime: 0
   direction: 1
   weapon: 0
+  AimingGun: 0
   isShooting: 0
   isReloading: 0
   isFencing: 0
@@ -4948,8 +5022,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 569652438277774488}
   anim: {fileID: 1329574777}
-  Pistol: {fileID: 655444228}
-  Rifle: {fileID: 1706799848}
+  Pistol: {fileID: 655444226}
+  Rifle: {fileID: 1706799846}
   Knife: {fileID: 1924181268}
 --- !u!114 &1329574780
 MonoBehaviour:
@@ -5616,7 +5690,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1943224305
 RectTransform:
   m_ObjectHideFlags: 0

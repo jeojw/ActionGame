@@ -7,7 +7,8 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     private Rigidbody2D rigid;
     GrapplingHook grappling;
-    Animator anim;
+    public Animator anim;
+    public GameObject WeaponUI;
 
     public Vector2 movement = Vector2.zero;
 
@@ -19,6 +20,7 @@ public class Movement : MonoBehaviour
 
     public enum Weapons
     {
+        NONE,
         GUNS,
         KNIFE,
         ROPE
@@ -33,14 +35,18 @@ public class Movement : MonoBehaviour
     public float ShotDelayStart = 0;
     public float delayElapsed = 0;
 
+
     private float KeyPressTime = 0;
     private float PerKeyPressTime = 0;
     private float KeyPressInterval = 0.5f;
     public float RunningInterval = 0.5f;
+    public bool pressedFirstTime = false;
+    private float lastPressedTime;
 
     public Direction direction = Direction.RIGHT;
     public Weapons weapon;
 
+    public bool AimingGun = false;
     public bool isShooting = false; 
     public bool isReloading = false;
     public bool isFencing = false;
@@ -86,10 +92,6 @@ public class Movement : MonoBehaviour
         }
     }
 
-    void CheckDoublePress()
-    {
-
-    }
 
     void Control()
     {
@@ -97,40 +99,50 @@ public class Movement : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
             {
-                if (PerKeyPressTime < KeyPressInterval) {
-                    PerKeyPressTime = 0;
-                }
+                if (weapon == Weapons.NONE)
+                {
+                    if (PerKeyPressTime < KeyPressInterval)
+                    {
+                        PerKeyPressTime = 0;
+                    }
 
-                if (KeyPressTime == 0)
-                {
-                    KeyPressTime = Time.time;
-                    isWalking = true;
-                }
-                
-                else if (Time.time - KeyPressTime < RunningInterval)
-                {
-                    isRunning = true;
-                    KeyPressTime = 0;
+                    if (KeyPressTime == 0)
+                    {
+                        KeyPressTime = Time.time;
+                        isWalking = true;
+                    }
+
+                    else if (Time.time - KeyPressTime < RunningInterval)
+                    {
+                        isRunning = true;
+                        KeyPressTime = 0;
+                    }
+                    else
+                    {
+                        isWalking = true;
+                        KeyPressTime = 0;
+                    }
                 }
                 else
                 {
                     isWalking = true;
-                    KeyPressTime = 0;
                 }
-
-
             }
 
             else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
             {
                 isWalking = false;
-                PerKeyPressTime = Time.time - KeyPressTime;
-                if (isRunning) 
-                { 
-                    isRunning = false;
-                    KeyPressTime = 0;
+                if (weapon == Weapons.NONE)
+                {
+                    PerKeyPressTime = Time.time - KeyPressTime;
+                    if (isRunning)
+                    {
+                        isRunning = false;
+                        KeyPressTime = 0;
+                    }
                 }
-                
+                    
+
             }
             if (Input.GetKeyDown(KeyCode.Space)) {
                 isJumpStart = true;
@@ -143,7 +155,7 @@ public class Movement : MonoBehaviour
                 isGround = false;
             }
 
-            if (Input.GetKey(KeyCode.X) && delayElapsed == 0)
+            if (Input.GetKeyDown(KeyCode.X) && delayElapsed == 0)
             {
                 isAttack = true;
                 ShotDelayStart = Time.time;
@@ -173,16 +185,18 @@ public class Movement : MonoBehaviour
             !GetComponent<GrapplingHook>().isHookActive &&
             !GetComponent<GrapplingHook>().isLineMax) {
             weaponPos++;
-            if (weaponPos > 3)
+            if (weaponPos > 4)
                 weaponPos = 0;
         }
         switch (weaponPos)
         {
             case 0:
-                weapon = Weapons.GUNS; break;
+                weapon = Weapons.NONE; break;
             case 1:
-                weapon = Weapons.KNIFE; break;
+                weapon = Weapons.GUNS; break;
             case 2:
+                weapon = Weapons.KNIFE; break;
+            case 3:
                 weapon = Weapons.ROPE; break;
             default: break;
 
@@ -236,9 +250,14 @@ public class Movement : MonoBehaviour
 
     void Attack()
     {
-
-        if (weapon == Weapons.GUNS && isGround) { isShooting = true; }
-        else { isShooting = false; }
+        if (weapon == Weapons.GUNS && isGround && !WeaponUI.GetComponent<WeaponUIManage>().IsZeroPistol) 
+        {
+            isShooting = true; 
+        }
+        else 
+        {
+            isShooting = false; 
+        }
         if (weapon == Weapons.KNIFE && isGround) { isFencing = true; }
         else { isFencing = false; }
         if (weapon == Weapons.ROPE && !isGround) 
@@ -267,12 +286,10 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            
             isShooting = false;
             isFencing = false;
             isGrapplingShot= false;
         }
-        Debug.Log(delayElapsed);
     }
 
     void FixedUpdate()

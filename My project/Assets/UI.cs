@@ -18,6 +18,7 @@ public class UI : MonoBehaviour
     public float MaxHealth;
 
     Movement.Weapons weapon;
+    public Image None;
     public Image Pistol;
     public Image Rifle;
     public MeshRenderer Knife;
@@ -73,8 +74,28 @@ public class UI : MonoBehaviour
     void WeaponUI()
     {
         weapon = GameObject.Find("Player").GetComponent<Movement>().weapon;
-        if (weapon == Movement.Weapons.GUNS)
+        if (weapon == Movement.Weapons.NONE)
         {
+            if (None.gameObject != null)
+                None.gameObject.SetActive(true);
+            if (Pistol.gameObject != null &&
+                Pistol_Magazine.gameObject != null &&
+                Pistol_Magazine_Text.gameObject != null)
+            {
+                Pistol.gameObject.SetActive(false);
+                Pistol_Magazine.gameObject.SetActive(false);
+                Pistol_Magazine_Text.gameObject.SetActive(false);
+            }
+
+            if (Knife.gameObject != null)
+                Knife.gameObject.SetActive(false);
+            if (Rope.gameObject != null)
+                Rope.gameObject.SetActive(false);
+        }
+        else if (weapon == Movement.Weapons.GUNS)
+        {
+            if (None.gameObject != null)
+                None.gameObject.SetActive(false);
             if (Pistol.gameObject != null &&
                 Pistol_Magazine.gameObject != null &&
                 Pistol_Magazine_Text.gameObject != null)
@@ -91,6 +112,8 @@ public class UI : MonoBehaviour
         }
         else if (weapon == Movement.Weapons.KNIFE)
         {
+            if (None.gameObject != null)
+                None.gameObject.SetActive(false);
             if (Pistol.gameObject != null &&
                 Pistol_Magazine.gameObject != null &&
                 Pistol_Magazine_Text.gameObject != null)
@@ -106,6 +129,8 @@ public class UI : MonoBehaviour
         }
         else if (weapon == Movement.Weapons.ROPE)
         {
+            if (None.gameObject != null)
+                None.gameObject.SetActive(false);
             if (Pistol.gameObject != null &&
                  Pistol_Magazine.gameObject != null &&
                  Pistol_Magazine_Text.gameObject != null)

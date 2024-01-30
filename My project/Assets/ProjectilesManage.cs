@@ -27,16 +27,11 @@ public class ProjectilesManage : MonoBehaviour
         if (Player.GetComponent<Movement>().isShooting &&
             Player.GetComponent<Movement>().delayElapsed == 0)
         {
-            if (!Weapon.GetComponent<WeaponManage>().MagazineZero && !isShot)
+            if (!Weapon.GetComponent<WeaponManage>().MagazineZero)
             {
                 CurBullet = Instantiate(Bullets.transform.GetChild(0).gameObject);
-                isShot = true;
             }
-
         }
-        else
-            isShot = false;
-            
     }
 
 
@@ -44,6 +39,5 @@ public class ProjectilesManage : MonoBehaviour
     void Update()
     {
         Player_Bullet_Shot();
-    
     }
 }

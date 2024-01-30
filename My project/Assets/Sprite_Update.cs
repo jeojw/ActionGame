@@ -9,10 +9,9 @@ public class SpriteUpdate : MonoBehaviour
 {
     public GameObject Player;
     public Animator anim;
-    Animation curSprite;
 
-    public SpriteRenderer Pistol;
-    public SpriteRenderer Rifle;
+    public GameObject Pistol;
+    public GameObject Rifle;
     public MeshRenderer Knife;
 
     bool isSwitching = false;
@@ -32,8 +31,8 @@ public class SpriteUpdate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Pistol.enabled = true;
-        Rifle.enabled = false;
+        Pistol.GetComponent<SpriteRenderer>().enabled = true;
+        Rifle.GetComponent<SpriteRenderer>().enabled = false;
         Knife.enabled = false;
     }
 
@@ -50,6 +49,15 @@ public class SpriteUpdate : MonoBehaviour
 
         if (Direct == Movement.Direction.LEFT) { Player.transform.localScale = new Vector3(-1, 1, 1); }
         else if (Direct == Movement.Direction.RIGHT) { Player.transform.localScale = new Vector3(1, 1, 1); }
+
+        if (Player.GetComponent<Movement>().weapon == Movement.Weapons.GUNS)
+        {
+            anim.SetBool("isGetPistol", true);
+        }
+        else
+        {
+            anim.SetBool("isGetPistol", false);
+        }
 
         if (Walking)
         {   
@@ -108,26 +116,42 @@ public class SpriteUpdate : MonoBehaviour
 
     void WeaponSprite()
     {
-        if (GetComponent<Movement>().isShooting)
+        if (Player.GetComponent<Movement>().weapon == Movement.Weapons.GUNS)
         {
-            anim.SetBool("isPistolShooting", true);
-            Pistol.enabled = true;
-            //if (GameObject.Find("UI").GetComponent<WeaponUIManage>().isZero)
-            //{
-            //    anim.SetBool("isReloading", true);
-            //    GameObject.Find("UI").GetComponent<WeaponUIManage>().isZero = false;
-            //}
-            //else
-            //{
-            //    anim.SetBool("isReloading", false);
-            //    GameObject.Find("UI").GetComponent<WeaponUIManage>().isReload = true;
-            //}
+            Pistol.GetComponent<SpriteRenderer>().enabled = true;
+            if (!Pistol.GetComponent<WeaponManage>().MagazineZero)
+            {
+                anim.SetBool("isReloading", false);
+                
+            }
+            else
+                anim.SetBool("isReloading", true);
+            if (GetComponent<Movement>().isShooting)
+            {
+                anim.SetBool("isPistolShooting", true);
+                //if (GameObject.Find("UI").GetComponent<WeaponUIManage>().isZero)
+                //{
+                //    anim.SetBool("isReloading", true);
+                //    GameObject.Find("UI").GetComponent<WeaponUIManage>().isZero = false;
+                //}
+                //else
+                //{
+                //    anim.SetBool("isReloading", false);
+                //    GameObject.Find("UI").GetComponent<WeaponUIManage>().isReload = true;
+                //}
+            }
+            else
+            {
+                anim.SetBool("isPistolShooting", false);
+            }
+
         }
         else
         {
-            anim.SetBool("isPistolShooting", false);
-            Pistol.enabled = false;
+            Pistol.GetComponent<SpriteRenderer>().enabled = false;
         }
+            
+        
 
         if (GetComponent<Movement>().isFencing)
         {
