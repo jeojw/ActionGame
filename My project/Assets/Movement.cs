@@ -144,11 +144,11 @@ public class Movement : MonoBehaviour
                     
 
             }
-            if (Input.GetKeyDown(KeyCode.Space)) {
+            if (Input.GetKeyDown(KeyCode.Space) && !WeaponUI.GetComponent<WeaponUIManage>().IsZeroPistol) {
                 isJumpStart = true;
             }
 
-            else if (Input.GetKeyUp(KeyCode.Space))
+            else if (Input.GetKeyUp(KeyCode.Space) && !WeaponUI.GetComponent<WeaponUIManage>().IsZeroPistol)
             {
                 isJumpStart = false;
                 isJump = true;

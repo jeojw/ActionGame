@@ -8,8 +8,9 @@ public class WeaponManage : MonoBehaviour
 
     public GameObject Player;
     public GameObject WeaponUI;
+    public AudioSource WeaponSound;
+    public AudioSource ReloadSound;
 
-    public bool isReload;
     public bool MagazineZero;
 
     public int curMagazine;
@@ -30,6 +31,7 @@ public class WeaponManage : MonoBehaviour
             if (curMagazine != 0)
             {
                 curMagazine -= 1;
+                WeaponSound.Play();
             }
 
             if (curMagazine == 0)
@@ -48,6 +50,7 @@ public class WeaponManage : MonoBehaviour
             {
                 curMagazine = maxMagazine;
                 MagazineZero = false;
+                ReloadSound.Play();
             }
         }
         
@@ -55,7 +58,7 @@ public class WeaponManage : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update()         
     {
         Shot();
         if (MagazineZero)
