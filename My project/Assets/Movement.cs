@@ -8,8 +8,10 @@ public class Movement : MonoBehaviour
 {
     // Start is called before the first frame update
     private Rigidbody2D rigid;
+    public Transform Foot;
     GrapplingHook grappling;
-    public Animator anim;
+    private Animator anim;
+    public Transform bodyPos;
     public GameObject WeaponUI;
     public AudioSource Walking;
     public AudioSource Running;
@@ -83,33 +85,31 @@ public class Movement : MonoBehaviour
 
     // Update is called once per frame
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void CheckOnGround()
     {
-        if (collision.gameObject.tag == "Ground" ||
-            collision.gameObject.tag == "Slope")
+        RaycastHit2D hit = Physics2D.BoxCast(bodyPos.position, new Vector2(2, 1), 0f, Vector2.down, 0.02f, LayerMask.GetMask("Ground"));
+        RaycastHit2D hit2 = Physics2D.BoxCast(bodyPos.position, new Vector2(2, 1), 0f, Vector2.down, 0.02f, LayerMask.GetMask("Slope"));
+
+        if (hit.collider != null || hit2.collider != null)
+        {
+            isGround = true;
+            jumpCount = 1;
+        }
+        else
         {
             isGround = false;
         }
-            
+           
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    void OnDrawGizmos()
     {
-        if (collision.gameObject.tag == "Ground" ||
-            collision.gameObject.tag == "Slope")
-        {
-            isGround = true;
-            isJump = false;
-        }
-    }
+        RaycastHit2D raycastHit = Physics2D.BoxCast(bodyPos.position, new Vector2(2, 1), 0f, Vector2.down, 0.02f, LayerMask.GetMask("Ground"));
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Ground" || 
-            collision.gameObject.tag == "Slope")
+        Gizmos.color = Color.red;
+        if (raycastHit.collider != null)
         {
-            isGround = true;
-            jumpCount = 1; 
+            Gizmos.DrawWireCube(bodyPos.position + Vector3.down * raycastHit.distance, new Vector2(2, 1));
         }
     }
 
@@ -117,17 +117,28 @@ public class Movement : MonoBehaviour
     {
         float x = Input.GetAxis("Horizontal");
         RaycastHit2D hit = Physics2D.Raycast(rigid.position, Vector2.down, 5f, LayerMask.GetMask("Slope"));
+        RaycastHit2D hit2 = Physics2D.BoxCast(bodyPos.position, new Vector2(2, 1), 0f, Vector2.down, 0.02f, LayerMask.GetMask("Slope"));
         if (hit.collider != null)
         {
             if (hit.collider.name == "Slope")
             {
                 isSlope = true;
             }
-                
+
             else
                 isSlope = false;
         }
-        Debug.DrawRay(rigid.position, Vector2.down * 5f, Color.red);
+
+        if (hit2.collider != null)
+        {
+            if (hit2.collider.name == "Slope")
+            {
+                isSlope = true;
+            }
+
+            else
+                isSlope = false;
+        }
     }
 
     void Control()
@@ -181,7 +192,7 @@ public class Movement : MonoBehaviour
                     
 
             }
-            if (Input.GetKeyDown(KeyCode.Space) && !WeaponUI.GetComponent<WeaponUIManage>().IsZeroPistol) {
+            if (Input.GetKeyDown(KeyCode.Space) && !WeaponUI.GetComponent<WeaponUIManage>().IsZeroPistol && jumpCount == 1) {
                 isJumpStart = true;
             }
 
@@ -189,7 +200,7 @@ public class Movement : MonoBehaviour
             {
                 isJumpStart = false;
                 isJump = true;
-                isGround = false;
+                jumpCount = 0;
             }
 
             if (Input.GetKeyDown(KeyCode.X) && delayElapsed == 0)
@@ -278,6 +289,7 @@ public class Movement : MonoBehaviour
             else
                 rigid.velocity = new Vector2(x * speed, rigid.velocity.y);
         }
+        Debug.DrawRay(rigid.position, Vector2.down * 5f, Color.red);
             
     }
 
@@ -296,7 +308,7 @@ public class Movement : MonoBehaviour
                 RaycastHit2D hit = Physics2D.Raycast(rigid.position, Vector2.down, 5f, LayerMask.GetMask("Slope"));
                 SlopeAngle = Vector2.Angle(Vector2.up, hit.normal);
 
-                rigid.velocity = Vector3.ProjectOnPlane(Vector3.right * x, hit.normal).normalized * speed * 2 + Vector3.down * rigid.gravityScale;
+                rigid.velocity = Vector3.ProjectOnPlane(Vector3.right * x, hit.normal).normalized * speed * 2 + Vector3.down * rigid.gravityScale * 2;
 
             }
             else
@@ -328,6 +340,7 @@ public class Movement : MonoBehaviour
         rigid.AddForce(Vector3.up * jumpV, ForceMode2D.Impulse);
         if (isJump)
         {
+            isJump = false;
             jumpCount = 0;
         }
     }
@@ -351,7 +364,7 @@ public class Movement : MonoBehaviour
     void FixedUpdate()
     {
         checkSlope();
-        Debug.Log(isSlope);
+        CheckOnGround();
 
         if (grappling.isAttach)
         {
@@ -377,7 +390,7 @@ public class Movement : MonoBehaviour
         }
         else
             Running.Stop();
-        if (isJump && jumpCount == 1)
+        if (isJump)
         {
             Jump();
             //Jumping.Play();

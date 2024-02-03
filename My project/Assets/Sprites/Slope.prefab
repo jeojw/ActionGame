@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5336008994807194271}
   - component: {fileID: 3086191184672957843}
   - component: {fileID: 6308917042300602283}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Layer1
   m_TagString: Slope
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!114 &547766887346227061
+--- !u!114 &6740753669042513527
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
