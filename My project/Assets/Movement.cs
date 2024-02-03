@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Net.Security;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -9,6 +11,11 @@ public class Movement : MonoBehaviour
     GrapplingHook grappling;
     public Animator anim;
     public GameObject WeaponUI;
+    public AudioSource Walking;
+    public AudioSource Running;
+    public AudioSource Jumping;
+    public AudioSource Landing;
+
 
     public Vector2 movement = Vector2.zero;
 
@@ -25,6 +32,8 @@ public class Movement : MonoBehaviour
         KNIFE,
         ROPE
     }
+
+    public bool isSlope = false;
 
     private int jumpCount = 1;
     public float speed = 0.02f;
@@ -63,6 +72,8 @@ public class Movement : MonoBehaviour
 
     public bool IsDoublePressed = false;
 
+    private float SlopeAngle;
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -74,24 +85,50 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground" ||
+            collision.gameObject.tag == "Slope")
         {
             isGround = false;
-            isJump = true;
         }
             
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground" ||
+            collision.gameObject.tag == "Slope")
         {
             isGround = true;
             isJump = false;
-            jumpCount = 1;
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground" || 
+            collision.gameObject.tag == "Slope")
+        {
+            isGround = true;
+            jumpCount = 1; 
+        }
+    }
+
+    private void checkSlope()
+    {
+        float x = Input.GetAxis("Horizontal");
+        RaycastHit2D hit = Physics2D.Raycast(rigid.position, Vector2.down, 5f, LayerMask.GetMask("Slope"));
+        if (hit.collider != null)
+        {
+            if (hit.collider.name == "Slope")
+            {
+                isSlope = true;
+            }
+                
+            else
+                isSlope = false;
+        }
+        Debug.DrawRay(rigid.position, Vector2.down * 5f, Color.red);
+    }
 
     void Control()
     {
@@ -209,7 +246,8 @@ public class Movement : MonoBehaviour
     }
     void Walk()
     {
-        float x = Input.GetAxisRaw("Horizontal") * speed;
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
 
         if (grappling.isAttach || grappling.isHookActive)
         {
@@ -220,23 +258,32 @@ public class Movement : MonoBehaviour
             else
                 direction = Direction.RIGHT;
 
-            rigid.AddForce(new Vector2(x, rigid.velocity.y));
+            rigid.AddForce(new Vector2(x * speed, rigid.velocity.y));
         }
 
         else
         {
-            if (x > 0)
+            if (x > 0) 
                 direction = Direction.RIGHT;
             else if (x < 0)
                 direction = Direction.LEFT;
-            rigid.velocity = new Vector2(x, rigid.velocity.y);
+            if (isSlope)
+            {
+                RaycastHit2D hit = Physics2D.Raycast(rigid.position, Vector2.down, 5f, LayerMask.GetMask("Slope"));
+                SlopeAngle = Vector2.Angle(Vector2.up, hit.normal);
+
+                rigid.velocity = Vector3.ProjectOnPlane(Vector3.right * x, hit.normal).normalized * speed + Vector3.down * rigid.gravityScale;
+
+            }
+            else
+                rigid.velocity = new Vector2(x * speed, rigid.velocity.y);
         }
             
     }
 
     void Run()
     {
-        float x = Input.GetAxisRaw("Horizontal") * speed * 2;
+        float x = Input.GetAxisRaw("Horizontal");
 
         if (!grappling.isAttach)
         {
@@ -244,7 +291,16 @@ public class Movement : MonoBehaviour
                 direction = Direction.RIGHT;
             else if (x < 0)
                 direction = Direction.LEFT;
-            rigid.velocity = new Vector2(x, rigid.velocity.y);
+            if (isSlope)
+            {
+                RaycastHit2D hit = Physics2D.Raycast(rigid.position, Vector2.down, 5f, LayerMask.GetMask("Slope"));
+                SlopeAngle = Vector2.Angle(Vector2.up, hit.normal);
+
+                rigid.velocity = Vector3.ProjectOnPlane(Vector3.right * x, hit.normal).normalized * speed * 2 + Vector3.down * rigid.gravityScale;
+
+            }
+            else
+                rigid.velocity = new Vector2(x * speed * 2, rigid.velocity.y);
         }
     }
 
@@ -294,6 +350,9 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
+        checkSlope();
+        Debug.Log(isSlope);
+
         if (grappling.isAttach)
         {
             LineRenderer Line = GetComponent<GrapplingHook>().line;
@@ -307,22 +366,33 @@ public class Movement : MonoBehaviour
         if (isWalking)
         {
             Walk();
+            //Walking.Play();
         }
+        else
+            Walking.Stop();
         if (isRunning)
         {
             Run();
+            //Running.Play();
         }
+        else
+            Running.Stop();
         if (isJump && jumpCount == 1)
         {
             Jump();
+            //Jumping.Play();
         }
+        else
+            Jumping.Stop();
         if (rigid.velocity.y < 0)
         {
             isLanding = true;
+            //Landing.Play();
         }
         else
         {
             isLanding = false;
+            //Landing.Stop(); 
         }
     }
 }
