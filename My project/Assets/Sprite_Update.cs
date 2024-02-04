@@ -25,7 +25,8 @@ public class SpriteUpdate : MonoBehaviour
     bool Rolling = false;
     IEnumerator WaitforAnimationToFinish()
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife Fighting_1"))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife Fighting_1") ||
+            anim.GetCurrentAnimatorStateInfo(0).IsName("Rolling"))
             yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
     }
     // Start is called before the first frame update
@@ -116,9 +117,9 @@ public class SpriteUpdate : MonoBehaviour
         if (Rolling)
         {
             anim.SetBool("isRolling", true);
-            anim.Play("Rolling Motion");
+            anim.Play("Rolling");
         }
-        else
+        else if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
             anim.SetBool("isRolling", false);
         }

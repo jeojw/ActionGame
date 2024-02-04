@@ -351,11 +351,11 @@ public class Movement : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(rigid.position, Vector2.down, 5f, LayerMask.GetMask("Slope"));
             SlopeAngle = Vector2.Angle(Vector2.up, hit.normal);
 
-            rigid.velocity = Vector3.ProjectOnPlane(Vector3.right * x, hit.normal).normalized * speed * 1.5f + Vector3.down * rigid.gravityScale;
+            rigid.velocity = Vector3.ProjectOnPlane(Vector3.right * x, hit.normal).normalized * speed * 2f + Vector3.down * rigid.gravityScale;
 
         }
         else
-            rigid.velocity = new Vector2(x * speed * 1.5f, rigid.velocity.y);
+            rigid.velocity = new Vector2(x * speed * 2f, rigid.velocity.y);
     }
 
     void Update()
@@ -410,7 +410,9 @@ public class Movement : MonoBehaviour
         }
         else
             Jumping.Stop();
-        if (isRolling)
+        if (isRolling || 
+            (anim.GetCurrentAnimatorStateInfo(0).IsName("Rolling") && 
+            anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f))
         {
             Rolling();
         }
