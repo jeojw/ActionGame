@@ -27,7 +27,8 @@ public class BulletManage : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Ground"))
+        if (collision.collider.CompareTag("Ground") ||
+            collision.collider.CompareTag("Slope"))
         {
             isCollision = true;
             Destroy(gameObject);
