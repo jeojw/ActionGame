@@ -1567,11 +1567,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16
+      value: -18.94
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.9
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3971,7 +3971,7 @@ DistanceJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 3.0699997, y: 9.660001}
   m_AutoConfigureDistance: 0
-  m_Distance: 10
+  m_Distance: 15
   m_MaxDistanceOnly: 1
 --- !u!50 &1155949166
 Rigidbody2D:
@@ -5866,7 +5866,7 @@ MonoBehaviour:
   isHookActive: 0
   isLineMax: 0
   isAttach: 0
-  MaxLine: 16
+  MaxLine: 15
   CurWeapon: 0
 --- !u!1 &1340781992
 GameObject:
@@ -7308,7 +7308,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -2.9400496, y: -9.251102}
+  m_ConnectedAnchor: {x: -5.755603, y: -10.859989}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!1660057539 &9223372036854775807

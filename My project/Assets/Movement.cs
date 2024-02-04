@@ -99,18 +99,7 @@ public class Movement : MonoBehaviour
         {
             isGround = false;
         }
-           
-    }
 
-    void OnDrawGizmos()
-    {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(bodyPos.position, new Vector2(2, 1), 0f, Vector2.down, 0.02f, LayerMask.GetMask("Ground"));
-
-        Gizmos.color = Color.red;
-        if (raycastHit.collider != null)
-        {
-            Gizmos.DrawWireCube(bodyPos.position + Vector3.down * raycastHit.distance, new Vector2(2, 1));
-        }
     }
 
     private void checkSlope()
@@ -121,87 +110,97 @@ public class Movement : MonoBehaviour
         if (hit.collider != null)
         {
             if (hit.collider.name == "Slope")
-            {
                 isSlope = true;
-            }
-
-            else
-                isSlope = false;
         }
+        else
+            isSlope = false;
 
         if (hit2.collider != null)
         {
             if (hit2.collider.name == "Slope")
-            {
                 isSlope = true;
-            }
-
-            else
-                isSlope = false;
         }
+        else
+            isSlope = false;
     }
 
     void Control()
     {
         if (!GameObject.Find("UI").GetComponent<SceneManage>().isPaused)
         {
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+            if (!isRolling)
             {
-                if (weapon == Weapons.NONE)
+                if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
                 {
-                    if (PerKeyPressTime < KeyPressInterval)
+                    if (weapon == Weapons.NONE)
                     {
-                        PerKeyPressTime = 0;
-                    }
+                        if (PerKeyPressTime < KeyPressInterval)
+                        {
+                            PerKeyPressTime = 0;
+                        }
 
-                    if (KeyPressTime == 0)
-                    {
-                        KeyPressTime = Time.time;
-                        isWalking = true;
-                    }
+                        if (KeyPressTime == 0)
+                        {
+                            KeyPressTime = Time.time;
+                            isWalking = true;
+                        }
 
-                    else if (Time.time - KeyPressTime < RunningInterval)
-                    {
-                        isRunning = true;
-                        KeyPressTime = 0;
+                        else if (Time.time - KeyPressTime < RunningInterval)
+                        {
+                            isRunning = true;
+                            KeyPressTime = 0;
+                        }
+                        else
+                        {
+                            isWalking = true;
+                            KeyPressTime = 0;
+                        }
                     }
                     else
                     {
                         isWalking = true;
-                        KeyPressTime = 0;
                     }
                 }
-                else
-                {
-                    isWalking = true;
-                }
-            }
 
-            else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
-            {
-                isWalking = false;
-                if (weapon == Weapons.NONE)
+                else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
                 {
-                    PerKeyPressTime = Time.time - KeyPressTime;
-                    if (isRunning)
+                    isWalking = false;
+                    if (weapon == Weapons.NONE)
                     {
-                        isRunning = false;
-                        KeyPressTime = 0;
+                        PerKeyPressTime = Time.time - KeyPressTime;
+                        if (isRunning)
+                        {
+                            isRunning = false;
+                            KeyPressTime = 0;
+                        }
                     }
+
+
                 }
-                    
-
             }
-            if (Input.GetKeyDown(KeyCode.Space) && !WeaponUI.GetComponent<WeaponUIManage>().IsZeroPistol && jumpCount == 1) {
-                isJumpStart = true;
-            }
-
-            else if (Input.GetKeyUp(KeyCode.Space) && !WeaponUI.GetComponent<WeaponUIManage>().IsZeroPistol)
+            
+            if (!isRolling)
             {
-                isJumpStart = false;
-                isJump = true;
-                jumpCount = 0;
+                if (Input.GetKeyDown(KeyCode.Space) && !WeaponUI.GetComponent<WeaponUIManage>().IsZeroPistol && jumpCount == 1)
+                {
+                    isJumpStart = true;
+                }
+
+                else if (Input.GetKeyUp(KeyCode.Space) && !WeaponUI.GetComponent<WeaponUIManage>().IsZeroPistol)
+                {
+                    isJumpStart = false;
+                    isJump = true;
+                    jumpCount = 0;
+                }
             }
+            
+
+            if (isWalking && !isRunning && !isJump && Input.GetKey(KeyCode.LeftShift))
+            {
+                isRolling = true;
+            }
+            else
+                isRolling = false;
 
             if (Input.GetKeyDown(KeyCode.X) && delayElapsed == 0)
             {
@@ -289,8 +288,6 @@ public class Movement : MonoBehaviour
             else
                 rigid.velocity = new Vector2(x * speed, rigid.velocity.y);
         }
-        Debug.DrawRay(rigid.position, Vector2.down * 5f, Color.red);
-            
     }
 
     void Run()
@@ -345,6 +342,22 @@ public class Movement : MonoBehaviour
         }
     }
 
+    void Rolling()
+    {
+        float x = Input.GetAxis("Horizontal");
+
+        if (isSlope)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(rigid.position, Vector2.down, 5f, LayerMask.GetMask("Slope"));
+            SlopeAngle = Vector2.Angle(Vector2.up, hit.normal);
+
+            rigid.velocity = Vector3.ProjectOnPlane(Vector3.right * x, hit.normal).normalized * speed * 1.5f + Vector3.down * rigid.gravityScale;
+
+        }
+        else
+            rigid.velocity = new Vector2(x * speed * 1.5f, rigid.velocity.y);
+    }
+
     void Update()
     {
         Control();
@@ -397,6 +410,10 @@ public class Movement : MonoBehaviour
         }
         else
             Jumping.Stop();
+        if (isRolling)
+        {
+            Rolling();
+        }
         if (rigid.velocity.y < 0)
         {
             isLanding = true;

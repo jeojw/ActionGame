@@ -22,7 +22,7 @@ public class SpriteUpdate : MonoBehaviour
     bool Walking = false;
     bool Landing = false;
     bool OnGround = false;
-
+    bool Rolling = false;
     IEnumerator WaitforAnimationToFinish()
     {
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife Fighting_1"))
@@ -46,6 +46,7 @@ public class SpriteUpdate : MonoBehaviour
         Walking = Player.GetComponent<Movement>().isWalking;
         Landing = Player.GetComponent<Movement>().isLanding;
         OnGround = Player.GetComponent<Movement>().isGround;
+        Rolling = Player.GetComponent <Movement>().isRolling;
 
         if (Direct == Movement.Direction.LEFT) { Player.transform.localScale = new Vector3(-1, 1, 1); }
         else if (Direct == Movement.Direction.RIGHT) { Player.transform.localScale = new Vector3(1, 1, 1); }
@@ -111,6 +112,15 @@ public class SpriteUpdate : MonoBehaviour
         {
             anim.SetBool("isLand", false);
             anim.SetBool("isStanding", false);
+        }
+        if (Rolling)
+        {
+            anim.SetBool("isRolling", true);
+            anim.Play("Rolling Motion");
+        }
+        else
+        {
+            anim.SetBool("isRolling", false);
         }
     }
 
