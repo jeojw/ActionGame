@@ -24,10 +24,10 @@ public class UI : MonoBehaviour
     public MeshRenderer Knife;
     public Image Rope;
 
-    public Image Pistol_Magazine;
-    public Image Rifle_Magazine;
-    public TextMeshProUGUI Pistol_Magazine_Text;
-    public TextMeshProUGUI Rifle_Magazine_Text;
+    public Image Pistol_Ammunition;
+    public Image Rifle_Ammunition;
+    public TextMeshProUGUI Pistol_Ammunition_Text;
+    public TextMeshProUGUI Rifle_Ammunition_Text;
 
     public TextMeshProUGUI ScoreText;
 
@@ -37,12 +37,12 @@ public class UI : MonoBehaviour
     void Start()
     {
         Pistol.gameObject.SetActive(true);
-        Pistol_Magazine.gameObject.SetActive(true);
-        Pistol_Magazine_Text.gameObject.SetActive(true);
+        Pistol_Ammunition.gameObject.SetActive(true);
+        Pistol_Ammunition_Text.gameObject.SetActive(true);
 
         Rifle.gameObject.SetActive(false);
-        Rifle_Magazine .gameObject.SetActive(false);
-        Rifle_Magazine_Text .gameObject.SetActive(false);
+        Rifle_Ammunition.gameObject.SetActive(false);
+        Rifle_Ammunition_Text.gameObject.SetActive(false);
 
         Knife.gameObject.SetActive(false);
 
@@ -79,12 +79,12 @@ public class UI : MonoBehaviour
             if (None.gameObject != null)
                 None.gameObject.SetActive(true);
             if (Pistol.gameObject != null &&
-                Pistol_Magazine.gameObject != null &&
-                Pistol_Magazine_Text.gameObject != null)
+                Pistol_Ammunition.gameObject != null &&
+                Pistol_Ammunition_Text.gameObject != null)
             {
                 Pistol.gameObject.SetActive(false);
-                Pistol_Magazine.gameObject.SetActive(false);
-                Pistol_Magazine_Text.gameObject.SetActive(false);
+                Pistol_Ammunition.gameObject.SetActive(false);
+                Pistol_Ammunition_Text.gameObject.SetActive(false);
             }
 
             if (Knife.gameObject != null)
@@ -97,12 +97,12 @@ public class UI : MonoBehaviour
             if (None.gameObject != null)
                 None.gameObject.SetActive(false);
             if (Pistol.gameObject != null &&
-                Pistol_Magazine.gameObject != null &&
-                Pistol_Magazine_Text.gameObject != null)
+                Pistol_Ammunition.gameObject != null &&
+                Pistol_Ammunition_Text.gameObject != null)
             {
                 Pistol.gameObject.SetActive(true);
-                Pistol_Magazine.gameObject.SetActive(true);
-                Pistol_Magazine_Text.gameObject.SetActive(true);
+                Pistol_Ammunition.gameObject.SetActive(true);
+                Pistol_Ammunition_Text.gameObject.SetActive(true);
             }
 
             if (Knife.gameObject != null)
@@ -115,15 +115,19 @@ public class UI : MonoBehaviour
             if (None.gameObject != null)
                 None.gameObject.SetActive(false);
             if (Pistol.gameObject != null &&
-                Pistol_Magazine.gameObject != null &&
-                Pistol_Magazine_Text.gameObject != null)
+                Pistol_Ammunition.gameObject != null &&
+                Pistol_Ammunition_Text.gameObject != null)
             {
                 Pistol.gameObject.SetActive(false);
-                Pistol_Magazine.gameObject.SetActive(false);
-                Pistol_Magazine_Text.gameObject.SetActive(false);
+                Pistol_Ammunition.gameObject.SetActive(false);
+                Pistol_Ammunition_Text.gameObject.SetActive(false);
             }
             if (Knife.gameObject != null)
+            {
                 Knife.gameObject.SetActive(true);
+                Knife.enabled = true;
+            }
+                
             if (Rope.gameObject != null)
                 Rope.gameObject.SetActive(false);
         }
@@ -132,12 +136,12 @@ public class UI : MonoBehaviour
             if (None.gameObject != null)
                 None.gameObject.SetActive(false);
             if (Pistol.gameObject != null &&
-                 Pistol_Magazine.gameObject != null &&
-                 Pistol_Magazine_Text.gameObject != null)
+                 Pistol_Ammunition.gameObject != null &&
+                 Pistol_Ammunition_Text.gameObject != null)
             {
                 Pistol.gameObject.SetActive(false);
-                Pistol_Magazine.gameObject.SetActive(false);
-                Pistol_Magazine_Text.gameObject.SetActive(false);
+                Pistol_Ammunition.gameObject.SetActive(false);
+                Pistol_Ammunition_Text.gameObject.SetActive(false);
             }
 
             if (Knife.gameObject != null)
@@ -146,30 +150,10 @@ public class UI : MonoBehaviour
                 Rope.gameObject.SetActive(true);
         }
     }
-
-
-    
-    public void SetHp(float account)
-    {
-        MaxHealth = account;
-        curHealth = MaxHealth;
-    }
-
     public void CheckHp()
     {
         if (HpBar != null) {
             HpBar.value = curHealth / MaxHealth;
-        }
-    }
-
-    public void GetDemage(float damage)
-    {
-        if (MaxHealth == 0 || curHealth <= 0)
-            return;
-        curHealth -= damage;
-        CheckHp();
-        if (curHealth < 0) { 
-            
         }
     }
 

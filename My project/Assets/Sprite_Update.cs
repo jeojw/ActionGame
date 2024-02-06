@@ -14,6 +14,7 @@ public class SpriteUpdate : MonoBehaviour
     public GameObject Rifle;
     public MeshRenderer Knife;
 
+
     bool isSwitching = false;
     Movement.Direction Direct = Movement.Direction.RIGHT;
     bool JumpStart = false;
@@ -130,7 +131,7 @@ public class SpriteUpdate : MonoBehaviour
         if (Player.GetComponent<Movement>().weapon == Movement.Weapons.GUNS)
         {
             Pistol.GetComponent<SpriteRenderer>().enabled = true;
-            if (!Pistol.GetComponent<WeaponManage>().MagazineZero)
+            if (!Pistol.GetComponent<WeaponManage>().AmmunitionZero)
             {
                 anim.SetBool("isReloading", false);
                 
@@ -161,22 +162,37 @@ public class SpriteUpdate : MonoBehaviour
         {
             Pistol.GetComponent<SpriteRenderer>().enabled = false;
         }
-            
-        
+
+        if (Player.GetComponent<Movement>().weapon == Movement.Weapons.KNIFE)
+        {
+            anim.SetBool("isKnifeFightReady", true);
+            Knife.enabled = true;
+        }
+
+        else
+        {
+            anim.SetBool("isKnifeFightReady", false);
+            Knife.enabled = false;
+        }  
 
         if (GetComponent<Movement>().isFencing)
         {
             anim.Play("Knife_Fighting_1");
             anim.SetBool("isFencing_1", true);
-            Knife.enabled = true;
         }
-        else
+        else if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
             anim.SetBool("isFencing_1", false);
             WaitforAnimationToFinish();
-            Knife.enabled = false;
         }
-
+        if (Player.GetComponent<Movement>().weapon == Movement.Weapons.ROPE)
+        {
+            anim.SetBool("isRopeReady", true);
+        }
+        else
+        {
+            anim.SetBool("isRopeReady", false);
+        }
         if (transform.GetComponent<GrapplingHook>().isHookActive)
         {
             anim.SetBool("isHookActive", true);

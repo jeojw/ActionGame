@@ -18,9 +18,6 @@ public class Movement : MonoBehaviour
     public AudioSource Jumping;
     public AudioSource Landing;
 
-
-    public Vector2 movement = Vector2.zero;
-
     public enum Direction
     {
         LEFT,
@@ -38,11 +35,11 @@ public class Movement : MonoBehaviour
     public bool isSlope = false;
 
     private int jumpCount = 1;
-    public float speed = 0.02f;
-    public float jumpV = 2f;
+    public float speed;
+    public float jumpV;
     private int weaponPos = 0;
 
-    public float ShotDelay = 0;
+    public float ShotDelay;
     public float ShotDelayStart = 0;
     public float delayElapsed = 0;
 
@@ -389,7 +386,7 @@ public class Movement : MonoBehaviour
             else
                 direction = Direction.RIGHT;
         }
-        if (isWalking)
+        if (isWalking && weapon != Weapons.ROPE)
         {
             Walk();
             //Walking.Play();

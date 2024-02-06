@@ -5,7 +5,8 @@ using UnityEngine;
 public class ConditionManage : MonoBehaviour
 {
     // Start is called before the first frame update
-    public enum AllConditions
+
+    public enum ALLCONDITIONS
     {
         AWAKE,
         WALK,
@@ -19,10 +20,25 @@ public class ConditionManage : MonoBehaviour
         GETITEM
     }
 
-    public AllConditions Condition;
+    public ALLCONDITIONS Condition;
+    private float MaxHp;
+    private float curHp;
+
     void Start()
     {
-        Condition = AllConditions.AWAKE;
+        Condition = ALLCONDITIONS.AWAKE;
+        MaxHp = 300f;
+        curHp = MaxHp;
+    }
+
+    void HpUpdate()
+    {
+
+    }
+
+    void ConditionUpdate()
+    {
+
     }
 
     // Update is called once per frame

@@ -11,15 +11,15 @@ public class WeaponManage : MonoBehaviour
     public AudioSource WeaponSound;
     public AudioSource ReloadSound;
 
-    public bool MagazineZero;
+    public bool AmmunitionZero;
 
-    public int curMagazine;
-    public int maxMagazine;
+    public int curAmmunition;
+    public int maxAmmunition;
 
     public float Reload_Delay;
     void Start()
-    {           
-        curMagazine = maxMagazine;
+    {
+        curAmmunition = maxAmmunition;
     }
 
     void Shot()
@@ -28,15 +28,15 @@ public class WeaponManage : MonoBehaviour
         if (Player.GetComponent<Movement>().delayElapsed == 0 &&
             Player.GetComponent<Movement>().isShooting)
         {
-            if (curMagazine != 0)
+            if (curAmmunition != 0)
             {
-                curMagazine -= 1;
+                curAmmunition -= 1;
                 WeaponSound.Play();
             }
 
-            if (curMagazine == 0)
+            if (curAmmunition == 0)
             {
-                MagazineZero = true;
+                AmmunitionZero = true;
             }
         }
 
@@ -48,8 +48,8 @@ public class WeaponManage : MonoBehaviour
         {
             if (Player.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
             {
-                curMagazine = maxMagazine;
-                MagazineZero = false;
+                curAmmunition = maxAmmunition;
+                AmmunitionZero = false;
                 ReloadSound.Play();
             }
         }
@@ -61,7 +61,7 @@ public class WeaponManage : MonoBehaviour
     void Update()         
     {
         Shot();
-        if (MagazineZero)
+        if (AmmunitionZero)
             Reload();
     }
 }

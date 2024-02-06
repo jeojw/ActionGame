@@ -5,12 +5,12 @@ using TMPro;
 
 public class WeaponUIManage : MonoBehaviour
 {
-    private TextMeshProUGUI Pistol_Magazine;
+    private TextMeshProUGUI Pistol_Ammunition;
     public GameObject PlayerInfo;
     public GameObject PistolManage;
     public GameObject RifleManage;
 
-    private float Pistol_Cur_Magazine;
+    private float Pistol_Cur_Ammunition;
 
     public bool IsZeroPistol = false;
     public bool IsZeroRifle = false;
@@ -22,14 +22,14 @@ public class WeaponUIManage : MonoBehaviour
 
     void Pistol()
     {
-        Pistol_Magazine = GetComponent<UI>().Pistol_Magazine_Text;
-        Pistol_Cur_Magazine = PistolManage.GetComponent<WeaponManage>().curMagazine;
-        if (Pistol_Cur_Magazine == 0)
+        Pistol_Ammunition = GetComponent<UI>().Pistol_Ammunition_Text;
+        Pistol_Cur_Ammunition = PistolManage.GetComponent<WeaponManage>().curAmmunition;
+        if (Pistol_Cur_Ammunition == 0)
             IsZeroPistol = true;
         else
             IsZeroPistol = false;
 
-        Pistol_Magazine.text = "X " + Pistol_Cur_Magazine.ToString();
+        Pistol_Ammunition.text = "X " + Pistol_Cur_Ammunition.ToString();
     }
 
 

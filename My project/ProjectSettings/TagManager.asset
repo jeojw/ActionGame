@@ -8,6 +8,10 @@ TagManager:
   - Ground
   - Weapons
   - Slope
+  - Pistol_Bullet
+  - Rifle_Bullet
+  - Knife
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -18,7 +22,7 @@ TagManager:
   - Ground
   - Slope
   - Ring
-  - 
+  - Player
   - 
   - 
   - 
