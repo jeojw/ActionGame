@@ -39,13 +39,16 @@ public class GrapplingHook : MonoBehaviour
         hook.gameObject.SetActive(false);
     }
     
-    void Ready_To_Throw()
+    void Ready_To_Throw_Stand()
     {
-        if (GetComponent<PlayerControl>().isGround)
-        {
-            RotateAngle += 20 * Time.deltaTime;
-            hook.transform.position = hand.transform.position + new Vector3(Mathf.Cos(RotateAngle), Mathf.Sin(RotateAngle), 1) * 2f;
-        }
+        RotateAngle += 20 * Time.deltaTime;
+        hook.transform.position = hand.transform.position + new Vector3(Mathf.Cos(RotateAngle), Mathf.Sin(RotateAngle), 1) * 2f;
+    }
+
+    void Ready_To_Throw_OnAir()
+    {
+        if (Mathf.Abs(Vector2.Distance(hook.transform.position, transform.position)) < 3f)
+            hook.transform.position = hand.transform.position + transform.position;
         line.SetPosition(0, transform.position);
         line.SetPosition(1, hand.transform.position);
         line.SetPosition(2, hook.position);
@@ -72,7 +75,15 @@ public class GrapplingHook : MonoBehaviour
                 }
             }
             if (!isHookThrow)
-                Ready_To_Throw();
+            {
+                if (GetComponent<PlayerControl>().isGround)
+                    Ready_To_Throw_Stand();
+                else
+                {
+                    Ready_To_Throw_OnAir();
+                }
+            }
+                
 
             line.SetPosition(0, transform.position);
             line.SetPosition(1, hand.transform.position);

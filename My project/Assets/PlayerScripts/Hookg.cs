@@ -8,13 +8,16 @@ using UnityEngine.XR;
 public class Hookg : MonoBehaviour
 {
     GrapplingHook grappling;
+    Rigidbody2D rigid;
     public DistanceJoint2D joint2D;
-    public GameObject hookObject;
+    public GameObject Player;
+    public GameObject TargetArm;
 
     // Start is called before the first frame update
     void Start()
     {
         grappling = GameObject.Find("Player").GetComponent<GrapplingHook>();
+        rigid = GetComponent<Rigidbody2D>();
         joint2D = GetComponent<DistanceJoint2D>();
     }
 
@@ -25,6 +28,14 @@ public class Hookg : MonoBehaviour
         {
             joint2D.enabled = true;
             grappling.isAttach = true;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (!Player.GetComponent<PlayerControl>().isGround)
+        {
+            
         }
     }
 }

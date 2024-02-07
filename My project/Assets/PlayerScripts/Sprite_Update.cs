@@ -24,6 +24,7 @@ public class SpriteUpdate : MonoBehaviour
     bool Landing = false;
     bool OnGround = false;
     bool Rolling = false;
+    bool LowerBody = false;
     IEnumerator WaitforAnimationToFinish()
     {
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife Fighting_1") ||
@@ -49,6 +50,7 @@ public class SpriteUpdate : MonoBehaviour
         Landing = Player.GetComponent<PlayerControl>().isLanding;
         OnGround = Player.GetComponent<PlayerControl>().isGround;
         Rolling = Player.GetComponent <PlayerControl>().isRolling;
+        LowerBody = Player.GetComponent<PlayerControl>().isLowerBody;
 
         if (Direct == PlayerControl.Direction.LEFT) { Player.transform.localScale = new Vector3(-1, 1, 1); }
         else if (Direct == PlayerControl.Direction.RIGHT) { Player.transform.localScale = new Vector3(1, 1, 1); }
@@ -122,6 +124,15 @@ public class SpriteUpdate : MonoBehaviour
         else if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
             anim.SetBool("isRolling", false);
+        }
+
+        if (LowerBody)
+        {
+            anim.SetBool("isLowerBody", true);
+        }
+        else
+        {
+            anim.SetBool("isLowerBody", false);
         }
     }
 

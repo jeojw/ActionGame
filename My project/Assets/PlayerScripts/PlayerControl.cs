@@ -77,6 +77,7 @@ public class PlayerControl : MonoBehaviour
     public bool isWalking = false;
     public bool isGround = false;
     public bool isRunning = false;
+    public bool isLowerBody = false;
 
     public bool IsDoublePressed = false;
 
@@ -215,6 +216,11 @@ public class PlayerControl : MonoBehaviour
             else
                 isRolling = false;
 
+            if (Input.GetKey(KeyCode.S))
+                isLowerBody = true;
+            else
+                isLowerBody = false;
+
             if (Input.GetKeyDown(KeyCode.X))
             {
                 if (weapon == Weapons.GUNS && ShotDelayElapsed == 0)
@@ -227,6 +233,8 @@ public class PlayerControl : MonoBehaviour
                     isAttack = true;
                     RopeDelayStart = Time.time;
                 }
+                if (weapon == Weapons.KNIFE)
+                    isAttack = true;
 
             }
             else
@@ -269,6 +277,7 @@ public class PlayerControl : MonoBehaviour
             !GetComponent<GrapplingHook>().isAttach &&
             !GetComponent<GrapplingHook>().isHookActive &&
             !GetComponent<GrapplingHook>().isLineMax &&
+            !isLowerBody &&
             isGround) {
             weaponPos++;
             if (weaponPos > 4)

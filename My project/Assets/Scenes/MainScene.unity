@@ -7950,7 +7950,7 @@ Transform:
   m_GameObject: {fileID: 2060703201}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 96.25, y: 24.14, z: -0.17510578}
+  m_LocalPosition: {x: 94.78, y: 24.31, z: -0.17510578}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8056,6 +8056,7 @@ MonoBehaviour:
   isWalking: 0
   isGround: 0
   isRunning: 0
+  isLowerBody: 0
   IsDoublePressed: 0
 --- !u!95 &2060703208
 Animator:
