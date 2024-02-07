@@ -4,7 +4,7 @@ using System.Net.Security;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class PlayerControl : MonoBehaviour
 {
     // Start is called before the first frame update
     private Rigidbody2D rigid;
@@ -32,6 +32,13 @@ public class Movement : MonoBehaviour
         ROPE
     }
 
+    enum SPEEDCOEF
+    {
+        ROPEWALK = 1 / 2,
+        WALK = 1,
+        RUN = 2
+    }
+
     public bool isSlope = false;
 
     private int jumpCount = 1;
@@ -39,10 +46,12 @@ public class Movement : MonoBehaviour
     public float jumpV;
     private int weaponPos = 0;
 
+    public float RopeDelay;
+    private float RopeDelayStart = 0;
+    public float RopeDelayElapsed = 0;
     public float ShotDelay;
-    public float ShotDelayStart = 0;
-    public float delayElapsed = 0;
-
+    private float ShotDelayStart = 0;
+    public float ShotDelayElapsed = 0;
 
     private float KeyPressTime = 0;
     private float PerKeyPressTime = 0;
@@ -119,6 +128,7 @@ public class Movement : MonoBehaviour
         }
         else
             isSlope = false;
+        
     }
 
     void Control()
@@ -178,12 +188,18 @@ public class Movement : MonoBehaviour
             
             if (!isRolling)
             {
-                if (Input.GetKeyDown(KeyCode.Space) && !WeaponUI.GetComponent<WeaponUIManage>().IsZeroPistol && jumpCount == 1)
+                if (Input.GetKeyDown(KeyCode.Space) && 
+                    !WeaponUI.GetComponent<WeaponUIManage>().IsZeroPistol && 
+                    (weapon == Weapons.NONE ||
+                    weapon == Weapons.ROPE) &&
+                    jumpCount == 1)
                 {
                     isJumpStart = true;
                 }
 
-                else if (Input.GetKeyUp(KeyCode.Space) && !WeaponUI.GetComponent<WeaponUIManage>().IsZeroPistol)
+                else if (Input.GetKeyUp(KeyCode.Space) && !WeaponUI.GetComponent<WeaponUIManage>().IsZeroPistol &&
+                    (weapon == Weapons.NONE ||
+                    weapon == Weapons.ROPE))
                 {
                     isJumpStart = false;
                     isJump = true;
@@ -199,10 +215,19 @@ public class Movement : MonoBehaviour
             else
                 isRolling = false;
 
-            if (Input.GetKeyDown(KeyCode.X) && delayElapsed == 0)
+            if (Input.GetKeyDown(KeyCode.X))
             {
-                isAttack = true;
-                ShotDelayStart = Time.time;
+                if (weapon == Weapons.GUNS && ShotDelayElapsed == 0)
+                {
+                    isAttack = true;
+                    ShotDelayStart = Time.time;
+                }
+                if (weapon == Weapons.ROPE && RopeDelayElapsed == 0)
+                {
+                    isAttack = true;
+                    RopeDelayStart = Time.time;
+                }
+
             }
             else
             {
@@ -215,10 +240,26 @@ public class Movement : MonoBehaviour
 
     void AttackCooldown()
     {
-        delayElapsed = Time.time - ShotDelayStart;
-        if (delayElapsed >= ShotDelay) {
-            delayElapsed = 0;
-            ShotDelayStart = 0;
+        
+        float delay;
+        if (weapon == Weapons.GUNS)
+        {
+            ShotDelayElapsed = Time.time - ShotDelayStart;
+            delay = ShotDelay;
+            if (ShotDelayElapsed >= delay)
+            {
+                ShotDelayElapsed = 0;
+                ShotDelayStart = 0;
+            }
+        }
+        else if (weapon == Weapons.ROPE)
+        {
+            RopeDelayElapsed = Time.time - RopeDelayStart;
+            if (RopeDelayElapsed >= RopeDelay)
+            {
+                RopeDelayElapsed = 0;
+                RopeDelayStart = 0;
+            }
         }
     }
 
@@ -227,7 +268,8 @@ public class Movement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Tab) && 
             !GetComponent<GrapplingHook>().isAttach &&
             !GetComponent<GrapplingHook>().isHookActive &&
-            !GetComponent<GrapplingHook>().isLineMax) {
+            !GetComponent<GrapplingHook>().isLineMax &&
+            isGround) {
             weaponPos++;
             if (weaponPos > 4)
                 weaponPos = 0;
@@ -258,13 +300,6 @@ public class Movement : MonoBehaviour
 
         if (grappling.isAttach || grappling.isHookActive)
         {
-            LineRenderer Line = GetComponent<GrapplingHook>().line;
-            Vector2 lineVec = (transform.position - Line.GetPosition(1));
-            if (lineVec.x < 0)
-                direction = Direction.LEFT;
-            else
-                direction = Direction.RIGHT;
-
             rigid.AddForce(new Vector2(x * speed, rigid.velocity.y));
         }
 
@@ -274,6 +309,7 @@ public class Movement : MonoBehaviour
                 direction = Direction.RIGHT;
             else if (x < 0)
                 direction = Direction.LEFT;
+
             if (isSlope)
             {
                 RaycastHit2D hit = Physics2D.Raycast(rigid.position, Vector2.down, 5f, LayerMask.GetMask("Slope"));
@@ -376,17 +412,7 @@ public class Movement : MonoBehaviour
         checkSlope();
         CheckOnGround();
 
-        if (grappling.isAttach)
-        {
-            LineRenderer Line = GetComponent<GrapplingHook>().line;
-            Vector2 lineVec = (Line.GetPosition(1) - transform.position);
-
-            if (lineVec.x < 0)
-                direction = Direction.LEFT;
-            else
-                direction = Direction.RIGHT;
-        }
-        if (isWalking && weapon != Weapons.ROPE)
+        if (isWalking)
         {
             Walk();
             //Walking.Play();

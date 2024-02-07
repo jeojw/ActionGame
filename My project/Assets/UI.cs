@@ -17,7 +17,7 @@ public class UI : MonoBehaviour
     protected float curHealth;
     public float MaxHealth;
 
-    Movement.Weapons weapon;
+    PlayerControl.Weapons weapon;
     public Image None;
     public Image Pistol;
     public Image Rifle;
@@ -73,8 +73,8 @@ public class UI : MonoBehaviour
     
     void WeaponUI()
     {
-        weapon = GameObject.Find("Player").GetComponent<Movement>().weapon;
-        if (weapon == Movement.Weapons.NONE)
+        weapon = GameObject.Find("Player").GetComponent<PlayerControl>().weapon;
+        if (weapon == PlayerControl.Weapons.NONE)
         {
             if (None.gameObject != null)
                 None.gameObject.SetActive(true);
@@ -92,7 +92,7 @@ public class UI : MonoBehaviour
             if (Rope.gameObject != null)
                 Rope.gameObject.SetActive(false);
         }
-        else if (weapon == Movement.Weapons.GUNS)
+        else if (weapon == PlayerControl.Weapons.GUNS)
         {
             if (None.gameObject != null)
                 None.gameObject.SetActive(false);
@@ -110,7 +110,7 @@ public class UI : MonoBehaviour
             if (Rope.gameObject != null)
                 Rope.gameObject.SetActive(false);
         }
-        else if (weapon == Movement.Weapons.KNIFE)
+        else if (weapon == PlayerControl.Weapons.KNIFE)
         {
             if (None.gameObject != null)
                 None.gameObject.SetActive(false);
@@ -131,7 +131,7 @@ public class UI : MonoBehaviour
             if (Rope.gameObject != null)
                 Rope.gameObject.SetActive(false);
         }
-        else if (weapon == Movement.Weapons.ROPE)
+        else if (weapon == PlayerControl.Weapons.ROPE)
         {
             if (None.gameObject != null)
                 None.gameObject.SetActive(false);

@@ -35,7 +35,7 @@ public class CameraController : MonoBehaviour
     {
         TargetPos = Target.transform.position;
 
-        transform.position = Vector3.Lerp(transform.position, TargetPos + AdjustPos, Time.deltaTime * Target.GetComponent<Movement>().speed);
+        transform.position = Vector3.Lerp(transform.position, TargetPos + AdjustPos, Time.deltaTime * Target.GetComponent<PlayerControl>().speed);
 
         float clampX = Mathf.Clamp(transform.position.x, MinCameraX, MaxCameraX);
         float clampY = Mathf.Clamp(transform.position.y, MinCameraY, MaxCameraY);

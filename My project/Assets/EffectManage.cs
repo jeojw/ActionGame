@@ -17,7 +17,7 @@ public class EffectManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isShot = Player.GetComponent<Movement>().isShooting;
+        isShot = Player.GetComponent<PlayerControl>().isShooting;
         if (isShot)
             playAura = true;
         else

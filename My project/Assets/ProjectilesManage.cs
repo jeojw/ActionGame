@@ -24,8 +24,8 @@ public class ProjectilesManage : MonoBehaviour
 
     void Player_Bullet_Shot()
     {
-        if (Player.GetComponent<Movement>().isShooting &&
-            Player.GetComponent<Movement>().delayElapsed == 0)
+        if (Player.GetComponent<PlayerControl>().isShooting &&
+            Player.GetComponent<PlayerControl>().ShotDelayElapsed == 0)
         {
             if (!Weapon.GetComponent<WeaponManage>().AmmunitionZero)
             {

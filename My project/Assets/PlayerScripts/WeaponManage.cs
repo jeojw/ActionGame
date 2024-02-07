@@ -25,8 +25,8 @@ public class WeaponManage : MonoBehaviour
     void Shot()
     {
 
-        if (Player.GetComponent<Movement>().delayElapsed == 0 &&
-            Player.GetComponent<Movement>().isShooting)
+        if (Player.GetComponent<PlayerControl>().ShotDelayElapsed == 0 &&
+            Player.GetComponent<PlayerControl>().isShooting)
         {
             if (curAmmunition != 0)
             {
@@ -53,8 +53,6 @@ public class WeaponManage : MonoBehaviour
                 ReloadSound.Play();
             }
         }
-        
-        
     }
 
     // Update is called once per frame

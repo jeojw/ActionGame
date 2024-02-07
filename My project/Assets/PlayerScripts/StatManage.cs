@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConditionManage : MonoBehaviour
+public class StatManage : MonoBehaviour
 {
     // Start is called before the first frame update
 
@@ -20,6 +20,13 @@ public class ConditionManage : MonoBehaviour
         GETITEM
     }
 
+    public enum ATTACKCOEF
+    {
+        PISTOL = 10,
+        KNIFE = 10,
+        RIFLE = 10
+    }
+
     public ALLCONDITIONS Condition;
     private float MaxHp;
     private float curHp;
@@ -29,6 +36,14 @@ public class ConditionManage : MonoBehaviour
         Condition = ALLCONDITIONS.AWAKE;
         MaxHp = 300f;
         curHp = MaxHp;
+    }
+
+    void ATKUpdate()
+    {
+        if (GetComponent<PlayerControl>().weapon == PlayerControl.Weapons.GUNS)
+        {
+
+        }
     }
 
     void HpUpdate()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletManage : MonoBehaviour
 {
-    Movement.Direction direct;
+    PlayerControl.Direction direct;
     SpriteRenderer BulletSprite;
     BoxCollider2D BulletHitbox;
     Rigidbody2D physics;
@@ -22,7 +22,7 @@ public class BulletManage : MonoBehaviour
         BulletHitbox = GetComponent<BoxCollider2D>();
         transform.position = GameObject.Find("PistolFirePosition").transform.position;
         Player = GameObject.Find("Player");
-        direct = Player.GetComponent<Movement>().direction;
+        direct = Player.GetComponent<PlayerControl>().direction;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -48,7 +48,7 @@ public class BulletManage : MonoBehaviour
             
 
         float x = Input.GetAxisRaw("Horizontal");
-        if (direct == Movement.Direction.LEFT)
+        if (direct == PlayerControl.Direction.LEFT)
         {
             BulletSprite.flipY = true;
             physics.velocity = new Vector2(Vector2.left.x * BulletSpeed, 0);

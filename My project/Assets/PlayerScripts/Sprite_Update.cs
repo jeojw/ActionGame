@@ -16,7 +16,7 @@ public class SpriteUpdate : MonoBehaviour
 
 
     bool isSwitching = false;
-    Movement.Direction Direct = Movement.Direction.RIGHT;
+    PlayerControl.Direction Direct = PlayerControl.Direction.RIGHT;
     bool JumpStart = false;
     bool Jumping = false;
     bool Running = false;
@@ -41,19 +41,19 @@ public class SpriteUpdate : MonoBehaviour
     void MoveSprite()
     {
         
-        Direct = Player.GetComponent<Movement>().direction;
-        Jumping = Player.GetComponent<Movement>().isJump;
-        JumpStart = Player.GetComponent<Movement>().isJumpStart;
-        Running = Player.GetComponent<Movement>().isRunning;
-        Walking = Player.GetComponent<Movement>().isWalking;
-        Landing = Player.GetComponent<Movement>().isLanding;
-        OnGround = Player.GetComponent<Movement>().isGround;
-        Rolling = Player.GetComponent <Movement>().isRolling;
+        Direct = Player.GetComponent<PlayerControl>().direction;
+        Jumping = Player.GetComponent<PlayerControl>().isJump;
+        JumpStart = Player.GetComponent<PlayerControl>().isJumpStart;
+        Running = Player.GetComponent<PlayerControl>().isRunning;
+        Walking = Player.GetComponent<PlayerControl>().isWalking;
+        Landing = Player.GetComponent<PlayerControl>().isLanding;
+        OnGround = Player.GetComponent<PlayerControl>().isGround;
+        Rolling = Player.GetComponent <PlayerControl>().isRolling;
 
-        if (Direct == Movement.Direction.LEFT) { Player.transform.localScale = new Vector3(-1, 1, 1); }
-        else if (Direct == Movement.Direction.RIGHT) { Player.transform.localScale = new Vector3(1, 1, 1); }
+        if (Direct == PlayerControl.Direction.LEFT) { Player.transform.localScale = new Vector3(-1, 1, 1); }
+        else if (Direct == PlayerControl.Direction.RIGHT) { Player.transform.localScale = new Vector3(1, 1, 1); }
 
-        if (Player.GetComponent<Movement>().weapon == Movement.Weapons.GUNS)
+        if (Player.GetComponent<PlayerControl>().weapon == PlayerControl.Weapons.GUNS)
         {
             anim.SetBool("isGetPistol", true);
         }
@@ -82,7 +82,6 @@ public class SpriteUpdate : MonoBehaviour
 
         if (JumpStart) 
         {
-            anim.Play("Jump_start");
             anim.SetBool("isJumpStart", true); 
         }
         else
@@ -128,7 +127,7 @@ public class SpriteUpdate : MonoBehaviour
 
     void WeaponSprite()
     {
-        if (Player.GetComponent<Movement>().weapon == Movement.Weapons.GUNS)
+        if (Player.GetComponent<PlayerControl>().weapon == PlayerControl.Weapons.GUNS)
         {
             Pistol.GetComponent<SpriteRenderer>().enabled = true;
             if (!Pistol.GetComponent<WeaponManage>().AmmunitionZero)
@@ -138,7 +137,7 @@ public class SpriteUpdate : MonoBehaviour
             }
             else
                 anim.SetBool("isReloading", true);
-            if (GetComponent<Movement>().isShooting)
+            if (GetComponent<PlayerControl>().isShooting)
             {
                 anim.SetBool("isPistolShooting", true);
                 //if (GameObject.Find("UI").GetComponent<WeaponUIManage>().isZero)
@@ -163,7 +162,7 @@ public class SpriteUpdate : MonoBehaviour
             Pistol.GetComponent<SpriteRenderer>().enabled = false;
         }
 
-        if (Player.GetComponent<Movement>().weapon == Movement.Weapons.KNIFE)
+        if (Player.GetComponent<PlayerControl>().weapon == PlayerControl.Weapons.KNIFE)
         {
             anim.SetBool("isKnifeFightReady", true);
             Knife.enabled = true;
@@ -175,7 +174,7 @@ public class SpriteUpdate : MonoBehaviour
             Knife.enabled = false;
         }  
 
-        if (GetComponent<Movement>().isFencing)
+        if (GetComponent<PlayerControl>().isFencing)
         {
             anim.Play("Knife_Fighting_1");
             anim.SetBool("isFencing_1", true);
@@ -185,7 +184,7 @@ public class SpriteUpdate : MonoBehaviour
             anim.SetBool("isFencing_1", false);
             WaitforAnimationToFinish();
         }
-        if (Player.GetComponent<Movement>().weapon == Movement.Weapons.ROPE)
+        if (Player.GetComponent<PlayerControl>().weapon == PlayerControl.Weapons.ROPE)
         {
             anim.SetBool("isRopeReady", true);
         }
@@ -199,7 +198,7 @@ public class SpriteUpdate : MonoBehaviour
             if (transform.GetComponent<GrapplingHook>().isAttach)
             {
                 anim.SetBool("isAttach", true);
-                if (GetComponent<Movement>().isShooting)
+                if (GetComponent<PlayerControl>().isShooting)
                     anim.SetBool("isHookShooting", true);
                 else
                     anim.SetBool("isHookShooting", false);

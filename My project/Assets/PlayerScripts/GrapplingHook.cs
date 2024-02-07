@@ -11,6 +11,10 @@ public class GrapplingHook : MonoBehaviour
     public Transform hook;
     Vector2 mousedir;
 
+    public float RopeDelay;
+    private float RopeDelayStart = 0;
+    public float RopeDelayElapsed = 0;
+
     public bool isHookActive;
     public bool isHookThrow;
     public bool isLineMax;
@@ -20,7 +24,7 @@ public class GrapplingHook : MonoBehaviour
 
     private float RotateAngle;
 
-    public Movement.Weapons CurWeapon;
+    public PlayerControl.Weapons CurWeapon;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,13 +35,17 @@ public class GrapplingHook : MonoBehaviour
         line.SetPosition(2, hook.position);
         line.useWorldSpace = true;
         isAttach = false;
+        RopeDelayElapsed = 0;
         hook.gameObject.SetActive(false);
     }
     
     void Ready_To_Throw()
     {
-        RotateAngle += 20 * Time.deltaTime;
-        hook.transform.position = hand.transform.position + new Vector3(Mathf.Cos(RotateAngle), Mathf.Sin(RotateAngle), 1) * 2f;
+        if (GetComponent<PlayerControl>().isGround)
+        {
+            RotateAngle += 20 * Time.deltaTime;
+            hook.transform.position = hand.transform.position + new Vector3(Mathf.Cos(RotateAngle), Mathf.Sin(RotateAngle), 1) * 2f;
+        }
         line.SetPosition(0, transform.position);
         line.SetPosition(1, hand.transform.position);
         line.SetPosition(2, hook.position);
@@ -45,17 +53,32 @@ public class GrapplingHook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CurWeapon = GetComponent<Movement>().weapon;
-        if (CurWeapon == Movement.Weapons.ROPE)
+        CurWeapon = GetComponent<PlayerControl>().weapon;
+        if (CurWeapon == PlayerControl.Weapons.ROPE)
         {
             hook.gameObject.SetActive(true);
+
+            if (isHookActive)
+            {
+                RopeDelayStart = Time.time;
+            }
+            else
+            {
+                RopeDelayElapsed = Time.time - RopeDelayStart;
+                if (RopeDelayElapsed >= RopeDelay)
+                {
+                    RopeDelayElapsed = 0;
+                    RopeDelayStart = 0;
+                }
+            }
             if (!isHookThrow)
                 Ready_To_Throw();
+
             line.SetPosition(0, transform.position);
             line.SetPosition(1, hand.transform.position);
             line.SetPosition(2, hook.position);
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && RopeDelayElapsed == 0)
             {
                 isHookThrow = true;
                 hook.position = hand.transform.position;
@@ -79,8 +102,8 @@ public class GrapplingHook : MonoBehaviour
                 hook.position = Vector2.MoveTowards(hook.position, hand.transform.position, Time.deltaTime * 30);
                 if (Vector2.Distance(hand.transform.position, hook.position) < 0.1f)
                 {
-                    isHookActive = false;
                     isLineMax = false;
+                    isHookActive = false;
                     isHookThrow = false;
                     //hook.gameObject.SetActive(false);
                 }
@@ -105,5 +128,7 @@ public class GrapplingHook : MonoBehaviour
         }
         else
             hook.gameObject.SetActive(false);
+
+        Debug.Log(RopeDelayElapsed);
     }
 }

@@ -101,6 +101,5 @@ public class Enemy_Movement : MonoBehaviour
     {
         DetectivePlayer();
         Enemy_AI();
-        Debug.Log(isDetect);
     }
 }
