@@ -5,27 +5,30 @@ using UnityEngine;
 public class PlayerCheckCollision : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject Player;
-    CircleCollider2D HeadHitbox;
-    CapsuleCollider2D BodyHitbox;
-    CapsuleCollider2D LowerHitbox;
-    
+    public CircleCollider2D HeadHitbox;
+    public EdgeCollider2D BodyHitbox_1;
+    public EdgeCollider2D BodyHitbox_2;
+    public EdgeCollider2D LeftLegHitbox_1;
+    public EdgeCollider2D LeftLegHitbox_2;
+    public EdgeCollider2D RightLegHitbox_1;
+    public EdgeCollider2D RightLegHitbox_2;
+
     void Start()
     {
-        HeadHitbox = GetComponentsInChildren<CircleCollider2D>()[0];
-        BodyHitbox = GetComponentsInChildren<CapsuleCollider2D>()[0];
-        LowerHitbox = GetComponentsInChildren<CapsuleCollider2D>()[1];
+
     }
     void CheckSlope()
     {
-        bool isSlope = Player.GetComponent<PlayerControl>().isSlope;
+        bool isSlope = GetComponent<PlayerControl>().isSlope;
         if (isSlope)
         {
-            LowerHitbox.isTrigger = true;
+            LeftLegHitbox_2.isTrigger = true;
+            RightLegHitbox_2.isTrigger = true;
         }
         else
         {
-            LowerHitbox.isTrigger = false;
+            LeftLegHitbox_2.isTrigger = false;
+            RightLegHitbox_2.isTrigger = false;
         }
     }
 
