@@ -55,10 +55,16 @@ public class PlayerControl : MonoBehaviour
 
     private float KeyPressTime = 0;
     private float PerKeyPressTime = 0;
+    private float lastKeyPressTime = 0;
     private float KeyPressInterval = 0.5f;
     public float RunningInterval = 0.5f;
     public bool pressedFirstTime = false;
     private float lastPressedTime;
+
+    public float KnifeAttackInterval;
+    private float KnifeAttackStart = 0;
+    private float KnifeAttackElapsed = 0;
+    public int KnifeStep = 1;
 
     public Direction direction = Direction.RIGHT;
     public Weapons weapon;
@@ -69,6 +75,7 @@ public class PlayerControl : MonoBehaviour
     public bool isFencing = false;
     public bool isGrapplingShot = false;
 
+    public bool isMoving = false;
     public bool isJumpStart = false;
     public bool isJump = false;
     public bool isLanding = false;
@@ -105,6 +112,7 @@ public class PlayerControl : MonoBehaviour
         else
         {
             isGround = false;
+            jumpCount = 0;
         }
 
     }
@@ -136,57 +144,84 @@ public class PlayerControl : MonoBehaviour
     {
         if (!GameObject.Find("UI").GetComponent<SceneManage>().isPaused)
         {
+            if (isWalking || isRunning || isJump || isLanding || isJumpStart)
+                isMoving = true;
+            else
+                isMoving = false;
+            //if (!isRolling)
+            //{
+            //    if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+            //    {
+            //        if (weapon == Weapons.NONE)
+            //        {
+            //            if (PerKeyPressTime < KeyPressInterval)
+            //            {
+            //                PerKeyPressTime = 0;
+            //            }
+
+            //            if (KeyPressTime == 0)
+            //            {
+            //                KeyPressTime = Time.time;
+            //                isWalking = true;
+            //            }
+
+            //            else if (Time.time - KeyPressTime < RunningInterval)
+            //            {
+            //                isRunning = true;
+            //                KeyPressTime = 0;
+            //            }
+            //            else
+            //            {
+            //                isWalking = true;
+            //                KeyPressTime = 0;
+            //            }
+            //        }
+            //        else
+            //        {
+            //            isWalking = true;
+            //        }
+            //    }
+
+            //    else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+            //    {
+            //        isWalking = false;
+            //        if (weapon == Weapons.NONE)
+            //        {
+            //            PerKeyPressTime = Time.time - KeyPressTime;
+            //            if (isRunning)
+            //            {
+            //                isRunning = false;
+            //                KeyPressTime = 0;
+            //            }
+            //        }
+
+
+            //    }
+            //}
+
             if (!isRolling)
             {
                 if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
                 {
-                    if (weapon == Weapons.NONE)
-                    {
-                        if (PerKeyPressTime < KeyPressInterval)
-                        {
-                            PerKeyPressTime = 0;
-                        }
-
-                        if (KeyPressTime == 0)
-                        {
-                            KeyPressTime = Time.time;
-                            isWalking = true;
-                        }
-
-                        else if (Time.time - KeyPressTime < RunningInterval)
-                        {
-                            isRunning = true;
-                            KeyPressTime = 0;
-                        }
-                        else
-                        {
-                            isWalking = true;
-                            KeyPressTime = 0;
-                        }
-                    }
-                    else
-                    {
-                        isWalking = true;
-                    }
+                    IsDoublePressed = (Time.time - lastKeyPressTime < RunningInterval);
+                    lastKeyPressTime = Time.time;
                 }
-
-                else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+                if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
                 {
+                    if (IsDoublePressed)
+                        isRunning = true;
+                    else
+                        isWalking = true;
+                }
+                else
+                {
+                    IsDoublePressed = false;
+                    isRunning = false;
                     isWalking = false;
-                    if (weapon == Weapons.NONE)
-                    {
-                        PerKeyPressTime = Time.time - KeyPressTime;
-                        if (isRunning)
-                        {
-                            isRunning = false;
-                            KeyPressTime = 0;
-                        }
-                    }
-
-
                 }
             }
-            
+
+
             if (!isRolling)
             {
                 if (Input.GetKeyDown(KeyCode.Space) && 
@@ -223,6 +258,7 @@ public class PlayerControl : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.X))
             {
+                
                 if (weapon == Weapons.GUNS && ShotDelayElapsed == 0)
                 {
                     isAttack = true;
@@ -234,27 +270,68 @@ public class PlayerControl : MonoBehaviour
                     RopeDelayStart = Time.time;
                 }
                 if (weapon == Weapons.KNIFE)
+                {
                     isAttack = true;
-
+                }
             }
             else
             {
-                isAttack = false;
-                AttackCooldown();
+                if (weapon != Weapons.KNIFE)
+                {
+                    isAttack = false;
+                    AttackCooldown();
+                }
             }
+            if (weapon == Weapons.KNIFE)
+                CheckKnifeInterval();
         }
 
     }
 
+    void KnifeFightControl()
+    {
+
+    }
+
+    void CheckKnifeInterval()
+    {
+        if (KnifeStep >= 3)
+            KnifeStep = 1;
+
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife_Fighting_1"))
+        {
+            if (Input.GetKeyDown(KeyCode.X))
+                KnifeStep++;
+            else
+            {
+                isAttack = false;
+            }
+        }
+        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife_Fighting_2"))
+        {
+            if (Input.GetKeyDown(KeyCode.X))
+                KnifeStep++;
+            else
+            {
+                isAttack = false;
+                if (!anim.GetBool("isFencing_2") && !anim.GetBool("isFencing_3"))
+                    KnifeStep = 1;
+            }
+        }
+        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife_Fighting_3"))
+        {
+
+            if (Input.GetKeyDown(KeyCode.X) && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                isAttack = false;
+        }
+    }
+
     void AttackCooldown()
     {
-        
-        float delay;
         if (weapon == Weapons.GUNS)
         {
             ShotDelayElapsed = Time.time - ShotDelayStart;
-            delay = ShotDelay;
-            if (ShotDelayElapsed >= delay)
+            if (ShotDelayElapsed >= ShotDelay)
             {
                 ShotDelayElapsed = 0;
                 ShotDelayStart = 0;
@@ -278,6 +355,7 @@ public class PlayerControl : MonoBehaviour
             !GetComponent<GrapplingHook>().isHookActive &&
             !GetComponent<GrapplingHook>().isLineMax &&
             !isLowerBody &&
+            !isMoving &&
             isGround) {
             weaponPos++;
             if (weaponPos > 4)
@@ -458,5 +536,6 @@ public class PlayerControl : MonoBehaviour
             isLanding = false;
             //Landing.Stop(); 
         }
+        Debug.Log(KnifeStep);
     }
 }

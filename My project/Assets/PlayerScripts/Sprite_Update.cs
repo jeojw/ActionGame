@@ -187,14 +187,32 @@ public class SpriteUpdate : MonoBehaviour
 
         if (GetComponent<PlayerControl>().isFencing)
         {
-            anim.Play("Knife_Fighting_1");
-            anim.SetBool("isFencing_1", true);
+            if (GetComponent<PlayerControl>().KnifeStep == 1)
+            {
+                anim.SetBool("isFencing_1", true);
+            }
+            if (GetComponent<PlayerControl>().KnifeStep == 2)
+            {
+                anim.SetBool("isFencing_2", true);
+            }
+            if (GetComponent<PlayerControl>().KnifeStep == 3)
+            {
+                anim.SetBool("isFencing_3", true);
+            }
         }
-        else if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        else
         {
-            anim.SetBool("isFencing_1", false);
-            WaitforAnimationToFinish();
+            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            {
+                if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife_Fighting_1"))
+                    anim.SetBool("isFencing_1", false);
+                if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife_Fighting_2"))
+                    anim.SetBool("isFencing_2", false);
+                if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife_Fighting_3"))
+                    anim.SetBool("isFencing_3", false);
+            }
         }
+        
         if (Player.GetComponent<PlayerControl>().weapon == PlayerControl.Weapons.ROPE)
         {
             anim.SetBool("isRopeReady", true);

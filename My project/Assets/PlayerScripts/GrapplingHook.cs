@@ -9,6 +9,7 @@ public class GrapplingHook : MonoBehaviour
     public GameObject hand;
     public LineRenderer line;
     public Transform hook;
+    public Transform waist;
     Vector2 mousedir;
 
     public float RopeDelay;
@@ -30,7 +31,7 @@ public class GrapplingHook : MonoBehaviour
     {
         line.positionCount = 3;
         line.endWidth = line.startWidth = 0.5f;
-        line.SetPosition(0, transform.position);
+        line.SetPosition(0, waist.transform.position);
         line.SetPosition(1, hand.transform.position);
         line.SetPosition(2, hook.position);
         line.useWorldSpace = true;
@@ -47,11 +48,10 @@ public class GrapplingHook : MonoBehaviour
 
     void Ready_To_Throw_OnAir()
     {
-        if (Mathf.Abs(Vector2.Distance(hook.transform.position, transform.position)) < 3f)
-            hook.transform.position = hand.transform.position + transform.position;
-        line.SetPosition(0, transform.position);
-        line.SetPosition(1, hand.transform.position);
-        line.SetPosition(2, hook.position);
+        if (hook.transform.position.y > hand.transform.position.y) {
+            if (Vector2.Distance(hook.transform.position, hand.transform.position) <= 3f)
+                hook.GetComponent<Rigidbody2D>().velocity = new Vector3(0, hook.GetComponent<Rigidbody2D>().gravityScale * Time.deltaTime, 0);
+        }
     }
     // Update is called once per frame
     void Update()
@@ -78,14 +78,12 @@ public class GrapplingHook : MonoBehaviour
             {
                 if (GetComponent<PlayerControl>().isGround)
                     Ready_To_Throw_Stand();
-                else
-                {
+                else if (!GetComponent<PlayerControl>().isGround || GetComponent<PlayerControl>().isJumpStart)
                     Ready_To_Throw_OnAir();
-                }
             }
                 
 
-            line.SetPosition(0, transform.position);
+            line.SetPosition(0, waist.transform.position);
             line.SetPosition(1, hand.transform.position);
             line.SetPosition(2, hook.position);
 
@@ -139,7 +137,5 @@ public class GrapplingHook : MonoBehaviour
         }
         else
             hook.gameObject.SetActive(false);
-
-        Debug.Log(RopeDelayElapsed);
     }
 }

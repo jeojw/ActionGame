@@ -33,7 +33,7 @@ public class CameraController : MonoBehaviour
 
     void LimitCameraArea()
     {
-        TargetPos = Target.transform.position;
+        TargetPos = Target.transform.position + new Vector3(0, 5, 0);
 
         transform.position = Vector3.Lerp(transform.position, TargetPos + AdjustPos, Time.deltaTime * Target.GetComponent<PlayerControl>().speed);
 
