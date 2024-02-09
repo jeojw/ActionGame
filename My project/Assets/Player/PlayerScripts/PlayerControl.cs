@@ -74,6 +74,7 @@ public class PlayerControl : MonoBehaviour
     public bool isReloading = false;
     public bool isFencing = false;
     public bool isGrapplingShot = false;
+    public bool isPunching = false;
 
     public bool isMoving = false;
     public bool isJumpStart = false;
@@ -258,6 +259,8 @@ public class PlayerControl : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.X))
             {
+                if (weapon == Weapons.NONE)
+                    isAttack = true;
                 
                 if (weapon == Weapons.GUNS && ShotDelayElapsed == 0)
                 {
@@ -281,17 +284,12 @@ public class PlayerControl : MonoBehaviour
                 AttackCooldown();
             }
             if (weapon == Weapons.KNIFE)
-                CheckKnifeInterval();
+                KnifeFightControl();
         }
 
     }
 
     void KnifeFightControl()
-    {
-
-    }
-
-    void CheckKnifeInterval()
     {
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife_Fighting_1"))
@@ -443,6 +441,10 @@ public class PlayerControl : MonoBehaviour
 
     void Attack()
     {
+        if (weapon == Weapons.NONE)
+            isPunching = true;
+        else
+            isPunching = false;
         if (weapon == Weapons.GUNS && isGround && !WeaponUI.GetComponent<WeaponUIManage>().IsZeroPistol) 
         {
             isShooting = true; 
@@ -499,6 +501,7 @@ public class PlayerControl : MonoBehaviour
             isShooting = false;
             isFencing = false;
             isGrapplingShot= false;
+            isPunching = false;
         }
     }
 

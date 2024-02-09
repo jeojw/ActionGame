@@ -12,6 +12,7 @@ TagManager:
   - Rifle_Bullet
   - Knife
   - Enemy
+  - Piste
   layers:
   - Default
   - TransparentFX

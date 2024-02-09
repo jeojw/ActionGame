@@ -36,12 +36,17 @@ public class Enemy_Movement : MonoBehaviour
     public bool isFencing = false;
     public bool isShooting = false;
 
+    public float AttackCoolTime;
+    private float AttackCoolStart = 0;
+    private float AttackCoolElapsed = 0;
+
     public float DetectInterval;
     public float AttackInterval;
     public float speed;
 
     void Start()
     {
+        AttackType = ATTACKTYPE.SWORD;
         Direction = DIRECTION.LEFT; 
         rigid = GetComponent<Rigidbody2D>();
         transform.localScale = new Vector3((float)Direction, 1, 1);
@@ -69,13 +74,15 @@ public class Enemy_Movement : MonoBehaviour
             else
                 isWalking = false;
 
-            if (Vector2.Distance(Player.transform.position, transform.position) < 6f)
+            if (Vector2.Distance(Player.transform.position, transform.position) < 6f && AttackCoolElapsed == 0)
             {
                 isAttack = true;
+                AttackCoolStart = Time.time;
             }
             else
             {
                 isAttack = false;
+                AttackCooldown();
             }
         }
         else
@@ -109,6 +116,16 @@ public class Enemy_Movement : MonoBehaviour
         }
     }
 
+    void AttackCooldown()
+    {
+        AttackCoolElapsed = Time.time - AttackCoolStart;
+        if (AttackCoolElapsed >= AttackCoolTime)
+        {
+            AttackCoolElapsed = 0;
+            AttackCoolStart = 0;
+        }
+    }
+
     void FixedUpdate()
     {
         if (isWalking)
@@ -122,5 +139,7 @@ public class Enemy_Movement : MonoBehaviour
     {
         DetectivePlayer();
         Enemy_AI();
+
+        Debug.Log(AttackCoolElapsed);
     }
 }

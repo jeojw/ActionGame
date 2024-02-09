@@ -138,6 +138,17 @@ public class SpriteUpdate : MonoBehaviour
 
     void WeaponSprite()
     {
+        if (Player.GetComponent<PlayerControl>().weapon == PlayerControl.Weapons.NONE)
+        {
+            if (GetComponent<PlayerControl>().isPunching)
+                anim.SetBool("isPunching", true);
+            else
+            {
+                if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                    anim.SetBool("isPunching", false);
+            }
+        }
+
         if (Player.GetComponent<PlayerControl>().weapon == PlayerControl.Weapons.GUNS)
         {
             Pistol.GetComponent<SpriteRenderer>().enabled = true;
