@@ -272,15 +272,13 @@ public class PlayerControl : MonoBehaviour
                 if (weapon == Weapons.KNIFE)
                 {
                     isAttack = true;
+                    KnifeAttackStart = Time.time;
                 }
             }
             else
             {
-                if (weapon != Weapons.KNIFE)
-                {
-                    isAttack = false;
-                    AttackCooldown();
-                }
+                isAttack = false;
+                AttackCooldown();
             }
             if (weapon == Weapons.KNIFE)
                 CheckKnifeInterval();
@@ -295,13 +293,11 @@ public class PlayerControl : MonoBehaviour
 
     void CheckKnifeInterval()
     {
-        if (KnifeStep >= 3)
-            KnifeStep = 1;
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife_Fighting_1"))
         {
             if (Input.GetKeyDown(KeyCode.X))
-                KnifeStep++;
+                KnifeStep = 2;
             else
             {
                 isAttack = false;
@@ -310,7 +306,7 @@ public class PlayerControl : MonoBehaviour
         else if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife_Fighting_2"))
         {
             if (Input.GetKeyDown(KeyCode.X))
-                KnifeStep++;
+                KnifeStep = 3;
             else
             {
                 isAttack = false;
@@ -321,8 +317,11 @@ public class PlayerControl : MonoBehaviour
         else if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife_Fighting_3"))
         {
 
-            if (Input.GetKeyDown(KeyCode.X) && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            {
                 isAttack = false;
+                KnifeStep = 1;
+            }
         }
     }
 
@@ -344,6 +343,15 @@ public class PlayerControl : MonoBehaviour
             {
                 RopeDelayElapsed = 0;
                 RopeDelayStart = 0;
+            }
+        }
+        else if (weapon == Weapons.KNIFE)
+        {
+            KnifeAttackElapsed = Time.time - KnifeAttackStart;
+            if (KnifeAttackElapsed >= KnifeAttackInterval)
+            {
+                KnifeAttackElapsed = 0;
+                KnifeAttackStart = 0;
             }
         }
     }
@@ -536,6 +544,6 @@ public class PlayerControl : MonoBehaviour
             isLanding = false;
             //Landing.Stop(); 
         }
-        Debug.Log(KnifeStep);
+        Debug.Log(KnifeAttackElapsed);
     }
 }

@@ -32,6 +32,10 @@ public class Enemy_Movement : MonoBehaviour
 
     public bool isDetect = false;
     public bool isWalking = false;
+    public bool isAttack = false;
+    public bool isFencing = false;
+    public bool isShooting = false;
+
     public float DetectInterval;
     public float AttackInterval;
     public float speed;
@@ -60,15 +64,26 @@ public class Enemy_Movement : MonoBehaviour
     {
         if (isDetect)
         {
-            if (Vector2.Distance(Player.transform.position, transform.position) >= 5f)
+            if (Vector2.Distance(Player.transform.position, transform.position) >= 6f)
                 isWalking = true;
             else
                 isWalking = false;
+
+            if (Vector2.Distance(Player.transform.position, transform.position) < 6f)
+            {
+                isAttack = true;
+            }
+            else
+            {
+                isAttack = false;
+            }
         }
         else
         {
             isWalking = false;
+            isAttack = false;
         }
+
     }
 
     void Move()
@@ -88,13 +103,19 @@ public class Enemy_Movement : MonoBehaviour
 
     void Attack()
     {
-        
+        if (AttackType == ATTACKTYPE.SWORD)
+        {
+            isFencing = true;
+        }
     }
 
     void FixedUpdate()
     {
         if (isWalking)
-            Move();    
+            Move();
+
+        if (isAttack)
+            Attack();
     }
     // Update is called once per frame
     void Update()

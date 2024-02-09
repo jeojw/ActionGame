@@ -202,13 +202,21 @@ public class SpriteUpdate : MonoBehaviour
         }
         else
         {
-            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife_Fighting_1"))
             {
-                if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife_Fighting_1"))
+                if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
                     anim.SetBool("isFencing_1", false);
-                if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife_Fighting_2"))
+            }
+
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife_Fighting_2"))
+            {
+                if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
                     anim.SetBool("isFencing_2", false);
-                if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife_Fighting_3"))
+            }
+
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife_Fighting_3"))
+            {
+                if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
                     anim.SetBool("isFencing_3", false);
             }
         }
