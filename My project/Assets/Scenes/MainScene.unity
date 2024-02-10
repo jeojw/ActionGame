@@ -769,6 +769,7 @@ GameObject:
   - component: {fileID: 292544340}
   - component: {fileID: 292544342}
   - component: {fileID: 292544339}
+  - component: {fileID: 292544343}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -829,13 +830,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackType: 0
   Condition: 0
-  Direction: 0
+  Direction: -1
   Player: {fileID: 2060703201}
   isDetect: 0
   isWalking: 0
   isAttack: 0
   isFencing: 0
   isShooting: 0
+  AttackCoolTime: 3
   DetectInterval: 30
   AttackInterval: 0
   speed: 10
@@ -851,7 +853,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 3.9797442
+  m_Mass: 5.6571608
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -878,6 +880,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63d5f671071bc944d908ec64c70f1943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &292544343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292544337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2736bc4c3cb3e04880c7a0d0e620a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HeadHitbox: {fileID: 360369975}
+  BodyHitbox_1: {fileID: 1675997068}
+  BodyHitbox_2: {fileID: 1040039826}
+  KnifeHit: 0
+  PistolBulletHit: 0
+  RifleBulletHit: 0
 --- !u!1 &293777823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1877,7 +1897,7 @@ GameObject:
   - component: {fileID: 360369975}
   m_Layer: 0
   m_Name: EnemyHeadHitbox
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2317,6 +2337,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -7552582706839291426, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1194526157}
+    - targetCorrespondingSourceObject: {fileID: 4257508509235537429, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 1675997067}
     - targetCorrespondingSourceObject: {fileID: 8648882755762834919, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
       insertIndex: 0
       addedObject: {fileID: 1040039825}
@@ -3228,6 +3251,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!4 &523699946 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4257508509235537429, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+  m_PrefabInstance: {fileID: 390717640}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &578683827
 GameObject:
   m_ObjectHideFlags: 0
@@ -3976,12 +4004,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d1c81d21274ec914ba59b373ae660797, type: 3}
       propertyPath: m_Name
-      value: Dagger_17
+      value: EnemyKnife
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d1c81d21274ec914ba59b373ae660797, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1685624228}
   m_SourcePrefab: {fileID: 100100000, guid: d1c81d21274ec914ba59b373ae660797, type: 3}
 --- !u!1 &940177289
 GameObject:
@@ -4290,8 +4321,8 @@ GameObject:
   - component: {fileID: 1040039825}
   - component: {fileID: 1040039826}
   m_Layer: 0
-  m_Name: EnemyBodyHitbox
-  m_TagString: Untagged
+  m_Name: EnemyBodyHitbox_2
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4346,11 +4377,11 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -1.3706025, y: 0.43289247}
-  - {x: -1.3313273, y: -0.3950315}
-  - {x: 1.4042226, y: -0.38349026}
-  - {x: 1.4250766, y: 0.43799457}
-  - {x: -1.4151498, y: 0.48182353}
+  - {x: -0.09398115, y: 0.4096663}
+  - {x: -0.09529248, y: -0.40118587}
+  - {x: 1.5729208, y: -0.46257785}
+  - {x: 1.5672086, y: 0.4406176}
+  - {x: -0.06563691, y: 0.4976187}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -7812,6 +7843,132 @@ RectTransform:
   m_AnchoredPosition: {x: -4.9, y: 0.099999905}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1675997066
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1675997067}
+  - component: {fileID: 1675997068}
+  m_Layer: 0
+  m_Name: EnemyBodyHitbox_1
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1675997067
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675997066}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.671, y: 0.013, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 523699946}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!68 &1675997068
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675997066}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.8165777, y: 0.28788516}
+  - {x: -0.7696101, y: -0.30665478}
+  - {x: 0.6445775, y: -0.3050392}
+  - {x: 0.64213204, y: 0.30124184}
+  - {x: -0.81404996, y: 0.3356466}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!1 &1685624225 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d1c81d21274ec914ba59b373ae660797, type: 3}
+  m_PrefabInstance: {fileID: 921536585}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &1685624228
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685624225}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 1
+  m_Offset: {x: 0.0010208712, y: -0.07496593}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.09376422, y: 0.38209748}
+  m_EdgeRadius: 0
 --- !u!1 &1694930075
 GameObject:
   m_ObjectHideFlags: 0
@@ -8900,6 +9057,9 @@ MonoBehaviour:
   LeftLegHitbox_2: {fileID: 578683829}
   RightLegHitbox_1: {fileID: 1436064074}
   RightLegHitbox_2: {fileID: 1653638810}
+  KnifeHit: 0
+  PistolBulletHit: 0
+  RifleBulletHit: 0
 --- !u!1 &2062443783
 GameObject:
   m_ObjectHideFlags: 0

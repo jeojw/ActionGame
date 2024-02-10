@@ -1,15 +1,13 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCheckCollision : MonoBehaviour
+public class EnemyCheckCollision : MonoBehaviour
 {
     // Start is called before the first frame update
     public CircleCollider2D HeadHitbox;
     public EdgeCollider2D BodyHitbox_1;
     public EdgeCollider2D BodyHitbox_2;
-    public EdgeCollider2D LeftLegHitbox_1;
-    public EdgeCollider2D LeftLegHitbox_2;
-    public EdgeCollider2D RightLegHitbox_1;
-    public EdgeCollider2D RightLegHitbox_2;
 
     public bool KnifeHit = false;
     public bool PistolBulletHit = false;
@@ -18,20 +16,6 @@ public class PlayerCheckCollision : MonoBehaviour
     void Start()
     {
 
-    }
-    void CheckSlope()
-    {
-        bool isSlope = GetComponent<PlayerControl>().isSlope;
-        if (isSlope)
-        {
-            LeftLegHitbox_2.isTrigger = true;
-            RightLegHitbox_2.isTrigger = true;
-        }
-        else
-        {
-            LeftLegHitbox_2.isTrigger = false;
-            RightLegHitbox_2.isTrigger = false;
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -68,12 +52,5 @@ public class PlayerCheckCollision : MonoBehaviour
         {
             KnifeHit = false;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        CheckSlope();
-        //Debug.Log(KnifeHit);
     }
 }

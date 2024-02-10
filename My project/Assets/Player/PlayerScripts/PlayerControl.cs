@@ -488,6 +488,11 @@ public class PlayerControl : MonoBehaviour
             rigid.velocity = new Vector2(x * speed * 2f, rigid.velocity.y);
     }
 
+    void GetAttack()
+    {
+
+    }
+
     void Update()
     {
         Control();
@@ -547,6 +552,5 @@ public class PlayerControl : MonoBehaviour
             isLanding = false;
             //Landing.Stop(); 
         }
-        Debug.Log(KnifeAttackElapsed);
     }
 }

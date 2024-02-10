@@ -133,13 +133,16 @@ public class Enemy_Movement : MonoBehaviour
 
         if (isAttack)
             Attack();
+        else
+        {
+            isFencing = false;
+        }
     }
     // Update is called once per frame
     void Update()
     {
         DetectivePlayer();
         Enemy_AI();
-
         Debug.Log(AttackCoolElapsed);
     }
 }
