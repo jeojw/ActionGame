@@ -974,10 +974,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -3970,6 +3970,7 @@ GameObject:
   m_Component:
   - component: {fileID: 869260580}
   - component: {fileID: 869260581}
+  - component: {fileID: 869260582}
   m_Layer: 9
   m_Name: HeadHitbox
   m_TagString: Untagged
@@ -4027,6 +4028,22 @@ CircleCollider2D:
   m_Offset: {x: 0.0013811088, y: -0.02930249}
   serializedVersion: 2
   m_Radius: 1.0899503
+--- !u!114 &869260582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869260579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a14cdd56529b841be26739807200fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 2060703201}
+  KnifeHit: 0
+  PistolBulletHit: 0
+  RifleBulletHit: 0
 --- !u!1 &907143198
 GameObject:
   m_ObjectHideFlags: 0
@@ -4376,7 +4393,7 @@ GameObject:
   - component: {fileID: 963065070}
   - component: {fileID: 963065069}
   m_Layer: 12
-  m_Name: Fill
+  m_Name: EnemyHpFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4391,7 +4408,7 @@ RectTransform:
   m_GameObject: {fileID: 963065067}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9810938, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1666526951}
@@ -4414,7 +4431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.63529414, g: 0, b: 0.039215688, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4422,10 +4439,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -6842,7 +6859,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 0, b: 0, a: 1}
     m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 1, g: 0, b: 0, a: 1}
+    m_PressedColor: {r: 0.37254903, g: 0.37254903, b: 0.37254903, a: 1}
     m_SelectedColor: {r: 1, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
@@ -6858,7 +6875,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1666169007}
   m_FillRect: {fileID: 1666169006}
   m_HandleRect: {fileID: 0}
@@ -6928,10 +6945,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -7568,13 +7585,13 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
-    m_NormalColor: {r: 0.63529414, g: 0, b: 0.039215688, a: 1}
-    m_HighlightedColor: {r: 0.6320754, g: 0, b: 0.0382717, a: 1}
-    m_PressedColor: {r: 0.63529414, g: 0, b: 0.039215688, a: 1}
-    m_SelectedColor: {r: 0.63529414, g: 0, b: 0.039215688, a: 1}
-    m_DisabledColor: {r: 0.63529414, g: 0, b: 0.039215688, a: 0.5019608}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_PressedColor: {r: 0.9960785, g: 0.9960785, b: 0.9960785, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -7588,7 +7605,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 963065069}
   m_FillRect: {fileID: 963065068}
   m_HandleRect: {fileID: 0}
@@ -7924,7 +7941,7 @@ GameObject:
   - component: {fileID: 1666169008}
   - component: {fileID: 1666169007}
   m_Layer: 5
-  m_Name: Fill
+  m_Name: PlayerHpFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7939,7 +7956,7 @@ RectTransform:
   m_GameObject: {fileID: 1666169005}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0206134, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 395211504}
@@ -7962,7 +7979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7970,10 +7987,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -9082,10 +9099,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1200045858}
   - {fileID: 1694930076}
   - {fileID: 1295159761}
   - {fileID: 1442244383}
+  - {fileID: 1200045858}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2060703204
@@ -9108,8 +9125,8 @@ MonoBehaviour:
   LeftLegHitbox_1: {fileID: 1080732}
   LeftLegHitbox_2: {fileID: 578683829}
   Condition: 0
-  MaxHp: 0
-  curHp: 0
+  MaxHp: 300
+  curHp: 300
 --- !u!114 &2060703205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9607,7 +9624,7 @@ SceneRoots:
   - {fileID: 2062443787}
   - {fileID: 2060703202}
   - {fileID: 1340781994}
-  - {fileID: 729987378}
   - {fileID: 1155949167}
+  - {fileID: 729987378}
   - {fileID: 634688083}
   - {fileID: 292544338}

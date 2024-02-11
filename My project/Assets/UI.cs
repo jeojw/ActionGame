@@ -167,5 +167,6 @@ public class UI : MonoBehaviour
     {
         WeaponUI();
         Check_Timer();
+        CheckHp();
     }
 }
