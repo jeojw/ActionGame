@@ -74,7 +74,7 @@ public class Enemy_Movement : MonoBehaviour
             else
                 isWalking = false;
 
-            if (Vector2.Distance(Player.transform.position, transform.position) < 6f && AttackCoolElapsed == 0)
+            if (Vector2.Distance(Player.transform.position, transform.position) < 6f && AttackCoolStart == 0)
             {
                 isAttack = true;
                 AttackCoolStart = Time.time;
@@ -143,5 +143,6 @@ public class Enemy_Movement : MonoBehaviour
     {
         DetectivePlayer();
         Enemy_AI();
+        Debug.Log(AttackCoolElapsed);
     }
 }

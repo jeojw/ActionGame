@@ -189,7 +189,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &1165863820544804154
 MonoBehaviour:
@@ -205,8 +205,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletSpeed: 120
   Damage: 2
-  isCollision: 0
-  isOutCamera: 0
 --- !u!96 &2246397769458809119
 TrailRenderer:
   serializedVersion: 3

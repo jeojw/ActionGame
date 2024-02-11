@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Net.Security;
 using Unity.VisualScripting;
+using UnityEditor.Build;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
@@ -20,8 +21,8 @@ public class PlayerControl : MonoBehaviour
 
     public enum Direction
     {
-        LEFT,
-        RIGHT
+        LEFT = -1,
+        RIGHT = 1
     }
 
     public enum Weapons
@@ -149,76 +150,44 @@ public class PlayerControl : MonoBehaviour
                 isMoving = true;
             else
                 isMoving = false;
-            //if (!isRolling)
-            //{
-            //    if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
-            //    {
-            //        if (weapon == Weapons.NONE)
-            //        {
-            //            if (PerKeyPressTime < KeyPressInterval)
-            //            {
-            //                PerKeyPressTime = 0;
-            //            }
-
-            //            if (KeyPressTime == 0)
-            //            {
-            //                KeyPressTime = Time.time;
-            //                isWalking = true;
-            //            }
-
-            //            else if (Time.time - KeyPressTime < RunningInterval)
-            //            {
-            //                isRunning = true;
-            //                KeyPressTime = 0;
-            //            }
-            //            else
-            //            {
-            //                isWalking = true;
-            //                KeyPressTime = 0;
-            //            }
-            //        }
-            //        else
-            //        {
-            //            isWalking = true;
-            //        }
-            //    }
-
-            //    else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
-            //    {
-            //        isWalking = false;
-            //        if (weapon == Weapons.NONE)
-            //        {
-            //            PerKeyPressTime = Time.time - KeyPressTime;
-            //            if (isRunning)
-            //            {
-            //                isRunning = false;
-            //                KeyPressTime = 0;
-            //            }
-            //        }
-
-
-            //    }
-            //}
 
             if (!isRolling)
             {
-                if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+                bool leftPressed = Input.GetKeyDown(KeyCode.A);
+                bool rightPressed = Input.GetKeyDown(KeyCode.D);
+
+                bool leftPressing = Input.GetKey(KeyCode.A);
+                bool rightPressing = Input.GetKey(KeyCode.D);
+                if (leftPressed)
                 {
-                    IsDoublePressed = (Time.time - lastKeyPressTime < RunningInterval);
+                    IsDoublePressed = direction == Direction.LEFT && Time.time - lastKeyPressTime < RunningInterval;
+                    direction = Direction.LEFT;
                     lastKeyPressTime = Time.time;
                 }
-                if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+                if (rightPressed)
+                {
+                    IsDoublePressed = direction == Direction.RIGHT && Time.time - lastKeyPressTime < RunningInterval;
+                    direction = Direction.RIGHT;
+                    lastKeyPressTime = Time.time;
+                }
+
+                if (leftPressing || rightPressing)
                 {
                     if (IsDoublePressed)
+                    {
+                        isWalking = false;
                         isRunning = true;
+                    }
                     else
+                    {
                         isWalking = true;
+                        isRunning = false;
+                    }
                 }
                 else
                 {
-                    IsDoublePressed = false;
-                    isRunning = false;
                     isWalking = false;
+                    isRunning = false;
                 }
             }
 
@@ -389,30 +358,24 @@ public class PlayerControl : MonoBehaviour
     void Walk()
     {
         float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
 
         if (grappling.isAttach || grappling.isHookActive)
         {
-            rigid.AddForce(new Vector2(x * speed, rigid.velocity.y));
+            rigid.AddForce(new Vector2((int)direction * speed, rigid.velocity.y));
         }
 
         else
         {
-            if (x > 0) 
-                direction = Direction.RIGHT;
-            else if (x < 0)
-                direction = Direction.LEFT;
-
             if (isSlope)
             {
                 RaycastHit2D hit = Physics2D.Raycast(rigid.position, Vector2.down, 5f, LayerMask.GetMask("Slope"));
                 SlopeAngle = Vector2.Angle(Vector2.up, hit.normal);
 
-                rigid.velocity = Vector3.ProjectOnPlane(Vector3.right * x, hit.normal).normalized * speed + Vector3.down * rigid.gravityScale;
+                rigid.velocity = Vector3.ProjectOnPlane(Vector3.right * (int)direction, hit.normal).normalized * speed + Vector3.down * rigid.gravityScale;
 
             }
             else
-                rigid.velocity = new Vector2(x * speed, rigid.velocity.y);
+                rigid.velocity = new Vector2((int)direction * speed, rigid.velocity.y);
         }
     }
 
@@ -518,21 +481,16 @@ public class PlayerControl : MonoBehaviour
         if (isWalking)
         {
             Walk();
-            //Walking.Play();
         }
         else
             Walking.Stop();
         if (isRunning)
         {
             Run();
-            //Running.Play();
         }
-        else
-            Running.Stop();
         if (isJump)
         {
             Jump();
-            //Jumping.Play();
         }
         else
             Jumping.Stop();
@@ -545,12 +503,10 @@ public class PlayerControl : MonoBehaviour
         if (rigid.velocity.y < 0)
         {
             isLanding = true;
-            //Landing.Play();
         }
         else
         {
             isLanding = false;
-            //Landing.Stop(); 
         }
     }
 }

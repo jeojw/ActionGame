@@ -25,6 +25,10 @@ public class SpriteUpdate : MonoBehaviour
     bool OnGround = false;
     bool Rolling = false;
     bool LowerBody = false;
+
+    PlayerControl playerControl;
+    GrapplingHook graphook;
+    SpriteRenderer pistolSprite;
     IEnumerator WaitforAnimationToFinish()
     {
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife Fighting_1") ||
@@ -34,28 +38,31 @@ public class SpriteUpdate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Pistol.GetComponent<SpriteRenderer>().enabled = true;
+        pistolSprite = Pistol.GetComponent<SpriteRenderer>();
+        pistolSprite.enabled = true;
         Rifle.GetComponent<SpriteRenderer>().enabled = false;
         Knife.enabled = false;
+        playerControl = GetComponent<PlayerControl>();
+        graphook = GetComponent<GrapplingHook>();
     }
 
     void MoveSprite()
     {
         
-        Direct = Player.GetComponent<PlayerControl>().direction;
-        Jumping = Player.GetComponent<PlayerControl>().isJump;
-        JumpStart = Player.GetComponent<PlayerControl>().isJumpStart;
-        Running = Player.GetComponent<PlayerControl>().isRunning;
-        Walking = Player.GetComponent<PlayerControl>().isWalking;
-        Landing = Player.GetComponent<PlayerControl>().isLanding;
-        OnGround = Player.GetComponent<PlayerControl>().isGround;
-        Rolling = Player.GetComponent <PlayerControl>().isRolling;
-        LowerBody = Player.GetComponent<PlayerControl>().isLowerBody;
+        Direct = playerControl.direction;
+        Jumping = playerControl.isJump;
+        JumpStart = playerControl.isJumpStart;
+        Running = playerControl.isRunning;
+        Walking = playerControl.isWalking;
+        Landing = playerControl.isLanding;
+        OnGround = playerControl.isGround;
+        Rolling = playerControl.isRolling;
+        LowerBody = playerControl.isLowerBody;
 
         if (Direct == PlayerControl.Direction.LEFT) { Player.transform.localScale = new Vector3(-1, 1, 1); }
         else if (Direct == PlayerControl.Direction.RIGHT) { Player.transform.localScale = new Vector3(1, 1, 1); }
 
-        if (Player.GetComponent<PlayerControl>().weapon == PlayerControl.Weapons.GUNS)
+        if (playerControl.weapon == PlayerControl.Weapons.GUNS)
         {
             anim.SetBool("isGetPistol", true);
         }
@@ -138,9 +145,9 @@ public class SpriteUpdate : MonoBehaviour
 
     void WeaponSprite()
     {
-        if (Player.GetComponent<PlayerControl>().weapon == PlayerControl.Weapons.NONE)
+        if (playerControl.weapon == PlayerControl.Weapons.NONE)
         {
-            if (GetComponent<PlayerControl>().isPunching)
+            if (playerControl.isPunching)
                 anim.SetBool("isPunching", true);
             else
             {
@@ -149,9 +156,9 @@ public class SpriteUpdate : MonoBehaviour
             }
         }
 
-        if (Player.GetComponent<PlayerControl>().weapon == PlayerControl.Weapons.GUNS)
+        if (playerControl.weapon == PlayerControl.Weapons.GUNS)
         {
-            Pistol.GetComponent<SpriteRenderer>().enabled = true;
+            pistolSprite.enabled = true;
             if (!Pistol.GetComponent<WeaponManage>().AmmunitionZero)
             {
                 anim.SetBool("isReloading", false);
@@ -159,7 +166,7 @@ public class SpriteUpdate : MonoBehaviour
             }
             else
                 anim.SetBool("isReloading", true);
-            if (GetComponent<PlayerControl>().isShooting)
+            if (playerControl.isShooting)
             {
                 anim.SetBool("isPistolShooting", true);
                 //if (GameObject.Find("UI").GetComponent<WeaponUIManage>().isZero)
@@ -181,10 +188,10 @@ public class SpriteUpdate : MonoBehaviour
         }
         else
         {
-            Pistol.GetComponent<SpriteRenderer>().enabled = false;
+            pistolSprite.enabled = false;
         }
 
-        if (Player.GetComponent<PlayerControl>().weapon == PlayerControl.Weapons.KNIFE)
+        if (playerControl.weapon == PlayerControl.Weapons.KNIFE)
         {
             anim.SetBool("isKnifeFightReady", true);
             Knife.enabled = true;
@@ -196,17 +203,17 @@ public class SpriteUpdate : MonoBehaviour
             Knife.enabled = false;
         }  
 
-        if (GetComponent<PlayerControl>().isFencing)
+        if (playerControl.isFencing)
         {
-            if (GetComponent<PlayerControl>().KnifeStep == 1)
+            if (playerControl.KnifeStep == 1)
             {
                 anim.SetBool("isFencing_1", true);
             }
-            if (GetComponent<PlayerControl>().KnifeStep == 2)
+            if (playerControl.KnifeStep == 2)
             {
                 anim.SetBool("isFencing_2", true);
             }
-            if (GetComponent<PlayerControl>().KnifeStep == 3)
+            if (playerControl.KnifeStep == 3)
             {
                 anim.SetBool("isFencing_3", true);
             }
@@ -232,7 +239,7 @@ public class SpriteUpdate : MonoBehaviour
             }
         }
         
-        if (Player.GetComponent<PlayerControl>().weapon == PlayerControl.Weapons.ROPE)
+        if (playerControl.weapon == PlayerControl.Weapons.ROPE)
         {
             anim.SetBool("isRopeReady", true);
         }
@@ -240,13 +247,13 @@ public class SpriteUpdate : MonoBehaviour
         {
             anim.SetBool("isRopeReady", false);
         }
-        if (transform.GetComponent<GrapplingHook>().isHookActive)
+        if (graphook.isHookActive)
         {
             anim.SetBool("isHookActive", true);
-            if (transform.GetComponent<GrapplingHook>().isAttach)
+            if (graphook.isAttach)
             {
                 anim.SetBool("isAttach", true);
-                if (GetComponent<PlayerControl>().isShooting)
+                if (playerControl.isShooting)
                     anim.SetBool("isHookShooting", true);
                 else
                     anim.SetBool("isHookShooting", false);

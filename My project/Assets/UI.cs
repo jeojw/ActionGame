@@ -23,7 +23,7 @@ public class UI : MonoBehaviour
     public Image None;
     public Image Pistol;
     public Image Rifle;
-    public MeshRenderer Knife;
+    public Image Knife;
     public Image Rope;
 
     public Image Pistol_Ammunition;
