@@ -14,7 +14,11 @@ public class StatManage : MonoBehaviour
     public EdgeCollider2D LeftLegHitbox_1;
     public EdgeCollider2D LeftLegHitbox_2;
 
+    PlayerControl playControl;
+
     float Damage;
+
+
 
     public enum ALLCONDITIONS
     {
@@ -43,6 +47,7 @@ public class StatManage : MonoBehaviour
 
     void Start()
     {
+        playControl = GetComponent<PlayerControl>();
         Condition = ALLCONDITIONS.AWAKE;
         MaxHp = 300f;
         curHp = MaxHp;
@@ -50,7 +55,7 @@ public class StatManage : MonoBehaviour
 
     void ATKUpdate()
     {
-        if (GetComponent<PlayerControl>().weapon == PlayerControl.Weapons.GUNS)
+        if (playControl.weapon == PlayerControl.Weapons.GUNS)
         {
 
         }

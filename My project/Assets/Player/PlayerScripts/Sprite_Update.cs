@@ -14,8 +14,6 @@ public class SpriteUpdate : MonoBehaviour
     public GameObject Rifle;
     public MeshRenderer Knife;
 
-
-    bool isSwitching = false;
     PlayerControl.Direction Direct = PlayerControl.Direction.RIGHT;
     bool JumpStart = false;
     bool Jumping = false;
@@ -29,12 +27,8 @@ public class SpriteUpdate : MonoBehaviour
     PlayerControl playerControl;
     GrapplingHook graphook;
     SpriteRenderer pistolSprite;
-    IEnumerator WaitforAnimationToFinish()
-    {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife Fighting_1") ||
-            anim.GetCurrentAnimatorStateInfo(0).IsName("Rolling"))
-            yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
-    }
+    WeaponManage PistolManage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +38,7 @@ public class SpriteUpdate : MonoBehaviour
         Knife.enabled = false;
         playerControl = GetComponent<PlayerControl>();
         graphook = GetComponent<GrapplingHook>();
+        PistolManage = Pistol.GetComponent<WeaponManage>();
     }
 
     void MoveSprite()
@@ -159,7 +154,7 @@ public class SpriteUpdate : MonoBehaviour
         if (playerControl.weapon == PlayerControl.Weapons.GUNS)
         {
             pistolSprite.enabled = true;
-            if (!Pistol.GetComponent<WeaponManage>().AmmunitionZero)
+            if (!PistolManage.AmmunitionZero)
             {
                 anim.SetBool("isReloading", false);
                 

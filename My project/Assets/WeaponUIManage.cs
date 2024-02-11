@@ -7,8 +7,11 @@ public class WeaponUIManage : MonoBehaviour
 {
     private TextMeshProUGUI Pistol_Ammunition;
     public GameObject PlayerInfo;
-    public GameObject PistolManage;
-    public GameObject RifleManage;
+    public GameObject Pistol;
+    public GameObject Rifle;
+
+    SceneUI AllUI;
+    WeaponManage PistolManage;
 
     private float Pistol_Cur_Ammunition;
 
@@ -17,13 +20,14 @@ public class WeaponUIManage : MonoBehaviour
 
     void Start()
     {
-        
+        AllUI = GetComponent<SceneUI>();
+        PistolManage = Pistol.GetComponent<WeaponManage>();
     }
 
-    void Pistol()
+    void Pistol_Manage()
     {
-        Pistol_Ammunition = GetComponent<UI>().Pistol_Ammunition_Text;
-        Pistol_Cur_Ammunition = PistolManage.GetComponent<WeaponManage>().curAmmunition;
+        Pistol_Ammunition = AllUI.Pistol_Ammunition_Text;
+        Pistol_Cur_Ammunition = PistolManage.curAmmunition;
         if (Pistol_Cur_Ammunition == 0)
             IsZeroPistol = true;
         else
@@ -33,14 +37,14 @@ public class WeaponUIManage : MonoBehaviour
     }
 
 
-    void Rifle()
+    void Rifle_Manage()
     {
         
     }
     // Update is called once per frame
     void Update()
     {
-        Pistol();
-        Rifle();
+        Pistol_Manage();
+        Rifle_Manage();
     }
 }

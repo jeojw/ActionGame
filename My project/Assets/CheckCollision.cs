@@ -7,6 +7,8 @@ public class CheckCollision : MonoBehaviour
 
     new Collider2D collider;
 
+    CollisionPhysics collisionPhysics;
+
     public bool KnifeHit = false;
     public bool PistolBulletHit = false;
     public bool RifleBulletHit = false;
@@ -14,6 +16,7 @@ public class CheckCollision : MonoBehaviour
     void Start()
     {
         collider = GetComponent<Collider2D>();
+        collisionPhysics = GetComponent<CollisionPhysics>();
     }
     void CheckSlope()
     {
@@ -32,15 +35,15 @@ public class CheckCollision : MonoBehaviour
     {
         if (PistolBulletHit)
         {
-            Player.GetComponent<CollisionPhysics>().SetPhysics(new Vector2(0, 0));
+            collisionPhysics.SetPhysics(new Vector2(0, 0));
         }
         if (RifleBulletHit)
         {
-            Player.GetComponent<CollisionPhysics>().SetPhysics(new Vector2(0, 0));
+            collisionPhysics.SetPhysics(new Vector2(0, 0));
         }
         if (KnifeHit)
         {
-            Player.GetComponent<CollisionPhysics>().SetPhysics(new Vector2(0, 0));
+            collisionPhysics.SetPhysics(new Vector2(0, 0));
         }
     }
 

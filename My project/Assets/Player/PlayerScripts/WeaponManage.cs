@@ -17,16 +17,21 @@ public class WeaponManage : MonoBehaviour
     public int maxAmmunition;
 
     public float Reload_Delay;
+
+    PlayerControl playControl;
+    Animator playerAnim;
     void Start()
     {
         curAmmunition = maxAmmunition;
+        playControl = Player.GetComponent<PlayerControl>();
+        playerAnim = Player.GetComponent<Animator>();  
     }
 
     void Shot()
     {
 
-        if (Player.GetComponent<PlayerControl>().ShotDelayElapsed == 0 &&
-            Player.GetComponent<PlayerControl>().isShooting)
+        if (playControl.ShotDelayElapsed == 0 &&
+            playControl.isShooting)
         {
             if (curAmmunition != 0)
             {
@@ -44,9 +49,9 @@ public class WeaponManage : MonoBehaviour
 
     void Reload()
     {
-        if (Player.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Reloading_Pistol"))
+        if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Reloading_Pistol"))
         {
-            if (Player.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            if (playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
             {
                 curAmmunition = maxAmmunition;
                 AmmunitionZero = false;

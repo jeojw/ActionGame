@@ -4,6 +4,7 @@ using System.Net.Security;
 using Unity.VisualScripting;
 using UnityEditor.Build;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -13,12 +14,14 @@ public class PlayerControl : MonoBehaviour
     GrapplingHook grappling;
     private Animator anim;
     public Transform bodyPos;
-    public GameObject WeaponUI;
+    public GameObject UI;
     public AudioSource Walking;
     public AudioSource Running;
     public AudioSource Jumping;
     public AudioSource Landing;
-
+    
+    SceneManage sceneManage;
+    WeaponUIManage weaponUIManage;
     public enum Direction
     {
         LEFT = -1,
@@ -97,6 +100,8 @@ public class PlayerControl : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         grappling = GetComponent<GrapplingHook>();
         anim = GetComponent<Animator>();
+        sceneManage = UI.GetComponent<SceneManage>();
+        weaponUIManage = UI.GetComponent<WeaponUIManage>();
     }
 
     // Update is called once per frame
@@ -144,7 +149,7 @@ public class PlayerControl : MonoBehaviour
 
     void Control()
     {
-        if (!GameObject.Find("UI").GetComponent<SceneManage>().isPaused)
+        if (!sceneManage.isPaused)
         {
             if (isWalking || isRunning || isJump || isLanding || isJumpStart)
                 isMoving = true;
@@ -195,7 +200,7 @@ public class PlayerControl : MonoBehaviour
             if (!isRolling)
             {
                 if (Input.GetKeyDown(KeyCode.Space) && 
-                    !WeaponUI.GetComponent<WeaponUIManage>().IsZeroPistol && 
+                    !weaponUIManage.IsZeroPistol && 
                     (weapon == Weapons.NONE ||
                     weapon == Weapons.ROPE) &&
                     jumpCount == 1)
@@ -203,7 +208,7 @@ public class PlayerControl : MonoBehaviour
                     isJumpStart = true;
                 }
 
-                else if (Input.GetKeyUp(KeyCode.Space) && !WeaponUI.GetComponent<WeaponUIManage>().IsZeroPistol &&
+                else if (Input.GetKeyUp(KeyCode.Space) && !weaponUIManage.IsZeroPistol &&
                     (weapon == Weapons.NONE ||
                     weapon == Weapons.ROPE))
                 {
@@ -326,9 +331,9 @@ public class PlayerControl : MonoBehaviour
     void WeaponControl()
     {
         if(Input.GetKeyDown(KeyCode.Tab) && 
-            !GetComponent<GrapplingHook>().isAttach &&
-            !GetComponent<GrapplingHook>().isHookActive &&
-            !GetComponent<GrapplingHook>().isLineMax &&
+            !grappling.isAttach &&
+            !grappling.isHookActive &&
+            !grappling.isLineMax &&
             !isLowerBody &&
             !isMoving &&
             isGround) {
@@ -408,7 +413,7 @@ public class PlayerControl : MonoBehaviour
             isPunching = true;
         else
             isPunching = false;
-        if (weapon == Weapons.GUNS && isGround && !WeaponUI.GetComponent<WeaponUIManage>().IsZeroPistol) 
+        if (weapon == Weapons.GUNS && isGround && !weaponUIManage.IsZeroPistol) 
         {
             isShooting = true; 
         }

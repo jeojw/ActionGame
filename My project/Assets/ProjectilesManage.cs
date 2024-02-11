@@ -12,6 +12,8 @@ public class ProjectilesManage : MonoBehaviour
     GameObject Bullets;
     GameObject CurBullet;
 
+    PlayerControl playControl;
+
     private bool isShot = false;
 
     // Start is called before the first frame update
@@ -19,13 +21,13 @@ public class ProjectilesManage : MonoBehaviour
     {
         Projectiles = new GameObject[1000];
         Bullets = Resources.Load<GameObject>("Prefabs/BulletObjects");
-        
+        playControl = Player.GetComponent<PlayerControl>();
     }
 
     void Player_Bullet_Shot()
     {
-        if (Player.GetComponent<PlayerControl>().isShooting &&
-            Player.GetComponent<PlayerControl>().ShotDelayElapsed == 0)
+        if (playControl.isShooting &&
+            playControl.ShotDelayElapsed == 0)
         {
             if (!Weapon.GetComponent<WeaponManage>().AmmunitionZero)
             {

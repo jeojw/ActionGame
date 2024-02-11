@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UI : MonoBehaviour
+public class SceneUI : MonoBehaviour
 {
     public GameObject Player;
 
@@ -34,6 +34,8 @@ public class UI : MonoBehaviour
     public TextMeshProUGUI ScoreText;
 
     public Slider HpBar;
+    StatManage StatM;
+    PlayerControl playControl;
     // Start is called before the first frame update
 
     void Start()
@@ -51,6 +53,9 @@ public class UI : MonoBehaviour
         Knife.gameObject.SetActive(false);
 
         Rope.gameObject.SetActive(false);
+
+        StatM = Player.GetComponent<StatManage>();
+        playControl = Player.GetComponent<PlayerControl>();
 
         Reset_Timer();
     }
@@ -77,7 +82,7 @@ public class UI : MonoBehaviour
     
     void WeaponUI()
     {
-        weapon = GameObject.Find("Player").GetComponent<PlayerControl>().weapon;
+        weapon = playControl.weapon;
         if (weapon == PlayerControl.Weapons.NONE)
         {
             if (None.gameObject != null)
@@ -156,7 +161,7 @@ public class UI : MonoBehaviour
     }
     public void CheckHp()
     {
-        curHealth = Player.GetComponent<StatManage>().curHp;
+        curHealth = StatM.curHp;
         if (HpBar != null) {
             HpBar.value = curHealth / MaxHealth;
         }

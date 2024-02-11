@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy_Sprite_Update : MonoBehaviour
 {
     Animator anim;
+    Enemy_Movement Control;
 
     bool Walking;
     bool Fencing;
@@ -12,13 +13,14 @@ public class Enemy_Sprite_Update : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();    
+        Control = GetComponent<Enemy_Movement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Walking = GetComponent<Enemy_Movement>().isWalking;
-        Fencing = GetComponent<Enemy_Movement>().isFencing;
+        Walking = Control.isWalking;
+        Fencing = Control.isFencing;
         if (Walking)
         {
             anim.SetBool("isWalking", true);

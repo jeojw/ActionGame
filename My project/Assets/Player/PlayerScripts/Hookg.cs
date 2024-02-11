@@ -31,11 +31,4 @@ public class Hookg : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
-    {
-        if (!Player.GetComponent<PlayerControl>().isGround)
-        {
-            
-        }
-    }
 }

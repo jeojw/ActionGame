@@ -10,6 +10,10 @@ public class GrapplingHook : MonoBehaviour
     public LineRenderer line;
     public Transform hook;
     public Transform waist;
+    Rigidbody2D hookRigid;
+    Rigidbody2D Rigid;
+    Hookg hookg;
+    PlayerControl playControl;
     Vector2 mousedir;
 
     public float RopeDelay;
@@ -38,6 +42,11 @@ public class GrapplingHook : MonoBehaviour
         isAttach = false;
         RopeDelayElapsed = 0;
         hook.gameObject.SetActive(false);
+
+        hookRigid = hook.GetComponent<Rigidbody2D>();
+        Rigid = GetComponent<Rigidbody2D>();
+        hookg = hook.GetComponent<Hookg>();
+        playControl = GetComponent<PlayerControl>();
     }
     
     void Ready_To_Throw_Stand()
@@ -50,13 +59,13 @@ public class GrapplingHook : MonoBehaviour
     {
         if (hook.transform.position.y > hand.transform.position.y) {
             if (Vector2.Distance(hook.transform.position, hand.transform.position) <= 3f)
-                hook.GetComponent<Rigidbody2D>().velocity = new Vector3(0, hook.GetComponent<Rigidbody2D>().gravityScale * Time.deltaTime, 0);
+                hookRigid.velocity = new Vector3(0, hookRigid.gravityScale * Time.deltaTime, 0);
         }
     }
     // Update is called once per frame
     void Update()
     {
-        CurWeapon = GetComponent<PlayerControl>().weapon;
+        CurWeapon = playControl.weapon;
         if (CurWeapon == PlayerControl.Weapons.ROPE)
         {
             hook.gameObject.SetActive(true);
@@ -76,9 +85,9 @@ public class GrapplingHook : MonoBehaviour
             }
             if (!isHookThrow)
             {
-                if (GetComponent<PlayerControl>().isGround)
+                if (playControl.isGround)
                     Ready_To_Throw_Stand();
-                else if (!GetComponent<PlayerControl>().isGround || GetComponent<PlayerControl>().isJumpStart)
+                else if (!playControl.isGround || playControl.isJumpStart)
                     Ready_To_Throw_OnAir();
             }
                 
@@ -125,13 +134,13 @@ public class GrapplingHook : MonoBehaviour
                     isHookActive = false;
                     isLineMax = false;
                     isHookThrow = false;
-                    hook.GetComponent<Hookg>().joint2D.enabled = false;
+                    hookg.joint2D.enabled = false;
                     hook.gameObject.SetActive(false);
                 }
                 else if (Input.GetKeyDown(KeyCode.W))
                 {
                     isLineMax = false;
-                    GetComponent<Rigidbody2D>().AddForce((hook.position - hand.transform.position).normalized * 30f, ForceMode2D.Impulse);
+                    Rigid.AddForce((hook.position - hand.transform.position).normalized * 30f, ForceMode2D.Impulse);
                 }
             }
         }
