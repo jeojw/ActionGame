@@ -28,6 +28,7 @@ public class SpriteUpdate : MonoBehaviour
     GrapplingHook graphook;
     SpriteRenderer pistolSprite;
     WeaponManage PistolManage;
+    StatManage statManage;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +40,7 @@ public class SpriteUpdate : MonoBehaviour
         playerControl = GetComponent<PlayerControl>();
         graphook = GetComponent<GrapplingHook>();
         PistolManage = Pistol.GetComponent<WeaponManage>();
+        statManage = GetComponent<StatManage>();
     }
 
     void MoveSprite()
@@ -136,6 +138,9 @@ public class SpriteUpdate : MonoBehaviour
         {
             anim.SetBool("isLowerBody", false);
         }
+
+        if (statManage.isDead)
+            anim.SetBool("isDead", true);
     }
 
     void WeaponSprite()

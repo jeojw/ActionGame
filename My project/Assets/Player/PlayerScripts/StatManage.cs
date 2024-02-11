@@ -16,23 +16,9 @@ public class StatManage : MonoBehaviour
 
     PlayerControl playControl;
 
-    float Damage;
+    float ATK;
 
-
-
-    public enum ALLCONDITIONS
-    {
-        AWAKE,
-        WALK,
-        RUN,
-        SHOT,
-        ROPEFIRE,
-        ROPEACTION,
-        ROPESHOT,
-        GETATTACK,
-        DEAD,
-        GETITEM
-    }
+    public bool isDead;
 
     public enum ATTACKCOEF
     {
@@ -41,16 +27,17 @@ public class StatManage : MonoBehaviour
         RIFLE = 10
     }
 
-    public ALLCONDITIONS Condition;
     public float MaxHp;
     public float curHp;
 
     void Start()
     {
         playControl = GetComponent<PlayerControl>();
-        Condition = ALLCONDITIONS.AWAKE;
         MaxHp = 300f;
         curHp = MaxHp;
+
+        playControl = GetComponent<PlayerControl>();
+        isDead = false;
     }
 
     void ATKUpdate()
@@ -72,7 +59,12 @@ public class StatManage : MonoBehaviour
 
     void HpUpdate()
     {
+        if (curHp >= 0)
+        {
 
+        }
+        else
+            isDead = true;
     }
 
     void ConditionUpdate()

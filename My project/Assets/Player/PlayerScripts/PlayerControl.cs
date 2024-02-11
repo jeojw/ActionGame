@@ -22,6 +22,7 @@ public class PlayerControl : MonoBehaviour
     
     SceneManage sceneManage;
     WeaponUIManage weaponUIManage;
+    StatManage statManage;
     public enum Direction
     {
         LEFT = -1,
@@ -102,6 +103,7 @@ public class PlayerControl : MonoBehaviour
         anim = GetComponent<Animator>();
         sceneManage = UI.GetComponent<SceneManage>();
         weaponUIManage = UI.GetComponent<WeaponUIManage>();
+        statManage = GetComponent<StatManage>();
     }
 
     // Update is called once per frame
@@ -149,7 +151,7 @@ public class PlayerControl : MonoBehaviour
 
     void Control()
     {
-        if (!sceneManage.isPaused)
+        if (!sceneManage.isPaused || !statManage.isDead)
         {
             if (isWalking || isRunning || isJump || isLanding || isJumpStart)
                 isMoving = true;
@@ -463,55 +465,62 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
-        Control();
-        WeaponControl();
-        if (isAttack)
+        if (!statManage.isDead)
         {
-            Attack();
+            Control();
+            WeaponControl();
+            if (isAttack)
+            {
+                Attack();
+            }
+            else
+            {
+                isShooting = false;
+                isFencing = false;
+                isGrapplingShot = false;
+                isPunching = false;
+            }
         }
-        else
-        {
-            isShooting = false;
-            isFencing = false;
-            isGrapplingShot= false;
-            isPunching = false;
-        }
+        
     }
 
     void FixedUpdate()
     {
         checkSlope();
         CheckOnGround();
-
-        if (isWalking)
+        if (!statManage.isDead)
         {
-            Walk();
+            if (isWalking)
+            {
+                Walk();
+            }
+            else
+                Walking.Stop();
+            if (isRunning)
+            {
+                Run();
+            }
+            if (isJump)
+            {
+                Jump();
+            }
+            else
+                Jumping.Stop();
+            if (isRolling ||
+                (anim.GetCurrentAnimatorStateInfo(0).IsName("Rolling") &&
+                anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f))
+            {
+                Rolling();
+            }
+            if (rigid.velocity.y < 0)
+            {
+                isLanding = true;
+            }
+            else
+            {
+                isLanding = false;
+            }
         }
-        else
-            Walking.Stop();
-        if (isRunning)
-        {
-            Run();
-        }
-        if (isJump)
-        {
-            Jump();
-        }
-        else
-            Jumping.Stop();
-        if (isRolling || 
-            (anim.GetCurrentAnimatorStateInfo(0).IsName("Rolling") && 
-            anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f))
-        {
-            Rolling();
-        }
-        if (rigid.velocity.y < 0)
-        {
-            isLanding = true;
-        }
-        else
-        {
-            isLanding = false;
-        }
+        
     }
 }
