@@ -1,15 +1,11 @@
 using UnityEngine;
 
-public class PlayerCheckCollision : MonoBehaviour
+public class CheckCollision : MonoBehaviour
 {
     // Start is called before the first frame update
-    public CircleCollider2D HeadHitbox;
-    public EdgeCollider2D BodyHitbox_1;
-    public EdgeCollider2D BodyHitbox_2;
-    public EdgeCollider2D LeftLegHitbox_1;
-    public EdgeCollider2D LeftLegHitbox_2;
-    public EdgeCollider2D RightLegHitbox_1;
-    public EdgeCollider2D RightLegHitbox_2;
+    public GameObject Player;
+
+    new Collider2D collider;
 
     public bool KnifeHit = false;
     public bool PistolBulletHit = false;
@@ -17,20 +13,34 @@ public class PlayerCheckCollision : MonoBehaviour
 
     void Start()
     {
-
+        collider = GetComponent<Collider2D>();
     }
     void CheckSlope()
     {
-        bool isSlope = GetComponent<PlayerControl>().isSlope;
+        bool isSlope = Player.GetComponent<PlayerControl>().isSlope;
         if (isSlope)
         {
-            LeftLegHitbox_2.isTrigger = true;
-            RightLegHitbox_2.isTrigger = true;
+            GetComponent<Collider2D>().isTrigger = true;
         }
         else
         {
-            LeftLegHitbox_2.isTrigger = false;
-            RightLegHitbox_2.isTrigger = false;
+            GetComponent<Collider2D>().isTrigger = false;
+        }
+    }
+
+    void CheckCollisionType()
+    {
+        if (PistolBulletHit)
+        {
+            Player.GetComponent<CollisionPhysics>().SetPhysics(new Vector2(0, 0));
+        }
+        if (RifleBulletHit)
+        {
+            Player.GetComponent<CollisionPhysics>().SetPhysics(new Vector2(0, 0));
+        }
+        if (KnifeHit)
+        {
+            Player.GetComponent<CollisionPhysics>().SetPhysics(new Vector2(0, 0));
         }
     }
 
@@ -73,7 +83,10 @@ public class PlayerCheckCollision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckSlope();
+        CheckCollisionType();
+        if (transform.parent.name == "bone_11" ||
+            transform.parent.name == "bone_9")
+            CheckSlope();
         //Debug.Log(KnifeHit);
     }
 }

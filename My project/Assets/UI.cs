@@ -9,6 +9,8 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
+    public GameObject Player;
+
     public TextMeshProUGUI text_Timer;
     private float time_start;
     private float time_current;
@@ -36,6 +38,8 @@ public class UI : MonoBehaviour
 
     void Start()
     {
+        MaxHealth = Player.GetComponent<StatManage>().MaxHp;
+
         Pistol.gameObject.SetActive(true);
         Pistol_Ammunition.gameObject.SetActive(true);
         Pistol_Ammunition_Text.gameObject.SetActive(true);
@@ -152,6 +156,7 @@ public class UI : MonoBehaviour
     }
     public void CheckHp()
     {
+        curHealth = Player.GetComponent<StatManage>().curHp;
         if (HpBar != null) {
             HpBar.value = curHealth / MaxHealth;
         }

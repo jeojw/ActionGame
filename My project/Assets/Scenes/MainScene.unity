@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1080731}
   - component: {fileID: 1080732}
+  - component: {fileID: 1080733}
   m_Layer: 9
   m_Name: LeftLegHitbox_1
   m_TagString: Untagged
@@ -199,6 +200,22 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &1080733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a14cdd56529b841be26739807200fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 2060703201}
+  KnifeHit: 0
+  PistolBulletHit: 0
+  RifleBulletHit: 0
 --- !u!4 &60475870 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d1c81d21274ec914ba59b373ae660797, type: 3}
@@ -770,7 +787,7 @@ GameObject:
   - component: {fileID: 292544342}
   - component: {fileID: 292544339}
   - component: {fileID: 292544343}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -793,6 +810,7 @@ Transform:
   - {fileID: 390717641}
   - {fileID: 907143199}
   - {fileID: 1515306370}
+  - {fileID: 1194526157}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &292544339
@@ -853,7 +871,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 5.6571608
+  m_Mass: 0.029167712
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -909,7 +927,7 @@ GameObject:
   - component: {fileID: 293777824}
   - component: {fileID: 293777826}
   - component: {fileID: 293777825}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1462,7 +1480,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.08429672, y: -0.02401109}
@@ -1895,7 +1913,7 @@ GameObject:
   m_Component:
   - component: {fileID: 360369974}
   - component: {fileID: 360369975}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: EnemyHeadHitbox
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1946,7 +1964,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.0000055814016, y: -0.008384703}
@@ -2215,6 +2233,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy bodys
       objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.39800072
@@ -2254,6 +2276,54 @@ PrefabInstance:
     - target: {fileID: -7552582706839291426, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6871665488532287102, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -6856499440604171572, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -6652456293042733611, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -5906578947322737356, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -4536780067263049112, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -4312991851051561994, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -3331106662022596299, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -3118298416152120057, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -2631276252154265238, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -1125081754167440450, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -780156384609703048, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 386791141387813222, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 861663315731211798, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
       propertyPath: m_FlipX
@@ -2295,6 +2365,18 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1858086156497145381, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3811875030166965571, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3826954981839292567, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4218670229420104783, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -2311,6 +2393,26 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5b2f73eb1932c814aaafbd7b88aba315, type: 2}
+    - target: {fileID: 5160630824246572320, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298453734802183741, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6181300385887193387, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7775287663641171667, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543154707973655835, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 8648882755762834919, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.999996
@@ -2331,12 +2433,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.324
       objectReference: {fileID: 0}
+    - target: {fileID: 8727091967253889458, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 9200440098370972355, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: -7552582706839291426, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1194526157}
     - targetCorrespondingSourceObject: {fileID: 4257508509235537429, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
       insertIndex: 0
       addedObject: {fileID: 1675997067}
@@ -3266,6 +3373,7 @@ GameObject:
   m_Component:
   - component: {fileID: 578683828}
   - component: {fileID: 578683829}
+  - component: {fileID: 578683830}
   m_Layer: 9
   m_Name: LeftLegHitbox_2
   m_TagString: Untagged
@@ -3332,6 +3440,22 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &578683830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 578683827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a14cdd56529b841be26739807200fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 2060703201}
+  KnifeHit: 0
+  PistolBulletHit: 0
+  RifleBulletHit: 0
 --- !u!1 &621540818
 GameObject:
   m_ObjectHideFlags: 0
@@ -3530,6 +3654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d9395bf03a1a154f8d6e13814f3733b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 2060703201}
   text_Timer: {fileID: 510646464}
   MaxHealth: 0
   None: {fileID: 384569609}
@@ -3911,7 +4036,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 907143199}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: EnemyWeapons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4005,6 +4130,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d1c81d21274ec914ba59b373ae660797, type: 3}
       propertyPath: m_Name
       value: EnemyKnife
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1c81d21274ec914ba59b373ae660797, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4246,7 +4375,7 @@ GameObject:
   - component: {fileID: 963065068}
   - component: {fileID: 963065070}
   - component: {fileID: 963065069}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4320,7 +4449,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1040039825}
   - component: {fileID: 1040039826}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: EnemyBodyHitbox_2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -4371,7 +4500,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -4652,6 +4781,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1116374975}
   - component: {fileID: 1116374976}
+  - component: {fileID: 1116374977}
   m_Layer: 9
   m_Name: BodyHitBox_2
   m_TagString: Untagged
@@ -4718,6 +4848,22 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &1116374977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116374974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a14cdd56529b841be26739807200fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 2060703201}
+  KnifeHit: 0
+  PistolBulletHit: 0
+  RifleBulletHit: 0
 --- !u!1 &1146370325
 GameObject:
   m_ObjectHideFlags: 0
@@ -6323,7 +6469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1194526157}
   - component: {fileID: 1194526158}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: EnemyFootHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6338,12 +6484,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194526156}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 0.191, z: 0}
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.41799927, y: -3.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 390717641}
+  m_Father: {fileID: 292544338}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &1194526158
 CircleCollider2D:
@@ -6377,9 +6523,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.26954842, y: 0}
+  m_Offset: {x: -0.05412674, y: 0}
   serializedVersion: 2
-  m_Radius: 0.23045158
+  m_Radius: 0.09635544
 --- !u!1001 &1200045857
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7066,7 +7212,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -7113,6 +7259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1436064073}
   - component: {fileID: 1436064074}
+  - component: {fileID: 1436064075}
   m_Layer: 9
   m_Name: RightLegHitbox_1
   m_TagString: Untagged
@@ -7179,6 +7326,22 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &1436064075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436064072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a14cdd56529b841be26739807200fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 2060703201}
+  KnifeHit: 0
+  PistolBulletHit: 0
+  RifleBulletHit: 0
 --- !u!1 &1442244382
 GameObject:
   m_ObjectHideFlags: 0
@@ -7189,7 +7352,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1442244383}
   - component: {fileID: 1442244384}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7258,7 +7421,7 @@ GameObject:
   - component: {fileID: 1515306373}
   - component: {fileID: 1515306372}
   - component: {fileID: 1515306371}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: EnemyUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7358,7 +7521,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1519454805}
   - component: {fileID: 1519454806}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: EnemyHpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7666,6 +7829,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1653638809}
   - component: {fileID: 1653638810}
+  - component: {fileID: 1653638811}
   m_Layer: 9
   m_Name: RightLegHitbox_2
   m_TagString: Untagged
@@ -7732,6 +7896,22 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &1653638811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653638808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a14cdd56529b841be26739807200fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 2060703201}
+  KnifeHit: 0
+  PistolBulletHit: 0
+  RifleBulletHit: 0
 --- !u!1 &1666169005
 GameObject:
   m_ObjectHideFlags: 0
@@ -7816,7 +7996,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1666526951}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7853,7 +8033,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1675997067}
   - component: {fileID: 1675997068}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: EnemyBodyHitbox_1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -7904,7 +8084,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -7953,9 +8133,9 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 1
+  m_UsedByComposite: 0
   m_Offset: {x: 0.0010208712, y: -0.07496593}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -8232,6 +8412,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1820423809}
   - component: {fileID: 1820423810}
+  - component: {fileID: 1820423811}
   m_Layer: 9
   m_Name: BodyHitbox_1
   m_TagString: Untagged
@@ -8298,6 +8479,22 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &1820423811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820423808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a14cdd56529b841be26739807200fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 2060703201}
+  KnifeHit: 0
+  PistolBulletHit: 0
+  RifleBulletHit: 0
 --- !u!1 &1898823461
 GameObject:
   m_ObjectHideFlags: 0
@@ -8570,6 +8767,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8ff8a27601359fc4da8aeef317a9d884, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8ff8a27601359fc4da8aeef317a9d884, type: 3}
+      propertyPath: m_TagString
+      value: Knife
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8899,7 +9100,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6170e50e9d54abe41ad2bdab84a38e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HeadHitbox: {fileID: 869260581}
+  BodyHitbox_1: {fileID: 1820423810}
+  BodyHitbox_2: {fileID: 1116374976}
+  RightLegHitbox_1: {fileID: 1436064074}
+  RightLegHitbox_2: {fileID: 1653638810}
+  LeftLegHitbox_1: {fileID: 1080732}
+  LeftLegHitbox_2: {fileID: 578683829}
   Condition: 0
+  MaxHp: 0
+  curHp: 0
 --- !u!114 &2060703205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9047,19 +9257,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2060703201}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10a14cdd56529b841be26739807200fb, type: 3}
+  m_Script: {fileID: 11500000, guid: af9907ca132b8144d822d75a8e8c74a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HeadHitbox: {fileID: 869260581}
-  BodyHitbox_1: {fileID: 1820423810}
-  BodyHitbox_2: {fileID: 1116374976}
-  LeftLegHitbox_1: {fileID: 1080732}
-  LeftLegHitbox_2: {fileID: 578683829}
-  RightLegHitbox_1: {fileID: 1436064074}
-  RightLegHitbox_2: {fileID: 1653638810}
-  KnifeHit: 0
-  PistolBulletHit: 0
-  RifleBulletHit: 0
 --- !u!1 &2062443783
 GameObject:
   m_ObjectHideFlags: 0

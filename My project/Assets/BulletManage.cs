@@ -12,8 +12,6 @@ public class BulletManage : MonoBehaviour
     GameObject Player;
     public float BulletSpeed;
     public float Damage;
-    public bool isCollision = false;
-    public bool isOutCamera = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +30,6 @@ public class BulletManage : MonoBehaviour
             collision.collider.CompareTag("Enemy") ||
             collision.collider.CompareTag("Player"))
         {
-            isCollision = true;
             Destroy(gameObject);
         }
     }
@@ -44,7 +41,6 @@ public class BulletManage : MonoBehaviour
         Vector3 Pos_Camera = Camera.main.WorldToViewportPoint(transform.position);
         if (Pos_Camera.x < 0f || Pos_Camera.x > 1f)
         {
-            isOutCamera = true;
             Destroy(gameObject);
         }
             

@@ -6,6 +6,16 @@ public class StatManage : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    public CircleCollider2D HeadHitbox;
+    public EdgeCollider2D BodyHitbox_1;
+    public EdgeCollider2D BodyHitbox_2;
+    public EdgeCollider2D RightLegHitbox_1;
+    public EdgeCollider2D RightLegHitbox_2;
+    public EdgeCollider2D LeftLegHitbox_1;
+    public EdgeCollider2D LeftLegHitbox_2;
+
+    float Damage;
+
     public enum ALLCONDITIONS
     {
         AWAKE,
@@ -28,8 +38,8 @@ public class StatManage : MonoBehaviour
     }
 
     public ALLCONDITIONS Condition;
-    private float MaxHp;
-    private float curHp;
+    public float MaxHp;
+    public float curHp;
 
     void Start()
     {
@@ -46,6 +56,15 @@ public class StatManage : MonoBehaviour
         }
     }
 
+    void GetAttackUpdate()
+    {
+        if (HeadHitbox.GetComponent<CheckCollision>().KnifeHit)
+        {
+
+        }
+    }
+    
+
     void HpUpdate()
     {
 
@@ -59,6 +78,8 @@ public class StatManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        GetAttackUpdate();
+        HpUpdate();
+        ConditionUpdate();
     }
 }

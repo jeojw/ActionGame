@@ -17,38 +17,37 @@ public class EnemyCheckCollision : MonoBehaviour
     {
 
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.collider.CompareTag("Pistol_Bullet"))
+        if (collision.CompareTag("Pistol_Bullet"))
         {
             PistolBulletHit = true;
         }
 
-        else if (collision.collider.CompareTag("Rifle_Bullet"))
+        else if (collision.CompareTag("Rifle_Bullet"))
         {
             RifleBulletHit = true;
         }
 
-        else if (collision.collider.CompareTag("Knife"))
+        else if (collision.CompareTag("Knife"))
         {
             KnifeHit = true;
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.collider.CompareTag("Pistol_Bullet"))
+        if (collision.CompareTag("Pistol_Bullet"))
         {
             PistolBulletHit = false;
         }
 
-        else if (collision.collider.CompareTag("Rifle_Bullet"))
+        else if (collision.CompareTag("Rifle_Bullet"))
         {
             RifleBulletHit = false;
         }
 
-        else if (collision.collider.CompareTag("Knife"))
+        else if (collision.CompareTag("Knife"))
         {
             KnifeHit = false;
         }

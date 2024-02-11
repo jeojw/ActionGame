@@ -24,9 +24,9 @@ TagManager:
   - Slope
   - Ring
   - Player
-  - 
-  - 
-  - 
+  - PlayerFoot
+  - EnemyFoot
+  - Enemy
   - 
   - 
   - 
