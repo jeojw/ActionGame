@@ -1,27 +1,42 @@
+using UnityEditor.Build;
 using UnityEngine;
 
-public class CheckCollision : MonoBehaviour
+public class PlayerCheckCollision : MonoBehaviour
 {
     // Start is called before the first frame update
+
     public GameObject Player;
 
-    new Collider2D collider;
-
+    Collider2D collider;
     CollisionPhysics collisionPhysics;
+    PlayerControl Control;
+    StatManage PlayerStat;
 
+    public bool isHit = false;
     public bool KnifeHit = false;
     public bool PistolBulletHit = false;
     public bool RifleBulletHit = false;
+    string objectName;
+
+
+    private float HitCoolElapsed = 0;
+    private float HitCoolStart = 0;
+    private float HitCool = 0.7f;
+
+    bool isSlope;
 
     void Start()
     {
-        collider = GetComponent<Collider2D>();
-        collisionPhysics = GetComponent<CollisionPhysics>();
+        collisionPhysics = Player.GetComponent<CollisionPhysics>();
+        Control = Player.GetComponent<PlayerControl>();
+        PlayerStat = Player.GetComponent<StatManage>();
+        objectName = transform.name;
+        collider = Player.GetComponent<Collider2D>();
     }
     void CheckSlope()
     {
-        bool isSlope = Player.GetComponent<PlayerControl>().isSlope;
-        if (isSlope)
+        bool isSlope = Control.isSlope;
+        if (isSlope && (objectName == "LeftLegHitbox_2" || objectName == "RightLegHitbox_2"))
         {
             GetComponent<Collider2D>().isTrigger = true;
         }
@@ -86,6 +101,21 @@ public class CheckCollision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isHit = (KnifeHit || PistolBulletHit || RifleBulletHit);
+        if (isHit && HitCoolElapsed == 0)
+        {
+            HitCoolStart = Time.time;
+            isHit = false;
+        }
+        else
+        {
+            HitCoolElapsed = Time.time - HitCoolStart;
+            if (HitCoolElapsed >= HitCool)
+            {
+                HitCoolElapsed = 0;
+                HitCoolStart = 0;
+            }
+        }
         CheckCollisionType();
         if (transform.parent.name == "bone_11" ||
             transform.parent.name == "bone_9")

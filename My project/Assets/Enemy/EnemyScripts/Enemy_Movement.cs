@@ -29,12 +29,14 @@ public class Enemy_Movement : MonoBehaviour
     public DIRECTION Direction;
     public GameObject Player;
     Rigidbody2D rigid;
+    Enemy_StatManage Estat;
 
     public bool isDetect = false;
     public bool isWalking = false;
     public bool isAttack = false;
     public bool isFencing = false;
     public bool isShooting = false;
+    public bool isDead = false;
 
     public float AttackCoolTime;
     private float AttackCoolStart = 0;
@@ -46,6 +48,7 @@ public class Enemy_Movement : MonoBehaviour
 
     void Start()
     {
+        Estat = GetComponent<Enemy_StatManage>();
         AttackType = ATTACKTYPE.SWORD;
         Direction = DIRECTION.LEFT; 
         rigid = GetComponent<Rigidbody2D>();
@@ -74,7 +77,7 @@ public class Enemy_Movement : MonoBehaviour
             else
                 isWalking = false;
 
-            if (Vector2.Distance(Player.transform.position, transform.position) < 6f && AttackCoolStart == 0)
+            if (Vector2.Distance(Player.transform.position, transform.position) < 6f)
             {
                 isAttack = true;
                 AttackCoolStart = Time.time;
@@ -141,7 +144,9 @@ public class Enemy_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isDead = Estat.isDead;
         DetectivePlayer();
-        Enemy_AI();
+        if (!isDead)
+            Enemy_AI();
     }
 }

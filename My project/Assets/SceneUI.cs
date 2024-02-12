@@ -159,7 +159,7 @@ public class SceneUI : MonoBehaviour
                 Rope.gameObject.SetActive(true);
         }
     }
-    public void CheckHp()
+    void CheckHp()
     {
         curHealth = StatM.curHp;
         if (HpBar != null) {

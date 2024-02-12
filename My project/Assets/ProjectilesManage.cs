@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class ProjectilesManage : MonoBehaviour
 {
-    GameObject[] Projectiles;
     public GameObject Player;
     public GameObject Weapon;
 
@@ -19,7 +18,6 @@ public class ProjectilesManage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Projectiles = new GameObject[1000];
         Bullets = Resources.Load<GameObject>("Prefabs/BulletObjects");
         playControl = Player.GetComponent<PlayerControl>();
     }

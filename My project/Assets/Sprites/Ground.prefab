@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2646032556655517494}
   - component: {fileID: 517087764011944065}
   - component: {fileID: 846194329152036012}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Layer1
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 2.5, y: 2.5, z: 0}
+  m_ChunkCullingBounds: {x: 5.5, y: 5.5, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -199,7 +199,7 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!114 &8255725174011675304
+--- !u!114 &3187951751533735057
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

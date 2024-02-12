@@ -58,13 +58,9 @@ public class PlayerControl : MonoBehaviour
     private float ShotDelayStart = 0;
     public float ShotDelayElapsed = 0;
 
-    private float KeyPressTime = 0;
-    private float PerKeyPressTime = 0;
     private float lastKeyPressTime = 0;
-    private float KeyPressInterval = 0.5f;
     public float RunningInterval = 0.5f;
     public bool pressedFirstTime = false;
-    private float lastPressedTime;
 
     public float KnifeAttackInterval;
     private float KnifeAttackStart = 0;
@@ -167,20 +163,20 @@ public class PlayerControl : MonoBehaviour
                 bool rightPressing = Input.GetKey(KeyCode.D);
                 if (leftPressed)
                 {
-                    IsDoublePressed = direction == Direction.LEFT && Time.time - lastKeyPressTime < RunningInterval;
+                    IsDoublePressed = (direction == Direction.LEFT && Time.time - lastKeyPressTime < RunningInterval);
                     direction = Direction.LEFT;
                     lastKeyPressTime = Time.time;
                 }
                 if (rightPressed)
                 {
-                    IsDoublePressed = direction == Direction.RIGHT && Time.time - lastKeyPressTime < RunningInterval;
+                    IsDoublePressed = (direction == Direction.RIGHT && Time.time - lastKeyPressTime < RunningInterval);
                     direction = Direction.RIGHT;
                     lastKeyPressTime = Time.time;
                 }
 
                 if (leftPressing || rightPressing)
                 {
-                    if (IsDoublePressed)
+                    if (IsDoublePressed && weapon == Weapons.NONE)
                     {
                         isWalking = false;
                         isRunning = true;
