@@ -30,6 +30,15 @@ public class Enemy_Movement : MonoBehaviour
     public CONDITION Condition;
     public DIRECTION detectDirection;
     public GameObject Player;
+
+    public GameObject HeadHitbox;
+    public GameObject BodyHitbox_1;
+    public GameObject BodyHitbox_2;
+
+    EnemyCheckCollision head;
+    EnemyCheckCollision body_1;
+    EnemyCheckCollision body_2;
+
     Rigidbody2D rigid;
     Enemy_StatManage Estat;
 
@@ -45,12 +54,17 @@ public class Enemy_Movement : MonoBehaviour
     private float AttackCoolStart = 0;
     private float AttackCoolElapsed = 0;
 
+    private bool isHit;
+
     public float DetectInterval;
-    public float AttackInterval;
     public float speed;
 
     void Start()
     {
+        head = HeadHitbox.GetComponent<EnemyCheckCollision>();
+        body_1 = BodyHitbox_1.GetComponent<EnemyCheckCollision>();
+        body_2 = BodyHitbox_2.GetComponent<EnemyCheckCollision>();
+
         Enemyanim = GetComponent<Animator>();
         Estat = GetComponent<Enemy_StatManage>();
         AttackType = ATTACKTYPE.SWORD;
@@ -143,7 +157,8 @@ public class Enemy_Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isWalking)
+        isHit = (head.isHit || body_1.isHit || body_2.isHit);
+        if (isWalking && !isHit)
             Move();
 
         if (isAttack)
@@ -160,6 +175,13 @@ public class Enemy_Movement : MonoBehaviour
         DetectivePlayer();
         if (!isDead)
             Enemy_AI();
-        Debug.Log(AttackCoolElapsed);
+        else
+        {
+            isFencing = false;
+            isWalking = false;
+            isAttack = false;
+            isDetect = false;
+            isShooting = false;
+        }
     }
 }

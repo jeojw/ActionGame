@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponManage : MonoBehaviour
+public class GunManage : MonoBehaviour
 {
     // Start is called before the first frame update\
 
@@ -12,6 +12,7 @@ public class WeaponManage : MonoBehaviour
     public AudioSource ReloadSound;
 
     public bool AmmunitionZero;
+    public bool isReload;
 
     public int curAmmunition;
     public int maxAmmunition;
@@ -49,22 +50,30 @@ public class WeaponManage : MonoBehaviour
 
     void Reload()
     {
-        if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Reloading_Pistol"))
+        if (transform.tag == "Pistol")
         {
-            if (playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Reloading_Pistol"))
             {
-                curAmmunition = maxAmmunition;
-                AmmunitionZero = false;
-                ReloadSound.Play();
+                if (playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                {
+                    curAmmunition = maxAmmunition;
+                    AmmunitionZero = false;
+                    isReload = false;
+                    ReloadSound.Play();
+                }
             }
         }
+        
     }
 
     // Update is called once per frame
     void Update()         
     {
         Shot();
-        if (AmmunitionZero)
+        if (AmmunitionZero) {
+            isReload = true;
             Reload();
+        }
+            
     }
 }

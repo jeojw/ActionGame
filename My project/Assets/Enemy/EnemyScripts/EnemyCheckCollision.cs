@@ -6,11 +6,15 @@ public class EnemyCheckCollision : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject Enemy;
-    public PolygonCollider2D Collider;
+    public PolygonCollider2D collider;
+    CollisionPhysics Physic;
+    Enemy_Movement EMove;
+    Enemy_StatManage Estat;
 
     public bool KnifeHit = false;
     public bool PistolBulletHit = false;
     public bool RifleBulletHit = false;
+    public bool PisteHit = false;
 
     public bool isHit = false;
     private bool isDead;
@@ -21,29 +25,35 @@ public class EnemyCheckCollision : MonoBehaviour
 
     void Start()
     {
-        Collider = GetComponent<PolygonCollider2D>();
+        Estat = Enemy.GetComponent<Enemy_StatManage>();
+        Physic = Enemy.GetComponent<CollisionPhysics>();
+        collider = GetComponent<PolygonCollider2D>();
         isDead = Enemy.GetComponent<Enemy_StatManage>().isDead;
+        EMove = Enemy.GetComponent<Enemy_Movement>();
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (HitDelayElapsed == 0)
         {
-            if (collision.collider.CompareTag("Pistol_Bullet"))
+            if (collision.CompareTag("Piste"))
+            {
+                PisteHit = true;
+            }
+            if (collision.CompareTag("Pistol_Bullet"))
             {
                 PistolBulletHit = true;
             }
 
-            if (collision.collider.CompareTag("Rifle_Bullet"))
+            if (collision.CompareTag("Rifle_Bullet"))
             {
                 RifleBulletHit = true;
             }
 
-            if (collision.collider.CompareTag("Knife"))
+            if (collision.CompareTag("Knife"))
             {
                 KnifeHit = true;
             }
         }
-        
     }
 
     void HitDelayProcess()
@@ -52,7 +62,7 @@ public class EnemyCheckCollision : MonoBehaviour
 
         if (HitDelayElapsed >= HitDelay)
         {
-            Collider.enabled = true;
+            collider.enabled = true;
             HitDelayElapsed = 0;
             HitDelayStart = 0;
         }
@@ -60,21 +70,39 @@ public class EnemyCheckCollision : MonoBehaviour
 
     private void Update()
     {
-        isHit = (KnifeHit || RifleBulletHit || PistolBulletHit);
-        if (isHit)
+        isDead = Estat.isDead;
+        if (!isDead)
         {
-            Collider.enabled = false;
-            HitDelayStart = Time.time;
-            if (PistolBulletHit)
-                PistolBulletHit = false;
-            if (KnifeHit)
-                KnifeHit = false;
-            if (RifleBulletHit)
-                RifleBulletHit = false;
+            isHit = (KnifeHit || RifleBulletHit || PistolBulletHit || PisteHit);
+            if (isHit)
+            {
+                collider.enabled = false;
+                HitDelayStart = Time.time;
+                if (PistolBulletHit)
+                {
+                    Physic.SetPhysics(new Vector2((int)EMove.detectDirection * (-1) * 80, 0));
+                    PistolBulletHit = false;
+                }
+
+                if (PisteHit)
+                {
+                    Physic.SetPhysics(new Vector2((int)EMove.detectDirection * (-1) * 20, 0));
+                    PisteHit = false;
+                }
+
+                if (KnifeHit)
+                    KnifeHit = false;
+                if (RifleBulletHit)
+                    RifleBulletHit = false;
+            }
+            else
+            {
+                HitDelayProcess();
+            }
         }
         else
-        {
-            HitDelayProcess();
-        }
+            collider.enabled = false;
+            
+        Debug.Log(HitDelayElapsed);
     }
 }

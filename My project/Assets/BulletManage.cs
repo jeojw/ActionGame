@@ -23,13 +23,14 @@ public class BulletManage : MonoBehaviour
         direct = Player.GetComponent<PlayerControl>().direction;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.collider.CompareTag("Ground") ||
-            collision.collider.CompareTag("Slope") ||
-            collision.collider.CompareTag("Enemy") ||
-            collision.collider.CompareTag("Player"))
+        if (collision.CompareTag("Ground") ||
+            collision.CompareTag("Slope") ||
+            collision.CompareTag("Enemy") ||
+            collision.CompareTag("Player"))
         {
+            physics.velocity = Vector2.zero;
             Destroy(gameObject);
         }
     }
@@ -41,6 +42,7 @@ public class BulletManage : MonoBehaviour
         Vector3 Pos_Camera = Camera.main.WorldToViewportPoint(transform.position);
         if (Pos_Camera.x < 0f || Pos_Camera.x > 1f)
         {
+            physics.velocity = Vector2.zero;
             Destroy(gameObject);
         }
             

@@ -48,7 +48,6 @@ public class Enemy_StatManage : MonoBehaviour
         {
             if (GetHit)
             {
-                Debug.Log(GetHit);
                 SetDamage(30f);
                 CurHp -= Damage;
                 ResetDamage();

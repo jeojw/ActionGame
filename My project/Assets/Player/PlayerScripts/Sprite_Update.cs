@@ -27,7 +27,7 @@ public class SpriteUpdate : MonoBehaviour
     PlayerControl playerControl;
     GrapplingHook graphook;
     SpriteRenderer pistolSprite;
-    WeaponManage PistolManage;
+    GunManage pistolManage;
     StatManage statManage;
 
     // Start is called before the first frame update
@@ -39,7 +39,7 @@ public class SpriteUpdate : MonoBehaviour
         Knife.enabled = false;
         playerControl = GetComponent<PlayerControl>();
         graphook = GetComponent<GrapplingHook>();
-        PistolManage = Pistol.GetComponent<WeaponManage>();
+        pistolManage = Pistol.GetComponent<GunManage>();
         statManage = GetComponent<StatManage>();
     }
 
@@ -159,7 +159,7 @@ public class SpriteUpdate : MonoBehaviour
         if (playerControl.weapon == PlayerControl.Weapons.GUNS)
         {
             pistolSprite.enabled = true;
-            if (!PistolManage.AmmunitionZero)
+            if (!pistolManage.AmmunitionZero)
             {
                 anim.SetBool("isReloading", false);
                 

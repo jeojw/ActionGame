@@ -13,6 +13,8 @@ TagManager:
   - Knife
   - Enemy
   - Piste
+  - Pistol
+  - Rifle
   layers:
   - Default
   - TransparentFX

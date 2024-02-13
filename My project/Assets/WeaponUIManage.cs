@@ -11,7 +11,7 @@ public class WeaponUIManage : MonoBehaviour
     public GameObject Rifle;
 
     SceneUI AllUI;
-    WeaponManage PistolManage;
+    GunManage PistolManage;
 
     private float Pistol_Cur_Ammunition;
 
@@ -21,7 +21,7 @@ public class WeaponUIManage : MonoBehaviour
     void Start()
     {
         AllUI = GetComponent<SceneUI>();
-        PistolManage = Pistol.GetComponent<WeaponManage>();
+        PistolManage = Pistol.GetComponent<GunManage>();
     }
 
     void Pistol_Manage()

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Net.Security;
 using Unity.VisualScripting;
 using UnityEditor.Build;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,14 +16,12 @@ public class PlayerControl : MonoBehaviour
     private Animator anim;
     public Transform bodyPos;
     public GameObject UI;
-    public AudioSource Walking;
-    public AudioSource Running;
-    public AudioSource Jumping;
-    public AudioSource Landing;
+    public GameObject Pistol;
     
     SceneManage sceneManage;
     WeaponUIManage weaponUIManage;
     StatManage statManage;
+    GunManage gunManage;
     public enum Direction
     {
         LEFT = -1,
@@ -100,6 +99,7 @@ public class PlayerControl : MonoBehaviour
         sceneManage = UI.GetComponent<SceneManage>();
         weaponUIManage = UI.GetComponent<WeaponUIManage>();
         statManage = GetComponent<StatManage>();
+        gunManage = Pistol.GetComponent<GunManage>();
     }
 
     // Update is called once per frame
@@ -334,6 +334,7 @@ public class PlayerControl : MonoBehaviour
             !grappling.isLineMax &&
             !isLowerBody &&
             !isMoving &&
+            !gunManage.isReload &&
             isGround) {
             weaponPos++;
             if (weaponPos > 4)
@@ -490,8 +491,6 @@ public class PlayerControl : MonoBehaviour
             {
                 Walk();
             }
-            else
-                Walking.Stop();
             if (isRunning)
             {
                 Run();
@@ -500,8 +499,6 @@ public class PlayerControl : MonoBehaviour
             {
                 Jump();
             }
-            else
-                Jumping.Stop();
             if (isRolling ||
                 (anim.GetCurrentAnimatorStateInfo(0).IsName("Rolling") &&
                 anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f))

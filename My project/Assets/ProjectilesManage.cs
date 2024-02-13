@@ -27,7 +27,7 @@ public class ProjectilesManage : MonoBehaviour
         if (playControl.isShooting &&
             playControl.ShotDelayElapsed == 0)
         {
-            if (!Weapon.GetComponent<WeaponManage>().AmmunitionZero)
+            if (!Weapon.GetComponent<GunManage>().AmmunitionZero)
             {
                 CurBullet = Instantiate(Bullets.transform.GetChild(0).gameObject);
             }

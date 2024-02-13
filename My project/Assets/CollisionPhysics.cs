@@ -5,7 +5,9 @@ using UnityEngine;
 public class CollisionPhysics : MonoBehaviour
 {
     // Start is called before the first frame update
-    Rigidbody2D rigid;
+    public Rigidbody2D rigid;
+    public Vector2 PhysicsVelocity;
+
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -13,12 +15,18 @@ public class CollisionPhysics : MonoBehaviour
 
     public void SetPhysics(Vector2 velocity)
     {
+        PhysicsVelocity = velocity;
+    }
 
+    public void PhysicsUpdate()
+    {
+        rigid.AddForce(PhysicsVelocity, ForceMode2D.Impulse);
+        PhysicsVelocity = Vector2.zero;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        PhysicsUpdate();
     }
 }

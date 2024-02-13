@@ -11,6 +11,7 @@ public class PlayerCheckCollision : MonoBehaviour
     CollisionPhysics collisionPhysics;
     PlayerControl Control;
     StatManage PlayerStat;
+    PlayerControl.Weapons curWeapon;
 
     public bool isHit = false;
     public bool KnifeHit = false;
@@ -32,6 +33,7 @@ public class PlayerCheckCollision : MonoBehaviour
         PlayerStat = Player.GetComponent<StatManage>();
         objectName = transform.name;
         collider = GetComponent<PolygonCollider2D>();
+        curWeapon = Player.GetComponent<PlayerControl>().weapon;
     }
     void CheckSlope()
     {
@@ -62,26 +64,25 @@ public class PlayerCheckCollision : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (HitCoolElapsed == 0)
         {
-            if (collision.collider.CompareTag("Pistol_Bullet"))
+            if (collision.CompareTag("Pistol_Bullet"))
             {
                 PistolBulletHit = true;
             }
 
-            if (collision.collider.CompareTag("Rifle_Bullet"))
+            if (collision.CompareTag("Rifle_Bullet"))
             {
                 RifleBulletHit = true;
             }
 
-            if (collision.collider.CompareTag("Knife"))
+            if (collision.CompareTag("Knife"))
             {
                 KnifeHit = true;
             }
         }
-        
     }
     // Update is called once per frame
     void Update()
