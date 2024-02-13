@@ -7,7 +7,7 @@ public class PlayerCheckCollision : MonoBehaviour
 
     public GameObject Player;
 
-    Collider2D collider;
+    PolygonCollider2D collider;
     CollisionPhysics collisionPhysics;
     PlayerControl Control;
     StatManage PlayerStat;
@@ -21,7 +21,7 @@ public class PlayerCheckCollision : MonoBehaviour
 
     private float HitCoolElapsed = 0;
     private float HitCoolStart = 0;
-    private float HitCool = 0.7f;
+    private float HitCool = 1.5f;
 
     bool isSlope;
 
@@ -31,7 +31,7 @@ public class PlayerCheckCollision : MonoBehaviour
         Control = Player.GetComponent<PlayerControl>();
         PlayerStat = Player.GetComponent<StatManage>();
         objectName = transform.name;
-        collider = Player.GetComponent<Collider2D>();
+        collider = GetComponent<PolygonCollider2D>();
     }
     void CheckSlope()
     {
@@ -64,62 +64,54 @@ public class PlayerCheckCollision : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Pistol_Bullet"))
+        if (HitCoolElapsed == 0)
         {
-            PistolBulletHit = true;
-        }
+            if (collision.collider.CompareTag("Pistol_Bullet"))
+            {
+                PistolBulletHit = true;
+            }
 
-        else if (collision.collider.CompareTag("Rifle_Bullet"))
-        {
-            RifleBulletHit = true;
-        }
+            if (collision.collider.CompareTag("Rifle_Bullet"))
+            {
+                RifleBulletHit = true;
+            }
 
-        else if (collision.collider.CompareTag("Knife"))
-        {
-            KnifeHit = true;
+            if (collision.collider.CompareTag("Knife"))
+            {
+                KnifeHit = true;
+            }
         }
+        
     }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Pistol_Bullet"))
-        {
-            PistolBulletHit = false;
-        }
-
-        else if (collision.collider.CompareTag("Rifle_Bullet"))
-        {
-            RifleBulletHit = false;
-        }
-
-        else if (collision.collider.CompareTag("Knife"))
-        {
-            KnifeHit = false;
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {
         isHit = (KnifeHit || PistolBulletHit || RifleBulletHit);
-        if (isHit && HitCoolElapsed == 0)
+        if (isHit)
         {
+            collider.enabled = false;
             HitCoolStart = Time.time;
-            isHit = false;
+            if (KnifeHit)
+                KnifeHit = false;
+            if (PistolBulletHit)
+                PistolBulletHit = false;
+            if (RifleBulletHit)
+                RifleBulletHit = false;
         }
         else
         {
             HitCoolElapsed = Time.time - HitCoolStart;
             if (HitCoolElapsed >= HitCool)
             {
+                collider.enabled = true;
                 HitCoolElapsed = 0;
                 HitCoolStart = 0;
             }
         }
+
         CheckCollisionType();
         if (transform.parent.name == "bone_11" ||
             transform.parent.name == "bone_9")
             CheckSlope();
-        //Debug.Log(KnifeHit);
     }
 }

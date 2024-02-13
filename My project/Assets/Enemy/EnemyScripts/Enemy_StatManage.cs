@@ -5,21 +5,26 @@ using UnityEngine;
 public class Enemy_StatManage : MonoBehaviour
 {
     // Start is called before the first frame update
-    public EnemyCheckCollision Head;
-    public EnemyCheckCollision Body_1;
-    public EnemyCheckCollision Body_2;
+    public GameObject Head;
+    public GameObject Body_1;
+    public GameObject Body_2;
+
+    EnemyCheckCollision Head_Hit;
+    EnemyCheckCollision Body_1_Hit;
+    EnemyCheckCollision Body_2_Hit;
 
     public float MaxHp;
     public float CurHp;
     private bool GetHit = false;
+    private bool HitboxActive = true;
     private float Damage = 0;
 
     public bool isDead;
     void Start()
     {
-        Head = GetComponent<EnemyCheckCollision>();
-        Body_1 = GetComponent<EnemyCheckCollision>();
-        Body_2 = GetComponent<EnemyCheckCollision>();
+        Head_Hit = Head.GetComponent<EnemyCheckCollision>();
+        Body_1_Hit = Body_1.GetComponent<EnemyCheckCollision>();
+        Body_2_Hit = Body_2.GetComponent<EnemyCheckCollision>();
         CurHp = MaxHp;
     }
 
@@ -44,9 +49,11 @@ public class Enemy_StatManage : MonoBehaviour
         {
             if (GetHit)
             {
-                SetDamage(10f);
+                Debug.Log(GetHit);
+                SetDamage(30f);
                 CurHp -= Damage;
                 ResetDamage();
+                GetHit = false;
             }
         }
         else
@@ -56,7 +63,8 @@ public class Enemy_StatManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetHit = (Head.isHit || Body_1.isHit || Body_2.isHit);
+        GetHit = (Head_Hit.isHit || Body_1_Hit.isHit || Body_2_Hit.isHit);
+        Debug.Log(Body_1_Hit.isHit);
         HpUpdate();
     }
 }

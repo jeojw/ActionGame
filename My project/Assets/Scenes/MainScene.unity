@@ -132,8 +132,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1080731}
-  - component: {fileID: 1080732}
   - component: {fileID: 1080733}
+  - component: {fileID: 1080734}
   m_Layer: 9
   m_Name: LeftLegHitbox_1
   m_TagString: Untagged
@@ -156,8 +156,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1643240921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &1080732
-EdgeCollider2D:
+--- !u!114 &1080733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a14cdd56529b841be26739807200fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 2060703201}
+  isHit: 0
+  KnifeHit: 0
+  PistolBulletHit: 0
+  RifleBulletHit: 0
+--- !u!60 &1080734
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -189,34 +206,23 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   m_Points:
-  - {x: 0.8792848, y: 0.22983372}
-  - {x: 0.80316657, y: -0.23795384}
-  - {x: -0.74214965, y: -0.16449243}
-  - {x: -0.75092924, y: 0.2281183}
-  - {x: 0.88759017, y: 0.24056251}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
---- !u!114 &1080733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1080730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10a14cdd56529b841be26739807200fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 2060703201}
-  isHit: 0
-  KnifeHit: 0
-  PistolBulletHit: 0
-  RifleBulletHit: 0
+    m_Paths:
+    - - {x: -0.5162339, y: 0.23595917}
+      - {x: -0.84253883, y: 0.2338492}
+      - {x: -0.83523893, y: -0.21728343}
+      - {x: 0.7971372, y: -0.31339955}
+      - {x: 0.82860875, y: 0.25846225}
+  m_UseDelaunayMesh: 0
 --- !u!4 &60475870 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d1c81d21274ec914ba59b373ae660797, type: 3}
@@ -787,7 +793,6 @@ GameObject:
   - component: {fileID: 292544340}
   - component: {fileID: 292544342}
   - component: {fileID: 292544339}
-  - component: {fileID: 292544343}
   - component: {fileID: 292544344}
   m_Layer: 12
   m_Name: Enemy
@@ -857,6 +862,7 @@ MonoBehaviour:
   isAttack: 0
   isFencing: 0
   isShooting: 0
+  isDead: 0
   AttackCoolTime: 3
   DetectInterval: 30
   AttackInterval: 0
@@ -873,7 +879,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 4.0833683
+  m_Mass: 5.7036037
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -900,22 +906,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63d5f671071bc944d908ec64c70f1943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &292544343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 292544337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2736bc4c3cb3e04880c7a0d0e620a91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  KnifeHit: 0
-  PistolBulletHit: 0
-  RifleBulletHit: 0
-  isHit: 0
 --- !u!114 &292544344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -928,9 +918,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95e6116b7146a0c498d92eff819ee17f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Head: {fileID: 360369976}
-  Body_1: {fileID: 1675997069}
-  Body_2: {fileID: 1040039827}
+  Head: {fileID: 360369973}
+  Body_1: {fileID: 1675997066}
+  Body_2: {fileID: 1040039824}
   MaxHp: 100
   CurHp: 100
   isDead: 0
@@ -1930,8 +1920,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 360369974}
-  - component: {fileID: 360369975}
   - component: {fileID: 360369976}
+  - component: {fileID: 360369977}
   m_Layer: 12
   m_Name: EnemyHeadHitbox
   m_TagString: Enemy
@@ -1954,8 +1944,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 212457927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &360369975
-CircleCollider2D:
+--- !u!114 &360369976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360369973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2736bc4c3cb3e04880c7a0d0e620a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy: {fileID: 292544337}
+  Collider: {fileID: 360369977}
+  KnifeHit: 0
+  PistolBulletHit: 0
+  RifleBulletHit: 0
+  isHit: 0
+--- !u!60 &360369977
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1986,25 +1994,38 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0000055814016, y: -0.008384703}
-  serializedVersion: 2
-  m_Radius: 1.1016732
---- !u!114 &360369976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 360369973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2736bc4c3cb3e04880c7a0d0e620a91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  KnifeHit: 0
-  PistolBulletHit: 0
-  RifleBulletHit: 0
-  isHit: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.90689355, y: 0.6737754}
+      - {x: 0.6251504, y: 0.9102521}
+      - {x: 0.267864, y: 1.08132}
+      - {x: -0.01104752, y: 1.0955571}
+      - {x: -0.26310274, y: 1.0634091}
+      - {x: -0.53694206, y: 0.9595217}
+      - {x: -0.839014, y: 0.72288054}
+      - {x: -1.013806, y: 0.43609372}
+      - {x: -1.0808425, y: 0.22899717}
+      - {x: -1.1110467, y: -0.13375652}
+      - {x: -1.0023131, y: -0.50440884}
+      - {x: -0.7838923, y: -0.84837276}
+      - {x: -0.23268582, y: -1.1367723}
+      - {x: 0.28290302, y: -1.1279898}
+      - {x: 0.6504487, y: -0.95338166}
+      - {x: 0.88342613, y: -0.7034001}
+      - {x: 1.0699024, y: -0.43898556}
+      - {x: 1.1245815, y: -0.10555956}
+      - {x: 1.0891992, y: 0.27951574}
+  m_UseDelaunayMesh: 0
 --- !u!1 &371980633
 GameObject:
   m_ObjectHideFlags: 0
@@ -3367,8 +3388,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 578683828}
-  - component: {fileID: 578683829}
   - component: {fileID: 578683830}
+  - component: {fileID: 578683831}
   m_Layer: 9
   m_Name: LeftLegHitbox_2
   m_TagString: Untagged
@@ -3391,8 +3412,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1191029919}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &578683829
-EdgeCollider2D:
+--- !u!114 &578683830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 578683827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a14cdd56529b841be26739807200fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 2060703201}
+  isHit: 0
+  KnifeHit: 0
+  PistolBulletHit: 0
+  RifleBulletHit: 0
+--- !u!60 &578683831
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3424,34 +3462,23 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   m_Points:
-  - {x: 0.68608934, y: 0.25664067}
-  - {x: -0.80277616, y: 0.21898481}
-  - {x: -0.82459277, y: -0.25971183}
-  - {x: 0.6740813, y: -0.26829404}
-  - {x: 0.7247992, y: 0.29799747}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
---- !u!114 &578683830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 578683827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10a14cdd56529b841be26739807200fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 2060703201}
-  isHit: 0
-  KnifeHit: 0
-  PistolBulletHit: 0
-  RifleBulletHit: 0
+    m_Paths:
+    - - {x: -0.31798258, y: 0.19892156}
+      - {x: -0.95543873, y: 0.19681153}
+      - {x: -0.9293361, y: -0.27655315}
+      - {x: 0.5563384, y: -0.26673758}
+      - {x: 0.56640714, y: 0.22920406}
+  m_UseDelaunayMesh: 0
 --- !u!1 &621540818
 GameObject:
   m_ObjectHideFlags: 0
@@ -3965,8 +3992,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 869260580}
-  - component: {fileID: 869260581}
   - component: {fileID: 869260582}
+  - component: {fileID: 869260583}
   m_Layer: 9
   m_Name: HeadHitbox
   m_TagString: Untagged
@@ -3989,8 +4016,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 820990455}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &869260581
-CircleCollider2D:
+--- !u!114 &869260582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869260579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a14cdd56529b841be26739807200fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 2060703201}
+  isHit: 0
+  KnifeHit: 0
+  PistolBulletHit: 0
+  RifleBulletHit: 0
+--- !u!60 &869260583
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4021,26 +4065,38 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0013811088, y: -0.02930249}
-  serializedVersion: 2
-  m_Radius: 1.0899503
---- !u!114 &869260582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 869260579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10a14cdd56529b841be26739807200fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 2060703201}
-  isHit: 0
-  KnifeHit: 0
-  PistolBulletHit: 0
-  RifleBulletHit: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.86930174, y: 0.6769098}
+      - {x: 0.63067687, y: 0.89487404}
+      - {x: 0.370428, y: 1.0297217}
+      - {x: 0.012835674, y: 1.0847571}
+      - {x: -0.20541531, y: 1.0613701}
+      - {x: -0.3341077, y: 1.0357382}
+      - {x: -0.7249137, y: 0.8262811}
+      - {x: -0.9505428, y: 0.5749002}
+      - {x: -1.0447342, y: 0.34713602}
+      - {x: -1.1107289, y: 0.13142097}
+      - {x: -1.0914072, y: -0.25625423}
+      - {x: -0.96603405, y: -0.58781356}
+      - {x: -0.7745698, y: -0.8531019}
+      - {x: -0.3180727, y: -1.1229278}
+      - {x: 0.13997394, y: -1.1590619}
+      - {x: 0.63514876, y: -0.9806997}
+      - {x: 0.9543789, y: -0.646691}
+      - {x: 1.0970049, y: -0.2550336}
+      - {x: 1.0790125, y: 0.3318781}
+  m_UseDelaunayMesh: 0
 --- !u!1 &907143198
 GameObject:
   m_ObjectHideFlags: 0
@@ -4466,8 +4522,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1040039825}
-  - component: {fileID: 1040039826}
   - component: {fileID: 1040039827}
+  - component: {fileID: 1040039828}
   m_Layer: 12
   m_Name: EnemyBodyHitbox_2
   m_TagString: Enemy
@@ -4490,8 +4546,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 729835308}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &1040039826
-EdgeCollider2D:
+--- !u!114 &1040039827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040039824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2736bc4c3cb3e04880c7a0d0e620a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy: {fileID: 292544337}
+  Collider: {fileID: 1040039828}
+  KnifeHit: 0
+  PistolBulletHit: 0
+  RifleBulletHit: 0
+  isHit: 0
+--- !u!60 &1040039828
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4523,33 +4597,23 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   m_Points:
-  - {x: -0.09398115, y: 0.4096663}
-  - {x: -0.09529248, y: -0.40118587}
-  - {x: 1.5729208, y: -0.46257785}
-  - {x: 1.5672086, y: 0.4406176}
-  - {x: -0.06563691, y: 0.4976187}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
---- !u!114 &1040039827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1040039824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2736bc4c3cb3e04880c7a0d0e620a91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  KnifeHit: 0
-  PistolBulletHit: 0
-  RifleBulletHit: 0
-  isHit: 0
+    m_Paths:
+    - - {x: 1.5918392, y: 0.25461382}
+      - {x: -0.09450671, y: 0.27227345}
+      - {x: -0.073984966, y: -0.24331346}
+      - {x: 0.6591632, y: -0.21354777}
+      - {x: 1.6259897, y: -0.19945194}
+  m_UseDelaunayMesh: 0
 --- !u!1 &1061224530
 GameObject:
   m_ObjectHideFlags: 0
@@ -4815,8 +4879,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1116374975}
-  - component: {fileID: 1116374976}
   - component: {fileID: 1116374977}
+  - component: {fileID: 1116374978}
   m_Layer: 9
   m_Name: BodyHitBox_2
   m_TagString: Untagged
@@ -4839,8 +4903,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1981390659}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &1116374976
-EdgeCollider2D:
+--- !u!114 &1116374977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116374974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a14cdd56529b841be26739807200fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 2060703201}
+  isHit: 0
+  KnifeHit: 0
+  PistolBulletHit: 0
+  RifleBulletHit: 0
+--- !u!60 &1116374978
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4872,34 +4953,23 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   m_Points:
-  - {x: -0.80492187, y: -0.48308957}
-  - {x: 0.6712427, y: -0.5062616}
-  - {x: 0.6442384, y: 0.43347383}
-  - {x: -0.8490015, y: 0.4132117}
-  - {x: -0.79981923, y: -0.46333832}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
---- !u!114 &1116374977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1116374974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10a14cdd56529b841be26739807200fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 2060703201}
-  isHit: 0
-  KnifeHit: 0
-  PistolBulletHit: 0
-  RifleBulletHit: 0
+    m_Paths:
+    - - {x: 0.06558519, y: 0.2893388}
+      - {x: -0.7557749, y: 0.32615075}
+      - {x: -0.71112686, y: -0.30214697}
+      - {x: 0.7812518, y: -0.2863751}
+      - {x: 0.7824403, y: 0.27974272}
+  m_UseDelaunayMesh: 0
 --- !u!1 &1146370325
 GameObject:
   m_ObjectHideFlags: 0
@@ -7215,8 +7285,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1436064073}
-  - component: {fileID: 1436064074}
   - component: {fileID: 1436064075}
+  - component: {fileID: 1436064076}
   m_Layer: 9
   m_Name: RightLegHitbox_1
   m_TagString: Untagged
@@ -7239,8 +7309,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1248773436}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &1436064074
-EdgeCollider2D:
+--- !u!114 &1436064075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436064072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a14cdd56529b841be26739807200fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 2060703201}
+  isHit: 0
+  KnifeHit: 0
+  PistolBulletHit: 0
+  RifleBulletHit: 0
+--- !u!60 &1436064076
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -7272,34 +7359,23 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   m_Points:
-  - {x: 0.8703181, y: 0.29478127}
-  - {x: -0.8379529, y: 0.24505271}
-  - {x: -0.7929236, y: -0.2272819}
-  - {x: 0.8499235, y: -0.26595396}
-  - {x: 0.8197106, y: 0.28544134}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
---- !u!114 &1436064075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1436064072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10a14cdd56529b841be26739807200fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 2060703201}
-  isHit: 0
-  KnifeHit: 0
-  PistolBulletHit: 0
-  RifleBulletHit: 0
+    m_Paths:
+    - - {x: -0.032514617, y: 0.22967571}
+      - {x: -0.77777237, y: 0.19517906}
+      - {x: -0.78630406, y: -0.22887057}
+      - {x: 0.8976324, y: -0.23233366}
+      - {x: 0.92932093, y: 0.25780588}
+  m_UseDelaunayMesh: 0
 --- !u!1 &1442244382
 GameObject:
   m_ObjectHideFlags: 0
@@ -7777,8 +7853,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1653638809}
-  - component: {fileID: 1653638810}
   - component: {fileID: 1653638811}
+  - component: {fileID: 1653638812}
   m_Layer: 9
   m_Name: RightLegHitbox_2
   m_TagString: Untagged
@@ -7801,8 +7877,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 711276997}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &1653638810
-EdgeCollider2D:
+--- !u!114 &1653638811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653638808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a14cdd56529b841be26739807200fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 2060703201}
+  isHit: 0
+  KnifeHit: 0
+  PistolBulletHit: 0
+  RifleBulletHit: 0
+--- !u!60 &1653638812
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -7834,34 +7927,23 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   m_Points:
-  - {x: -0.68469095, y: 0.23274344}
-  - {x: -0.6902873, y: -0.26506758}
-  - {x: 0.6571966, y: -0.25856936}
-  - {x: 0.625544, y: 0.23334947}
-  - {x: -0.67349166, y: 0.23061843}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
---- !u!114 &1653638811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1653638808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10a14cdd56529b841be26739807200fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 2060703201}
-  isHit: 0
-  KnifeHit: 0
-  PistolBulletHit: 0
-  RifleBulletHit: 0
+    m_Paths:
+    - - {x: 0.16484211, y: 0.24953419}
+      - {x: -0.8480433, y: 0.24480951}
+      - {x: -0.83193386, y: -0.30332685}
+      - {x: 0.56885314, y: -0.3050937}
+      - {x: 0.5645088, y: 0.24089529}
+  m_UseDelaunayMesh: 0
 --- !u!1 &1666169005
 GameObject:
   m_ObjectHideFlags: 0
@@ -7991,8 +8073,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1675997067}
-  - component: {fileID: 1675997068}
   - component: {fileID: 1675997069}
+  - component: {fileID: 1675997070}
   m_Layer: 12
   m_Name: EnemyBodyHitbox_1
   m_TagString: Enemy
@@ -8015,8 +8097,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 523699946}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &1675997068
-EdgeCollider2D:
+--- !u!114 &1675997069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675997066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2736bc4c3cb3e04880c7a0d0e620a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy: {fileID: 292544337}
+  Collider: {fileID: 1675997070}
+  KnifeHit: 0
+  PistolBulletHit: 0
+  RifleBulletHit: 0
+  isHit: 0
+--- !u!60 &1675997070
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -8048,33 +8148,23 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   m_Points:
-  - {x: -0.8165777, y: 0.28788516}
-  - {x: -0.7696101, y: -0.30665478}
-  - {x: 0.6445775, y: -0.3050392}
-  - {x: 0.64213204, y: 0.30124184}
-  - {x: -0.81404996, y: 0.3356466}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
---- !u!114 &1675997069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1675997066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2736bc4c3cb3e04880c7a0d0e620a91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  KnifeHit: 0
-  PistolBulletHit: 0
-  RifleBulletHit: 0
-  isHit: 0
+    m_Paths:
+    - - {x: -0.16114439, y: 0.23872846}
+      - {x: -0.7322283, y: 0.25133222}
+      - {x: -0.6732523, y: -0.2644608}
+      - {x: 0.74615186, y: -0.23085731}
+      - {x: 0.7150292, y: 0.25860757}
+  m_UseDelaunayMesh: 0
 --- !u!1 &1685624225 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d1c81d21274ec914ba59b373ae660797, type: 3}
@@ -8396,8 +8486,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1820423809}
-  - component: {fileID: 1820423810}
   - component: {fileID: 1820423811}
+  - component: {fileID: 1820423812}
   m_Layer: 9
   m_Name: BodyHitbox_1
   m_TagString: Untagged
@@ -8420,8 +8510,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1586959991}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &1820423810
-EdgeCollider2D:
+--- !u!114 &1820423811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820423808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a14cdd56529b841be26739807200fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 2060703201}
+  isHit: 0
+  KnifeHit: 0
+  PistolBulletHit: 0
+  RifleBulletHit: 0
+--- !u!60 &1820423812
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -8453,34 +8560,23 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   m_Points:
-  - {x: -0.79426265, y: -0.60140175}
-  - {x: -0.84486914, y: 0.49835217}
-  - {x: 0.9447111, y: 0.4402139}
-  - {x: 0.99931026, y: -0.43467376}
-  - {x: -0.7838254, y: -0.5548914}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
---- !u!114 &1820423811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1820423808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10a14cdd56529b841be26739807200fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 2060703201}
-  isHit: 0
-  KnifeHit: 0
-  PistolBulletHit: 0
-  RifleBulletHit: 0
+    m_Paths:
+    - - {x: -0.04350985, y: 0.29366636}
+      - {x: -0.8690872, y: 0.28082412}
+      - {x: -0.8659921, y: -0.27658445}
+      - {x: 0.97167087, y: -0.26359448}
+      - {x: 0.9510565, y: 0.30901712}
+  m_UseDelaunayMesh: 0
 --- !u!1 &1898823461
 GameObject:
   m_ObjectHideFlags: 0
