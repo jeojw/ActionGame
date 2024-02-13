@@ -21,7 +21,7 @@ public class PlayerCheckCollision : MonoBehaviour
 
     private float HitCoolElapsed = 0;
     private float HitCoolStart = 0;
-    private float HitCool = 1.5f;
+    private float HitCool = 1f;
 
     bool isSlope;
 
@@ -38,11 +38,11 @@ public class PlayerCheckCollision : MonoBehaviour
         bool isSlope = Control.isSlope;
         if (isSlope && (objectName == "LeftLegHitbox_2" || objectName == "RightLegHitbox_2"))
         {
-            GetComponent<Collider2D>().isTrigger = true;
+            collider.isTrigger = true;
         }
         else
         {
-            GetComponent<Collider2D>().isTrigger = false;
+            collider.isTrigger = false;
         }
     }
 

@@ -15,8 +15,7 @@ public class Enemy_StatManage : MonoBehaviour
 
     public float MaxHp;
     public float CurHp;
-    private bool GetHit = false;
-    private bool HitboxActive = true;
+    public bool GetHit = false;
     private float Damage = 0;
 
     public bool isDead;
@@ -64,7 +63,6 @@ public class Enemy_StatManage : MonoBehaviour
     void Update()
     {
         GetHit = (Head_Hit.isHit || Body_1_Hit.isHit || Body_2_Hit.isHit);
-        Debug.Log(Body_1_Hit.isHit);
         HpUpdate();
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy_Movement : MonoBehaviour
 {
     // Start is called before the first frame update
+    public Transform Pos;
+    Animator Enemyanim;
     public enum ATTACKTYPE
     {
         PISTOL,
@@ -26,7 +28,7 @@ public class Enemy_Movement : MonoBehaviour
 
     public ATTACKTYPE AttackType;
     public CONDITION Condition;
-    public DIRECTION Direction;
+    public DIRECTION detectDirection;
     public GameObject Player;
     Rigidbody2D rigid;
     Enemy_StatManage Estat;
@@ -37,6 +39,7 @@ public class Enemy_Movement : MonoBehaviour
     public bool isFencing = false;
     public bool isShooting = false;
     public bool isDead = false;
+    public bool GetCool = false;
 
     public float AttackCoolTime;
     private float AttackCoolStart = 0;
@@ -48,41 +51,44 @@ public class Enemy_Movement : MonoBehaviour
 
     void Start()
     {
+        Enemyanim = GetComponent<Animator>();
         Estat = GetComponent<Enemy_StatManage>();
         AttackType = ATTACKTYPE.SWORD;
-        Direction = DIRECTION.LEFT; 
+        detectDirection = DIRECTION.LEFT; 
         rigid = GetComponent<Rigidbody2D>();
-        transform.localScale = new Vector3((float)Direction, 1, 1);
+        transform.localScale = new Vector3((float)detectDirection, 1, 1);
     }
 
     void DetectivePlayer()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * (float)Direction, DetectInterval, LayerMask.GetMask("Player"));
-        if (hit.collider != null)
+        RaycastHit2D hit1 = Physics2D.Raycast(Pos.position, Vector2.left, DetectInterval, LayerMask.GetMask("Player"));
+        RaycastHit2D hit2 = Physics2D.Raycast(Pos.position, Vector2.right, DetectInterval, LayerMask.GetMask("Player"));
+        if (hit1.collider != null || hit2.collider != null)
         {
             isDetect = true;
+            if (hit1.collider != null)
+                detectDirection = DIRECTION.LEFT;
+            else if (hit2.collider != null)
+                detectDirection = DIRECTION.RIGHT;
         }
         else
             isDetect = false;
-
-        Debug.DrawRay(transform.position, Vector2.right * (float)Direction * DetectInterval, Color.blue);
     }
 
     void Enemy_AI()
     {
         if (isDetect)
         {
-            if (Vector2.Distance(Player.transform.position, transform.position) >= 6f)
+            if (Vector2.Distance(Player.transform.position, Pos.position) >= 6f)
                 isWalking = true;
-            else
-                isWalking = false;
 
-            if (Vector2.Distance(Player.transform.position, transform.position) < 6f)
+            if (Vector2.Distance(Player.transform.position, Pos.position) < 6f && !GetCool) 
             {
                 isAttack = true;
+                isWalking = false;
                 AttackCoolStart = Time.time;
             }
-            else
+            if (GetCool)
             {
                 isAttack = false;
                 AttackCooldown();
@@ -98,7 +104,7 @@ public class Enemy_Movement : MonoBehaviour
 
     void Move()
     {
-        if (Direction == DIRECTION.LEFT)
+        if (detectDirection == DIRECTION.LEFT)
         {
             transform.localScale = new Vector3(-1, 1, 1);
             rigid.velocity = new Vector2(speed * (-1), rigid.velocity.y);
@@ -116,6 +122,11 @@ public class Enemy_Movement : MonoBehaviour
         if (AttackType == ATTACKTYPE.SWORD)
         {
             isFencing = true;
+            if (Enemyanim.GetCurrentAnimatorStateInfo(0).IsName("Fencing_Enemy") &&
+                Enemyanim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            {
+                GetCool = true;
+            }
         }
     }
 
@@ -126,6 +137,7 @@ public class Enemy_Movement : MonoBehaviour
         {
             AttackCoolElapsed = 0;
             AttackCoolStart = 0;
+            GetCool = false;
         }
     }
 
@@ -148,5 +160,6 @@ public class Enemy_Movement : MonoBehaviour
         DetectivePlayer();
         if (!isDead)
             Enemy_AI();
+        Debug.Log(AttackCoolElapsed);
     }
 }
