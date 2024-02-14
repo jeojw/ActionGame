@@ -208,7 +208,8 @@ public class PlayerControl : MonoBehaviour
 
                 else if (Input.GetKeyUp(KeyCode.Space) && !weaponUIManage.IsZeroPistol &&
                     (weapon == Weapons.NONE ||
-                    weapon == Weapons.ROPE))
+                    weapon == Weapons.ROPE) &&
+                    jumpCount == 1)
                 {
                     isJumpStart = false;
                     isJump = true;

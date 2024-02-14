@@ -12,6 +12,7 @@ public class PlayerCheckCollision : MonoBehaviour
     PlayerControl Control;
     StatManage PlayerStat;
     PlayerControl.Weapons curWeapon;
+    CollisionPhysics Physic;
 
     public bool isHit = false;
     public bool KnifeHit = false;
@@ -34,6 +35,7 @@ public class PlayerCheckCollision : MonoBehaviour
         objectName = transform.name;
         collider = GetComponent<PolygonCollider2D>();
         curWeapon = Player.GetComponent<PlayerControl>().weapon;
+        Physic = Player.GetComponent<CollisionPhysics>();
     }
     void CheckSlope()
     {
@@ -45,22 +47,6 @@ public class PlayerCheckCollision : MonoBehaviour
         else
         {
             collider.isTrigger = false;
-        }
-    }
-
-    void CheckCollisionType()
-    {
-        if (PistolBulletHit)
-        {
-            collisionPhysics.SetPhysics(new Vector2(0, 0));
-        }
-        if (RifleBulletHit)
-        {
-            collisionPhysics.SetPhysics(new Vector2(0, 0));
-        }
-        if (KnifeHit)
-        {
-            collisionPhysics.SetPhysics(new Vector2(0, 0));
         }
     }
 
@@ -92,12 +78,17 @@ public class PlayerCheckCollision : MonoBehaviour
         {
             collider.enabled = false;
             HitCoolStart = Time.time;
-            if (KnifeHit)
-                KnifeHit = false;
             if (PistolBulletHit)
+            {
+                Physic.SetPhysics(new Vector2((int)Control.direction * (-1) * 80, 0));
                 PistolBulletHit = false;
-            if (RifleBulletHit)
-                RifleBulletHit = false;
+            }
+
+            if (KnifeHit)
+            {
+                Physic.SetPhysics(new Vector2((int)Control.direction * (-1) * 10, 0));
+                KnifeHit = false;
+            }
         }
         else
         {
@@ -109,8 +100,6 @@ public class PlayerCheckCollision : MonoBehaviour
                 HitCoolStart = 0;
             }
         }
-
-        CheckCollisionType();
         if (transform.parent.name == "bone_11" ||
             transform.parent.name == "bone_9")
             CheckSlope();

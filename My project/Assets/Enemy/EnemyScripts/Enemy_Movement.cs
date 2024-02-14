@@ -29,7 +29,6 @@ public class Enemy_Movement : MonoBehaviour
     public ATTACKTYPE AttackType;
     public CONDITION Condition;
     public DIRECTION detectDirection;
-    public GameObject Player;
 
     public GameObject HeadHitbox;
     public GameObject BodyHitbox_1;
@@ -88,19 +87,29 @@ public class Enemy_Movement : MonoBehaviour
         else
             isDetect = false;
     }
+    void OnDrawGizmos()
+    {
 
+        RaycastHit2D AttackHit = Physics2D.BoxCast(Pos.position, new Vector2(8, 8), 0, (int)detectDirection * Vector2.left);
+        if (AttackHit)
+            Gizmos.DrawWireCube(Pos.position, new Vector2(8, 8));
+    }
     void Enemy_AI()
     {
+        RaycastHit2D AttackHit = Physics2D.BoxCast(Pos.position, new Vector2(8, 8), 0, (int)detectDirection * Vector2.left, 10f, LayerMask.GetMask("Player"));
         if (isDetect)
         {
-            if (Vector2.Distance(Player.transform.position, Pos.position) >= 6f)
+            if (!AttackHit)
                 isWalking = true;
 
-            if (Vector2.Distance(Player.transform.position, Pos.position) < 6f && !GetCool) 
+            if (AttackHit) 
             {
-                isAttack = true;
                 isWalking = false;
-                AttackCoolStart = Time.time;
+                if (!GetCool)
+                {
+                    isAttack = true;
+                    AttackCoolStart = Time.time;
+                }
             }
             if (GetCool)
             {

@@ -86,12 +86,16 @@ public class EnemyCheckCollision : MonoBehaviour
 
                 if (PisteHit)
                 {
-                    Physic.SetPhysics(new Vector2((int)EMove.detectDirection * (-1) * 20, 0));
+                    Physic.SetPhysics(new Vector2((int)EMove.detectDirection * (-1) * 10, 0));
                     PisteHit = false;
                 }
 
                 if (KnifeHit)
+                {
+                    Physic.SetPhysics(new Vector2((int)EMove.detectDirection * (-1) * 1, 0));
                     KnifeHit = false;
+                }
+                    
                 if (RifleBulletHit)
                     RifleBulletHit = false;
             }

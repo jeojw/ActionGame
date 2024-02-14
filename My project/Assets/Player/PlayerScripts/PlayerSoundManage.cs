@@ -18,6 +18,7 @@ public class PlayeroundManage : MonoBehaviour
     public AudioSource RifleShot;
 
     PlayerControl playerControl;
+    StatManage Pstm;
     GunManage PistolM;
     GunManage RifleM;
     KnifeManage KnifeM;
@@ -43,6 +44,7 @@ public class PlayeroundManage : MonoBehaviour
         RifleM = Rifle.GetComponent<GunManage>();
         KnifeM = Knife.GetComponent<KnifeManage>();
         playerAnim = GetComponent<Animator>();
+        Pstm = GetComponent<StatManage>();
     }
 
     void MoveSoundUpdate()
@@ -91,7 +93,11 @@ public class PlayeroundManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveSoundUpdate();
-        WeaponSoundUpdate();
+        if (!Pstm.isDead)
+        {
+            MoveSoundUpdate();
+            WeaponSoundUpdate();
+        }
+        
     }
 }

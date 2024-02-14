@@ -25,11 +25,6 @@ public class KnifeManage : MonoBehaviour
     {
         curWeapon = control.weapon;
 
-        if (curWeapon == PlayerControl.Weapons.KNIFE)
-        {
-            collider.enabled = true;
-        }
-        else
-            collider.enabled = false;
+        collider.enabled = (curWeapon == PlayerControl.Weapons.KNIFE);
     }
 }
