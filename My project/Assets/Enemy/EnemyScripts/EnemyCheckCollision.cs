@@ -102,7 +102,5 @@ public class EnemyCheckCollision : MonoBehaviour
         }
         else
             collider.enabled = false;
-            
-        Debug.Log(HitDelayElapsed);
     }
 }

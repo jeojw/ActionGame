@@ -9,12 +9,15 @@ public class KnifeManage : MonoBehaviour
     PlayerControl.Weapons curWeapon;
     PolygonCollider2D collider;
     PlayerControl control;
+    Animator playerAnim;
+
+    public bool isFence;
     // Start is called before the first frame update
     void Start()
     {
         collider = GetComponent<PolygonCollider2D>();
         control = Player.GetComponent<PlayerControl>();
-        
+        playerAnim = Player.GetComponent<Animator>();
     }
 
     // Update is called once per frame

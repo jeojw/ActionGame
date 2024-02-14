@@ -8,11 +8,10 @@ public class GunManage : MonoBehaviour
 
     public GameObject Player;
     public GameObject WeaponUI;
-    public AudioSource WeaponSound;
-    public AudioSource ReloadSound;
 
     public bool AmmunitionZero;
     public bool isReload;
+    public bool isShot;
 
     public int curAmmunition;
     public int maxAmmunition;
@@ -34,10 +33,10 @@ public class GunManage : MonoBehaviour
         if (playControl.ShotDelayElapsed == 0 &&
             playControl.isShooting)
         {
+            isShot = true;
             if (curAmmunition != 0)
             {
                 curAmmunition -= 1;
-                WeaponSound.Play();
             }
 
             if (curAmmunition == 0)
@@ -45,6 +44,8 @@ public class GunManage : MonoBehaviour
                 AmmunitionZero = true;
             }
         }
+        else
+            isShot = false;
 
     }
 
@@ -59,7 +60,6 @@ public class GunManage : MonoBehaviour
                     curAmmunition = maxAmmunition;
                     AmmunitionZero = false;
                     isReload = false;
-                    ReloadSound.Play();
                 }
             }
         }
