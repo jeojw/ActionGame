@@ -37,18 +37,6 @@ public class PlayerCheckCollision : MonoBehaviour
         curWeapon = Player.GetComponent<PlayerControl>().weapon;
         Physic = Player.GetComponent<CollisionPhysics>();
     }
-    void CheckSlope()
-    {
-        bool isSlope = Control.isSlope;
-        if (isSlope && (objectName == "LeftLegHitbox_2" || objectName == "RightLegHitbox_2"))
-        {
-            collider.isTrigger = true;
-        }
-        else
-        {
-            collider.isTrigger = false;
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -100,8 +88,5 @@ public class PlayerCheckCollision : MonoBehaviour
                 HitCoolStart = 0;
             }
         }
-        if (transform.parent.name == "bone_11" ||
-            transform.parent.name == "bone_9")
-            CheckSlope();
     }
 }

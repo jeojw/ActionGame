@@ -17,6 +17,7 @@ public class Enemy_StatManage : MonoBehaviour
     public float CurHp;
     public bool GetHit = false;
     private float Damage = 0;
+    public bool isDrop = false;
 
     public bool isDead;
     void Start()
@@ -48,14 +49,18 @@ public class Enemy_StatManage : MonoBehaviour
         {
             if (GetHit)
             {
-                SetDamage(10f);
+                SetDamage(300f);
                 CurHp -= Damage;
                 ResetDamage();
                 GetHit = false;
             }
         }
         else
+        {
             isDead = true;
+            isDrop = true;
+        }
+            
     }
 
     // Update is called once per frame

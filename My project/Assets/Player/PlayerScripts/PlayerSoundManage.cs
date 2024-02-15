@@ -58,7 +58,7 @@ public class PlayeroundManage : MonoBehaviour
         if (moveCool >= 1.0f)
         {
             moveCool = 0;
-            if (isWalk)
+            if (isWalk && playerControl.isGround)
             {
                 Walk.Play();
                 moveCoef = 2;

@@ -71,7 +71,6 @@ public class PlayerControl : MonoBehaviour
 
     public bool AimingGun = false;
     public bool isShooting = false; 
-    public bool isReloading = false;
     public bool isFencing = false;
     public bool isGrapplingShot = false;
     public bool isPunching = false;
@@ -86,6 +85,7 @@ public class PlayerControl : MonoBehaviour
     public bool isGround = false;
     public bool isRunning = false;
     public bool isLowerBody = false;
+    public bool GetItem = false;
 
     public bool IsDoublePressed = false;
 
@@ -145,10 +145,17 @@ public class PlayerControl : MonoBehaviour
         
     }
 
+    private bool CheckGetItem()
+    {
+        RaycastHit2D hit = Physics2D.BoxCast(bodyPos.position, new Vector2(2, 1), 0f, Vector2.down, 0.02f, LayerMask.GetMask("Item"));
+
+        return (hit.collider != null);
+    }
     void Control()
     {
         if (!sceneManage.isPaused || !statManage.isDead)
         {
+
             if (isWalking || isRunning || isJump || isLanding || isJumpStart)
                 isMoving = true;
             else
@@ -230,34 +237,44 @@ public class PlayerControl : MonoBehaviour
             else
                 isLowerBody = false;
 
-            if (Input.GetKeyDown(KeyCode.X))
+            if (!CheckGetItem())
             {
-                if (weapon == Weapons.NONE)
-                    isAttack = true;
-                
-                if (weapon == Weapons.GUNS && ShotDelayElapsed == 0)
+                if (Input.GetKeyDown(KeyCode.X))
                 {
-                    isAttack = true;
-                    ShotDelayStart = Time.time;
+                    if (weapon == Weapons.NONE)
+                        isAttack = true;
+
+                    if (weapon == Weapons.GUNS && ShotDelayElapsed == 0)
+                    {
+                        isAttack = true;
+                        ShotDelayStart = Time.time;
+                    }
+                    if (weapon == Weapons.ROPE && RopeDelayElapsed == 0)
+                    {
+                        isAttack = true;
+                        RopeDelayStart = Time.time;
+                    }
+                    if (weapon == Weapons.KNIFE)
+                    {
+                        isAttack = true;
+                        KnifeAttackStart = Time.time;
+                    }
                 }
-                if (weapon == Weapons.ROPE && RopeDelayElapsed == 0)
+                else
                 {
-                    isAttack = true;
-                    RopeDelayStart = Time.time;
+                    isAttack = false;
+                    AttackCooldown();
                 }
                 if (weapon == Weapons.KNIFE)
-                {
-                    isAttack = true;
-                    KnifeAttackStart = Time.time;
-                }
+                    KnifeFightControl();
             }
             else
             {
-                isAttack = false;
-                AttackCooldown();
+                if (Input.GetKeyDown(KeyCode.X))
+                {
+                    GetItem = true;
+                }
             }
-            if (weapon == Weapons.KNIFE)
-                KnifeFightControl();
         }
 
     }

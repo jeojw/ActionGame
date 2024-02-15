@@ -97,6 +97,11 @@ public class StatManage : MonoBehaviour
                 curHp -= Damage;
                 ResetDamage();
             }
+
+            if (playControl.GetItem)
+            {
+
+            }
         }
         else
             isDead = true;

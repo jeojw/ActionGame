@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GunManage : MonoBehaviour
@@ -13,6 +14,7 @@ public class GunManage : MonoBehaviour
     public bool isReload;
     public bool isShot;
 
+    public float ShotDelay;
     public int curAmmunition;
     public int maxAmmunition;
 
@@ -25,6 +27,11 @@ public class GunManage : MonoBehaviour
         curAmmunition = maxAmmunition;
         playControl = Player.GetComponent<PlayerControl>();
         playerAnim = Player.GetComponent<Animator>();  
+    }
+
+    void ChangeGun()
+    {
+
     }
 
     void Shot()
