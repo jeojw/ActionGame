@@ -27,19 +27,23 @@ public class SpriteUpdate : MonoBehaviour
     PlayerControl playerControl;
     GrapplingHook graphook;
     SpriteRenderer pistolSprite;
-    GunManage pistolManage;
+    SpriteRenderer rifleSprite;
+    PistolManage pistolManage;
+    RifleManage rifleManage;
     StatManage statManage;
 
     // Start is called before the first frame update
     void Start()
     {
         pistolSprite = Pistol.GetComponent<SpriteRenderer>();
+        rifleSprite = Rifle.GetComponent<SpriteRenderer>();
         pistolSprite.enabled = true;
         Rifle.GetComponent<SpriteRenderer>().enabled = false;
         Knife.enabled = false;
         playerControl = GetComponent<PlayerControl>();
         graphook = GetComponent<GrapplingHook>();
-        pistolManage = Pistol.GetComponent<GunManage>();
+        pistolManage = Pistol.GetComponent<PistolManage>();
+        rifleManage = Rifle.GetComponent<RifleManage>();
         statManage = GetComponent<StatManage>();
     }
 
@@ -59,13 +63,22 @@ public class SpriteUpdate : MonoBehaviour
         if (Direct == PlayerControl.Direction.LEFT) { Player.transform.localScale = new Vector3(-1, 1, 1); }
         else if (Direct == PlayerControl.Direction.RIGHT) { Player.transform.localScale = new Vector3(1, 1, 1); }
 
-        if (playerControl.weapon == PlayerControl.Weapons.GUNS)
+        if (playerControl.weapon == PlayerControl.Weapons.PISTOL)
         {
             anim.SetBool("isGetPistol", true);
         }
         else
         {
             anim.SetBool("isGetPistol", false);
+        }
+
+        if (playerControl.weapon == PlayerControl.Weapons.RIFLE)
+        {
+            anim.SetBool("isGetRifle", true);
+        }
+        else
+        {
+            anim.SetBool("isGetRifle", false);
         }
 
         if (Walking)
@@ -156,7 +169,7 @@ public class SpriteUpdate : MonoBehaviour
             }
         }
 
-        if (playerControl.weapon == PlayerControl.Weapons.GUNS)
+        if (playerControl.weapon == PlayerControl.Weapons.PISTOL)
         {
             pistolSprite.enabled = true;
             if (!pistolManage.AmmunitionZero)
@@ -169,16 +182,6 @@ public class SpriteUpdate : MonoBehaviour
             if (playerControl.isShooting)
             {
                 anim.SetBool("isPistolShooting", true);
-                //if (GameObject.Find("UI").GetComponent<WeaponUIManage>().isZero)
-                //{
-                //    anim.SetBool("isReloading", true);
-                //    GameObject.Find("UI").GetComponent<WeaponUIManage>().isZero = false;
-                //}
-                //else
-                //{
-                //    anim.SetBool("isReloading", false);
-                //    GameObject.Find("UI").GetComponent<WeaponUIManage>().isReload = true;
-                //}
             }
             else
             {
@@ -189,6 +192,23 @@ public class SpriteUpdate : MonoBehaviour
         else
         {
             pistolSprite.enabled = false;
+        }
+
+        if (playerControl.weapon == PlayerControl.Weapons.RIFLE)
+        {
+            rifleSprite.enabled = true;
+            if (playerControl.isShooting)
+            {
+                anim.SetBool("isRifleShooting", true);
+            }
+            else
+            {
+                anim.SetBool("isRifleShooting", false);
+            }
+        }
+        else
+        {
+             rifleSprite.enabled = false;
         }
 
         if (playerControl.weapon == PlayerControl.Weapons.KNIFE)

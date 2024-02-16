@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class StatManage : MonoBehaviour
 {
@@ -14,6 +15,14 @@ public class StatManage : MonoBehaviour
     public GameObject LeftLegHitbox_1;
     public GameObject LeftLegHitbox_2;
 
+    public GameObject Pistol;
+    public GameObject Rifle;
+    public GameObject Knife;
+
+    KnifeManage KnifeM;
+    PistolManage PistolM;
+    RifleManage RifleM;
+
     PlayerCheckCollision HeadCheck;
     PlayerCheckCollision BodyCheck_1;
     PlayerCheckCollision BodyCheck_2;
@@ -22,6 +31,8 @@ public class StatManage : MonoBehaviour
     PlayerCheckCollision LeftLegCheck_1;
     PlayerCheckCollision LeftLegCheck_2;
 
+    public bool UseItem = false;
+    ItemManage.ITEMTYPE ItemType;
 
     PlayerControl playControl;
 
@@ -41,6 +52,9 @@ public class StatManage : MonoBehaviour
     public float MaxHp;
     public float curHp;
 
+    public float GunDamage;
+    public float GunShotDelay;
+
     void Start()
     {
         HeadCheck = HeadHitbox.GetComponent<PlayerCheckCollision>();
@@ -51,6 +65,10 @@ public class StatManage : MonoBehaviour
         LeftLegCheck_1 = LeftLegHitbox_1.GetComponent<PlayerCheckCollision>();
         LeftLegCheck_2 = LeftLegHitbox_2.GetComponent<PlayerCheckCollision>();
 
+        PistolM = Pistol.GetComponent<PistolManage>();
+        RifleM = Rifle.GetComponent<RifleManage>();
+        KnifeM = Knife.GetComponent<KnifeManage>();
+
         playControl = GetComponent<PlayerControl>();
         curHp = MaxHp;
 
@@ -59,10 +77,25 @@ public class StatManage : MonoBehaviour
 
     void ATKUpdate()
     {
-        if (playControl.weapon == PlayerControl.Weapons.GUNS)
+        if (playControl.isGetItem)
         {
-
+            UseItem = false;
+            ItemType = playControl.GetItemType;
+            if (ItemType == ItemManage.ITEMTYPE.RIFLE && !UseItem)
+            {
+                RifleM.ResetMagazine();
+                GunDamage = RifleM.BulletDamage;
+                GunShotDelay = RifleM.ShotDelay;
+                UseItem = true;
+            }
         }
+
+        if (RifleM.AmmunitionZero)
+        {
+            GunDamage = PistolM.BulletDamage;
+            GunShotDelay = PistolM.ShotDelay;
+        }
+        //playControl.SetShotDelay(GunShotDelay);
     }
 
     public void SetHp(float _hp)
@@ -78,12 +111,6 @@ public class StatManage : MonoBehaviour
     {
         Damage = 0;
     }
-
-    void GetAttackUpdate()
-    {
-           
-    }
-
     void HpUpdate()
     {
         if (curHp > 0)
@@ -98,9 +125,15 @@ public class StatManage : MonoBehaviour
                 ResetDamage();
             }
 
-            if (playControl.GetItem)
+            if (playControl.isGetItem)
             {
-
+                UseItem = false;
+                ItemType = playControl.GetItemType;
+                if (ItemType == ItemManage.ITEMTYPE.HEAL && !UseItem)
+                {
+                    curHp += 50f;
+                    UseItem = true;
+                }
             }
         }
         else
@@ -118,7 +151,7 @@ public class StatManage : MonoBehaviour
         GetHit = (HeadCheck.isHit || BodyCheck_1.isHit || BodyCheck_2.isHit ||
                   RightLegCheck_1.isHit || RightLegCheck_2.isHit ||
                   LeftLegCheck_1.isHit || LeftLegCheck_2.isHit);
-        GetAttackUpdate();
+        ATKUpdate();
         HpUpdate();
         ConditionUpdate();
      }

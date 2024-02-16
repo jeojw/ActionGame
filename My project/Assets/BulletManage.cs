@@ -11,14 +11,16 @@ public class BulletManage : MonoBehaviour
 
     GameObject Player;
     public float BulletSpeed;
-    public float Damage;
     // Start is called before the first frame update
     void Start()
     {
         physics = GetComponent<Rigidbody2D>();
         BulletSprite = GetComponent<SpriteRenderer>();
         BulletHitbox = GetComponent<BoxCollider2D>();
-        transform.position = GameObject.Find("PistolFirePosition").transform.position;
+        if (transform.tag == "Pistol_Bullet")
+            transform.position = GameObject.Find("PistolFirePosition").transform.position;
+        else if (transform.tag == "Rifle_Bullet")
+            transform.position = GameObject.Find("RifleFirePosition").transform.position;
         Player = GameObject.Find("Player");
         direct = Player.GetComponent<PlayerControl>().direction;
     }

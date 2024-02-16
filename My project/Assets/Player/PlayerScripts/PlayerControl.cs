@@ -17,11 +17,16 @@ public class PlayerControl : MonoBehaviour
     public Transform bodyPos;
     public GameObject UI;
     public GameObject Pistol;
-    
+    public GameObject Rifle;
+    public GameObject EventSystem;
+
+    ItemManage ITM;
+
     SceneManage sceneManage;
     WeaponUIManage weaponUIManage;
     StatManage statManage;
-    GunManage gunManage;
+    PistolManage PistolManage;
+    RifleManage RifleManage;
     public enum Direction
     {
         LEFT = -1,
@@ -31,7 +36,8 @@ public class PlayerControl : MonoBehaviour
     public enum Weapons
     {
         NONE,
-        GUNS,
+        RIFLE,
+        PISTOL,
         KNIFE,
         ROPE
     }
@@ -50,12 +56,17 @@ public class PlayerControl : MonoBehaviour
     public float jumpV;
     private int weaponPos = 0;
 
-    public float RopeDelay;
+    private float RopeDelay = 0;
     private float RopeDelayStart = 0;
     public float RopeDelayElapsed = 0;
-    public float ShotDelay;
+
+    private float ShotDelay = 0.1f;
     private float ShotDelayStart = 0;
     public float ShotDelayElapsed = 0;
+
+    private float PisteDelay = 0.5f;
+    private float PisteDelayStart = 0;
+    private float PisteDelayElapsed = 0;
 
     private float lastKeyPressTime = 0;
     public float RunningInterval = 0.5f;
@@ -70,7 +81,7 @@ public class PlayerControl : MonoBehaviour
     public Weapons weapon;
 
     public bool AimingGun = false;
-    public bool isShooting = false; 
+    public bool isShooting = false;
     public bool isFencing = false;
     public bool isGrapplingShot = false;
     public bool isPunching = false;
@@ -85,9 +96,11 @@ public class PlayerControl : MonoBehaviour
     public bool isGround = false;
     public bool isRunning = false;
     public bool isLowerBody = false;
-    public bool GetItem = false;
+    public bool isGetItem = false;
 
     public bool IsDoublePressed = false;
+
+    public ItemManage.ITEMTYPE GetItemType;
 
     private float SlopeAngle;
 
@@ -99,7 +112,10 @@ public class PlayerControl : MonoBehaviour
         sceneManage = UI.GetComponent<SceneManage>();
         weaponUIManage = UI.GetComponent<WeaponUIManage>();
         statManage = GetComponent<StatManage>();
-        gunManage = Pistol.GetComponent<GunManage>();
+
+        PistolManage = Pistol.GetComponent<PistolManage>();
+        RifleManage = Rifle.GetComponent<RifleManage>();
+        ITM = EventSystem.GetComponent<ItemManage>();
     }
 
     // Update is called once per frame
@@ -142,9 +158,9 @@ public class PlayerControl : MonoBehaviour
         }
         else
             isSlope = false;
-        
-    }
 
+    }
+    
     private bool CheckGetItem()
     {
         RaycastHit2D hit = Physics2D.BoxCast(bodyPos.position, new Vector2(2, 1), 0f, Vector2.down, 0.02f, LayerMask.GetMask("Item"));
@@ -204,8 +220,8 @@ public class PlayerControl : MonoBehaviour
 
             if (!isRolling)
             {
-                if (Input.GetKeyDown(KeyCode.Space) && 
-                    !weaponUIManage.IsZeroPistol && 
+                if (Input.GetKeyDown(KeyCode.Space) &&
+                    !weaponUIManage.IsZeroPistol &&
                     (weapon == Weapons.NONE ||
                     weapon == Weapons.ROPE) &&
                     jumpCount == 1)
@@ -223,7 +239,7 @@ public class PlayerControl : MonoBehaviour
                     jumpCount = 0;
                 }
             }
-            
+
 
             if (isWalking && !isRunning && !isJump && Input.GetKey(KeyCode.LeftShift))
             {
@@ -237,51 +253,81 @@ public class PlayerControl : MonoBehaviour
             else
                 isLowerBody = false;
 
-            if (!CheckGetItem())
+            if (Input.GetKeyDown(KeyCode.X))
             {
-                if (Input.GetKeyDown(KeyCode.X))
-                {
-                    if (weapon == Weapons.NONE)
-                        isAttack = true;
-
-                    if (weapon == Weapons.GUNS && ShotDelayElapsed == 0)
-                    {
-                        isAttack = true;
-                        ShotDelayStart = Time.time;
-                    }
-                    if (weapon == Weapons.ROPE && RopeDelayElapsed == 0)
-                    {
-                        isAttack = true;
-                        RopeDelayStart = Time.time;
-                    }
-                    if (weapon == Weapons.KNIFE)
-                    {
-                        isAttack = true;
-                        KnifeAttackStart = Time.time;
-                    }
-                }
-                else
-                {
-                    isAttack = false;
-                    AttackCooldown();
-                }
                 if (weapon == Weapons.KNIFE)
-                    KnifeFightControl();
+                {
+                    isAttack = true;
+                    KnifeAttackStart = Time.time;
+                }
             }
             else
             {
-                if (Input.GetKeyDown(KeyCode.X))
+                isAttack = false;
+            }
+            if (weapon == Weapons.NONE)
+                PisteControl();
+            if (weapon == Weapons.PISTOL || weapon == Weapons.RIFLE)
+                GunControl();
+            if (weapon == Weapons.KNIFE)
+                KnifeFightControl();
+        }
+
+    }
+    void PisteControl()
+    {
+        if (Input.GetKey(KeyCode.X))
+        {
+            if (PisteDelayStart == 0)
+            {
+                isAttack = true;
+                PisteDelayStart = Time.time;
+            }
+            else
+            {
+                PisteDelayElapsed = Time.time - PisteDelayStart;
+                if (PisteDelayElapsed >= PisteDelay)
                 {
-                    GetItem = true;
+                    PisteDelayElapsed = 0;
+                    PisteDelayStart = 0;
                 }
             }
+        }
+        else
+        {
+            ShotDelayElapsed = 0;
+            isAttack = false;
+        }
+    }
+    void GunControl()
+    {
+        if (Input.GetKey(KeyCode.X))
+        {
+            if (ShotDelayStart == 0)
+            {
+                isAttack = true;
+                ShotDelayStart = Time.time;
+            }
+            else
+            {
+                ShotDelayElapsed = Time.time - ShotDelayStart;
+                if (ShotDelayElapsed >= ShotDelay)
+                {
+                    ShotDelayElapsed = 0;
+                    ShotDelayStart = 0;
+                }
+            }
+        }
+        else
+        {
+            ShotDelayElapsed = 0;
+            isAttack = false;
         }
 
     }
 
     void KnifeFightControl()
     {
-
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife_Fighting_1"))
         {
             if (Input.GetKeyDown(KeyCode.X))
@@ -313,18 +359,14 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    public void SetShotDelay(float _Delay)
+    {
+        ShotDelay = _Delay;
+    }
+
     void AttackCooldown()
     {
-        if (weapon == Weapons.GUNS)
-        {
-            ShotDelayElapsed = Time.time - ShotDelayStart;
-            if (ShotDelayElapsed >= ShotDelay)
-            {
-                ShotDelayElapsed = 0;
-                ShotDelayStart = 0;
-            }
-        }
-        else if (weapon == Weapons.ROPE)
+        if (weapon == Weapons.ROPE)
         {
             RopeDelayElapsed = Time.time - RopeDelayStart;
             if (RopeDelayElapsed >= RopeDelay)
@@ -352,7 +394,7 @@ public class PlayerControl : MonoBehaviour
             !grappling.isLineMax &&
             !isLowerBody &&
             !isMoving &&
-            !gunManage.isReload &&
+            !PistolManage.isReload &&
             isGround) {
             weaponPos++;
             if (weaponPos > 4)
@@ -363,19 +405,16 @@ public class PlayerControl : MonoBehaviour
             case 0:
                 weapon = Weapons.NONE; break;
             case 1:
-                weapon = Weapons.GUNS; break;
+                weapon = Weapons.PISTOL; break;
             case 2:
-                weapon = Weapons.KNIFE; break;
+                weapon = Weapons.RIFLE; break;
             case 3:
+                weapon = Weapons.KNIFE; break;
+            case 4:
                 weapon = Weapons.ROPE; break;
             default: break;
 
         }
-    }
-
-    void FrictionUpdate()
-    {
-
     }
     void Walk()
     {
@@ -430,7 +469,7 @@ public class PlayerControl : MonoBehaviour
             isPunching = true;
         else
             isPunching = false;
-        if (weapon == Weapons.GUNS && isGround && !weaponUIManage.IsZeroPistol) 
+        if ((weapon == Weapons.RIFLE && !weaponUIManage.IsZeroRifle) || (weapon == Weapons.PISTOL && !weaponUIManage.IsZeroPistol) && isGround) 
         {
             isShooting = true; 
         }
@@ -473,15 +512,16 @@ public class PlayerControl : MonoBehaviour
             rigid.velocity = new Vector2(x * speed * 2f, rigid.velocity.y);
     }
 
-    void GetAttack()
-    {
-
-    }
-
     void Update()
     {
         if (!statManage.isDead)
         {
+            if (CheckGetItem())
+            {
+                GetItemType = ITM.ReturnItem();
+                isGetItem = true;
+            }
+                
             Control();
             WeaponControl();
             if (isAttack)
@@ -496,7 +536,6 @@ public class PlayerControl : MonoBehaviour
                 isPunching = false;
             }
         }
-        
     }
 
     void FixedUpdate()
@@ -532,6 +571,5 @@ public class PlayerControl : MonoBehaviour
                 isLanding = false;
             }
         }
-        
     }
 }

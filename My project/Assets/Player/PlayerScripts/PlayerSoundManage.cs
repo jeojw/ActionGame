@@ -19,8 +19,8 @@ public class PlayeroundManage : MonoBehaviour
 
     PlayerControl playerControl;
     StatManage Pstm;
-    GunManage PistolM;
-    GunManage RifleM;
+    PistolManage PistolM;
+    RifleManage RifleM;
     KnifeManage KnifeM;
     Animator playerAnim;
     AnimatorStateInfo curAnim;
@@ -40,8 +40,8 @@ public class PlayeroundManage : MonoBehaviour
     void Start()
     {
         playerControl = GetComponent<PlayerControl>();
-        PistolM = Pistol.GetComponent<GunManage>();
-        RifleM = Rifle.GetComponent<GunManage>();
+        PistolM = Pistol.GetComponent<PistolManage>();
+        RifleM = Rifle.GetComponent<RifleManage>();
         KnifeM = Knife.GetComponent<KnifeManage>();
         playerAnim = GetComponent<Animator>();
         Pstm = GetComponent<StatManage>();
@@ -78,15 +78,26 @@ public class PlayeroundManage : MonoBehaviour
 
     void WeaponSoundUpdate()
     {
-        isShot = PistolM.isShot;
-        isReload = PistolM.isReload;
-        if (isShot)
+        if (playerControl.weapon == PlayerControl.Weapons.PISTOL)
         {
-            PistolShot.Play();
+            isShot = PistolM.isShot;
+            isReload = PistolM.isReload;
+            if (isShot)
+            {
+                PistolShot.Play();
+            }
+            if (isReload && playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            {
+                PistolReload.Play();
+            }
         }
-        if (isReload && playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        else if (playerControl.weapon == PlayerControl.Weapons.RIFLE)
         {
-            PistolReload.Play();
+            isShot = RifleM.isShot;
+            if (isShot)
+            {
+                RifleShot.Play();
+            }
         }
     }
 

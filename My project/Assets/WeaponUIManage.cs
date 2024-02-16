@@ -6,14 +6,17 @@ using TMPro;
 public class WeaponUIManage : MonoBehaviour
 {
     private TextMeshProUGUI Pistol_Ammunition;
+    private TextMeshProUGUI Rifle_Ammunition;
     public GameObject PlayerInfo;
     public GameObject Pistol;
     public GameObject Rifle;
 
     SceneUI AllUI;
-    GunManage PistolManage;
+    PistolManage PistolManage;
+    RifleManage RifleManage;
 
     private float Pistol_Cur_Ammunition;
+    private float Rifle_Cur_Ammunition;
 
     public bool IsZeroPistol = false;
     public bool IsZeroRifle = false;
@@ -21,25 +24,29 @@ public class WeaponUIManage : MonoBehaviour
     void Start()
     {
         AllUI = GetComponent<SceneUI>();
-        PistolManage = Pistol.GetComponent<GunManage>();
+        PistolManage = Pistol.GetComponent<PistolManage>();
+        RifleManage = Rifle.GetComponent<RifleManage>();
     }
 
     void Pistol_Manage()
     {
         Pistol_Ammunition = AllUI.Pistol_Ammunition_Text;
         Pistol_Cur_Ammunition = PistolManage.curAmmunition;
-        if (Pistol_Cur_Ammunition == 0)
-            IsZeroPistol = true;
-        else
-            IsZeroPistol = false;
 
+        IsZeroPistol = (Pistol_Cur_Ammunition == 0);
+        
         Pistol_Ammunition.text = "X " + Pistol_Cur_Ammunition.ToString();
     }
 
 
     void Rifle_Manage()
     {
-        
+        Rifle_Ammunition = AllUI.Rifle_Ammunition_Text;
+        Rifle_Cur_Ammunition = RifleManage.curAmmunition;
+
+        IsZeroRifle = (Rifle_Cur_Ammunition == 0);
+
+        Rifle_Ammunition.text = "X " + Rifle_Cur_Ammunition.ToString();
     }
     // Update is called once per frame
     void Update()

@@ -96,12 +96,21 @@ public class SceneUI : MonoBehaviour
                 Pistol_Ammunition_Text.gameObject.SetActive(false);
             }
 
+            if (Rifle.gameObject != null &&
+                Rifle_Ammunition.gameObject != null &&
+                Rifle_Ammunition_Text.gameObject != null)
+            {
+                Rifle.gameObject.SetActive(false);
+                Rifle_Ammunition.gameObject.SetActive(false);
+                Rifle_Ammunition_Text.gameObject.SetActive(false);
+            }
+
             if (Knife.gameObject != null)
                 Knife.gameObject.SetActive(false);
             if (Rope.gameObject != null)
                 Rope.gameObject.SetActive(false);
         }
-        else if (weapon == PlayerControl.Weapons.GUNS)
+        else if (weapon == PlayerControl.Weapons.PISTOL)
         {
             if (None.gameObject != null)
                 None.gameObject.SetActive(false);
@@ -112,6 +121,40 @@ public class SceneUI : MonoBehaviour
                 Pistol.gameObject.SetActive(true);
                 Pistol_Ammunition.gameObject.SetActive(true);
                 Pistol_Ammunition_Text.gameObject.SetActive(true);
+            }
+            if (Rifle.gameObject != null &&
+                Rifle_Ammunition.gameObject != null &&
+                Rifle_Ammunition_Text.gameObject != null)
+            {
+                Rifle.gameObject.SetActive(false);
+                Rifle_Ammunition.gameObject.SetActive(false);
+                Rifle_Ammunition_Text.gameObject.SetActive(false);
+            }
+
+            if (Knife.gameObject != null)
+                Knife.gameObject.SetActive(false);
+            if (Rope.gameObject != null)
+                Rope.gameObject.SetActive(false);
+        }
+        else if (weapon == PlayerControl.Weapons.RIFLE)
+        {
+            if (None.gameObject != null)
+                None.gameObject.SetActive(false);
+            if (Pistol.gameObject != null &&
+                Pistol_Ammunition.gameObject != null &&
+                Pistol_Ammunition_Text.gameObject != null)
+            {
+                Pistol.gameObject.SetActive(false);
+                Pistol_Ammunition.gameObject.SetActive(false);
+                Pistol_Ammunition_Text.gameObject.SetActive(false);
+            }
+            if (Rifle.gameObject != null &&
+                Rifle_Ammunition.gameObject != null &&
+                Rifle_Ammunition_Text.gameObject != null)
+            {
+                Rifle.gameObject.SetActive(true);
+                Rifle_Ammunition.gameObject.SetActive(true);
+                Rifle_Ammunition_Text.gameObject.SetActive(true);
             }
 
             if (Knife.gameObject != null)
@@ -130,6 +173,14 @@ public class SceneUI : MonoBehaviour
                 Pistol.gameObject.SetActive(false);
                 Pistol_Ammunition.gameObject.SetActive(false);
                 Pistol_Ammunition_Text.gameObject.SetActive(false);
+            }
+            if (Rifle.gameObject != null &&
+                Rifle_Ammunition.gameObject != null &&
+                Rifle_Ammunition_Text.gameObject != null)
+            {
+                Rifle.gameObject.SetActive(false);
+                Rifle_Ammunition.gameObject.SetActive(false);
+                Rifle_Ammunition_Text.gameObject.SetActive(false);
             }
             if (Knife.gameObject != null)
             {
@@ -151,6 +202,14 @@ public class SceneUI : MonoBehaviour
                 Pistol.gameObject.SetActive(false);
                 Pistol_Ammunition.gameObject.SetActive(false);
                 Pistol_Ammunition_Text.gameObject.SetActive(false);
+            }
+            if (Rifle.gameObject != null &&
+                Rifle_Ammunition.gameObject != null &&
+                Rifle_Ammunition_Text.gameObject != null)
+            {
+                Rifle.gameObject.SetActive(false);
+                Rifle_Ammunition.gameObject.SetActive(false);
+                Rifle_Ammunition_Text.gameObject.SetActive(false);
             }
 
             if (Knife.gameObject != null)

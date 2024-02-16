@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class ItemManage : MonoBehaviour
 {
+    public enum ITEMTYPE
+    {
+        RIFLE,
+        PISTOL,
+        HEAL,
+        NONE
+    }
+    public ITEMTYPE ItemType;
     public GameObject Player;
     PlayerControl playerControl;
     GameObject Item;
@@ -11,9 +19,9 @@ public class ItemManage : MonoBehaviour
     List<Enemy_StatManage> EnemyStatList;
     List<Transform> EnemyPosList;
 
-    float WeaponRate = 0.3f;
-    float NoneRate = 0.5f;
-    float HealRate = 0.2f;
+    float RifleRate = 0.1f;
+    float HealRate = 0.1f;
+    float PistolRate = 0.4f;
 
     bool isDropItem = false;
 
@@ -30,16 +38,39 @@ public class ItemManage : MonoBehaviour
     void ChooseItem()
     {
         float RandomCoef = 10000f;
-        float WeaponRange = RandomCoef * WeaponRate;
+        float RifleRange = RandomCoef * RifleRate;
+        float PistolRange = RandomCoef * PistolRate;
         float HealRange = RandomCoef * HealRate;
 
         float Rand = Random.Range(1, RandomCoef + 1);
-        if (1 <= Rand && Rand <= WeaponRange)
+        if (1 <= Rand && Rand <= RifleRange)
+        {
             DropItem = Item.transform.GetChild(1).gameObject;
-        else if (Rand > WeaponRange && Rand <= HealRange + WeaponRange)
+            ItemType = ITEMTYPE.RIFLE;
+        }
+            
+        else if (Rand > RifleRange && Rand <= HealRange + RifleRange)
+        {
             DropItem = Item.transform.GetChild(0).gameObject;
-        else
+            ItemType = ITEMTYPE.HEAL;
+        }
+
+        else if (Rand > HealRange + RifleRange && Rand <= HealRange + RifleRange + PistolRange)
+        {
+            DropItem = Item.transform.GetChild(2).gameObject;
+            ItemType = ITEMTYPE.PISTOL;
+        }
+
+        else if (Rand > HealRange + RifleRange + PistolRange)
+        {
             DropItem = null;
+            ItemType = ITEMTYPE.NONE;
+        }
+    }
+
+    public ITEMTYPE ReturnItem()
+    {
+        return ItemType;
     }
 
     private void Update()
@@ -57,7 +88,7 @@ public class ItemManage : MonoBehaviour
             }
         }
 
-        if (playerControl.GetItem && DropItem != null)
+        if (playerControl.isGetItem && DropItem != null)
             Destroy(DropItem);
     }
 
