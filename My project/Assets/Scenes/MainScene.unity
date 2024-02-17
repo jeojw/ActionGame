@@ -8330,7 +8330,7 @@ MonoBehaviour:
   DAMAGE: Damage
   Player: {fileID: 2060703201}
   WeaponUI: {fileID: 380251150}
-  AmmunitionZero: 0
+  AmmunitionZero: 1
   isShot: 0
   BulletDamage: 0
   ShotDelay: 0.2
@@ -8614,7 +8614,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1b145bcffd767854fb0c71c37678ebaa, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.496
   m_Pitch: 1
   Loop: 0
   Mute: 0

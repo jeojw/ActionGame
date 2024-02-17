@@ -77,8 +77,8 @@ public class StatManage : MonoBehaviour
 
     void ATKUpdate()
     {
-        if (playControl.GetItemType == ItemManage.ITEMTYPE.RIFLE ||
-            playControl.GetItemType == ItemManage.ITEMTYPE.PISTOL)
+        if (ItemType == ItemManage.ITEMTYPE.RIFLE ||
+            ItemType == ItemManage.ITEMTYPE.PISTOL)
         {
             UseItem = false;
             if (ItemType == ItemManage.ITEMTYPE.RIFLE)
@@ -109,6 +109,11 @@ public class StatManage : MonoBehaviour
             GunShotDelay = PistolM.ShotDelay;
             playControl.SetShotDelay(GunShotDelay);
         }
+    }
+
+    public void SetGetItem(ItemManage.ITEMTYPE _itemType)
+    {
+        ItemType = _itemType;
     }
 
     public void SetHp(float _hp)

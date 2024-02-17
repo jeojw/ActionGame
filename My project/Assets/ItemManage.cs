@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class ItemManage : MonoBehaviour
 {
@@ -14,10 +16,13 @@ public class ItemManage : MonoBehaviour
     public ITEMTYPE ItemType;
     public GameObject Player;
     PlayerControl playerControl;
+    StatManage statManage;
     GameObject Item;
     GameObject DropItem;
     List<Enemy_StatManage> EnemyStatList;
     List<Transform> EnemyPosList;
+    List<ITEMTYPE> TypeList;
+    List<GameObject> ItemList;
 
     float RifleRate = 0.1f;
     float HealRate = 0.1f;
@@ -29,6 +34,9 @@ public class ItemManage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        TypeList = new List<ITEMTYPE>();
+        ItemList= new List<GameObject>();
+        statManage = Player.GetComponent<StatManage>();
         playerControl = Player.GetComponent<PlayerControl>();
         EnemyStatList = GetComponent<SetGame>().EnemyStatList;
         EnemyPosList = GetComponent<SetGame>().EnemyPosList;
@@ -68,38 +76,36 @@ public class ItemManage : MonoBehaviour
         }
     }
 
-    public ITEMTYPE ReturnItem()
-    {
-        return ItemType;
-    }
-
     private void Update()
     {
-        //for (int i = 0; i < EnemyStatList.Count; i++)
-        //{
-        //    if (EnemyStatList[i].isDead && EnemyStatList[i].isDrop && !isDropItem)
-        //    {
-        //        ChooseItem();
-        //        if (DropItem != null) {
-        //            DropItem = Instantiate(DropItem, EnemyPosList[i].position - new Vector3(10, 0, 0), Quaternion.identity);
-        //            isDropItem = true;
-        //        }
-
-        //    }
-        //}
-
-        if (!isDropItem)
+        for (int i = 0; i < EnemyStatList.Count; i++)
         {
-            DropItem = Instantiate(Item.transform.GetChild(1).gameObject, new Vector3(-4f, -0.4f, -0.1751058f), Quaternion.identity);
-            isDropItem = true;
+            if (EnemyStatList[i].isDead && EnemyStatList[i].isDrop && !isDropItem)
+            {
+                ChooseItem();
+                if (DropItem != null)
+                {
+                    DropItem = Instantiate(DropItem, EnemyPosList[i].position - new Vector3(10, 0, 0), Quaternion.identity);
+                    ItemList.Add(DropItem);
+                    TypeList.Add(ItemType);
+                    isDropItem = true;
+                }
+
+            }
         }
         
-
-        if (playerControl.CheckGetItem() && DropItem != null)
+        if (ItemList.Count > 0)
         {
-            Destroy(DropItem);
+            for (int i = 0; i < ItemList.Count;i++) {
+                if (playerControl.CheckGetItem() && ItemList[i] != null)
+                {
+                    GameObject DeleteItem = ItemList[i];
+                    statManage.SetGetItem(TypeList[i]);
+                    ItemList[i] = null;
+                    Destroy(DeleteItem);
+                }
+            }
         }
-            
     }
 
 }

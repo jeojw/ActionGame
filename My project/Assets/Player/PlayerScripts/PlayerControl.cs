@@ -160,7 +160,7 @@ public class PlayerControl : MonoBehaviour
             isSlope = false;
 
     }
-    
+
     public bool CheckGetItem()
     {
         RaycastHit2D hit = Physics2D.BoxCast(bodyPos.position, new Vector2(2, 1), 0f, Vector2.down, 0.02f, LayerMask.GetMask("Item"));
@@ -364,28 +364,6 @@ public class PlayerControl : MonoBehaviour
         ShotDelay = _Delay;
     }
 
-    void AttackCooldown()
-    {
-        if (weapon == Weapons.ROPE)
-        {
-            RopeDelayElapsed = Time.time - RopeDelayStart;
-            if (RopeDelayElapsed >= RopeDelay)
-            {
-                RopeDelayElapsed = 0;
-                RopeDelayStart = 0;
-            }
-        }
-        else if (weapon == Weapons.KNIFE)
-        {
-            KnifeAttackElapsed = Time.time - KnifeAttackStart;
-            if (KnifeAttackElapsed >= KnifeAttackInterval)
-            {
-                KnifeAttackElapsed = 0;
-                KnifeAttackStart = 0;
-            }
-        }
-    }
-
     void WeaponControl()
     {
         if(Input.GetKeyDown(KeyCode.Tab) && 
@@ -407,7 +385,7 @@ public class PlayerControl : MonoBehaviour
             case 1:
                 if (RifleManage.AmmunitionZero)
                     weapon = Weapons.PISTOL;
-                if (!RifleManage.AmmunitionZero)
+                else
                     weapon = Weapons.RIFLE; 
                 break;
             case 2:
@@ -416,6 +394,7 @@ public class PlayerControl : MonoBehaviour
                 weapon = Weapons.ROPE; break;
             default: break;
         }
+        Debug.Log(RifleManage.AmmunitionZero);
     }
     void Walk()
     {
@@ -518,12 +497,12 @@ public class PlayerControl : MonoBehaviour
         if (!statManage.isDead)
         {
             isGetItem = CheckGetItem();
+            
             if (isGetItem)
             {
-                GetItemType = ITM.ReturnItem();
                 isGetItem = false;
             }
-                
+
             Control();
             WeaponControl();
             if (isAttack)

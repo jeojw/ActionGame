@@ -7,10 +7,6 @@ public class PistolManage : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public string DELAY = "Delay";
-    public string MAGAZINE = "Magainze";
-    public string DAMAGE = "Damage";
-
     public GameObject Player;
     public GameObject WeaponUI;
 

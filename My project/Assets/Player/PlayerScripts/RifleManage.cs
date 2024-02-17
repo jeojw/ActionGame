@@ -6,19 +6,15 @@ public class RifleManage : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public string DELAY = "Delay";
-    public string MAGAZINE = "Magainze";
-    public string DAMAGE = "Damage";
-
     public GameObject Player;
     public GameObject WeaponUI;
 
-    public bool AmmunitionZero;
+    public bool AmmunitionZero = true;
     public bool isShot;
 
     public float BulletDamage;
-    public float ShotDelay = 0.02f;
-    public float curAmmunition;
+    public float ShotDelay = 0.01f;
+    public float curAmmunition = 0;
     public float maxAmmunition;
 
     PlayerControl playControl;
@@ -46,11 +42,6 @@ public class RifleManage : MonoBehaviour
             {
                 curAmmunition -= 1;
             }
-
-            if (curAmmunition == 0)
-            {
-                AmmunitionZero = true;
-            }
         }
         else
             isShot = false;
@@ -60,6 +51,8 @@ public class RifleManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (curAmmunition <= 0)
+            AmmunitionZero = true;
         Shot();
     }
 }

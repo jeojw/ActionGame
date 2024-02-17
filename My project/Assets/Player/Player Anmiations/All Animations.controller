@@ -467,9 +467,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0
+  m_TransitionDuration: 0.9885481
   m_TransitionOffset: 0
-  m_ExitTime: 0
+  m_ExitTime: 0.0000000117333805
   m_HasExitTime: 0
   m_HasFixedDuration: 0
   m_InterruptionSource: 0
@@ -1075,7 +1075,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Walking_Wait_Rifle
-  m_Speed: 1
+  m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 434514334846895934}
@@ -3325,7 +3325,7 @@ AnimatorStateMachine:
     m_Position: {x: 470, y: 30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7973507781909619166}
-    m_Position: {x: 470, y: 120, z: 0}
+    m_Position: {x: 560, y: 100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7360590662184664814}
     m_Position: {x: 1050, y: 180, z: 0}
