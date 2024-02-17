@@ -77,25 +77,38 @@ public class StatManage : MonoBehaviour
 
     void ATKUpdate()
     {
-        if (playControl.isGetItem)
+        if (playControl.GetItemType == ItemManage.ITEMTYPE.RIFLE ||
+            playControl.GetItemType == ItemManage.ITEMTYPE.PISTOL)
         {
             UseItem = false;
-            ItemType = playControl.GetItemType;
-            if (ItemType == ItemManage.ITEMTYPE.RIFLE && !UseItem)
+            if (ItemType == ItemManage.ITEMTYPE.RIFLE)
             {
+                UseItem = true;
                 RifleM.ResetMagazine();
                 GunDamage = RifleM.BulletDamage;
                 GunShotDelay = RifleM.ShotDelay;
-                UseItem = true;
+                playControl.SetShotDelay(GunShotDelay);
+                ItemType = ItemManage.ITEMTYPE.NONE;
             }
+            if (ItemType == ItemManage.ITEMTYPE.PISTOL)
+            {
+                UseItem = true;
+                PistolM.ResetMagazine();
+                ItemType = ItemManage.ITEMTYPE.NONE;
+            }
+        }
+
+        else
+        {
+            UseItem = false;
         }
 
         if (RifleM.AmmunitionZero)
         {
             GunDamage = PistolM.BulletDamage;
             GunShotDelay = PistolM.ShotDelay;
+            playControl.SetShotDelay(GunShotDelay);
         }
-        //playControl.SetShotDelay(GunShotDelay);
     }
 
     public void SetHp(float _hp)

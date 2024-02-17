@@ -60,7 +60,7 @@ public class PlayerControl : MonoBehaviour
     private float RopeDelayStart = 0;
     public float RopeDelayElapsed = 0;
 
-    private float ShotDelay = 0.1f;
+    private float ShotDelay;
     private float ShotDelayStart = 0;
     public float ShotDelayElapsed = 0;
 
@@ -161,7 +161,7 @@ public class PlayerControl : MonoBehaviour
 
     }
     
-    private bool CheckGetItem()
+    public bool CheckGetItem()
     {
         RaycastHit2D hit = Physics2D.BoxCast(bodyPos.position, new Vector2(2, 1), 0f, Vector2.down, 0.02f, LayerMask.GetMask("Item"));
 
@@ -394,10 +394,10 @@ public class PlayerControl : MonoBehaviour
             !grappling.isLineMax &&
             !isLowerBody &&
             !isMoving &&
-            !PistolManage.isReload &&
+            !PistolManage.isReloading &&
             isGround) {
             weaponPos++;
-            if (weaponPos > 4)
+            if (weaponPos > 3)
                 weaponPos = 0;
         }
         switch (weaponPos)
@@ -405,15 +405,16 @@ public class PlayerControl : MonoBehaviour
             case 0:
                 weapon = Weapons.NONE; break;
             case 1:
-                weapon = Weapons.PISTOL; break;
+                if (RifleManage.AmmunitionZero)
+                    weapon = Weapons.PISTOL;
+                if (!RifleManage.AmmunitionZero)
+                    weapon = Weapons.RIFLE; 
+                break;
             case 2:
-                weapon = Weapons.RIFLE; break;
-            case 3:
                 weapon = Weapons.KNIFE; break;
-            case 4:
+            case 3:
                 weapon = Weapons.ROPE; break;
             default: break;
-
         }
     }
     void Walk()
@@ -516,10 +517,11 @@ public class PlayerControl : MonoBehaviour
     {
         if (!statManage.isDead)
         {
-            if (CheckGetItem())
+            isGetItem = CheckGetItem();
+            if (isGetItem)
             {
                 GetItemType = ITM.ReturnItem();
-                isGetItem = true;
+                isGetItem = false;
             }
                 
             Control();

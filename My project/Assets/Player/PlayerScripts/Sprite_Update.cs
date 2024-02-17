@@ -172,7 +172,7 @@ public class SpriteUpdate : MonoBehaviour
         if (playerControl.weapon == PlayerControl.Weapons.PISTOL)
         {
             pistolSprite.enabled = true;
-            if (!pistolManage.AmmunitionZero)
+            if (!pistolManage.isReload)
             {
                 anim.SetBool("isReloading", false);
                 

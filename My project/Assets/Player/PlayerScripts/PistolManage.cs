@@ -16,6 +16,7 @@ public class PistolManage : MonoBehaviour
 
     public bool AmmunitionZero;
     public bool isReload;
+    public bool isReloading;
     public bool isShot;
 
     public float BulletDamage;
@@ -25,7 +26,6 @@ public class PistolManage : MonoBehaviour
 
     public float Reload_Delay;
 
-    StatManage StatM;
     PlayerControl playControl;
     Animator playerAnim;
     void Start()
@@ -33,7 +33,14 @@ public class PistolManage : MonoBehaviour
         curAmmunition = maxAmmunition;
         playControl = Player.GetComponent<PlayerControl>();
         playerAnim = Player.GetComponent<Animator>();  
-        StatM = Player.GetComponent<StatManage>();
+    }
+
+    public void ResetMagazine()
+    {
+        if (AmmunitionZero)
+            isReload = true;
+        AmmunitionZero = false;
+        curAmmunition = maxAmmunition;
     }
 
     void Shot()
@@ -64,9 +71,14 @@ public class PistolManage : MonoBehaviour
         {
             if (playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
             {
-                 curAmmunition = maxAmmunition;
-                 AmmunitionZero = false;
-                 isReload = false;
+                curAmmunition = maxAmmunition;
+                AmmunitionZero = false;
+                isReload = false;
+                isReloading = false;
+            }
+            else
+            {
+                isReloading = true;
             }
         }
     }
@@ -75,8 +87,7 @@ public class PistolManage : MonoBehaviour
     void Update()         
     {
         Shot();
-        if (AmmunitionZero) {
-            isReload = true;
+        if (isReload) {
             Reload();
         }
             

@@ -75,21 +75,31 @@ public class ItemManage : MonoBehaviour
 
     private void Update()
     {
-        for (int i = 0; i < EnemyStatList.Count; i++)
-        {
-            if (EnemyStatList[i].isDead && EnemyStatList[i].isDrop && !isDropItem)
-            {
-                ChooseItem();
-                if (DropItem != null) {
-                    DropItem = Instantiate(DropItem, EnemyPosList[i].position - new Vector3(10, 0, 0), Quaternion.identity);
-                    isDropItem = true;
-                }
-                
-            }
-        }
+        //for (int i = 0; i < EnemyStatList.Count; i++)
+        //{
+        //    if (EnemyStatList[i].isDead && EnemyStatList[i].isDrop && !isDropItem)
+        //    {
+        //        ChooseItem();
+        //        if (DropItem != null) {
+        //            DropItem = Instantiate(DropItem, EnemyPosList[i].position - new Vector3(10, 0, 0), Quaternion.identity);
+        //            isDropItem = true;
+        //        }
 
-        if (playerControl.isGetItem && DropItem != null)
+        //    }
+        //}
+
+        if (!isDropItem)
+        {
+            DropItem = Instantiate(Item.transform.GetChild(1).gameObject, new Vector3(-4f, -0.4f, -0.1751058f), Quaternion.identity);
+            isDropItem = true;
+        }
+        
+
+        if (playerControl.CheckGetItem() && DropItem != null)
+        {
             Destroy(DropItem);
+        }
+            
     }
 
 }

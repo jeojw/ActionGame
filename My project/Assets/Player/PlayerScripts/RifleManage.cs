@@ -17,23 +17,21 @@ public class RifleManage : MonoBehaviour
     public bool isShot;
 
     public float BulletDamage;
-    public float ShotDelay = 0.1f;
+    public float ShotDelay = 0.02f;
     public float curAmmunition;
     public float maxAmmunition;
 
-    StatManage StatM;
     PlayerControl playControl;
-    Animator playerAnim;
     void Start()
     {
-        curAmmunition = maxAmmunition;
+        curAmmunition = 0;
+        AmmunitionZero = true;
         playControl = Player.GetComponent<PlayerControl>();
-        playerAnim = Player.GetComponent<Animator>();
-        StatM = Player.GetComponent<StatManage>();
     }
 
     public void ResetMagazine()
     {
+        AmmunitionZero = false;
         curAmmunition = maxAmmunition;
     }
 
@@ -63,7 +61,6 @@ public class RifleManage : MonoBehaviour
     void Update()
     {
         Shot();
-        Debug.Log(curAmmunition);
     }
 }
 
