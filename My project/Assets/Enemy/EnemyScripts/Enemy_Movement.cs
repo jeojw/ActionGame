@@ -58,6 +58,10 @@ public class Enemy_Movement : MonoBehaviour
     public float DetectInterval;
     public float speed;
 
+    private float KnifeRange = 10f;
+    private float PistolRange = 20f;
+    private float RifleRange = 25f;
+
     void Start()
     {
         head = HeadHitbox.GetComponent<EnemyCheckCollision>();

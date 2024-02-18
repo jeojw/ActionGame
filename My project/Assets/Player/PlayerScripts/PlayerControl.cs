@@ -1,11 +1,5 @@
-using System;
-using System.Collections;
-using System.Net.Security;
-using Unity.VisualScripting;
-using UnityEditor.Build;
-using UnityEditorInternal;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class PlayerControl : MonoBehaviour
 {

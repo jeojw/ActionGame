@@ -7,6 +7,9 @@ public class Enemy_Sprite_Update : MonoBehaviour
     Animator anim;
     Enemy_Movement Control;
     Enemy_StatManage Stat;
+    MeshRenderer KnifeSprite;
+
+    public GameObject Knife;
 
     bool Walking;
     bool Fencing;
@@ -18,6 +21,7 @@ public class Enemy_Sprite_Update : MonoBehaviour
         anim = GetComponent<Animator>();    
         Stat = GetComponent<Enemy_StatManage>();
         Control = GetComponent<Enemy_Movement>();
+        KnifeSprite = Knife.GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame
@@ -37,15 +41,21 @@ public class Enemy_Sprite_Update : MonoBehaviour
             {
                 anim.SetBool("isWalking", false);
             }
-
-            if (Fencing)
+            if (Control.AttackType == Enemy_Movement.ATTACKTYPE.SWORD)
             {
-                anim.SetBool("isFencing", true);
+                KnifeSprite.enabled = true;
+                if (Fencing)
+                {
+                    anim.SetBool("isFencing", true);
+                }
+                else
+                {
+                    anim.SetBool("isFencing", false);
+                }
             }
             else
-            {
-                anim.SetBool("isFencing", false);
-            }
+                KnifeSprite.enabled = false;
+            
             if (GetHit)
             {
                 anim.SetBool("GetHit", true);

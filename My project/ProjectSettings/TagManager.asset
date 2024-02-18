@@ -17,6 +17,7 @@ TagManager:
   - Rifle
   - Item
   - DeadGround
+  - EnemyKnife
   layers:
   - Default
   - TransparentFX

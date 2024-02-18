@@ -8,10 +8,18 @@ public class Enemy_StatManage : MonoBehaviour
     public GameObject Head;
     public GameObject Body_1;
     public GameObject Body_2;
+    public GameObject Left_Leg_1;
+    public GameObject Left_Leg_2;
+    public GameObject Right_Leg_1;
+    public GameObject Right_Leg_2;
 
     EnemyCheckCollision Head_Hit;
     EnemyCheckCollision Body_1_Hit;
     EnemyCheckCollision Body_2_Hit;
+    EnemyCheckCollision LeftLeg_1_Hit;
+    EnemyCheckCollision RightLeg_1_Hit;
+    EnemyCheckCollision LeftLeg_2_Hit;
+    EnemyCheckCollision RightLeg_2_Hit;
 
     public float MaxHp;
     public float CurHp;
@@ -32,6 +40,10 @@ public class Enemy_StatManage : MonoBehaviour
         Head_Hit = Head.GetComponent<EnemyCheckCollision>();
         Body_1_Hit = Body_1.GetComponent<EnemyCheckCollision>();
         Body_2_Hit = Body_2.GetComponent<EnemyCheckCollision>();
+        LeftLeg_1_Hit = Left_Leg_1.GetComponent<EnemyCheckCollision>();
+        LeftLeg_2_Hit = Left_Leg_2.GetComponent<EnemyCheckCollision>();
+        RightLeg_1_Hit = Right_Leg_1.GetComponent<EnemyCheckCollision>();
+        RightLeg_2_Hit = Right_Leg_2.GetComponent<EnemyCheckCollision>();
         CurHp = MaxHp;
     }
 
@@ -52,11 +64,21 @@ public class Enemy_StatManage : MonoBehaviour
 
     void HpUpdate()
     {
-        GetHit = (Head_Hit.isHit || Body_1_Hit.isHit || Body_2_Hit.isHit);
-        KnifeHit = (Head_Hit.KnifeHit || Body_1_Hit.KnifeHit || Body_2_Hit.KnifeHit);
-        PistolHit = (Head_Hit.PistolBulletHit || Body_1_Hit.PistolBulletHit || Body_2_Hit.PistolBulletHit);
-        RifleHit = (Head_Hit.RifleBulletHit || Body_1_Hit.RifleBulletHit || Body_2_Hit.RifleBulletHit);
-        PisteHit = (Head_Hit.PisteHit || Body_1_Hit.PisteHit || Body_2_Hit.PisteHit);
+        GetHit = (Head_Hit.isHit || Body_1_Hit.isHit || Body_2_Hit.isHit ||
+                  LeftLeg_1_Hit.isHit || LeftLeg_2_Hit.isHit ||
+                  RightLeg_1_Hit.isHit || RightLeg_1_Hit.isHit);
+        KnifeHit = (Head_Hit.KnifeHit || Body_1_Hit.KnifeHit || Body_2_Hit.KnifeHit ||
+                    LeftLeg_1_Hit.KnifeHit || LeftLeg_2_Hit.KnifeHit ||
+                    RightLeg_1_Hit.KnifeHit || RightLeg_2_Hit.KnifeHit);
+        PistolHit = (Head_Hit.PistolBulletHit || Body_1_Hit.PistolBulletHit || Body_2_Hit.PistolBulletHit ||
+                     LeftLeg_1_Hit.PistolBulletHit || LeftLeg_2_Hit.PistolBulletHit ||
+                     RightLeg_1_Hit.PistolBulletHit || RightLeg_2_Hit.PistolBulletHit);
+        RifleHit = (Head_Hit.RifleBulletHit || Body_1_Hit.RifleBulletHit || Body_2_Hit.RifleBulletHit || 
+                    LeftLeg_1_Hit.RifleBulletHit || LeftLeg_2_Hit.RifleBulletHit || 
+                    RightLeg_1_Hit.RifleBulletHit || RightLeg_2_Hit.RifleBulletHit);
+        PisteHit = (Head_Hit.PisteHit || Body_1_Hit.PisteHit || Body_2_Hit.PisteHit || 
+                    LeftLeg_1_Hit.PisteHit || LeftLeg_2_Hit.PisteHit || 
+                    RightLeg_1_Hit.PisteHit || RightLeg_2_Hit.PisteHit);
 
         if (CurHp > 0)
         {
@@ -80,8 +102,12 @@ public class Enemy_StatManage : MonoBehaviour
                 SetDamage(75f);
                 KnifeHit = false;
             } 
-            CurHp -= Damage;
-            ResetDamage();
+            if (Damage != 0)
+            {
+                CurHp -= Damage;
+                ResetDamage();
+            }
+            
         }
         else
         {
