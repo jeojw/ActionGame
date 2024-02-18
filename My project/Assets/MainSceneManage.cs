@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class SceneManage : MonoBehaviour
+public class MainSceneManage : MonoBehaviour
 {
     public GameObject StopImage, Yes, No;
 
@@ -20,11 +20,6 @@ public class SceneManage : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("MainScene");
-    }
-
-    public void ExitGame()
-    {
-        Application.Quit();
     }
 
     public void GameProgress()

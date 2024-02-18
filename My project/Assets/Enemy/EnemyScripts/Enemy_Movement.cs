@@ -72,6 +72,11 @@ public class Enemy_Movement : MonoBehaviour
         transform.localScale = new Vector3((float)detectDirection, 1, 1);
     }
 
+    public void SetAttackType(ATTACKTYPE _attackType)
+    {
+        AttackType = _attackType;
+    }
+
     void DetectivePlayer()
     {
         RaycastHit2D hit1 = Physics2D.Raycast(Pos.position, Vector2.left, DetectInterval, LayerMask.GetMask("Player"));

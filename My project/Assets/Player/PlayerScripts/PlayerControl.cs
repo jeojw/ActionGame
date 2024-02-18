@@ -22,7 +22,7 @@ public class PlayerControl : MonoBehaviour
 
     ItemManage ITM;
 
-    SceneManage sceneManage;
+    MainSceneManage sceneManage;
     WeaponUIManage weaponUIManage;
     StatManage statManage;
     PistolManage PistolManage;
@@ -109,7 +109,7 @@ public class PlayerControl : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         grappling = GetComponent<GrapplingHook>();
         anim = GetComponent<Animator>();
-        sceneManage = UI.GetComponent<SceneManage>();
+        sceneManage = UI.GetComponent<MainSceneManage>();
         weaponUIManage = UI.GetComponent<WeaponUIManage>();
         statManage = GetComponent<StatManage>();
 

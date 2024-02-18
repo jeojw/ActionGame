@@ -15,7 +15,14 @@ public class Enemy_StatManage : MonoBehaviour
 
     public float MaxHp;
     public float CurHp;
+
     public bool GetHit = false;
+    private bool KnifeHit = false;
+    private bool RifleHit = false;
+    private bool PistolHit = false;
+    private bool PisteHit = false;
+    private bool zeroPhysic = false;
+
     private float Damage = 0;
     public bool isDrop = false;
 
@@ -45,15 +52,36 @@ public class Enemy_StatManage : MonoBehaviour
 
     void HpUpdate()
     {
+        GetHit = (Head_Hit.isHit || Body_1_Hit.isHit || Body_2_Hit.isHit);
+        KnifeHit = (Head_Hit.KnifeHit || Body_1_Hit.KnifeHit || Body_2_Hit.KnifeHit);
+        PistolHit = (Head_Hit.PistolBulletHit || Body_1_Hit.PistolBulletHit || Body_2_Hit.PistolBulletHit);
+        RifleHit = (Head_Hit.RifleBulletHit || Body_1_Hit.RifleBulletHit || Body_2_Hit.RifleBulletHit);
+        PisteHit = (Head_Hit.PisteHit || Body_1_Hit.PisteHit || Body_2_Hit.PisteHit);
+
         if (CurHp > 0)
         {
-            if (GetHit)
+            if (PisteHit)
             {
-                SetDamage(300f);
-                CurHp -= Damage;
-                ResetDamage();
-                GetHit = false;
+                SetDamage(30f);
+                PisteHit = false;
             }
+            if (RifleHit)
+            {
+                SetDamage(150f);
+                RifleHit = false;
+            } 
+            if (PistolHit)
+            {
+                SetDamage(75f);
+                PistolHit = false;
+            }
+            if (KnifeHit)
+            {
+                SetDamage(75f);
+                KnifeHit = false;
+            } 
+            CurHp -= Damage;
+            ResetDamage();
         }
         else
         {
@@ -66,7 +94,6 @@ public class Enemy_StatManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetHit = (Head_Hit.isHit || Body_1_Hit.isHit || Body_2_Hit.isHit);
         HpUpdate();
     }
 }

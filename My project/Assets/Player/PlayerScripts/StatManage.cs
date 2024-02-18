@@ -36,9 +36,12 @@ public class StatManage : MonoBehaviour
 
     PlayerControl playControl;
 
-    float ATK;
-    float Damage = 0;
-    bool GetHit = false;
+    private float ATK;
+    private float Damage = 0;
+    private bool GetHit = false;
+    private bool KnifeHit = false;
+    private bool PistolHit = false;
+    private bool RifleHit = false;
 
     public bool isDead;
 
@@ -135,7 +138,22 @@ public class StatManage : MonoBehaviour
         {
             if (GetHit)
             {
-                SetGetDamage(70f);
+                if (PistolHit)
+                {
+                    SetGetDamage(100f);
+                    PistolHit = false;
+                }
+                if (RifleHit)
+                {
+                    SetGetDamage(200f);
+                    RifleHit = false;
+                }
+                if (KnifeHit)
+                {
+                    SetGetDamage(50f);
+                    KnifeHit = false;
+                }
+                
             }
             if (Damage != 0)
             {
@@ -169,6 +187,19 @@ public class StatManage : MonoBehaviour
         GetHit = (HeadCheck.isHit || BodyCheck_1.isHit || BodyCheck_2.isHit ||
                   RightLegCheck_1.isHit || RightLegCheck_2.isHit ||
                   LeftLegCheck_1.isHit || LeftLegCheck_2.isHit);
+
+        KnifeHit = (HeadCheck.KnifeHit || BodyCheck_1.KnifeHit || BodyCheck_2.KnifeHit ||
+                  RightLegCheck_1.KnifeHit || RightLegCheck_2.KnifeHit ||
+                  LeftLegCheck_1.KnifeHit || LeftLegCheck_2.KnifeHit);
+
+        RifleHit = (HeadCheck.RifleBulletHit || BodyCheck_1.RifleBulletHit || BodyCheck_2.RifleBulletHit ||
+                  RightLegCheck_1.RifleBulletHit || RightLegCheck_2.RifleBulletHit ||
+                  LeftLegCheck_1.RifleBulletHit || LeftLegCheck_2.RifleBulletHit);
+
+        PistolHit = (HeadCheck.PistolBulletHit || BodyCheck_1.PistolBulletHit || BodyCheck_2.PistolBulletHit ||
+                  RightLegCheck_1.PistolBulletHit || RightLegCheck_2.PistolBulletHit ||
+                  LeftLegCheck_1.PistolBulletHit || LeftLegCheck_2.PistolBulletHit);
+
         ATKUpdate();
         HpUpdate();
         ConditionUpdate();

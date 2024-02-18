@@ -16,6 +16,7 @@ TagManager:
   - Pistol
   - Rifle
   - Item
+  - DeadGround
   layers:
   - Default
   - TransparentFX
@@ -32,7 +33,7 @@ TagManager:
   - Enemy
   - Terrain
   - Item
-  - 
+  - DeadGround
   - 
   - 
   - 
