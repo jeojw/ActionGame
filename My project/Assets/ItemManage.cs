@@ -83,7 +83,7 @@ public class ItemManage : MonoBehaviour
                 ChooseItem();
                 if (DropItem != null)
                 {
-                    DropItem = Instantiate(DropItem, EnemyPosList[i].position - new Vector3(10, 0, 0), Quaternion.identity);
+                    DropItem = Instantiate(DropItem, EnemyPosList[i].position, Quaternion.identity);
                     ItemList.Add(DropItem);
                     TypeList.Add(ItemType);
                     isDropItem = true;

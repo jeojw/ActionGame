@@ -5,6 +5,7 @@ using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainSceneManage : MonoBehaviour
 {
@@ -26,9 +27,12 @@ public class MainSceneManage : MonoBehaviour
     {
         if (isPaused && EventSystem.current.currentSelectedGameObject != null)
         {
-            EditorApplication.isPaused = false;
-            Time.timeScale = 1;
-            StopImage.SetActive(false);
+            if (EventSystem.current.currentSelectedGameObject.name == "No")
+            {
+                Time.timeScale = 1;
+                isPaused = false;
+                StopImage.SetActive(false);
+            }
         }
     }
 
@@ -39,6 +43,9 @@ public class MainSceneManage : MonoBehaviour
             if (EventSystem.current.currentSelectedGameObject.name == "Yes")
             {
                 SceneManager.LoadScene("StartScene");
+                Time.timeScale = 1;
+                isPaused = false;
+                StopImage.SetActive(false);
             }
 
         }
@@ -47,11 +54,12 @@ public class MainSceneManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKey(KeyCode.Escape))
         {
-            Time.timeScale = 0f;
             isPaused = true;
             StopImage.SetActive(true);
+            Time.timeScale = 0f;
         }
+        GameProgress();
     }
 }

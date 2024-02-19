@@ -92,7 +92,7 @@ public class EnemyCheckCollision : MonoBehaviour
 
                 if (KnifeHit)
                 {
-                    Physic.SetPhysics(new Vector2((int)EMove.detectDirection * (-1) * 10, 0));
+                    Physic.SetPhysics(new Vector2((int)EMove.detectDirection * (-1) * 15, 0));
                     KnifeHit = false;
                 }
 

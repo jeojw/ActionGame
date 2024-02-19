@@ -16,8 +16,6 @@ public class PlayerCheckCollision : MonoBehaviour
     public bool KnifeHit = false;
     public bool PistolBulletHit = false;
     public bool RifleBulletHit = false;
-    string objectName;
-
 
     private float HitCoolElapsed = 0;
     private float HitCoolStart = 0;
@@ -29,7 +27,6 @@ public class PlayerCheckCollision : MonoBehaviour
     {
         Control = Player.GetComponent<PlayerControl>();
         PlayerStat = Player.GetComponent<StatManage>();
-        objectName = transform.name;
         Pcollider = GetComponent<PolygonCollider2D>();
         Physic = Player.GetComponent<CollisionPhysics>();
     }
@@ -55,35 +52,52 @@ public class PlayerCheckCollision : MonoBehaviour
         }
     }
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        isHit = (KnifeHit || PistolBulletHit || RifleBulletHit);
-        if (isHit)
+        if (!PlayerStat.isDead)
         {
-            Pcollider.enabled = false;
-            HitCoolStart = Time.time;
-            if (PistolBulletHit)
+            isHit = (KnifeHit || PistolBulletHit || RifleBulletHit);
+            if (isHit)
             {
-                Physic.SetPhysics(new Vector2((int)Control.direction * (-1) * 80, 0));
-                PistolBulletHit = false;
-            }
+                Pcollider.enabled = false;
+                HitCoolStart = Time.time;
+                if (PistolBulletHit)
+                {
+                    Physic.SetPhysics(new Vector2((int)Control.direction * (-1) * 60, 0));
+                    PlayerStat.SetGetDamage(100f);
+                    PistolBulletHit = false;
+                }
 
-            if (KnifeHit)
-            {
-                Physic.SetPhysics(new Vector2((int)Control.direction * (-1) * 10, 0));
-                KnifeHit = false;
+                if (RifleBulletHit)
+                {
+                    Physic.SetPhysics(new Vector2((int)Control.direction * (-1) * 80, 0));
+                    PlayerStat.SetGetDamage(200f);
+                    RifleBulletHit = false;
+                }
+
+                if (KnifeHit && gameObject.name != "HeadHitbox")
+                {
+                    Physic.SetPhysics(new Vector2((int)Control.direction * (-1) * 15, 0));
+                    PlayerStat.SetGetDamage(80f);
+                    KnifeHit = false;
+                }
+                isHit = false;
             }
-            isHit = false;
+            else
+            {
+                HitCoolElapsed = Time.time - HitCoolStart;
+                if (HitCoolElapsed >= HitCool)
+                {
+                    Pcollider.enabled = true;
+                    HitCoolElapsed = 0;
+                    HitCoolStart = 0;
+                }
+            }
         }
         else
         {
-            HitCoolElapsed = Time.time - HitCoolStart;
-            if (HitCoolElapsed >= HitCool)
-            {
-                Pcollider.enabled = true;
-                HitCoolElapsed = 0;
-                HitCoolStart = 0;
-            }
+            Pcollider.enabled = false;
+            Physic.SetPhysics(new Vector2(0, 0));
         }
     }
 }

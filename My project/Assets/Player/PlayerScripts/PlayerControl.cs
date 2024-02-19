@@ -13,7 +13,6 @@ public class PlayerControl : MonoBehaviour
     public GameObject UI;
     public GameObject Pistol;
     public GameObject Rifle;
-    public GameObject EventSystem;
 
     MainSceneManage sceneManage;
     WeaponUIManage weaponUIManage;
@@ -132,7 +131,6 @@ public class PlayerControl : MonoBehaviour
 
     private void checkSlope()
     {
-        float x = Input.GetAxis("Horizontal");
         RaycastHit2D hit = Physics2D.Raycast(rigid.position, Vector2.down, 5f, LayerMask.GetMask("Slope"));
         RaycastHit2D hit2 = Physics2D.BoxCast(bodyPos.position, new Vector2(2, 1), 0f, Vector2.down, 0.02f, LayerMask.GetMask("Slope"));
         if (hit.collider != null)

@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 42154106257554510}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.13, y: -2.14, z: 0}
+  m_LocalPosition: {x: 0.41, y: -3.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 3909242729696192919}
-  ShotDelay: 0
+  curAmmunition: 0
 --- !u!1 &1843473788287393016
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,7 +536,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -521.5, y: -532.77}
+  m_AnchoredPosition: {x: -518.9, y: -534.28}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4869056096443270061
@@ -1288,9 +1288,9 @@ Transform:
   m_GameObject: {fileID: 3909242729696192919}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 33.25, y: -1.8000001, z: 147.69896}
+  m_LocalPosition: {x: 29.29, y: 1.63, z: 147.69896}
   m_LocalScale: {x: -1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5953909670917115034}
   - {fileID: 1179339725597926445}
@@ -1364,6 +1364,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Knife: {fileID: 6210892849345823248}
+  Pistol: {fileID: 6900954180227360800}
+  Rifle: {fileID: 1830024102058558941}
 --- !u!95 &8168862087680714320
 Animator:
   serializedVersion: 5
@@ -2129,7 +2131,7 @@ Transform:
   m_GameObject: {fileID: 6210892849345823248}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.6670305, w: 0.74503046}
-  m_LocalPosition: {x: 1.806, y: 1.81, z: 0.000015259}
+  m_LocalPosition: {x: -0.84, y: 0.12, z: 0.000015259}
   m_LocalScale: {x: 6.2571073, y: 6.2571073, z: 6.2571073}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2415,7 +2417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 3909242729696192919}
-  ShotDelay: 0
+  curAmmunition: 0
 --- !u!1 &7392136417710141736
 GameObject:
   m_ObjectHideFlags: 0
@@ -2714,7 +2716,7 @@ Transform:
   m_GameObject: {fileID: 8320803448801193621}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.6500015, y: 1.53, z: -150.66702}
+  m_LocalPosition: {x: -0.06, y: -0.09, z: -150.66702}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
