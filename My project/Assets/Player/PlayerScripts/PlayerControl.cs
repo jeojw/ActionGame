@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 
@@ -13,8 +14,6 @@ public class PlayerControl : MonoBehaviour
     public GameObject Pistol;
     public GameObject Rifle;
     public GameObject EventSystem;
-
-    ItemManage ITM;
 
     MainSceneManage sceneManage;
     WeaponUIManage weaponUIManage;
@@ -109,7 +108,6 @@ public class PlayerControl : MonoBehaviour
 
         PistolManage = Pistol.GetComponent<PistolManage>();
         RifleManage = Rifle.GetComponent<RifleManage>();
-        ITM = EventSystem.GetComponent<ItemManage>();
     }
 
     // Update is called once per frame
@@ -171,7 +169,7 @@ public class PlayerControl : MonoBehaviour
             else
                 isMoving = false;
 
-            if (!isRolling)
+            if (!isRolling && !isJumpStart)
             {
                 bool leftPressed = Input.GetKeyDown(KeyCode.A);
                 bool rightPressed = Input.GetKeyDown(KeyCode.D);
@@ -218,6 +216,7 @@ public class PlayerControl : MonoBehaviour
                     !weaponUIManage.IsZeroPistol &&
                     (weapon == Weapons.NONE ||
                     weapon == Weapons.ROPE) &&
+                    !isWalking &&
                     jumpCount == 1)
                 {
                     isJumpStart = true;
@@ -247,18 +246,6 @@ public class PlayerControl : MonoBehaviour
             else
                 isLowerBody = false;
 
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                if (weapon == Weapons.KNIFE)
-                {
-                    isAttack = true;
-                    KnifeAttackStart = Time.time;
-                }
-            }
-            else
-            {
-                isAttack = false;
-            }
             if (weapon == Weapons.NONE)
                 PisteControl();
             if (weapon == Weapons.PISTOL || weapon == Weapons.RIFLE)
@@ -322,6 +309,11 @@ public class PlayerControl : MonoBehaviour
 
     void KnifeFightControl()
     {
+        if (Input.GetKeyDown(KeyCode.X))
+            isAttack = true;
+        else
+            isAttack = false;
+
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Knife_Fighting_1"))
         {
             if (Input.GetKeyDown(KeyCode.X))
@@ -388,7 +380,6 @@ public class PlayerControl : MonoBehaviour
                 weapon = Weapons.ROPE; break;
             default: break;
         }
-        Debug.Log(RifleManage.AmmunitionZero);
     }
     void Walk()
     {
@@ -451,13 +442,22 @@ public class PlayerControl : MonoBehaviour
         {
             isShooting = false; 
         }
-        if (weapon == Weapons.KNIFE && isGround) { isFencing = true; }
-        else { isFencing = false; }
+        if (weapon == Weapons.KNIFE && isGround) 
+        { 
+            isFencing = true; 
+        }
+        else 
+        { 
+            isFencing = false; 
+        }
         if (weapon == Weapons.ROPE && !isGround) 
         {
             isGrapplingShot = true; 
         }
-        else { isGrapplingShot = false; }
+        else 
+        { 
+            isGrapplingShot = false; 
+        }
     }
 
     void Jump()
@@ -510,6 +510,8 @@ public class PlayerControl : MonoBehaviour
                 isGrapplingShot = false;
                 isPunching = false;
             }
+            if (isFencing)
+                Debug.Log(isFencing);
         }
     }
 

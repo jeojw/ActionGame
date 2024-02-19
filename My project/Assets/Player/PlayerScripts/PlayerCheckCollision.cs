@@ -7,11 +7,9 @@ public class PlayerCheckCollision : MonoBehaviour
 
     public GameObject Player;
 
-    PolygonCollider2D collider;
-    CollisionPhysics collisionPhysics;
+    PolygonCollider2D Pcollider;
     PlayerControl Control;
     StatManage PlayerStat;
-    PlayerControl.Weapons curWeapon;
     CollisionPhysics Physic;
 
     public bool isHit = false;
@@ -29,12 +27,10 @@ public class PlayerCheckCollision : MonoBehaviour
 
     void Start()
     {
-        collisionPhysics = Player.GetComponent<CollisionPhysics>();
         Control = Player.GetComponent<PlayerControl>();
         PlayerStat = Player.GetComponent<StatManage>();
         objectName = transform.name;
-        collider = GetComponent<PolygonCollider2D>();
-        curWeapon = Player.GetComponent<PlayerControl>().weapon;
+        Pcollider = GetComponent<PolygonCollider2D>();
         Physic = Player.GetComponent<CollisionPhysics>();
     }
 
@@ -52,7 +48,7 @@ public class PlayerCheckCollision : MonoBehaviour
                 RifleBulletHit = true;
             }
 
-            if (collision.CompareTag("Knife"))
+            if (collision.CompareTag("EnemyKnife"))
             {
                 KnifeHit = true;
             }
@@ -64,7 +60,7 @@ public class PlayerCheckCollision : MonoBehaviour
         isHit = (KnifeHit || PistolBulletHit || RifleBulletHit);
         if (isHit)
         {
-            collider.enabled = false;
+            Pcollider.enabled = false;
             HitCoolStart = Time.time;
             if (PistolBulletHit)
             {
@@ -77,13 +73,14 @@ public class PlayerCheckCollision : MonoBehaviour
                 Physic.SetPhysics(new Vector2((int)Control.direction * (-1) * 10, 0));
                 KnifeHit = false;
             }
+            isHit = false;
         }
         else
         {
             HitCoolElapsed = Time.time - HitCoolStart;
             if (HitCoolElapsed >= HitCool)
             {
-                collider.enabled = true;
+                Pcollider.enabled = true;
                 HitCoolElapsed = 0;
                 HitCoolStart = 0;
             }

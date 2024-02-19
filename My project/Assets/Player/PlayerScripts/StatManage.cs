@@ -5,8 +5,7 @@ public class StatManage : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject HeadHitbox;
-    public GameObject BodyHitbox_1;
-    public GameObject BodyHitbox_2;
+    public GameObject BodyHitbox;
     public GameObject RightLegHitbox_1;
     public GameObject RightLegHitbox_2;
     public GameObject LeftLegHitbox_1;
@@ -21,8 +20,7 @@ public class StatManage : MonoBehaviour
     RifleManage RifleM;
 
     PlayerCheckCollision HeadCheck;
-    PlayerCheckCollision BodyCheck_1;
-    PlayerCheckCollision BodyCheck_2;
+    PlayerCheckCollision BodyCheck;
     PlayerCheckCollision RightLegCheck_1;
     PlayerCheckCollision RightLegCheck_2;
     PlayerCheckCollision LeftLegCheck_1;
@@ -58,8 +56,7 @@ public class StatManage : MonoBehaviour
     void Start()
     {
         HeadCheck = HeadHitbox.GetComponent<PlayerCheckCollision>();
-        BodyCheck_1 = BodyHitbox_1.GetComponent<PlayerCheckCollision>();
-        BodyCheck_2 = BodyHitbox_2.GetComponent<PlayerCheckCollision>();
+        BodyCheck = BodyHitbox.GetComponent<PlayerCheckCollision>();
         RightLegCheck_1 = RightLegHitbox_1.GetComponent<PlayerCheckCollision>();
         RightLegCheck_2 = RightLegHitbox_2.GetComponent<PlayerCheckCollision>();
         LeftLegCheck_1 = LeftLegHitbox_1.GetComponent<PlayerCheckCollision>();
@@ -131,26 +128,38 @@ public class StatManage : MonoBehaviour
     }
     void HpUpdate()
     {
+        GetHit = (HeadCheck.isHit || BodyCheck.isHit ||
+                  RightLegCheck_1.isHit || RightLegCheck_2.isHit ||
+                  LeftLegCheck_1.isHit || LeftLegCheck_2.isHit);
+
+        KnifeHit = (BodyCheck.KnifeHit ||
+                  RightLegCheck_1.KnifeHit || RightLegCheck_2.KnifeHit ||
+                  LeftLegCheck_1.KnifeHit || LeftLegCheck_2.KnifeHit);
+
+        RifleHit = (HeadCheck.RifleBulletHit || BodyCheck.RifleBulletHit ||
+                  RightLegCheck_1.RifleBulletHit || RightLegCheck_2.RifleBulletHit ||
+                  LeftLegCheck_1.RifleBulletHit || LeftLegCheck_2.RifleBulletHit);
+
+        PistolHit = (HeadCheck.PistolBulletHit || BodyCheck.PistolBulletHit ||
+                  RightLegCheck_1.PistolBulletHit || RightLegCheck_2.PistolBulletHit ||
+                  LeftLegCheck_1.PistolBulletHit || LeftLegCheck_2.PistolBulletHit);
+
         if (curHp > 0)
         {
-            if (GetHit)
+            if (PistolHit)
             {
-                if (PistolHit)
-                {
-                    SetGetDamage(100f);
-                    PistolHit = false;
-                }
-                if (RifleHit)
-                {
-                    SetGetDamage(200f);
-                    RifleHit = false;
-                }
-                if (KnifeHit)
-                {
-                    SetGetDamage(50f);
-                    KnifeHit = false;
-                }
-                
+                SetGetDamage(100f);
+                PistolHit = false;
+            }
+            if (RifleHit)
+            {
+                SetGetDamage(200f);
+                RifleHit = false;
+            }
+            if (KnifeHit)
+            {
+                SetGetDamage(50f);
+                KnifeHit = false;
             }
             if (Damage != 0)
             {
@@ -173,32 +182,10 @@ public class StatManage : MonoBehaviour
             isDead = true;
     }
 
-    void ConditionUpdate()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
-        GetHit = (HeadCheck.isHit || BodyCheck_1.isHit || BodyCheck_2.isHit ||
-                  RightLegCheck_1.isHit || RightLegCheck_2.isHit ||
-                  LeftLegCheck_1.isHit || LeftLegCheck_2.isHit);
-
-        KnifeHit = (HeadCheck.KnifeHit || BodyCheck_1.KnifeHit || BodyCheck_2.KnifeHit ||
-                  RightLegCheck_1.KnifeHit || RightLegCheck_2.KnifeHit ||
-                  LeftLegCheck_1.KnifeHit || LeftLegCheck_2.KnifeHit);
-
-        RifleHit = (HeadCheck.RifleBulletHit || BodyCheck_1.RifleBulletHit || BodyCheck_2.RifleBulletHit ||
-                  RightLegCheck_1.RifleBulletHit || RightLegCheck_2.RifleBulletHit ||
-                  LeftLegCheck_1.RifleBulletHit || LeftLegCheck_2.RifleBulletHit);
-
-        PistolHit = (HeadCheck.PistolBulletHit || BodyCheck_1.PistolBulletHit || BodyCheck_2.PistolBulletHit ||
-                  RightLegCheck_1.PistolBulletHit || RightLegCheck_2.PistolBulletHit ||
-                  LeftLegCheck_1.PistolBulletHit || LeftLegCheck_2.PistolBulletHit);
-
-        ATKUpdate();
         HpUpdate();
-        ConditionUpdate();
-     }
+        ATKUpdate();
+    }
 }

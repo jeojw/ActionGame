@@ -8,6 +8,7 @@ public class SpriteUpdate : MonoBehaviour
     public GameObject Pistol;
     public GameObject Rifle;
     public MeshRenderer Knife;
+    public GameObject SceneUI;
 
     PlayerControl.Direction Direct = PlayerControl.Direction.RIGHT;
     bool JumpStart = false;
@@ -26,10 +27,12 @@ public class SpriteUpdate : MonoBehaviour
     PistolManage pistolManage;
     RifleManage rifleManage;
     StatManage statManage;
+    MainSceneManage sceneManage;
 
     // Start is called before the first frame update
     void Start()
     {
+        sceneManage = SceneUI.GetComponent<MainSceneManage>();
         pistolSprite = Pistol.GetComponent<SpriteRenderer>();
         rifleSprite = Rifle.GetComponent<SpriteRenderer>();
         pistolSprite.enabled = true;
@@ -285,7 +288,11 @@ public class SpriteUpdate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveSprite();
-        WeaponSprite();
+        if (!sceneManage.isPaused)
+        {
+            MoveSprite();
+            WeaponSprite();
+        }
+        
     }
 }

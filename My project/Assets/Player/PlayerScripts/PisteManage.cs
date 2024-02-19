@@ -20,6 +20,7 @@ public class PisteManage : MonoBehaviour
     void Update()
     {
         curWeapon = playerControl.weapon;
-        Collider.enabled = (curWeapon == PlayerControl.Weapons.NONE);
+        Collider.enabled = (curWeapon == PlayerControl.Weapons.NONE &&
+                            playerControl.isAttack);
     }
 }

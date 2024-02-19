@@ -7,7 +7,7 @@ public class KnifeManage : MonoBehaviour
     public GameObject Player;
 
     PlayerControl.Weapons curWeapon;
-    PolygonCollider2D collider;
+    PolygonCollider2D Pcollider;
     PlayerControl control;
     Animator playerAnim;
 
@@ -15,7 +15,7 @@ public class KnifeManage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        collider = GetComponent<PolygonCollider2D>();
+        Pcollider = GetComponent<PolygonCollider2D>();
         control = Player.GetComponent<PlayerControl>();
         playerAnim = Player.GetComponent<Animator>();
     }
@@ -25,6 +25,10 @@ public class KnifeManage : MonoBehaviour
     {
         curWeapon = control.weapon;
 
-        collider.enabled = (curWeapon == PlayerControl.Weapons.KNIFE);
+        Pcollider.enabled = curWeapon == PlayerControl.Weapons.KNIFE &&
+                            playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1.0f && (
+                            playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Knife_Fighting_1") ||
+                            playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Knife_Fighting_2") ||
+                            playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Knife_Fighting_3"));
     }
 }

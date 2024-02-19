@@ -30,14 +30,6 @@ public class Enemy_Movement : MonoBehaviour
     public CONDITION Condition;
     public DIRECTION detectDirection;
 
-    public GameObject HeadHitbox;
-    public GameObject BodyHitbox_1;
-    public GameObject BodyHitbox_2;
-
-    EnemyCheckCollision head;
-    EnemyCheckCollision body_1;
-    EnemyCheckCollision body_2;
-
     Rigidbody2D rigid;
     Enemy_StatManage Estat;
 
@@ -64,10 +56,6 @@ public class Enemy_Movement : MonoBehaviour
 
     void Start()
     {
-        head = HeadHitbox.GetComponent<EnemyCheckCollision>();
-        body_1 = BodyHitbox_1.GetComponent<EnemyCheckCollision>();
-        body_2 = BodyHitbox_2.GetComponent<EnemyCheckCollision>();
-
         Enemyanim = GetComponent<Animator>();
         Estat = GetComponent<Enemy_StatManage>();
         AttackType = ATTACKTYPE.SWORD;
@@ -175,7 +163,6 @@ public class Enemy_Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        isHit = (head.isHit || body_1.isHit || body_2.isHit);
         if (isWalking && !isHit)
             Move();
 

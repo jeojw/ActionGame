@@ -6,7 +6,7 @@ public class EnemyCheckCollision : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject Enemy;
-    public PolygonCollider2D collider;
+    public PolygonCollider2D Pcollider;
     CollisionPhysics Physic;
     Enemy_Movement EMove;
     Enemy_StatManage Estat;
@@ -27,7 +27,7 @@ public class EnemyCheckCollision : MonoBehaviour
     {
         Estat = Enemy.GetComponent<Enemy_StatManage>();
         Physic = Enemy.GetComponent<CollisionPhysics>();
-        collider = GetComponent<PolygonCollider2D>();
+        Pcollider = GetComponent<PolygonCollider2D>();
         isDead = Enemy.GetComponent<Enemy_StatManage>().isDead;
         EMove = Enemy.GetComponent<Enemy_Movement>();
     }
@@ -62,7 +62,7 @@ public class EnemyCheckCollision : MonoBehaviour
 
         if (HitDelayElapsed >= HitDelay)
         {
-            collider.enabled = true;
+            Pcollider.enabled = true;
             HitDelayElapsed = 0;
             HitDelayStart = 0;
         }
@@ -76,11 +76,11 @@ public class EnemyCheckCollision : MonoBehaviour
             isHit = (KnifeHit || RifleBulletHit || PistolBulletHit || PisteHit);
             if (isHit)
             {
-                collider.enabled = false;
+                Pcollider.enabled = false;
                 HitDelayStart = Time.time;
                 if (PistolBulletHit)
                 {
-                    Physic.SetPhysics(new Vector2((int)EMove.detectDirection * (-1) * 20, 0));
+                    Physic.SetPhysics(new Vector2((int)EMove.detectDirection * (-1) * 50, 0));
                     PistolBulletHit = false;
                 }
 
@@ -98,9 +98,10 @@ public class EnemyCheckCollision : MonoBehaviour
 
                 if (RifleBulletHit)
                 {
-                    Physic.SetPhysics(new Vector2((int)EMove.detectDirection * (-1) * 20, 0));
+                    Physic.SetPhysics(new Vector2((int)EMove.detectDirection * (-1) * 80, 0));
                     RifleBulletHit = false;
                 }
+                isHit = false;
             }
             else
             {
@@ -110,7 +111,7 @@ public class EnemyCheckCollision : MonoBehaviour
         else
         {
             Physic.SetPhysics(new Vector2(0, 0));
-            collider.enabled = false;
+            Pcollider.enabled = false;
         }
             
     }

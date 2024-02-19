@@ -9,6 +9,7 @@ public class Enemy_KnifeManage : MonoBehaviour
     PolygonCollider2D PCollider;
     Enemy_Movement EMove;
     Enemy_StatManage EStat;
+    Enemy_Movement.ATTACKTYPE ATKType;
 
     bool Fence;
     // Start is called before the first frame update
@@ -23,7 +24,10 @@ public class Enemy_KnifeManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PCollider.enabled = EMove.isFencing;
+        ATKType = EMove.AttackType;
+        
+        PCollider.enabled = ATKType == Enemy_Movement.ATTACKTYPE.SWORD && 
+                            EMove.isFencing;
         if (EStat.isDead)
             Knife.SetActive(false);
     }
