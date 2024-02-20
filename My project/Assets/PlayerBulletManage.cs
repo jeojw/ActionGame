@@ -2,21 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletManage : MonoBehaviour
+public class PlayerBulletManage : MonoBehaviour
 {
     PlayerControl.Direction direct;
     SpriteRenderer BulletSprite;
-    BoxCollider2D BulletHitbox;
     Rigidbody2D physics;
-
     GameObject Player;
-    public float BulletSpeed;
+    float BulletSpeed = 120f;
     // Start is called before the first frame update
     void Start()
     {
         physics = GetComponent<Rigidbody2D>();
         BulletSprite = GetComponent<SpriteRenderer>();
-        BulletHitbox = GetComponent<BoxCollider2D>();
         if (transform.tag == "Pistol_Bullet")
             transform.position = GameObject.Find("PistolFirePosition").transform.position;
         else if (transform.tag == "Rifle_Bullet")
@@ -29,8 +26,7 @@ public class BulletManage : MonoBehaviour
     {
         if (collision.CompareTag("Ground") ||
             collision.CompareTag("Slope") ||
-            collision.CompareTag("Enemy") ||
-            collision.CompareTag("Player"))
+            collision.CompareTag("Enemy"))
         {
             physics.velocity = Vector2.zero;
             Destroy(gameObject);
@@ -48,8 +44,6 @@ public class BulletManage : MonoBehaviour
             Destroy(gameObject);
         }
             
-
-        float x = Input.GetAxisRaw("Horizontal");
         if (direct == PlayerControl.Direction.LEFT)
         {
             BulletSprite.flipY = true;

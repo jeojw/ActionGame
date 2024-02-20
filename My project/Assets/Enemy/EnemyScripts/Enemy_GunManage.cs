@@ -7,7 +7,7 @@ public class Enemy_GunManage : MonoBehaviour
     public GameObject Enemy;
 
     Enemy_Movement EMove;
-    private float ShotDelay;
+    public float ShotDelay;
     public float curAmmunition;
     private float maxAmmunition;
     // Start is called before the first frame update

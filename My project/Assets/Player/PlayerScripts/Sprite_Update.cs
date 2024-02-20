@@ -149,9 +149,6 @@ public class SpriteUpdate : MonoBehaviour
         {
             anim.SetBool("isLowerBody", false);
         }
-
-        if (statManage.isDead)
-            anim.SetBool("isDead", true);
     }
 
     void WeaponSprite()
@@ -288,11 +285,14 @@ public class SpriteUpdate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!sceneManage.isPaused)
+        if (!sceneManage.isPaused || !statManage.isDead)
         {
             MoveSprite();
             WeaponSprite();
         }
-        
+        if (statManage.isDead)
+        {
+            anim.Play("Dead");
+        }
     }
 }

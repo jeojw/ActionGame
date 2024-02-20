@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,6 +31,11 @@ public class Enemy_Movement : MonoBehaviour
     public CONDITION Condition;
     public DIRECTION detectDirection;
 
+    public GameObject Pistol;
+    public GameObject Rifle;
+    Enemy_GunManage PistolM;
+    Enemy_GunManage RifleM;
+
     Rigidbody2D rigid;
     Enemy_StatManage Estat;
 
@@ -43,25 +49,46 @@ public class Enemy_Movement : MonoBehaviour
 
     public float AttackCoolTime;
     private float AttackCoolStart = 0;
-    private float AttackCoolElapsed = 0;
+    public float AttackCoolElapsed = 0;
 
     private bool isHit;
 
     public float DetectInterval;
     public float speed;
 
+    private float AtkRange;
     private float KnifeRange = 10f;
-    private float PistolRange = 20f;
-    private float RifleRange = 25f;
+    private float PistolRange = 50f;
+    private float RifleRange = 55f;
 
     void Start()
     {
         Enemyanim = GetComponent<Animator>();
         Estat = GetComponent<Enemy_StatManage>();
-        AttackType = ATTACKTYPE.SWORD;
+        PistolM = Pistol.GetComponent<Enemy_GunManage>();
+        RifleM = Rifle.GetComponent<Enemy_GunManage>();
         detectDirection = DIRECTION.LEFT; 
         rigid = GetComponent<Rigidbody2D>();
         transform.localScale = new Vector3((float)detectDirection, 1, 1);
+    }
+
+    void SetAtkType()
+    {
+        if (AttackType == ATTACKTYPE.SWORD)
+        {
+            AtkRange = KnifeRange;
+            AttackCoolTime = 3f;
+        }
+        else if (AttackType == ATTACKTYPE.PISTOL)
+        {
+            AtkRange = PistolRange;
+            AttackCoolTime = PistolM.ShotDelay;
+        }
+        else if (AttackType == ATTACKTYPE.RIFLE)
+        {
+            AtkRange = RifleRange;
+            AttackCoolTime = RifleM.ShotDelay;
+        }
     }
 
     public void SetAttackType(ATTACKTYPE _attackType)
@@ -84,16 +111,9 @@ public class Enemy_Movement : MonoBehaviour
         else
             isDetect = false;
     }
-    void OnDrawGizmos()
-    {
-
-        RaycastHit2D AttackHit = Physics2D.BoxCast(Pos.position, new Vector2(8, 8), 0, (int)detectDirection * Vector2.left);
-        if (AttackHit)
-            Gizmos.DrawWireCube(Pos.position, new Vector2(8, 8));
-    }
     void Enemy_AI()
     {
-        RaycastHit2D AttackHit = Physics2D.BoxCast(Pos.position, new Vector2(8, 8), 0, (int)detectDirection * Vector2.left, 10f, LayerMask.GetMask("Player"));
+        RaycastHit2D AttackHit = Physics2D.BoxCast(Pos.position, new Vector2(AtkRange, 8), 0, (int)detectDirection * Vector2.left, AtkRange, LayerMask.GetMask("Player"));
         if (isDetect)
         {
             if (!AttackHit)
@@ -148,6 +168,15 @@ public class Enemy_Movement : MonoBehaviour
                 GetCool = true;
             }
         }
+        else if (AttackType == ATTACKTYPE.PISTOL ||
+                 AttackType == ATTACKTYPE.RIFLE)
+        {
+            isShooting = true;
+            if ((Enemyanim.GetCurrentAnimatorStateInfo(0).IsName("Pistol_Shot") ||
+                Enemyanim.GetCurrentAnimatorStateInfo(0).IsName("Rifle_Shot")) &&
+                Enemyanim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                GetCool = true;
+        }
     }
 
     void AttackCooldown()
@@ -171,11 +200,13 @@ public class Enemy_Movement : MonoBehaviour
         else
         {
             isFencing = false;
+            isShooting = false;
         }
     }
     // Update is called once per frame
     void Update()
     {
+        SetAtkType();
         isDead = Estat.isDead;
         DetectivePlayer();
         if (!isDead)

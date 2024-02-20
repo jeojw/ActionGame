@@ -16,10 +16,12 @@ public class Enemy_Sprite_Update : MonoBehaviour
     public GameObject Pistol;
     public GameObject Rifle;
 
-    bool Walking;
-    bool Fencing;
-    bool isDead;
-    bool GetHit;
+    private bool Walking;
+    private bool Fencing;
+    private bool Shooting;
+    private bool isDead;
+    private bool GetHit;
+    private bool isDetect;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +53,11 @@ public class Enemy_Sprite_Update : MonoBehaviour
         if (Control.AttackType == Enemy_Movement.ATTACKTYPE.PISTOL)
         {
             PistolSprite.enabled = true;
+            anim.SetBool("isGetPistol", true);
+            if (Shooting)
+                anim.SetBool("isShot", true);
+            else
+                anim.SetBool("isShot", false);
         }
         else
             PistolSprite.enabled = false;
@@ -58,6 +65,11 @@ public class Enemy_Sprite_Update : MonoBehaviour
         if (Control.AttackType == Enemy_Movement.ATTACKTYPE.RIFLE)
         {
             RifleSprite.enabled = true;
+            anim.SetBool("isGetRifle", true);
+            if (Shooting)
+                anim.SetBool("isShot", true);
+            else
+                anim.SetBool("isShot", false);
         }
         else
             RifleSprite.enabled = false;
@@ -69,10 +81,16 @@ public class Enemy_Sprite_Update : MonoBehaviour
         WeaponSpriteUpdate();
         Walking = Control.isWalking;
         Fencing = Control.isFencing;
+        Shooting = Control.isShooting;
         isDead = Stat.isDead;
         GetHit = Stat.GetHit;
+        isDetect = Control.isDetect;
         if (!isDead)
         {
+            if (isDetect)
+                anim.SetBool("isDetect", true);
+            else
+                anim.SetBool("isDetect", false);
             if (Walking)
             {
                 anim.SetBool("isWalking", true);
@@ -94,7 +112,7 @@ public class Enemy_Sprite_Update : MonoBehaviour
         }
         else
         {
-            anim.SetBool("isDead", true);
+            anim.Play("Dead");
         }
     }
 }

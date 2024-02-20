@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,8 +9,11 @@ public class ProjectilesManage : MonoBehaviour
     public GameObject Player;
     public GameObject Weapon;
 
+    SetGame SG;
+
     GameObject Bullets;
     GameObject CurBullet;
+    GameObject EnemyCurBullet;
 
     PlayerControl playControl;
 
@@ -20,6 +24,7 @@ public class ProjectilesManage : MonoBehaviour
     {
         Bullets = Resources.Load<GameObject>("Prefabs/BulletObjects");
         playControl = Player.GetComponent<PlayerControl>();
+        SG = GetComponent<SetGame>();
     }
 
     void Player_Bullet_Shot()
@@ -38,10 +43,30 @@ public class ProjectilesManage : MonoBehaviour
         }
     }
 
+    void Enemy_Bullet_Shot()
+    {
+        for (int i = 0; i < SG.EnemyMovementList.Count; i++)
+        {
+            if (SG.EnemyMovementList[i].isShooting &&
+                SG.EnemyMovementList[i].AttackCoolElapsed == 0)
+            {
+                if (SG.EnemyMovementList[i].AttackType == Enemy_Movement.ATTACKTYPE.PISTOL)
+                {
+                    EnemyCurBullet = Instantiate(Bullets.transform.GetChild(2).gameObject);
+                }
+                if (SG.EnemyMovementList[i].AttackType == Enemy_Movement.ATTACKTYPE.RIFLE)
+                {
+                    EnemyCurBullet = Instantiate(Bullets.transform.GetChild(3).gameObject);
+                }
+            }
+        }
+    }
+
 
     // Update is called once per frame
     void Update()
     {
         Player_Bullet_Shot();
+        Enemy_Bullet_Shot();
     }
 }
