@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 1080734}
   m_Layer: 9
   m_Name: LeftLegHitbox_1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2963,7 +2963,7 @@ GameObject:
   - component: {fileID: 578683831}
   m_Layer: 9
   m_Name: LeftLegHitbox_2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3518,7 +3518,7 @@ GameObject:
   - component: {fileID: 869260583}
   m_Layer: 9
   m_Name: HeadHitbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3584,7 +3584,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -3607,9 +3607,9 @@ PolygonCollider2D:
       - {x: -0.3341077, y: 1.0357382}
       - {x: -0.7249137, y: 0.8262811}
       - {x: -0.9505428, y: 0.5749002}
-      - {x: -1.0447342, y: 0.34713602}
-      - {x: -1.1107289, y: 0.13142097}
-      - {x: -1.0914072, y: -0.25625423}
+      - {x: -1.0067902, y: 0.33841473}
+      - {x: -1.0302054, y: 0.111195184}
+      - {x: -1.0405612, y: -0.28388405}
       - {x: -0.96603405, y: -0.58781356}
       - {x: -0.7745698, y: -0.8531019}
       - {x: -0.3180727, y: -1.1229278}
@@ -4299,7 +4299,7 @@ GameObject:
   - component: {fileID: 1150241309}
   m_Layer: 9
   m_Name: BodyHitBox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4365,7 +4365,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -4383,8 +4383,8 @@ PolygonCollider2D:
     - - {x: -0.024945486, y: 0.40475494}
       - {x: -1.5440623, y: 0.4187501}
       - {x: -1.4937909, y: -0.45087335}
-      - {x: 1.5047449, y: -0.3951648}
-      - {x: 1.4806768, y: 0.39755675}
+      - {x: 1.6445708, y: -0.4284035}
+      - {x: 1.6120238, y: 0.43893585}
   m_UseDelaunayMesh: 0
 --- !u!1 &1155949163
 GameObject:
@@ -7949,10 +7949,10 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8648882755762834919, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1150241308}
+      addedObject: {fileID: 1040427013}
     - targetCorrespondingSourceObject: {fileID: 8648882755762834919, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1040427013}
+      addedObject: {fileID: 1150241308}
     - targetCorrespondingSourceObject: {fileID: 8648882755762834919, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 740450174}
@@ -8605,7 +8605,7 @@ GameObject:
   - component: {fileID: 1436064076}
   m_Layer: 9
   m_Name: RightLegHitbox_1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8991,7 +8991,7 @@ GameObject:
   - component: {fileID: 1653638812}
   m_Layer: 9
   m_Name: RightLegHitbox_2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9216,7 +9216,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -18.17, y: -4.53, z: 0}
-  m_LocalScale: {x: 0.21715856, y: 0.21715856, z: 0.21715856}
+  m_LocalScale: {x: 0.3016115, y: 0.3016115, z: 0.3016115}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2092322954}
@@ -10214,7 +10214,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1

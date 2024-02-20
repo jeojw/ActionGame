@@ -63,22 +63,22 @@ public class PlayerCheckCollision : MonoBehaviour
                 HitCoolStart = Time.time;
                 if (PistolBulletHit)
                 {
-                    Physic.SetPhysics(new Vector2((int)Control.direction * (-1) * 60, 0));
-                    PlayerStat.SetGetDamage(100f);
+                    Physic.SetPhysics(new Vector2((int)Control.direction * (-1) * 50, 0));
+                    PlayerStat.SetGetDamage(200f);
                     PistolBulletHit = false;
                 }
 
                 if (RifleBulletHit)
                 {
                     Physic.SetPhysics(new Vector2((int)Control.direction * (-1) * 80, 0));
-                    PlayerStat.SetGetDamage(200f);
+                    PlayerStat.SetGetDamage(350f);
                     RifleBulletHit = false;
                 }
 
                 if (KnifeHit && gameObject.name != "HeadHitbox")
                 {
                     Physic.SetPhysics(new Vector2((int)Control.direction * (-1) * 15, 0));
-                    PlayerStat.SetGetDamage(80f);
+                    PlayerStat.SetGetDamage(1500f);
                     KnifeHit = false;
                 }
                 isHit = false;

@@ -47,13 +47,15 @@ public class Enemy_Movement : MonoBehaviour
     public bool isDead = false;
     public bool GetCool = false;
 
-    public float AttackCoolTime;
+    private float AttackCoolTime;
     private float AttackCoolStart = 0;
     public float AttackCoolElapsed = 0;
+    private int ShotCount = 0; 
 
     private bool isHit;
 
-    public float DetectInterval;
+    private float NDetectInterval =10f;
+    private float RifleDetectInterval = 60f;
     public float speed;
 
     private float AtkRange;
@@ -98,8 +100,19 @@ public class Enemy_Movement : MonoBehaviour
 
     void DetectivePlayer()
     {
-        RaycastHit2D hit1 = Physics2D.Raycast(Pos.position, Vector2.left, DetectInterval, LayerMask.GetMask("Player"));
-        RaycastHit2D hit2 = Physics2D.Raycast(Pos.position, Vector2.right, DetectInterval, LayerMask.GetMask("Player"));
+        RaycastHit2D hit1;
+        RaycastHit2D hit2;
+        if (AttackType != ATTACKTYPE.RIFLE)
+        {
+            hit1 = Physics2D.Raycast(Pos.position, Vector2.left, NDetectInterval, LayerMask.GetMask("Player"));
+            hit2 = Physics2D.Raycast(Pos.position, Vector2.right, NDetectInterval, LayerMask.GetMask("Player"));
+        }
+        else
+        {
+            hit1 = Physics2D.Raycast(Pos.position, Vector2.left, RifleDetectInterval, LayerMask.GetMask("Player"));
+            hit2 = Physics2D.Raycast(Pos.position, Vector2.right, RifleDetectInterval, LayerMask.GetMask("Player"));
+        }
+        
         if (hit1.collider != null || hit2.collider != null)
         {
             isDetect = true;
@@ -172,10 +185,13 @@ public class Enemy_Movement : MonoBehaviour
                  AttackType == ATTACKTYPE.RIFLE)
         {
             isShooting = true;
-            if ((Enemyanim.GetCurrentAnimatorStateInfo(0).IsName("Pistol_Shot") ||
-                Enemyanim.GetCurrentAnimatorStateInfo(0).IsName("Rifle_Shot")) &&
-                Enemyanim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            if (ShotCount == 0)
+                ShotCount = 1;
+            if (ShotCount == 1)
+            {
                 GetCool = true;
+                ShotCount = 0;
+            }
         }
     }
 

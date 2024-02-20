@@ -61,7 +61,7 @@ public class SpriteUpdate : MonoBehaviour
         if (Direct == PlayerControl.Direction.LEFT) { Player.transform.localScale = new Vector3(-1, 1, 1); }
         else if (Direct == PlayerControl.Direction.RIGHT) { Player.transform.localScale = new Vector3(1, 1, 1); }
 
-        if (playerControl.weapon == PlayerControl.Weapons.PISTOL)
+        if (playerControl.weapon == PlayerControl.Weapons.PISTOL && rifleManage.AmmunitionZero)
         {
             anim.SetBool("isGetPistol", true);
         }
@@ -70,7 +70,7 @@ public class SpriteUpdate : MonoBehaviour
             anim.SetBool("isGetPistol", false);
         }
 
-        if (playerControl.weapon == PlayerControl.Weapons.RIFLE)
+        if (playerControl.weapon == PlayerControl.Weapons.RIFLE && !rifleManage.AmmunitionZero)
         {
             anim.SetBool("isGetRifle", true);
         }

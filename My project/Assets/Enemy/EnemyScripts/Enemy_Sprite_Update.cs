@@ -113,6 +113,9 @@ public class Enemy_Sprite_Update : MonoBehaviour
         else
         {
             anim.Play("Dead");
+            KnifeSprite.enabled = false;
+            PistolSprite.enabled = false;
+            RifleSprite.enabled = false;
         }
     }
 }

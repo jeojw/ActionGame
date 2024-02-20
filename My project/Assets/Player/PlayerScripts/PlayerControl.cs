@@ -289,6 +289,7 @@ public class PlayerControl : MonoBehaviour
             }
             else
             {
+                isAttack = false;
                 ShotDelayElapsed = Time.time - ShotDelayStart;
                 if (ShotDelayElapsed >= ShotDelay)
                 {
