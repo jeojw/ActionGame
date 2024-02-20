@@ -3489,6 +3489,7 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 0.6969414, y: 3.0633776}
+      - {x: 1.0790958, y: 3.3051097}
       - {x: 1.5127316, y: 3.5794067}
       - {x: 1.5198107, y: 5.028599}
       - {x: 0.3913145, y: 5.6229205}
@@ -3496,8 +3497,8 @@ PolygonCollider2D:
       - {x: -0.6997795, y: 3.5503309}
       - {x: -0.064193726, y: 3.16836}
       - {x: -0.4277087, y: -0.062835485}
-      - {x: -0.72418255, y: -2.2719452}
-      - {x: 0.97443163, y: -2.2671263}
+      - {x: -0.42701095, y: -0.59589696}
+      - {x: 0.5583912, y: -0.61485183}
       - {x: 0.31741524, y: 0.19881862}
   m_UseDelaunayMesh: 0
 --- !u!4 &820990455 stripped
@@ -4470,7 +4471,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1155949163}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -7774,7 +7775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.42000008
+      value: 0.4200001
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7782,7 +7783,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.17510578
+      value: 0.1751058
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10107,7 +10108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hand: {fileID: 324817270}
   line: {fileID: 371980635}
-  hook: {fileID: 1155949167}
+  hook: {fileID: 1155949163}
   waist: {fileID: 1981390659}
   RopeDelay: 2
   RopeDelayElapsed: 0
@@ -10154,7 +10155,6 @@ MonoBehaviour:
   Rifle: {fileID: 1706799846}
   isSlope: 0
   speed: 10
-  jumpV: 10
   RopeDelayElapsed: 0
   ShotDelayElapsed: 0
   RunningInterval: 0.5

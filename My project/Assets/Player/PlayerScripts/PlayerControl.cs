@@ -44,8 +44,8 @@ public class PlayerControl : MonoBehaviour
     public bool isSlope = false;
 
     private int jumpCount = 1;
-    public float speed;
-    public float jumpV;
+    public float speed = 10f;
+    private float jumpV = 50f;
     private int weaponPos = 0;
 
     private float RopeDelay = 0;
@@ -210,7 +210,7 @@ public class PlayerControl : MonoBehaviour
 
             if (!isRolling)
             {
-                if (Input.GetKeyDown(KeyCode.Space) &&
+                if (Input.GetKey(KeyCode.Space) &&
                     !weaponUIManage.IsZeroPistol &&
                     (weapon == Weapons.NONE ||
                     weapon == Weapons.ROPE) &&
@@ -355,7 +355,6 @@ public class PlayerControl : MonoBehaviour
             !grappling.isAttach &&
             !grappling.isHookActive &&
             !grappling.isLineMax &&
-            !isLowerBody &&
             !isMoving &&
             !PistolManage.isReloading &&
             isGround) {

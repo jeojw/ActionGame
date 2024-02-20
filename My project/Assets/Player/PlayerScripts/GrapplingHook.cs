@@ -8,10 +8,9 @@ public class GrapplingHook : MonoBehaviour
 {
     public GameObject hand;
     public LineRenderer line;
-    public Transform hook;
+    public GameObject hook;
     public Transform waist;
     Rigidbody2D hookRigid;
-    Rigidbody2D Rigid;
     Hookg hookg;
     PlayerControl playControl;
     Vector2 mousedir;
@@ -28,6 +27,7 @@ public class GrapplingHook : MonoBehaviour
     public float MaxLine;
 
     private float RotateAngle;
+    private float gravity = 0;
 
     public PlayerControl.Weapons CurWeapon;
     // Start is called before the first frame update
@@ -37,14 +37,12 @@ public class GrapplingHook : MonoBehaviour
         line.endWidth = line.startWidth = 0.5f;
         line.SetPosition(0, waist.transform.position);
         line.SetPosition(1, hand.transform.position);
-        line.SetPosition(2, hook.position);
+        line.SetPosition(2, hook.transform.position);
         line.useWorldSpace = true;
         isAttach = false;
         RopeDelayElapsed = 0;
         hook.gameObject.SetActive(false);
-
         hookRigid = hook.GetComponent<Rigidbody2D>();
-        Rigid = GetComponent<Rigidbody2D>();
         hookg = hook.GetComponent<Hookg>();
         playControl = GetComponent<PlayerControl>();
     }
@@ -57,9 +55,12 @@ public class GrapplingHook : MonoBehaviour
 
     void Ready_To_Throw_OnAir()
     {
-        if (hook.transform.position.y > hand.transform.position.y) {
-            if (Vector2.Distance(hook.transform.position, hand.transform.position) <= 3f)
-                hookRigid.velocity = new Vector3(0, hookRigid.gravityScale * Time.deltaTime, 0);
+        
+        if (Vector2.Distance(hook.transform.position, hand.transform.position) <= 3f ||
+            hook.transform.position.y > hand.transform.position.y)
+        {
+            gravity += hookRigid.gravityScale * Time.deltaTime * 10;
+            hook.transform.position = hand.transform.position + new Vector3(Mathf.Cos(RotateAngle), Mathf.Sin(RotateAngle) - gravity, 1);
         }
     }
     // Update is called once per frame
@@ -85,21 +86,27 @@ public class GrapplingHook : MonoBehaviour
             }
             if (!isHookThrow)
             {
-                if (playControl.isGround)
+                if (playControl.isGround && !playControl.isJumpStart)
+                {
                     Ready_To_Throw_Stand();
-                else if (!playControl.isGround || playControl.isJumpStart)
+                    gravity = 0;
+                }
+                if (!playControl.isGround || playControl.isJumpStart)
+                {
                     Ready_To_Throw_OnAir();
+                }
+                    
             }
                 
 
             line.SetPosition(0, waist.transform.position);
             line.SetPosition(1, hand.transform.position);
-            line.SetPosition(2, hook.position);
+            line.SetPosition(2, hook.transform.position);
 
             if (Input.GetKeyDown(KeyCode.E) && RopeDelayElapsed == 0)
             {
                 isHookThrow = true;
-                hook.position = hand.transform.position;
+                hook.transform.position = hand.transform.position;
                 mousedir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - hand.transform.position;
                 isHookActive = true;
                 isLineMax = false;
@@ -108,17 +115,17 @@ public class GrapplingHook : MonoBehaviour
 
             if (isHookActive && !isLineMax && !isAttach)
             {
-                hook.Translate(mousedir.normalized * Time.deltaTime * 30);
+                hook.transform.Translate(mousedir.normalized * Time.deltaTime * 30);
 
-                if (Vector2.Distance(hand.transform.position, hook.position) > MaxLine)
+                if (Vector2.Distance(hand.transform.position, hook.transform.position) > MaxLine)
                 {
                     isLineMax = true;
                 }
             }
             else if (isHookActive && isLineMax && !isAttach)
             {
-                hook.position = Vector2.MoveTowards(hook.position, hand.transform.position, Time.deltaTime * 30);
-                if (Vector2.Distance(hand.transform.position, hook.position) < 0.1f)
+                hook.transform.position = Vector2.MoveTowards(hook.transform.position, hand.transform.position, Time.deltaTime * 30);
+                if (Vector2.Distance(hand.transform.position, hook.transform.position) < 0.1f)
                 {
                     isLineMax = false;
                     isHookActive = false;
@@ -140,7 +147,7 @@ public class GrapplingHook : MonoBehaviour
                 else if (Input.GetKeyDown(KeyCode.W))
                 {
                     isLineMax = false;
-                    Rigid.AddForce((hook.position - hand.transform.position).normalized * 30f, ForceMode2D.Impulse);
+                    hookRigid.AddForce((hook.transform.position - hand.transform.position).normalized * 30f, ForceMode2D.Impulse);
                 }
             }
         }
