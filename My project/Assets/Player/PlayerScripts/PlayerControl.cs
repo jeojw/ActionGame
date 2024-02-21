@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -13,6 +14,11 @@ public class PlayerControl : MonoBehaviour
     public GameObject UI;
     public GameObject Pistol;
     public GameObject Rifle;
+
+    public GameObject Event;
+    SetGame SG;
+
+    Vector3 PlayerPos = new Vector3(-10.82f, -0.4f, -0.1751058f);
 
     MainSceneManage sceneManage;
     WeaponUIManage weaponUIManage;
@@ -86,6 +92,7 @@ public class PlayerControl : MonoBehaviour
     public bool isAttack = false;
     public bool isWalking = false;
     public bool isGround = false;
+    public bool isOnDead = false;
     public bool isRunning = false;
     public bool isLowerBody = false;
     public bool isGetItem = false;
@@ -96,8 +103,10 @@ public class PlayerControl : MonoBehaviour
 
     private float SlopeAngle;
 
-    void Awake()
+    void Start()
     {
+        SG = Event.GetComponent<SetGame>();
+        transform.position = PlayerPos;
         rigid = GetComponent<Rigidbody2D>();
         grappling = GetComponent<GrapplingHook>();
         anim = GetComponent<Animator>();
@@ -129,6 +138,22 @@ public class PlayerControl : MonoBehaviour
 
     }
 
+    private void CheckOnDeadGround()
+    {
+        RaycastHit2D hit = Physics2D.BoxCast(bodyPos.position, new Vector2(2, 1), 0f, Vector2.down, 0.02f, LayerMask.GetMask("DeadGround"));
+        if (!statManage.isDead)
+        {
+            if (hit.collider != null)
+            {
+                isOnDead = true;
+            }
+            else
+                isOnDead = false;
+        }
+        else
+            isOnDead = false;
+    }
+
     private void checkSlope()
     {
         RaycastHit2D hit = Physics2D.Raycast(rigid.position, Vector2.down, 5f, LayerMask.GetMask("Slope"));
@@ -151,6 +176,10 @@ public class PlayerControl : MonoBehaviour
 
     }
 
+    public void SetPlayerPos(Vector3 _Pos)
+    {
+        PlayerPos = _Pos;
+    }
     public bool CheckGetItem()
     {
         RaycastHit2D hit = Physics2D.BoxCast(bodyPos.position, new Vector2(2, 1), 0f, Vector2.down, 0.02f, LayerMask.GetMask("Item"));
@@ -385,7 +414,7 @@ public class PlayerControl : MonoBehaviour
 
         if (grappling.isAttach || grappling.isHookActive)
         {
-            rigid.AddForce(new Vector2((int)direction * speed, rigid.velocity.y));
+            rigid.AddForce(new Vector2((int)direction * speed * 3, rigid.velocity.y));
         }
 
         else
@@ -486,6 +515,13 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
+        if (SG.isReset)
+        {
+            transform.position = PlayerPos;
+            weaponPos = 0;
+            RifleManage.ResetMagazine();
+            PistolManage.ResetMagazine();
+        }
         if (!statManage.isDead)
         {
             isGetItem = CheckGetItem();
@@ -517,6 +553,7 @@ public class PlayerControl : MonoBehaviour
     {
         checkSlope();
         CheckOnGround();
+        CheckOnDeadGround();
         if (!statManage.isDead)
         {
             if (isWalking)

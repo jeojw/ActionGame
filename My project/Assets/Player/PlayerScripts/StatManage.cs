@@ -19,6 +19,8 @@ public class StatManage : MonoBehaviour
     PistolManage PistolM;
     RifleManage RifleM;
 
+    StatManage StatM;
+
     PlayerCheckCollision HeadCheck;
     PlayerCheckCollision BodyCheck;
     PlayerCheckCollision RightLegCheck_1;
@@ -105,6 +107,11 @@ public class StatManage : MonoBehaviour
         }
     }
 
+    public void ResetHp()
+    {
+        curHp = MaxHp;
+    }
+
     public void SetGetItem(ItemManage.ITEMTYPE _itemType)
     {
         ItemType = _itemType;
@@ -130,6 +137,7 @@ public class StatManage : MonoBehaviour
                  LeftLegCheck_1.isHit || LeftLegCheck_2.isHit);
         if (curHp > 0)
         {
+            isDead = false;
             if (Damage != 0)
             {
                 curHp -= Damage;
@@ -146,6 +154,8 @@ public class StatManage : MonoBehaviour
                     UseItem = true;
                 }
             }
+            if (playControl.isOnDead)
+                curHp = 0;
         }
         else
             isDead = true;

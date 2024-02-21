@@ -11,6 +11,7 @@ public class RifleManage : MonoBehaviour
 
     public bool AmmunitionZero = true;
     public bool isShot;
+    public bool isReload;
 
     public float BulletDamage;
     public float ShotDelay = 0.01f;
@@ -48,12 +49,23 @@ public class RifleManage : MonoBehaviour
 
     }
 
+    void Reload()
+    {
+        if (playControl.isGetItem && playControl.GetItemType == ItemManage.ITEMTYPE.RIFLE)
+        {
+            isReload = true;
+        }
+        else
+            isReload = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (curAmmunition <= 0)
             AmmunitionZero = true;
         Shot();
+        Reload();
     }
 }
 

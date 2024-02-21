@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,14 +11,20 @@ using UnityEngine.UI;
 public class SceneUI : MonoBehaviour
 {
     public GameObject Player;
+    public GameObject Event;
+    SetGame SG;
+    List<Enemy_StatManage> ESList;
 
     public TextMeshProUGUI text_Timer;
+    public TextMeshProUGUI text_Score;
     private float time_start;
     private float time_current;
     private bool isEnded;
     
     protected float curHealth;
-    public float MaxHealth;
+    private float MaxHealth;
+
+    private float Score;
 
     PlayerControl.Weapons weapon;
     public Image None;
@@ -40,6 +47,8 @@ public class SceneUI : MonoBehaviour
 
     void Start()
     {
+        SG = Event.GetComponent<SetGame>();
+        ESList = SG.EnemyStatList;
         MaxHealth = Player.GetComponent<StatManage>().MaxHp;
 
         Pistol.gameObject.SetActive(true);
@@ -58,6 +67,17 @@ public class SceneUI : MonoBehaviour
         playControl = Player.GetComponent<PlayerControl>();
 
         Reset_Timer();
+    }
+
+    private void ResetScore()
+    {
+        Score = 0;
+    }
+
+    private void UpdateScore()
+    {
+        Score = 100 * ESList.Count;
+        text_Score.text = Score.ToString();
     }
 
     private void Reset_Timer()
@@ -229,8 +249,14 @@ public class SceneUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (SG.isReset)
+        {
+            Reset_Timer();
+            ResetScore();
+        }
         WeaponUI();
         Check_Timer();
         CheckHp();
+        UpdateScore();
     }
 }

@@ -9,18 +9,28 @@ using UnityEngine.UI;
 
 public class MainSceneManage : MonoBehaviour
 {
-    public GameObject StopImage;
+    public GameObject StopPopup;
+    public GameObject DeadPopup;
+    public GameObject Player;
+    StatManage StatM;
+    public GameObject Event;
+    SetGame SG;
 
     public bool isPaused = false;
+    public bool isReset = false;
     // Start is called before the first frame update
     void Start()
     {
-        StopImage.SetActive(false);
+        StopPopup.SetActive(false);
+        DeadPopup.SetActive(false);
+        StatM = Player.GetComponent<StatManage>();
+        SG = Event.GetComponent<SetGame>();
     }
 
     public void StartGame()
     {
         SceneManager.LoadScene("MainScene");
+        SG.SetObjects();
     }
 
     public void GameProgress()
@@ -31,7 +41,7 @@ public class MainSceneManage : MonoBehaviour
             {
                 Time.timeScale = 1;
                 isPaused = false;
-                StopImage.SetActive(false);
+                StopPopup.SetActive(false);
             }
         }
     }
@@ -40,14 +50,30 @@ public class MainSceneManage : MonoBehaviour
     {
         if (EventSystem.current.currentSelectedGameObject != null)
         {
-            if (EventSystem.current.currentSelectedGameObject.name == "Yes")
+            if (EventSystem.current.currentSelectedGameObject.name == "Yes" ||
+                EventSystem.current.currentSelectedGameObject.name == "DNo")
             {
                 SceneManager.LoadScene("StartScene");
+                SG.Clear();
                 Time.timeScale = 1;
                 isPaused = false;
-                StopImage.SetActive(false);
+                StopPopup.SetActive(false);
+                DeadPopup.SetActive(false);
             }
+        }
+    }
 
+    public void ResetGame()
+    {
+        if (EventSystem.current.currentSelectedGameObject != null)
+        {
+            if (EventSystem.current.currentSelectedGameObject.name == "DYes")
+            {
+                isReset = true;
+                SG.ResetGame();
+                StatM.ResetHp();
+                DeadPopup.SetActive(false);
+            }
         }
     }
 
@@ -57,9 +83,16 @@ public class MainSceneManage : MonoBehaviour
         if (Input.GetKey(KeyCode.Escape))
         {
             isPaused = true;
-            StopImage.SetActive(true);
+            StopPopup.SetActive(true);
             Time.timeScale = 0f;
         }
+
+        if (StatM.isDead)
+        {
+            DeadPopup.SetActive(true);
+        }
+        else
+            DeadPopup.SetActive(false);
         GameProgress();
     }
 }

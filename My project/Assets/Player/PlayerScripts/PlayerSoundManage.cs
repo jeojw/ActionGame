@@ -16,6 +16,7 @@ public class PlayeroundManage : MonoBehaviour
     public AudioSource PistolShot;
     public AudioSource PistolReload;
     public AudioSource RifleShot;
+    public AudioSource RifleReload;
 
     PlayerControl playerControl;
     StatManage Pstm;
@@ -94,9 +95,14 @@ public class PlayeroundManage : MonoBehaviour
         else if (playerControl.weapon == PlayerControl.Weapons.RIFLE)
         {
             isShot = RifleM.isShot;
+            isReload = RifleM.isReload;
             if (isShot)
             {
                 RifleShot.Play();
+            }
+            if (isReload)
+            {
+                RifleReload.Play();
             }
         }
     }

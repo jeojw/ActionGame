@@ -9,13 +9,12 @@ public class ProjectilesManage : MonoBehaviour
     public GameObject Player;
     public GameObject Weapon;
 
-    SetGame SG;
-
     GameObject Bullets;
     GameObject CurBullet;
     GameObject EnemyCurBullet;
 
     PlayerControl playControl;
+    SetGame SG;
 
     private bool isShot = false;
 
@@ -61,7 +60,6 @@ public class ProjectilesManage : MonoBehaviour
             }
         }
     }
-
 
     // Update is called once per frame
     void Update()

@@ -8,6 +8,9 @@ public class Enemy_Bullet_Manage : MonoBehaviour
     SpriteRenderer BulletSprite;
     Rigidbody2D physics;
 
+    GameObject EventSystem;
+    SetGame SG;
+
     GameObject Enemy;
     float BulletSpeed = 120f;
     // Start is called before the first frame update
@@ -19,6 +22,8 @@ public class Enemy_Bullet_Manage : MonoBehaviour
             transform.position = GameObject.Find("EnemyPistolFirePosition").transform.position;
         else if (transform.tag == "Rifle_Bullet")
             transform.position = GameObject.Find("EnemyRifleFirePosition").transform.position;
+        EventSystem = GameObject.Find("EventSystem");
+        SG = EventSystem.GetComponent<SetGame>();
         Enemy = GameObject.Find("Enemy(Clone)");
         direct = Enemy.GetComponent<Enemy_Movement>().detectDirection;
     }

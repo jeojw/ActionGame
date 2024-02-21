@@ -293,6 +293,11 @@ public class SpriteUpdate : MonoBehaviour
         if (statManage.isDead)
         {
             anim.Play("Dead");
+            anim.SetBool("Revive", false);
+        }
+        else
+        {
+            anim.SetBool("Revive", true);
         }
     }
 }
