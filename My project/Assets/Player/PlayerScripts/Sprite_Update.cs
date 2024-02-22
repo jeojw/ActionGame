@@ -208,12 +208,14 @@ public class SpriteUpdate : MonoBehaviour
 
         if (playerControl.weapon == PlayerControl.Weapons.KNIFE)
         {
+            anim.SetBool("isGetKnife", true);
             anim.SetBool("isKnifeFightReady", true);
             Knife.enabled = true;
         }
 
         else
         {
+            anim.SetBool("isGetKnife", false);
             anim.SetBool("isKnifeFightReady", false);
             Knife.enabled = false;
         }  

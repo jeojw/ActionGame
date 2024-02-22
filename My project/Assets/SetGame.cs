@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SetGame : MonoBehaviour
@@ -32,14 +33,15 @@ public class SetGame : MonoBehaviour
             
     }
 
-    public void Clear()
+    void Clear()
     {
         EnemyList.Clear();
         EnemyMovementList.Clear();
         EnemyStatList.Clear();
         EnemyMovementList.Clear();
+        DeadboolList.Clear();
     }
-    public void SetObjects()
+    void SetObjects()
     {
         EnemyList.Add(Instantiate(Enemy, new Vector3(30f, 1f, 147.699f), Quaternion.identity));
         EnemyList.Add(Instantiate(Enemy, new Vector3(81f, 24f, 147.699f), Quaternion.identity));
@@ -58,14 +60,15 @@ public class SetGame : MonoBehaviour
         EnemyList[6].GetComponent<Enemy_Movement>().SetAttackType(Enemy_Movement.ATTACKTYPE.SWORD);
 
         for (int i = 0; i < EnemyList.Count; i++)
-        {
-            DeadboolList.Add(EnemyList[i].GetComponent<Enemy_StatManage>().isDead);
+        { 
+
+            DeadboolList.Add(false);
             EnemyStatList.Add(EnemyList[i].GetComponent<Enemy_StatManage>());
             EnemyPosList.Add(EnemyList[i].GetComponent<Transform>());
             EnemyMovementList.Add(EnemyList[i].GetComponent<Enemy_Movement>());
         }
     }
-
+        
     public void ResetGame()
     {
         isReset = true;
@@ -75,6 +78,10 @@ public class SetGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        for (int i = 0; i < EnemyList.Count; i++)
+        {
+            DeadboolList[i] = EnemyStatList[i].isDead;        
+        }
         if (isReset)
             isReset = false;
     }

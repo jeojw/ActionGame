@@ -30,7 +30,6 @@ public class MainSceneManage : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("MainScene");
-        SG.SetObjects();
     }
 
     public void GameProgress()
@@ -54,7 +53,6 @@ public class MainSceneManage : MonoBehaviour
                 EventSystem.current.currentSelectedGameObject.name == "DNo")
             {
                 SceneManager.LoadScene("StartScene");
-                SG.Clear();
                 Time.timeScale = 1;
                 isPaused = false;
                 StopPopup.SetActive(false);

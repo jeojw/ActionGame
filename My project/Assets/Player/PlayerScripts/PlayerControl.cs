@@ -377,20 +377,8 @@ public class PlayerControl : MonoBehaviour
     {
         ShotDelay = _Delay;
     }
-
-    void WeaponControl()
+    private Weapons ReturnWeapon()
     {
-        if(Input.GetKeyDown(KeyCode.Tab) && 
-            !grappling.isAttach &&
-            !grappling.isHookActive &&
-            !grappling.isLineMax &&
-            !isMoving &&
-            !PistolManage.isReloading &&
-            isGround) {
-            weaponPos++;
-            if (weaponPos > 3)
-                weaponPos = 0;
-        }
         switch (weaponPos)
         {
             case 0:
@@ -399,13 +387,49 @@ public class PlayerControl : MonoBehaviour
                 if (RifleManage.AmmunitionZero)
                     weapon = Weapons.PISTOL;
                 else
-                    weapon = Weapons.RIFLE; 
+                    weapon = Weapons.RIFLE;
                 break;
             case 2:
                 weapon = Weapons.KNIFE; break;
-            case 3:
-                weapon = Weapons.ROPE; break;
             default: break;
+        }
+
+        return weapon;
+    }
+    void WeaponControl()
+    {
+        if(Input.GetKeyDown(KeyCode.Tab) && 
+            !grappling.isAttach &&
+            !grappling.isHookActive &&
+            !grappling.isLineMax &&
+            !isMoving &&
+            !PistolManage.isReloading &&
+            !isJumpStart &&
+            weapon != Weapons.ROPE) {
+            weaponPos++;
+            if (weaponPos > 2)
+                weaponPos = 0;
+            weapon = ReturnWeapon();
+        }
+      
+        if (!grappling.isAttach &&
+            !grappling.isHookActive &&
+            !grappling.isLineMax &&
+            !isMoving &&
+            !PistolManage.isReloading &&
+            !isJumpStart)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                if (weapon != Weapons.ROPE)
+                {
+                    weapon = Weapons.ROPE;
+                }
+                else
+                {
+                    weapon = ReturnWeapon();
+                }
+            }
         }
     }
     void Walk()

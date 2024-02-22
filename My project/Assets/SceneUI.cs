@@ -12,6 +12,8 @@ public class SceneUI : MonoBehaviour
 {
     public GameObject Player;
     public GameObject Event;
+
+    ScoreManage ScoreM;
     SetGame SG;
     List<Enemy_StatManage> ESList;
 
@@ -23,7 +25,6 @@ public class SceneUI : MonoBehaviour
     
     protected float curHealth;
     private float MaxHealth;
-
     private float Score;
 
     PlayerControl.Weapons weapon;
@@ -47,6 +48,7 @@ public class SceneUI : MonoBehaviour
 
     void Start()
     {
+        ScoreM = Event.GetComponent<ScoreManage>();
         SG = Event.GetComponent<SetGame>();
         ESList = SG.EnemyStatList;
         MaxHealth = Player.GetComponent<StatManage>().MaxHp;
@@ -71,12 +73,12 @@ public class SceneUI : MonoBehaviour
 
     private void ResetScore()
     {
-        Score = 0;
+
     }
 
     private void UpdateScore()
     {
-        Score = 100 * ESList.Count;
+        Score = ScoreM.score;
         text_Score.text = Score.ToString();
     }
 

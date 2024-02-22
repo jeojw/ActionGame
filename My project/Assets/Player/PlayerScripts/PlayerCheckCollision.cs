@@ -52,7 +52,7 @@ public class PlayerCheckCollision : MonoBehaviour
         }
     }
     // Update is called once per frame
-    private void Update()
+    void Update()
     {
         if (!PlayerStat.isDead)
         {
@@ -78,10 +78,9 @@ public class PlayerCheckCollision : MonoBehaviour
                 if (KnifeHit && gameObject.name != "HeadHitbox")
                 {
                     Physic.SetPhysics(new Vector2((int)Control.direction * (-1) * 15, 0));
-                    PlayerStat.SetGetDamage(1500f);
+                    PlayerStat.SetGetDamage(150f);
                     KnifeHit = false;
                 }
-                isHit = false;
             }
             else
             {

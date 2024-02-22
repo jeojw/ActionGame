@@ -68,7 +68,7 @@ public class EnemyCheckCollision : MonoBehaviour
         }
     }
 
-    private void Update()
+    void Update()
     {
         isDead = Estat.isDead;
         if (!isDead)
@@ -101,7 +101,6 @@ public class EnemyCheckCollision : MonoBehaviour
                     Physic.SetPhysics(new Vector2((int)EMove.detectDirection * (-1) * 80, 0));
                     RifleBulletHit = false;
                 }
-                isHit = false;
             }
             else
             {

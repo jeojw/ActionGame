@@ -132,9 +132,6 @@ public class StatManage : MonoBehaviour
     }
     void HpUpdate()
     {
-        GetHit = (HeadCheck.isHit || BodyCheck.isHit ||
-                 RightLegCheck_1.isHit || RightLegCheck_2.isHit ||
-                 LeftLegCheck_1.isHit || LeftLegCheck_2.isHit);
         if (curHp > 0)
         {
             isDead = false;
@@ -164,6 +161,10 @@ public class StatManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GetHit = (HeadCheck.isHit || BodyCheck.isHit ||
+                 RightLegCheck_1.isHit || RightLegCheck_2.isHit ||
+                 LeftLegCheck_1.isHit || LeftLegCheck_2.isHit);
+
         HpUpdate();
         ATKUpdate();
     }

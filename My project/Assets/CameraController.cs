@@ -42,7 +42,7 @@ public class CameraController : MonoBehaviour
 
         transform.position = new Vector3(clampX, clampY, -10);
     }
-    void FixedUpdate()
+    void LateUpdate()
     {
         LimitCameraArea();
     }
