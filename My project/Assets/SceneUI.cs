@@ -19,6 +19,8 @@ public class SceneUI : MonoBehaviour
 
     public TextMeshProUGUI text_Timer;
     public TextMeshProUGUI text_Score;
+    public TextMeshProUGUI text_ResultScore;
+    public TextMeshProUGUI text_ResultTimer;
     private float time_start;
     private float time_current;
     private bool isEnded;
@@ -73,13 +75,18 @@ public class SceneUI : MonoBehaviour
 
     private void ResetScore()
     {
-
+     
     }
 
     private void UpdateScore()
     {
         Score = ScoreM.score;
         text_Score.text = Score.ToString();
+    }
+
+    private void ResultScore()
+    {
+        text_ResultScore.text = Score.ToString() + " pt";
     }
 
     private void Reset_Timer()
@@ -99,6 +106,7 @@ public class SceneUI : MonoBehaviour
     private void End_Timer()
     {
         text_Timer.text = $"{time_current:N2} sec";
+        text_ResultTimer.text = $"{time_current:N2} sec";
         isEnded = true;
     }
     
@@ -260,5 +268,7 @@ public class SceneUI : MonoBehaviour
         Check_Timer();
         CheckHp();
         UpdateScore();
+        ResultScore();
+        End_Timer();
     }
 }

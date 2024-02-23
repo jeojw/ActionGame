@@ -61,7 +61,7 @@ public class SpriteUpdate : MonoBehaviour
         if (Direct == PlayerControl.Direction.LEFT) { Player.transform.localScale = new Vector3(-1, 1, 1); }
         else if (Direct == PlayerControl.Direction.RIGHT) { Player.transform.localScale = new Vector3(1, 1, 1); }
 
-        if (playerControl.weapon == PlayerControl.Weapons.PISTOL && rifleManage.AmmunitionZero)
+        if (playerControl.weapon == PlayerControl.Weapons.PISTOL)
         {
             anim.SetBool("isGetPistol", true);
         }

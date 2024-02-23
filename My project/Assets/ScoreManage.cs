@@ -28,6 +28,10 @@ public class ScoreManage : MonoBehaviour
         GetScore = new List<bool> { false };
         GetScore = Enumerable.Repeat(false, DeadboolList.Count).ToList();
     }
+    public void ResetScore()
+    {
+        score = 0;
+    }
 
     // Update is called once per frame
     void Update()
@@ -36,7 +40,7 @@ public class ScoreManage : MonoBehaviour
         {
             if (DeadboolList[i] && !GetScore[i])
             {
-                score += 100;
+                score += 200;
                 GetScore[i] = true;
             }
         }

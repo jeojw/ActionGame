@@ -7,7 +7,10 @@ using UnityEngine;
 public class ProjectilesManage : MonoBehaviour
 {
     public GameObject Player;
-    public GameObject Weapon;
+    public GameObject Pistol;
+    public GameObject Rifle;
+
+    List<GameObject> BulletList;
 
     GameObject Bullets;
     GameObject CurBullet;
@@ -21,9 +24,17 @@ public class ProjectilesManage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        BulletList = new List<GameObject>();
         Bullets = Resources.Load<GameObject>("Prefabs/BulletObjects");
         playControl = Player.GetComponent<PlayerControl>();
         SG = GetComponent<SetGame>();
+    }
+
+    public void ResetList()
+    {
+        for (int i = 0; i < BulletList.Count; i++)
+            Destroy(BulletList[i]);
+        BulletList.Clear();
     }
 
     void Player_Bullet_Shot()
@@ -31,13 +42,15 @@ public class ProjectilesManage : MonoBehaviour
         if (playControl.isShooting &&
             playControl.ShotDelayElapsed == 0)
         {
-            if (playControl.weapon == PlayerControl.Weapons.PISTOL && !Weapon.GetComponent<PistolManage>().AmmunitionZero)
+            if (playControl.weapon == PlayerControl.Weapons.PISTOL && !Pistol.GetComponent<PistolManage>().AmmunitionZero)
             {
                 CurBullet = Instantiate(Bullets.transform.GetChild(0).gameObject);
+                BulletList.Add(CurBullet);
             }
-            else if(playControl.weapon == PlayerControl.Weapons.RIFLE && !Weapon.GetComponent<PistolManage>().AmmunitionZero)
+            else if(playControl.weapon == PlayerControl.Weapons.RIFLE && !Rifle.GetComponent<RifleManage>().AmmunitionZero)
             {
                 CurBullet = Instantiate(Bullets.transform.GetChild(1).gameObject);
+                BulletList.Add(CurBullet);
             }
         }
     }
@@ -52,10 +65,12 @@ public class ProjectilesManage : MonoBehaviour
                 if (SG.EnemyMovementList[i].AttackType == Enemy_Movement.ATTACKTYPE.PISTOL)
                 {
                     EnemyCurBullet = Instantiate(Bullets.transform.GetChild(2).gameObject);
+                    BulletList.Add(EnemyCurBullet);
                 }
                 if (SG.EnemyMovementList[i].AttackType == Enemy_Movement.ATTACKTYPE.RIFLE)
                 {
                     EnemyCurBullet = Instantiate(Bullets.transform.GetChild(3).gameObject);
+                    BulletList.Add(EnemyCurBullet);
                 }
             }
         }

@@ -11,6 +11,7 @@ public class GrapplingHook : MonoBehaviour
     public GameObject hook;
     public Transform waist;
     Rigidbody2D hookRigid;
+    Rigidbody2D playerRigid;
     Hookg hookg;
     PlayerControl playControl;
     Vector2 mousedir;
@@ -43,6 +44,7 @@ public class GrapplingHook : MonoBehaviour
         RopeDelayElapsed = 0;
         hook.gameObject.SetActive(false);
         hookRigid = hook.GetComponent<Rigidbody2D>();
+        playerRigid = GetComponent<Rigidbody2D>();
         hookg = hook.GetComponent<Hookg>();
         playControl = GetComponent<PlayerControl>();
     }
@@ -147,7 +149,7 @@ public class GrapplingHook : MonoBehaviour
                 else if (Input.GetKeyDown(KeyCode.W))
                 {
                     isLineMax = false;
-                    hookRigid.AddForce((hook.transform.position - hand.transform.position).normalized * 30f, ForceMode2D.Impulse);
+                    playerRigid.AddForce((hook.transform.position - hand.transform.position).normalized * 150f, ForceMode2D.Impulse);
                 }
             }
         }

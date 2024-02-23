@@ -11,6 +11,7 @@ public class MainSceneManage : MonoBehaviour
 {
     public GameObject StopPopup;
     public GameObject DeadPopup;
+    public GameObject ClearPopup;
     public GameObject Player;
     StatManage StatM;
     public GameObject Event;
@@ -50,7 +51,8 @@ public class MainSceneManage : MonoBehaviour
         if (EventSystem.current.currentSelectedGameObject != null)
         {
             if (EventSystem.current.currentSelectedGameObject.name == "Yes" ||
-                EventSystem.current.currentSelectedGameObject.name == "DNo")
+                EventSystem.current.currentSelectedGameObject.name == "DNo" ||
+                EventSystem.current.currentSelectedGameObject.name == "Quit")
             {
                 SceneManager.LoadScene("StartScene");
                 Time.timeScale = 1;
@@ -65,12 +67,14 @@ public class MainSceneManage : MonoBehaviour
     {
         if (EventSystem.current.currentSelectedGameObject != null)
         {
-            if (EventSystem.current.currentSelectedGameObject.name == "DYes")
+            if (EventSystem.current.currentSelectedGameObject.name == "DYes" ||
+                EventSystem.current.currentSelectedGameObject.name == "Retry")
             {
                 isReset = true;
                 SG.ResetGame();
                 StatM.ResetHp();
                 DeadPopup.SetActive(false);
+                ClearPopup.SetActive(false);
             }
         }
     }
@@ -91,6 +95,19 @@ public class MainSceneManage : MonoBehaviour
         }
         else
             DeadPopup.SetActive(false);
+
+        if (SG.isClear)
+        {
+            ClearPopup.SetActive(true);
+            Time.timeScale = 0f;
+        }
+
+        else
+        {
+            ClearPopup.SetActive(false);
+            Time.timeScale = 1f;
+        }
+            
         GameProgress();
     }
 }

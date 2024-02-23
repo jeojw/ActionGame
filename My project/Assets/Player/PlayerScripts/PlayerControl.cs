@@ -373,10 +373,6 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    public void SetShotDelay(float _Delay)
-    {
-        ShotDelay = _Delay;
-    }
     private Weapons ReturnWeapon()
     {
         switch (weaponPos)
@@ -396,6 +392,11 @@ public class PlayerControl : MonoBehaviour
 
         return weapon;
     }
+
+    public void SetShotDelay(float _Delay)
+    {
+        ShotDelay = _Delay;
+    }
     void WeaponControl()
     {
         if(Input.GetKeyDown(KeyCode.Tab) && 
@@ -409,7 +410,6 @@ public class PlayerControl : MonoBehaviour
             weaponPos++;
             if (weaponPos > 2)
                 weaponPos = 0;
-            weapon = ReturnWeapon();
         }
       
         if (!grappling.isAttach &&
@@ -431,6 +431,25 @@ public class PlayerControl : MonoBehaviour
                 }
             }
         }
+        if (weapon != Weapons.ROPE)
+        {
+            switch (weaponPos)
+            {
+                case 0:
+                    weapon = Weapons.NONE; break;
+                case 1:
+                    if (RifleManage.AmmunitionZero)
+                        weapon = Weapons.PISTOL;
+
+                    else
+                        weapon = Weapons.RIFLE;
+                    break;
+                case 2:
+                    weapon = Weapons.KNIFE; break;
+                default: break;
+            }
+        }
+        
     }
     void Walk()
     {
@@ -537,15 +556,16 @@ public class PlayerControl : MonoBehaviour
             rigid.velocity = new Vector2(x * speed * 2f, rigid.velocity.y);
     }
 
+    public void ResetPlayer()
+    {
+        transform.position = PlayerPos;
+        weaponPos = 0;
+        RifleManage.ResetMagazine();
+        PistolManage.ResetMagazine();
+    }
+
     void Update()
     {
-        if (SG.isReset)
-        {
-            transform.position = PlayerPos;
-            weaponPos = 0;
-            RifleManage.ResetMagazine();
-            PistolManage.ResetMagazine();
-        }
         if (!statManage.isDead)
         {
             isGetItem = CheckGetItem();
@@ -568,8 +588,6 @@ public class PlayerControl : MonoBehaviour
                 isGrapplingShot = false;
                 isPunching = false;
             }
-            if (isFencing)
-                Debug.Log(isFencing);
         }
     }
 

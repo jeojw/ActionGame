@@ -74,6 +74,13 @@ public class ItemManage : MonoBehaviour
         }
     }
 
+    public void ResetItemList()
+    {
+        for (int i = 0; i < ItemList.Count; i++)
+            Destroy(ItemList[i]);
+        ItemList.Clear();
+    }
+
     private void Update()
     {
         for (int i = 0; i < EnemyStatList.Count; i++)

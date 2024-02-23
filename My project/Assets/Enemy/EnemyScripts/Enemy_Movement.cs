@@ -15,12 +15,6 @@ public class Enemy_Movement : MonoBehaviour
         RIFLE
     }
 
-    public enum CONDITION
-    {
-        LIVE,
-        DEAD
-    }
-
     public enum DIRECTION
     {
         LEFT = -1,
@@ -28,7 +22,6 @@ public class Enemy_Movement : MonoBehaviour
     }
 
     public ATTACKTYPE AttackType;
-    public CONDITION Condition;
     public DIRECTION detectDirection;
 
     public GameObject Pistol;
@@ -54,7 +47,7 @@ public class Enemy_Movement : MonoBehaviour
 
     private bool isHit;
 
-    private float NDetectInterval =10f;
+    private float NDetectInterval =40f;
     private float RifleDetectInterval = 60f;
     public float speed;
 
