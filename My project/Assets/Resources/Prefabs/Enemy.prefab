@@ -550,6 +550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 3909242729696192919}
+  FirePos: {fileID: 4911401903473198697}
   ShotDelay: 0
   curAmmunition: 0
 --- !u!1 &1843473788287393016
@@ -1552,11 +1553,11 @@ Transform:
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6980624139527115487}
   - {fileID: 5953909670917115034}
   - {fileID: 1179339725597926445}
   - {fileID: 5149926384390699256}
   - {fileID: 1838557673990384850}
+  - {fileID: 6980624139527115487}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &5369378452835506391
@@ -1600,7 +1601,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {fileID: 5953909670917115034}
   AttackType: 1
-  Condition: 0
   detectDirection: 0
   Pistol: {fileID: 6900954180227360800}
   Rifle: {fileID: 1830024102058558941}
@@ -1611,8 +1611,6 @@ MonoBehaviour:
   isShooting: 0
   isDead: 0
   GetCool: 0
-  AttackCoolElapsed: 0
-  DetectInterval: 30
   speed: 10
 --- !u!114 &3248733471323707316
 MonoBehaviour:
@@ -2507,7 +2505,7 @@ Transform:
   m_GameObject: {fileID: 6210892849345823248}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.6670305, w: 0.74503046}
-  m_LocalPosition: {x: -0.84, y: 0.12, z: 0.000015259}
+  m_LocalPosition: {x: -0.84, y: 0.09, z: 0.000015259}
   m_LocalScale: {x: 6.2571073, y: 6.2571073, z: 6.2571073}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2794,6 +2792,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 3909242729696192919}
+  FirePos: {fileID: 4683438271928353050}
   ShotDelay: 0
   curAmmunition: 0
 --- !u!1 &7033534376188055541

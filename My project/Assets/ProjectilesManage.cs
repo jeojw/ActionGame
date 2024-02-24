@@ -26,6 +26,7 @@ public class ProjectilesManage : MonoBehaviour
     {
         BulletList = new List<GameObject>();
         Bullets = Resources.Load<GameObject>("Prefabs/BulletObjects");
+
         playControl = Player.GetComponent<PlayerControl>();
         SG = GetComponent<SetGame>();
     }
@@ -64,12 +65,14 @@ public class ProjectilesManage : MonoBehaviour
             {
                 if (SG.EnemyMovementList[i].AttackType == Enemy_Movement.ATTACKTYPE.PISTOL)
                 {
-                    EnemyCurBullet = Instantiate(Bullets.transform.GetChild(2).gameObject);
+                    EnemyCurBullet = Instantiate(Bullets.transform.GetChild(2).gameObject, SG.EnemyList[i].transform.GetChild(2).GetChild(1).GetChild(0).transform.position, Quaternion.identity);
+                    EnemyCurBullet.GetComponent<Enemy_Bullet_Manage>().SetDirect((int)SG.EnemyMovementList[i].detectDirection);
                     BulletList.Add(EnemyCurBullet);
                 }
                 if (SG.EnemyMovementList[i].AttackType == Enemy_Movement.ATTACKTYPE.RIFLE)
                 {
-                    EnemyCurBullet = Instantiate(Bullets.transform.GetChild(3).gameObject);
+                    EnemyCurBullet = Instantiate(Bullets.transform.GetChild(2).gameObject, SG.EnemyList[i].transform.GetChild(2).GetChild(2).GetChild(0).transform.position, Quaternion.identity);
+                    EnemyCurBullet.GetComponent<Enemy_Bullet_Manage>().SetDirect((int)SG.EnemyMovementList[i].detectDirection);
                     BulletList.Add(EnemyCurBullet);
                 }
             }
@@ -79,6 +82,7 @@ public class ProjectilesManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         Player_Bullet_Shot();
         Enemy_Bullet_Shot();
     }

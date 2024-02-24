@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy_GunManage : MonoBehaviour
 {
     public GameObject Enemy;
+    public Transform FirePos;
 
     Enemy_Movement EMove;
     public float ShotDelay;

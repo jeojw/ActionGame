@@ -42,7 +42,15 @@ public class Enemy_Movement : MonoBehaviour
 
     private float AttackCoolTime;
     private float AttackCoolStart = 0;
-    public float AttackCoolElapsed = 0;
+    private float _AttackcoolElapsed = 0;
+    public float AttackCoolElapsed
+    {
+        get { return _AttackcoolElapsed; }
+        set
+        {
+            _AttackcoolElapsed = value;
+        }
+    }
     private int ShotCount = 0; 
 
     private bool isHit;
@@ -190,10 +198,10 @@ public class Enemy_Movement : MonoBehaviour
 
     void AttackCooldown()
     {
-        AttackCoolElapsed = Time.time - AttackCoolStart;
-        if (AttackCoolElapsed >= AttackCoolTime)
+        _AttackcoolElapsed = Time.time - AttackCoolStart;
+        if (_AttackcoolElapsed >= AttackCoolTime)
         {
-            AttackCoolElapsed = 0;
+            _AttackcoolElapsed = 0;
             AttackCoolStart = 0;
             GetCool = false;
         }

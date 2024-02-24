@@ -624,6 +624,15 @@ public class PlayerControl : MonoBehaviour
             {
                 isLanding = false;
             }
+
+            if ((anim.GetCurrentAnimatorStateInfo(0).IsName("Land") ||
+                 anim.GetCurrentAnimatorStateInfo(0).IsName("Land_Rifle") ||
+                 anim.GetCurrentAnimatorStateInfo(0).IsName("Land_Pistol") ||
+                 anim.GetCurrentAnimatorStateInfo(0).IsName("Land_Knife")) &&
+                 anim.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1.0f)
+            {
+                
+            }
         }
     }
 }

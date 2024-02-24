@@ -4,28 +4,25 @@ using UnityEngine;
 
 public class Enemy_Bullet_Manage : MonoBehaviour
 {
-    Enemy_Movement.DIRECTION direct;
+    int direct;
+    Enemy_Movement EMove;
     SpriteRenderer BulletSprite;
     Rigidbody2D physics;
 
     GameObject EventSystem;
-    SetGame SG;
 
-    GameObject Enemy;
     float BulletSpeed = 120f;
     // Start is called before the first frame update
     void Start()
     {
         physics = GetComponent<Rigidbody2D>();
         BulletSprite = GetComponent<SpriteRenderer>();
-        if (transform.tag == "Pistol_Bullet")
-            transform.position = GameObject.Find("EnemyPistolFirePosition").transform.position;
-        else if (transform.tag == "Rifle_Bullet")
-            transform.position = GameObject.Find("EnemyRifleFirePosition").transform.position;
         EventSystem = GameObject.Find("EventSystem");
-        SG = EventSystem.GetComponent<SetGame>();
-        Enemy = GameObject.Find("Enemy(Clone)");
-        direct = Enemy.GetComponent<Enemy_Movement>().detectDirection;
+    }
+
+    public void SetDirect(int _direct)
+    {
+        direct = _direct;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -49,16 +46,11 @@ public class Enemy_Bullet_Manage : MonoBehaviour
             physics.velocity = Vector2.zero;
             Destroy(gameObject);
         }
-
-        if (direct == Enemy_Movement.DIRECTION.LEFT)
-        {
+        if (direct == -1)
             BulletSprite.flipY = true;
-            physics.velocity = new Vector2(Vector2.left.x * BulletSpeed, 0);
-        }
         else
-        {
-            physics.velocity = new Vector2(Vector2.right.x * BulletSpeed, 0);
-        }
+            BulletSprite.flipY = false;
 
+        physics.velocity = new Vector2(direct * BulletSpeed, 0);
     }
 }
