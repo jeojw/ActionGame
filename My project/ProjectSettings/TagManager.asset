@@ -18,6 +18,8 @@ TagManager:
   - Item
   - DeadGround
   - EnemyKnife
+  - Enemy_Pistol_Bullet
+  - Enemy_Rifle_Bullet
   layers:
   - Default
   - TransparentFX

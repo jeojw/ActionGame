@@ -35,12 +35,12 @@ public class PlayerCheckCollision : MonoBehaviour
     {
         if (HitCoolElapsed == 0)
         {
-            if (collision.CompareTag("Pistol_Bullet"))
+            if (collision.CompareTag("Enemy_Pistol_Bullet"))
             {
                 PistolBulletHit = true;
             }
 
-            if (collision.CompareTag("Rifle_Bullet"))
+            if (collision.CompareTag("Enemy_Rifle_Bullet"))
             {
                 RifleBulletHit = true;
             }

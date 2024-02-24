@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 1452069643558449373}
   m_Layer: 0
   m_Name: Enemy_Pistol_Bullet
-  m_TagString: Pistol_Bullet
+  m_TagString: Enemy_Pistol_Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -570,9 +570,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9aecd98c9c20ad4588c1294b22362ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PistolFire: {fileID: 0}
-  RifleFire: {fileID: 0}
-  Enemy: {fileID: 0}
 --- !u!1 &7138727718934067312
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,7 +586,7 @@ GameObject:
   - component: {fileID: 8806432490247494040}
   m_Layer: 0
   m_Name: Enemy_Rifle_Bullet
-  m_TagString: Rifle_Bullet
+  m_TagString: Enemy_Rifle_Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -858,9 +855,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9aecd98c9c20ad4588c1294b22362ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PistolFire: {fileID: 0}
-  RifleFire: {fileID: 0}
-  Enemy: {fileID: 0}
 --- !u!1 &7233271218486177744
 GameObject:
   m_ObjectHideFlags: 0

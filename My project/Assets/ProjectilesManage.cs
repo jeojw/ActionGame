@@ -65,13 +65,13 @@ public class ProjectilesManage : MonoBehaviour
             {
                 if (SG.EnemyMovementList[i].AttackType == Enemy_Movement.ATTACKTYPE.PISTOL)
                 {
-                    EnemyCurBullet = Instantiate(Bullets.transform.GetChild(2).gameObject, SG.EnemyList[i].transform.GetChild(2).GetChild(1).GetChild(0).transform.position, Quaternion.identity);
+                    EnemyCurBullet = Instantiate(Bullets.transform.GetChild(2).gameObject, SG.EnemyList[i].transform.GetChild(2).GetChild(1).GetChild(0).transform.position, Quaternion.Euler(new Vector3(0, 0, -90)));
                     EnemyCurBullet.GetComponent<Enemy_Bullet_Manage>().SetDirect((int)SG.EnemyMovementList[i].detectDirection);
                     BulletList.Add(EnemyCurBullet);
                 }
                 if (SG.EnemyMovementList[i].AttackType == Enemy_Movement.ATTACKTYPE.RIFLE)
                 {
-                    EnemyCurBullet = Instantiate(Bullets.transform.GetChild(2).gameObject, SG.EnemyList[i].transform.GetChild(2).GetChild(2).GetChild(0).transform.position, Quaternion.identity);
+                    EnemyCurBullet = Instantiate(Bullets.transform.GetChild(2).gameObject, SG.EnemyList[i].transform.GetChild(2).GetChild(2).GetChild(0).transform.position, Quaternion.Euler(new Vector3(0, 0, -90)));
                     EnemyCurBullet.GetComponent<Enemy_Bullet_Manage>().SetDirect((int)SG.EnemyMovementList[i].detectDirection);
                     BulletList.Add(EnemyCurBullet);
                 }
