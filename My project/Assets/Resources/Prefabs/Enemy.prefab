@@ -3711,7 +3711,7 @@ GameObject:
   - component: {fileID: 4801523947283665036}
   - component: {fileID: 8081497571194738884}
   - component: {fileID: 5959553219324055158}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: THitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}

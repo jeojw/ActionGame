@@ -11,7 +11,6 @@ public class ScoreManage : MonoBehaviour
     private int PlayerDeath;
     private int PlayerGetHit;
     private int GetItem;
-    private bool isDead;
 
     SetGame SG;
     PlayerControl PC;
@@ -22,7 +21,6 @@ public class ScoreManage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isDead = false;
         SG = GetComponent<SetGame>();
         PC = Player.GetComponent<PlayerControl>();
         StM = Player.GetComponent<StatManage>();
@@ -33,7 +31,6 @@ public class ScoreManage : MonoBehaviour
     public void ResetScore()
     {
         score = 0;
-        isDead = false;
     }
 
     // Update is called once per frame
@@ -52,11 +49,6 @@ public class ScoreManage : MonoBehaviour
         if (StM.GetHit)
         {
             score -= 100;
-        }
-        if (StM.isDead && !isDead)
-        {
-            score -= 1000;
-            isDead = true;
         }
     }
 }
