@@ -112,6 +112,5 @@ public class EnemyCheckCollision : MonoBehaviour
             Physic.SetPhysics(new Vector2(0, 0));
             Pcollider.enabled = false;
         }
-            
     }
 }

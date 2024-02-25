@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerBulletManage : MonoBehaviour
 {
+    BoxCollider2D BoxC;
     PlayerControl.Direction direct;
     SpriteRenderer BulletSprite;
     Rigidbody2D physics;
@@ -12,6 +14,7 @@ public class PlayerBulletManage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        BoxC = GetComponent<BoxCollider2D>();   
         physics = GetComponent<Rigidbody2D>();
         BulletSprite = GetComponent<SpriteRenderer>();
         if (transform.tag == "Pistol_Bullet")
@@ -22,6 +25,12 @@ public class PlayerBulletManage : MonoBehaviour
         direct = Player.GetComponent<PlayerControl>().direction;
     }
 
+    private void CastColliderCheck()
+    {
+        RaycastHit2D Hit = Physics2D.BoxCast(transform.position, BoxC.size, 0f, new Vector2((int)direct, 0), 0.02f, LayerMask.GetMask("Enemy"));
+        if (Hit.collider != null)
+            Destroy(gameObject);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Ground") ||
@@ -37,6 +46,8 @@ public class PlayerBulletManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CastColliderCheck();
+
         Vector3 Pos_Camera = Camera.main.WorldToViewportPoint(transform.position);
         if (Pos_Camera.x < 0f || Pos_Camera.x > 1f)
         {

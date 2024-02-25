@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy_Bullet_Manage : MonoBehaviour
 {
     int direct;
+    BoxCollider2D BoxC;
     Enemy_Movement EMove;
     SpriteRenderer BulletSprite;
     Rigidbody2D physics;
@@ -15,6 +16,7 @@ public class Enemy_Bullet_Manage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        BoxC = GetComponent<BoxCollider2D>();
         physics = GetComponent<Rigidbody2D>();
         BulletSprite = GetComponent<SpriteRenderer>();
         EventSystem = GameObject.Find("EventSystem");
@@ -36,10 +38,18 @@ public class Enemy_Bullet_Manage : MonoBehaviour
         }
     }
 
+    private void CastColliderCheck()
+    {
+        RaycastHit2D Hit = Physics2D.BoxCast(transform.position, BoxC.size, 0f, new Vector2(direct, 0), 0.02f, LayerMask.GetMask("Player"));
+        if (Hit.collider != null)
+            Destroy(gameObject);
+    }
 
     // Update is called once per frame
     void Update()
     {
+        CastColliderCheck();
+
         Vector3 Pos_Camera = Camera.main.WorldToViewportPoint(transform.position);
         if (Pos_Camera.x < 0f || Pos_Camera.x > 1f)
         {

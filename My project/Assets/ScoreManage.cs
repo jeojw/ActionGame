@@ -46,7 +46,7 @@ public class ScoreManage : MonoBehaviour
         }
         if (PC.isGetItem)
             score += 30;
-        if (StM.GetHit)
+        if (StM.GetHit && !StM.isDead)
         {
             score -= 100;
         }
