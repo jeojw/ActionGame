@@ -38,7 +38,6 @@ public class RecordManage : MonoBehaviour
             SetRecordList[i].Item1.text = newRecords.Scorerecords[i].ToString();
             SetRecordList[i].Item2.text = newRecords.Timerecords[i].ToString();
         }
-        Debug.Log(newRecords.Count);
     }
 
     // Update is called once per frame
