@@ -36,7 +36,7 @@ public class RecordManage : MonoBehaviour
     void Update()
     {
         string file = File.ReadAllText(Application.dataPath + "/Records.json");
-         newRecords = JsonUtility.FromJson<RecordList>(file);
+        newRecords = JsonUtility.FromJson<RecordList>(file);
 
         for (int i = 0; i < newRecords.Count; i++)
         {
