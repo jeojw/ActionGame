@@ -60,16 +60,29 @@ public class SetGame : MonoBehaviour
         //EnemyList.Add(Instantiate(Enemy, new Vector3(290f, 18f, 147.699f), Quaternion.identity));
         //EnemyList.Add(Instantiate(Enemy, new Vector3(345f, 50f, 147.699f), Quaternion.identity));
         //EnemyList.Add(Instantiate(Enemy, new Vector3(360f, 50f, 147.699f), Quaternion.identity));
+        //EnemyList.Add(Instantiate(Enemy, new Vector3(436f, 18f, 147.699f), Quaternion.identity));
+        //EnemyList.Add(Instantiate(Enemy, new Vector3(450f, 18f, 147.699f), Quaternion.identity));
+        //EnemyList.Add(Instantiate(Enemy, new Vector3(490f, 18f, 147.699f), Quaternion.identity));
+        //EnemyList.Add(Instantiate(Enemy, new Vector3(512f, 18f, 147.699f), Quaternion.identity));
+        //EnemyList.Add(Instantiate(Enemy, new Vector3(577f, 62f, 147.699f), Quaternion.identity));
+        //EnemyList.Add(Instantiate(Enemy, new Vector3(600f, 62f, 147.699f), Quaternion.identity));
 
         EnemyList[0].GetComponent<Enemy_Movement>().SetAttackType(Enemy_Movement.ATTACKTYPE.SWORD);
         //EnemyList[1].GetComponent<Enemy_Movement>().SetAttackType(Enemy_Movement.ATTACKTYPE.SWORD);
         //EnemyList[2].GetComponent<Enemy_Movement>().SetAttackType(Enemy_Movement.ATTACKTYPE.SWORD);
         //EnemyList[3].GetComponent<Enemy_Movement>().SetAttackType(Enemy_Movement.ATTACKTYPE.PISTOL);
-        //EnemyList[4].GetComponent<Enemy_Movement>().SetAttackType(Enemy_Movement.ATTACKTYPE.PISTOL);
-        //EnemyList[5].GetComponent<Enemy_Movement>().SetAttackType(Enemy_Movement.ATTACKTYPE.RIFLE);
+        //EnemyList[4].GetComponent<Enemy_Movement>().SetAttackType(Enemy_Movement.ATTACKTYPE.SWORD);
+        //EnemyList[5].GetComponent<Enemy_Movement>().SetAttackType(Enemy_Movement.ATTACKTYPE.PISTOL);
         //EnemyList[6].GetComponent<Enemy_Movement>().SetAttackType(Enemy_Movement.ATTACKTYPE.RIFLE);
         //EnemyList[7].GetComponent<Enemy_Movement>().SetAttackType(Enemy_Movement.ATTACKTYPE.SWORD);
-        //EnemyList[8].GetComponent<Enemy_Movement>().SetAttackType(Enemy_Movement.ATTACKTYPE.SWORD);
+        //EnemyList[8].GetComponent<Enemy_Movement>().SetAttackType(Enemy_Movement.ATTACKTYPE.RIFLE);
+        //EnemyList[9].GetComponent<Enemy_Movement>().SetAttackType(Enemy_Movement.ATTACKTYPE.PISTOL);
+        //EnemyList[10].GetComponent<Enemy_Movement>().SetAttackType(Enemy_Movement.ATTACKTYPE.PISTOL);
+        //EnemyList[11].GetComponent<Enemy_Movement>().SetAttackType(Enemy_Movement.ATTACKTYPE.SWORD);
+        //EnemyList[12].GetComponent<Enemy_Movement>().SetAttackType(Enemy_Movement.ATTACKTYPE.RIFLE);
+        //EnemyList[13].GetComponent<Enemy_Movement>().SetAttackType(Enemy_Movement.ATTACKTYPE.SWORD);
+        //EnemyList[14].GetComponent<Enemy_Movement>().SetAttackType(Enemy_Movement.ATTACKTYPE.SWORD);
+
 
         for (int i = 0; i < EnemyList.Count; i++)
         {

@@ -13,7 +13,6 @@ public class RecordManage : MonoBehaviour
     RecordList newRecords = new RecordList();
 
     List<Tuple<TextMeshProUGUI, TextMeshProUGUI>> SetRecordList = new List<Tuple<TextMeshProUGUI, TextMeshProUGUI>>();
-    List<Tuple<float, float>> RecordList = new List<Tuple<float, float>>();
 
     private float preScore = 0f;
     private float preTime = 0f;
@@ -30,11 +29,7 @@ public class RecordManage : MonoBehaviour
             SetRecordList.Add(new Tuple<TextMeshProUGUI, TextMeshProUGUI> (Records.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>(),
                                                                            Records.transform.GetChild(i).GetChild(1).GetComponent<TextMeshProUGUI>()));
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
         string file = File.ReadAllText(Application.dataPath + "/Records.json");
         newRecords = JsonUtility.FromJson<RecordList>(file);
 
@@ -43,5 +38,12 @@ public class RecordManage : MonoBehaviour
             SetRecordList[i].Item1.text = newRecords.Scorerecords[i].ToString();
             SetRecordList[i].Item2.text = newRecords.Timerecords[i].ToString();
         }
+        Debug.Log(newRecords.Count);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }

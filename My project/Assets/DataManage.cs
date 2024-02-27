@@ -1,8 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using Unity.Profiling;
+using UnityEditor.ShaderGraph.Serialization;
 using UnityEngine;
+using Newtonsoft.Json;
+using System;
 
 public class RecordList
 {
@@ -19,8 +20,10 @@ public class RecordList
 }
 public class Record
 {
-    public float _Score;
-    public float _Time;
+    private float _Score;
+    private float _Time;
+    public Record(float _score, float _time) { _Score = _score; _Time = _time; }
+    
     public float ReturnScore() { return _Score; }
     public float ReturnTime() { return _Time; }
 
@@ -28,6 +31,7 @@ public class Record
 public class DataManage : MonoBehaviour
 {
     RecordList recordList = new RecordList();
+    Record record;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,18 +40,28 @@ public class DataManage : MonoBehaviour
 
     public void MakeRecord(float _score, float _time)
     {
-        Record record = new Record();
-        record._Score = _score;
-        record._Time = _time;
-
-        recordList.RecordStore(record);
+        record = new Record(_score, _time);
     }
 
     public void StoreRecord()
     {
-        File.WriteAllText(Application.dataPath + "/Records.json", JsonUtility.ToJson(recordList));
+        string file = File.ReadAllText(Application.dataPath + "/Records.json");
+        var RecordList = JsonUtility.FromJson<RecordList>(file);
+        if (RecordList != null)
+        {
+            if (RecordList.Count < 5) 
+            {
+                RecordList.RecordStore(record);
+                File.WriteAllText(Application.dataPath + "/Records.json", JsonUtility.ToJson(RecordList));
+            }
+        }
+        else
+        {
+            recordList.RecordStore(record);
+            File.WriteAllText(Application.dataPath + "/Records.json", JsonUtility.ToJson(recordList));
+        }
+        
     }
-
     // Update is called once per frame
     void Update()
     {

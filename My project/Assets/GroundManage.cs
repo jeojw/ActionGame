@@ -52,6 +52,5 @@ public class GroundManage : MonoBehaviour
         else
             Tile.animationFrameRate = 0f;
 
-        Debug.Log(gridPos);
     }
 }
