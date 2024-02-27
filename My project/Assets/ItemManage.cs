@@ -49,29 +49,31 @@ public class ItemManage : MonoBehaviour
         float HealRange = RandomCoef * HealRate;
 
         float Rand = Random.Range(1, RandomCoef + 1);
-        if (1 <= Rand && Rand <= RifleRange)
-        {
-            DropItem = Item.transform.GetChild(1).gameObject;
-            ItemType = ITEMTYPE.RIFLE;
-        }
-            
-        else if (Rand > RifleRange && Rand <= HealRange + RifleRange)
-        {
-            DropItem = Item.transform.GetChild(0).gameObject;
-            ItemType = ITEMTYPE.HEAL;
-        }
+        //if (1 <= Rand && Rand <= RifleRange)
+        //{
+        //    DropItem = Item.transform.GetChild(1).gameObject;
+        //    ItemType = ITEMTYPE.RIFLE;
+        //}
 
-        else if (Rand > HealRange + RifleRange && Rand <= HealRange + RifleRange + PistolRange)
-        {
-            DropItem = Item.transform.GetChild(2).gameObject;
-            ItemType = ITEMTYPE.PISTOL;
-        }
+        //else if (Rand > RifleRange && Rand <= HealRange + RifleRange)
+        //{
+        //    DropItem = Item.transform.GetChild(0).gameObject;
+        //    ItemType = ITEMTYPE.HEAL;
+        //}
 
-        else if (Rand > HealRange + RifleRange + PistolRange)
-        {
-            DropItem = null;
-            ItemType = ITEMTYPE.NONE;
-        }
+        //else if (Rand > HealRange + RifleRange && Rand <= HealRange + RifleRange + PistolRange)
+        //{
+        //    DropItem = Item.transform.GetChild(2).gameObject;
+        //    ItemType = ITEMTYPE.PISTOL;
+        //}
+
+        //else if (Rand > HealRange + RifleRange + PistolRange)
+        //{
+        //    DropItem = null;
+        //    ItemType = ITEMTYPE.NONE;
+        //}
+        DropItem = Item.transform.GetChild(2).gameObject;
+        ItemType = ITEMTYPE.PISTOL;
     }
 
     public void ResetItemList()
@@ -88,6 +90,7 @@ public class ItemManage : MonoBehaviour
             if (EnemyStatList[i].isDead && EnemyStatList[i].isDrop && !isDropItem)
             {
                 ChooseItem();
+                playerControl.SetGetItem(ItemType);
                 if (DropItem != null)
                 {
                     DropItem = Instantiate(DropItem, EnemyPosList[i].position, Quaternion.identity);

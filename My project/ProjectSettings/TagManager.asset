@@ -20,6 +20,7 @@ TagManager:
   - EnemyKnife
   - Enemy_Pistol_Bullet
   - Enemy_Rifle_Bullet
+  - CrackedGround
   layers:
   - Default
   - TransparentFX
@@ -39,9 +40,9 @@ TagManager:
   - DeadGround
   - PlayerBody
   - DeadHitbox
-  - 
-  - 
-  - 
+  - Player_Knife
+  - Enemy_Knife
+  - CrackedGround
   - 
   - 
   - 

@@ -16,7 +16,6 @@ public class PlayerControl : MonoBehaviour
     public GameObject Rifle;
 
     public GameObject Event;
-    SetGame SG;
 
     Vector3 PlayerPos = new Vector3(-10.82f, -0.4f, -0.1751058f);
 
@@ -47,7 +46,7 @@ public class PlayerControl : MonoBehaviour
         RUN = 2
     }
 
-    public bool isSlope = false;
+    private bool isSlope = false;
 
     private int jumpCount = 1;
     public float speed = 10f;
@@ -60,7 +59,12 @@ public class PlayerControl : MonoBehaviour
 
     private float ShotDelay;
     private float ShotDelayStart = 0;
-    public float ShotDelayElapsed = 0;
+    private float _ShotDelayElapsed = 0;
+    public float ShotDelayElapsed
+    {
+        get { return _ShotDelayElapsed; }
+        set { _ShotDelayElapsed = value; }
+    }
 
     private float PisteDelay = 0.5f;
     private float PisteDelayStart = 0;
@@ -70,15 +74,11 @@ public class PlayerControl : MonoBehaviour
     public float RunningInterval = 0.5f;
     public bool pressedFirstTime = false;
 
-    public float KnifeAttackInterval;
-    private float KnifeAttackStart = 0;
-    private float KnifeAttackElapsed = 0;
     public int KnifeStep = 1;
 
     public Direction direction = Direction.RIGHT;
     public Weapons weapon;
 
-    public bool AimingGun = false;
     public bool isShooting = false;
     public bool isFencing = false;
     public bool isGrapplingShot = false;
@@ -88,6 +88,7 @@ public class PlayerControl : MonoBehaviour
     public bool isJumpStart = false;
     public bool isJump = false;
     public bool isLanding = false;
+    public bool isLand = false;
     public bool isRolling = false;
     public bool isAttack = false;
     public bool isWalking = false;
@@ -97,7 +98,7 @@ public class PlayerControl : MonoBehaviour
     public bool isLowerBody = false;
     public bool isGetItem = false;
 
-    public bool IsDoublePressed = false;
+    private bool IsDoublePressed = false;
 
     public ItemManage.ITEMTYPE GetItemType;
 
@@ -105,7 +106,6 @@ public class PlayerControl : MonoBehaviour
 
     void Start()
     {
-        SG = Event.GetComponent<SetGame>();
         transform.position = PlayerPos;
         rigid = GetComponent<Rigidbody2D>();
         grappling = GetComponent<GrapplingHook>();
@@ -122,8 +122,8 @@ public class PlayerControl : MonoBehaviour
 
     private void CheckOnGround()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(bodyPos.position, new Vector2(2, 1), 0f, Vector2.down, 0.02f, LayerMask.GetMask("Ground"));
-        RaycastHit2D hit2 = Physics2D.BoxCast(bodyPos.position, new Vector2(2, 1), 0f, Vector2.down, 0.02f, LayerMask.GetMask("Slope"));
+        RaycastHit2D hit = Physics2D.BoxCast(bodyPos.position, new Vector2(3, 1), 0f, Vector2.down, 0.02f, LayerMask.GetMask("Ground"));
+        RaycastHit2D hit2 = Physics2D.BoxCast(bodyPos.position, new Vector2(3, 1), 0f, Vector2.down, 0.02f, LayerMask.GetMask("Slope"));
 
         if (hit.collider != null || hit2.collider != null)
         {
@@ -140,40 +140,32 @@ public class PlayerControl : MonoBehaviour
 
     private void CheckOnDeadGround()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(bodyPos.position, new Vector2(2, 1), 0f, Vector2.down, 0.02f, LayerMask.GetMask("DeadGround"));
+        RaycastHit2D hit = Physics2D.BoxCast(bodyPos.position, new Vector2(3, 1), 0f, Vector2.down, 0.02f, LayerMask.GetMask("DeadGround"));
         if (!statManage.isDead)
         {
-            if (hit.collider != null)
-            {
-                isOnDead = true;
-            }
-            else
-                isOnDead = false;
+            isOnDead = hit.collider != null;
         }
         else
             isOnDead = false;
     }
 
+    //void OnDrawGizmos()
+    //{
+    //    RaycastHit2D raycastHit = Physics2D.BoxCast(bodyPos.position, new Vector2(3, 1), 0f, Vector2.down, 0.01f, LayerMask.GetMask("Slope"));
+
+    //    Gizmos.color = Color.red;
+    //    if (raycastHit.collider != null)
+    //    {
+    //        Gizmos.DrawWireCube(bodyPos.position + Vector3.down * raycastHit.distance, new Vector2(3, 1));
+    //    }
+    //}
+
     private void checkSlope()
     {
         RaycastHit2D hit = Physics2D.Raycast(rigid.position, Vector2.down, 5f, LayerMask.GetMask("Slope"));
-        RaycastHit2D hit2 = Physics2D.BoxCast(bodyPos.position, new Vector2(2, 1), 0f, Vector2.down, 0.02f, LayerMask.GetMask("Slope"));
-        if (hit.collider != null)
-        {
-            if (hit.collider.name == "Slope")
-                isSlope = true;
-        }
-        else
-            isSlope = false;
+        RaycastHit2D hit2 = Physics2D.BoxCast(bodyPos.position, new Vector2(3, 1), 0f, Vector2.down, 0.01f, LayerMask.GetMask("Slope"));
 
-        if (hit2.collider != null)
-        {
-            if (hit2.collider.name == "Slope")
-                isSlope = true;
-        }
-        else
-            isSlope = false;
-
+        isSlope = hit.collider != null || hit2.collider != null;
     }
 
     public void SetPlayerPos(Vector3 _Pos)
@@ -303,7 +295,7 @@ public class PlayerControl : MonoBehaviour
         }
         else
         {
-            ShotDelayElapsed = 0;
+            PisteDelayElapsed = 0;
             isAttack = false;
         }
     }
@@ -319,17 +311,17 @@ public class PlayerControl : MonoBehaviour
             else
             {
                 isAttack = false;
-                ShotDelayElapsed = Time.time - ShotDelayStart;
-                if (ShotDelayElapsed >= ShotDelay)
+                _ShotDelayElapsed = Time.time - ShotDelayStart;
+                if (_ShotDelayElapsed >= ShotDelay)
                 {
-                    ShotDelayElapsed = 0;
+                    _ShotDelayElapsed = 0;
                     ShotDelayStart = 0;
                 }
             }
         }
         else
         {
-            ShotDelayElapsed = 0;
+            _ShotDelayElapsed = 0;
             isAttack = false;
         }
 
@@ -564,16 +556,16 @@ public class PlayerControl : MonoBehaviour
         PistolManage.ResetMagazine();
     }
 
+    public void SetGetItem(ItemManage.ITEMTYPE _type)
+    {
+        GetItemType = _type;
+    }
+
     void Update()
     {
         if (!statManage.isDead)
         {
             isGetItem = CheckGetItem();
-            
-            if (isGetItem)
-            {
-                isGetItem = false;
-            }
 
             Control();
             WeaponControl();
@@ -616,7 +608,7 @@ public class PlayerControl : MonoBehaviour
             {
                 Rolling();
             }
-            if (rigid.velocity.y < 0)
+            if (rigid.velocity.y < 0 && !isGround)
             {
                 isLanding = true;
             }
@@ -625,14 +617,13 @@ public class PlayerControl : MonoBehaviour
                 isLanding = false;
             }
 
-            if ((anim.GetCurrentAnimatorStateInfo(0).IsName("Land") ||
-                 anim.GetCurrentAnimatorStateInfo(0).IsName("Land_Rifle") ||
-                 anim.GetCurrentAnimatorStateInfo(0).IsName("Land_Pistol") ||
-                 anim.GetCurrentAnimatorStateInfo(0).IsName("Land_Knife")) &&
-                 anim.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1.0f)
+            if (anim.GetCurrentAnimatorStateInfo(0).IsTag("Land"))
             {
+                isLand = true;
                 
             }
+            else
+                isLand = false;
         }
     }
 }

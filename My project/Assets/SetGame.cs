@@ -112,6 +112,7 @@ public class SetGame : MonoBehaviour
             ScoreM.ResetScore();
             SetObjects();
             isReset = false;
+            isClear = false;
         }
             
     }

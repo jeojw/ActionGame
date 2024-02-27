@@ -24,7 +24,6 @@ public class PlayeroundManage : MonoBehaviour
     RifleManage RifleM;
     KnifeManage KnifeM;
     Animator playerAnim;
-    AnimatorStateInfo curAnim;
 
     float moveCool;
     float moveCoef = 2;
@@ -53,6 +52,7 @@ public class PlayeroundManage : MonoBehaviour
         isWalk = playerControl.isWalking;
         isRun = playerControl.isRunning;
         isJumpStart = playerControl.isJumpStart;
+        isLand = playerControl.isLand;
 
         moveCool += Time.deltaTime * moveCoef;
 
@@ -75,6 +75,10 @@ public class PlayeroundManage : MonoBehaviour
         if (isJumpStart)
             Jump.Play();
 
+        if (isLand)
+        {
+            Land.Play();
+        }
     }
 
     void WeaponSoundUpdate()
@@ -82,12 +86,11 @@ public class PlayeroundManage : MonoBehaviour
         if (playerControl.weapon == PlayerControl.Weapons.PISTOL)
         {
             isShot = PistolM.isShot;
-            isReload = PistolM.isReload;
             if (isShot)
             {
                 PistolShot.Play();
             }
-            if (isReload && playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Reloading_Pistol") && playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
             {
                 PistolReload.Play();
             }

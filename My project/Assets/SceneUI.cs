@@ -1,18 +1,15 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 
 public class SceneUI : MonoBehaviour
 {
     public GameObject Player;
     public GameObject Event;
 
+    DataManage DataM;
     ScoreManage ScoreM;
     SetGame SG;
     List<Enemy_StatManage> ESList;
@@ -23,8 +20,8 @@ public class SceneUI : MonoBehaviour
     public TextMeshProUGUI text_ResultTimer;
     private float time_start;
     private float time_current;
-    private bool isEnded;
-    
+    private bool isStored = false;
+
     protected float curHealth;
     private float MaxHealth;
     private float Score;
@@ -50,6 +47,7 @@ public class SceneUI : MonoBehaviour
 
     void Start()
     {
+        DataM = Event.GetComponent<DataManage>();
         ScoreM = Event.GetComponent<ScoreManage>();
         SG = Event.GetComponent<SetGame>();
         ESList = SG.EnemyStatList;
@@ -73,9 +71,11 @@ public class SceneUI : MonoBehaviour
         Reset_Timer();
     }
 
-    private void ResetScore()
+
+    void StoreRecord()
     {
-     
+        DataM.MakeRecord(Score, time_current);
+        DataM.StoreRecord();
     }
 
     private void UpdateScore()
@@ -94,7 +94,6 @@ public class SceneUI : MonoBehaviour
         time_start = Time.time;
         time_current = 0;
         text_Timer.text = $"{time_current:N2} sec";
-        isEnded = false;
     }
 
     private void Check_Timer()
@@ -107,9 +106,8 @@ public class SceneUI : MonoBehaviour
     {
         text_Timer.text = $"{time_current:N2} sec";
         text_ResultTimer.text = $"{time_current:N2} sec";
-        isEnded = true;
     }
-    
+
     void WeaponUI()
     {
         weapon = playControl.weapon;
@@ -217,7 +215,7 @@ public class SceneUI : MonoBehaviour
                 Knife.gameObject.SetActive(true);
                 Knife.enabled = true;
             }
-                
+
             if (Rope.gameObject != null)
                 Rope.gameObject.SetActive(false);
         }
@@ -251,7 +249,8 @@ public class SceneUI : MonoBehaviour
     void CheckHp()
     {
         curHealth = StatM.curHp;
-        if (HpBar != null) {
+        if (HpBar != null)
+        {
             HpBar.value = curHealth / MaxHealth;
         }
     }
@@ -262,8 +261,14 @@ public class SceneUI : MonoBehaviour
         if (SG.isReset)
         {
             Reset_Timer();
-            ResetScore();
+            isStored = false;   
         }
+        if (SG.isClear && !isStored)
+        {
+            StoreRecord();
+            isStored = true;
+        }
+
         WeaponUI();
         Check_Timer();
         CheckHp();
