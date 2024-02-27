@@ -17,6 +17,13 @@ public class RecordList
         this.Timerecords.Add(_record.ReturnTime());
         Count++;
     }
+
+    public void RecordDelete(int idx)
+    {
+        this.Scorerecords.RemoveAt(idx);
+        this.Timerecords.RemoveAt(idx);
+        Count--;
+    }
 }
 public class Record
 {
@@ -28,10 +35,13 @@ public class Record
     public float ReturnTime() { return _Time; }
 
 }
+
 public class DataManage : MonoBehaviour
 {
     RecordList recordList = new RecordList();
     Record record;
+
+    private
     // Start is called before the first frame update
     void Start()
     {
@@ -52,7 +62,44 @@ public class DataManage : MonoBehaviour
             if (RecordList.Count < 5) 
             {
                 RecordList.RecordStore(record);
+                for (int i = 0; i < RecordList.Count - 1; i++)
+                {
+                    for (int j = i + 1; j < RecordList.Count; j++)
+                    {
+                        if (RecordList.Scorerecords[i] < RecordList.Scorerecords[j])
+                        {
+                            float tmp = RecordList.Scorerecords[i];
+                            RecordList.Scorerecords[i] = RecordList.Scorerecords[j];
+                            RecordList.Scorerecords[j] = tmp;
+
+                            float tmp2 = RecordList.Timerecords[i];
+                            RecordList.Timerecords[i] = RecordList.Timerecords[j];
+                            RecordList.Timerecords[j] = tmp2;
+                        }
+                        else if (RecordList.Scorerecords[i] == RecordList.Scorerecords[j])
+                        {
+                            if (RecordList.Timerecords[i] > RecordList.Timerecords[j])
+                            {
+                                float tmp = RecordList.Scorerecords[i];
+                                RecordList.Scorerecords[i] = RecordList.Scorerecords[j];
+                                RecordList.Scorerecords[j] = tmp;
+
+                                float tmp2 = RecordList.Timerecords[i];
+                                RecordList.Timerecords[i] = RecordList.Timerecords[j];
+                                RecordList.Timerecords[j] = tmp2;
+                            }
+                            else if (RecordList.Timerecords[i] == RecordList.Timerecords[j])
+                            {
+                                RecordList.RecordDelete(j);
+                            }
+                        }
+                    }
+                }
                 File.WriteAllText(Application.dataPath + "/Records.json", JsonUtility.ToJson(RecordList));
+            }
+            else
+            {
+
             }
         }
         else
