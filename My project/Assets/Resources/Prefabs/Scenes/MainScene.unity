@@ -4608,7 +4608,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bab500efbb764e42b4e1bec352d482e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grid: {fileID: 1340781993}
   Pos_1: {fileID: 1033639284}
   Pos_2: {fileID: 2110516457}
 --- !u!50 &586358622
@@ -15972,6 +15971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2060703201}
+  CrackedGround: {fileID: 586358616}
   EnemyList: []
   EnemyStatList: []
   EnemyPosList: []

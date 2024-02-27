@@ -7,6 +7,8 @@ using UnityEngine;
 public class SetGame : MonoBehaviour
 {
     public GameObject Player;
+    public GameObject CrackedGround;
+    GroundManage GM;
     PlayerControl PC;
     public List<GameObject> EnemyList;
     public List<Enemy_StatManage> EnemyStatList;
@@ -24,6 +26,7 @@ public class SetGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GM = CrackedGround.GetComponent<GroundManage>();
         PTM = GetComponent<ProjectilesManage>();
         ITM = GetComponent<ItemManage>();
         ScoreM = GetComponent<ScoreManage>();   
@@ -118,6 +121,7 @@ public class SetGame : MonoBehaviour
             {
                 Destroy(EnemyList[i]);
             }
+            GM.Reset();
             PTM.ResetList();
             ITM.ResetItemList();
             PC.ResetPlayer();
