@@ -40,6 +40,8 @@ public class Enemy_Movement : MonoBehaviour
     public bool isDead = false;
     public bool GetCool = false;
 
+    private bool isZero;
+
     private float AttackCoolTime;
     private float AttackCoolStart = 0;
     private float _AttackcoolElapsed = 0;
@@ -86,11 +88,13 @@ public class Enemy_Movement : MonoBehaviour
         {
             AtkRange = PistolRange;
             AttackCoolTime = PistolM.ShotDelay;
+            isZero = PistolM.isZero;
         }
         else if (AttackType == ATTACKTYPE.RIFLE)
         {
             AtkRange = RifleRange;
             AttackCoolTime = RifleM.ShotDelay;
+            isZero = RifleM.isZero;
         }
     }
 
@@ -138,11 +142,22 @@ public class Enemy_Movement : MonoBehaviour
                 isWalking = false;
                 if (!GetCool)
                 {
-                    isAttack = true;
-                    AttackCoolStart = Time.time;
+                    if (AttackType == ATTACKTYPE.SWORD)
+                    {
+                        isAttack = true;
+                        AttackCoolStart = Time.time;
+                    }
+                    else
+                    {
+                        if (!isZero)
+                        {
+                            isAttack = true;
+                            AttackCoolStart = Time.time;
+                        }
+                    }
                 }
             }
-            if (GetCool)
+            if (GetCool || isZero)
             {
                 isAttack = false;
                 AttackCooldown();

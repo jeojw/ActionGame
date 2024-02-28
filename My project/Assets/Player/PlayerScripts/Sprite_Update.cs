@@ -19,6 +19,7 @@ public class SpriteUpdate : MonoBehaviour
     bool OnGround = false;
     bool Rolling = false;
     bool LowerBody = false;
+    bool GetHit = false;
 
     PlayerControl playerControl;
     GrapplingHook graphook;
@@ -57,6 +58,7 @@ public class SpriteUpdate : MonoBehaviour
         OnGround = playerControl.isGround;
         Rolling = playerControl.isRolling;
         LowerBody = playerControl.isLowerBody;
+        GetHit = statManage.GetHit;
 
         if (Direct == PlayerControl.Direction.LEFT) { Player.transform.localScale = new Vector3(-1, 1, 1); }
         else if (Direct == PlayerControl.Direction.RIGHT) { Player.transform.localScale = new Vector3(1, 1, 1); }
@@ -148,6 +150,11 @@ public class SpriteUpdate : MonoBehaviour
         else
         {
             anim.SetBool("isLowerBody", false);
+        }
+        
+        if (GetHit)
+        {
+            anim.Play("GetHit");
         }
     }
 

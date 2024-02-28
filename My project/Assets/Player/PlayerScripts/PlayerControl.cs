@@ -188,7 +188,7 @@ public class PlayerControl : MonoBehaviour
             else
                 isMoving = false;
 
-            if (!isRolling && !isJumpStart)
+            if (!isRolling && !isJumpStart && !isLowerBody)
             {
                 bool leftPressed = Input.GetKeyDown(KeyCode.A);
                 bool rightPressed = Input.GetKeyDown(KeyCode.D);
@@ -229,10 +229,9 @@ public class PlayerControl : MonoBehaviour
             }
 
 
-            if (!isRolling)
+            if (!isRolling && !isLowerBody)
             {
                 if (Input.GetKey(KeyCode.Space) &&
-                    !weaponUIManage.IsZeroPistol &&
                     (weapon == Weapons.NONE ||
                     weapon == Weapons.ROPE) &&
                     !isWalking &&
@@ -241,7 +240,7 @@ public class PlayerControl : MonoBehaviour
                     isJumpStart = true;
                 }
 
-                else if (Input.GetKeyUp(KeyCode.Space) && !weaponUIManage.IsZeroPistol &&
+                else if (Input.GetKeyUp(KeyCode.Space) &&
                     (weapon == Weapons.NONE ||
                     weapon == Weapons.ROPE) &&
                     jumpCount == 1)
@@ -253,7 +252,7 @@ public class PlayerControl : MonoBehaviour
             }
 
 
-            if (isWalking && !isRunning && !isJump && Input.GetKey(KeyCode.LeftShift))
+            if (!isLowerBody && isWalking && !isRunning && !isJump && Input.GetKey(KeyCode.LeftShift))
             {
                 isRolling = true;
             }

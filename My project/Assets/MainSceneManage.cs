@@ -104,7 +104,6 @@ public class MainSceneManage : MonoBehaviour
         else
         {
             ClearPopup.SetActive(false);
-            Time.timeScale = 1f;
         }
             
         GameProgress();

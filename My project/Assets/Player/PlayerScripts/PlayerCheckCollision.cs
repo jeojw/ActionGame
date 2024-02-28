@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class PlayerCheckCollision : MonoBehaviour
@@ -20,8 +19,6 @@ public class PlayerCheckCollision : MonoBehaviour
     private float HitCoolElapsed = 0;
     private float HitCoolStart = 0;
     private float HitCool = 1f;
-
-    bool isSlope;
 
     void Start()
     {

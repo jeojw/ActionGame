@@ -11,6 +11,7 @@ public class Enemy_GunManage : MonoBehaviour
     public float ShotDelay;
     public float curAmmunition;
     private float maxAmmunition;
+    public bool isZero;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,11 +27,26 @@ public class Enemy_GunManage : MonoBehaviour
             maxAmmunition = 30;
         }
         curAmmunition = maxAmmunition;
+        isZero = false;
+    }
+
+    void Shot()
+    {
+        if (EMove.isShooting &&
+            EMove.AttackCoolElapsed == 0 &&
+            curAmmunition != 0)
+        {
+            curAmmunition--;
+        }
+        if (curAmmunition == 0)
+        {
+            isZero = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Shot();
     }
 }

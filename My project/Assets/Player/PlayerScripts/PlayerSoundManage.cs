@@ -18,6 +18,9 @@ public class PlayeroundManage : MonoBehaviour
     public AudioSource RifleShot;
     public AudioSource RifleReload;
 
+    public AudioSource Pain;
+    public AudioSource Dead;
+
     PlayerControl playerControl;
     StatManage Pstm;
     PistolManage PistolM;
@@ -79,6 +82,12 @@ public class PlayeroundManage : MonoBehaviour
         {
             Land.Play();
         }
+
+        if (Pstm.GetHit && !Pstm.isDead)
+            Pain.Play();
+
+        if (Pstm.isDead)
+            Dead.Play();
     }
 
     void WeaponSoundUpdate()
