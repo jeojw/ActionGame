@@ -27,11 +27,6 @@ public class MainSceneManage : MonoBehaviour
         SG = Event.GetComponent<SetGame>();
     }
 
-    public void StartGame()
-    {
-        SceneManager.LoadScene("MainScene");
-    }
-
     public void GameProgress()
     {
         if (isPaused && EventSystem.current.currentSelectedGameObject != null)
@@ -98,7 +93,6 @@ public class MainSceneManage : MonoBehaviour
         if (SG.isClear)
         {
             ClearPopup.SetActive(true);
-            Time.timeScale = 0f;
         }
 
         else

@@ -58,8 +58,8 @@ public class SetGame : MonoBehaviour
         EnemyList.Add(Instantiate(Enemy, new Vector3(370f, 50f, 147.699f), Quaternion.identity)); //7
         EnemyList.Add(Instantiate(Enemy, new Vector3(436f, 18f, 147.699f), Quaternion.identity)); //8
         EnemyList.Add(Instantiate(Enemy, new Vector3(450f, 18f, 147.699f), Quaternion.identity)); //9
-        EnemyList.Add(Instantiate(Enemy, new Vector3(505f, 18f, 147.699f), Quaternion.identity)); //10
-        EnemyList.Add(Instantiate(Enemy, new Vector3(525f, 18f, 147.699f), Quaternion.identity)); //11
+        EnemyList.Add(Instantiate(Enemy, new Vector3(480f, 18f, 147.699f), Quaternion.identity)); //10
+        EnemyList.Add(Instantiate(Enemy, new Vector3(495f, 18f, 147.699f), Quaternion.identity)); //11
         EnemyList.Add(Instantiate(Enemy, new Vector3(577f, 62f, 147.699f), Quaternion.identity)); //12
         EnemyList.Add(Instantiate(Enemy, new Vector3(600f, 62f, 147.699f), Quaternion.identity)); //13
 
