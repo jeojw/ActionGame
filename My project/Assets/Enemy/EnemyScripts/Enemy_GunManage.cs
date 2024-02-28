@@ -24,17 +24,15 @@ public class Enemy_GunManage : MonoBehaviour
         else if (EMove.AttackType == Enemy_Movement.ATTACKTYPE.RIFLE)
         {
             ShotDelay = 0.5f;
-            maxAmmunition = 30;
+            maxAmmunition = 15;
         }
         curAmmunition = maxAmmunition;
         isZero = false;
     }
 
-    void Shot()
+    public void Shot()
     {
-        if (EMove.isShooting &&
-            EMove.AttackCoolElapsed == 0 &&
-            curAmmunition != 0)
+        if (curAmmunition != 0)
         {
             curAmmunition--;
         }
@@ -47,6 +45,5 @@ public class Enemy_GunManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Shot();
     }
 }

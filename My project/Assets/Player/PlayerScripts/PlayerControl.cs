@@ -149,17 +149,6 @@ public class PlayerControl : MonoBehaviour
             isOnDead = false;
     }
 
-    //void OnDrawGizmos()
-    //{
-    //    RaycastHit2D raycastHit = Physics2D.BoxCast(bodyPos.position, new Vector2(3, 1), 0f, Vector2.down, 0.01f, LayerMask.GetMask("Slope"));
-
-    //    Gizmos.color = Color.red;
-    //    if (raycastHit.collider != null)
-    //    {
-    //        Gizmos.DrawWireCube(bodyPos.position + Vector3.down * raycastHit.distance, new Vector2(3, 1));
-    //    }
-    //}
-
     private void checkSlope()
     {
         RaycastHit2D hit = Physics2D.Raycast(rigid.position, Vector2.down, 5f, LayerMask.GetMask("Slope"));

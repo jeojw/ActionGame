@@ -9,6 +9,7 @@ public class Enemy_Sound_Manage : MonoBehaviour
     public GameObject Knife;
 
     public AudioSource Walk;
+    public AudioSource Pain;
 
     public AudioSource PistolShot;
     public AudioSource RifleShot;
@@ -23,6 +24,7 @@ public class Enemy_Sound_Manage : MonoBehaviour
     bool isFence;
 
     bool isWalk;
+    bool GetHit;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,7 @@ public class Enemy_Sound_Manage : MonoBehaviour
     void MoveSoundUpdate()
     {
         isWalk = EMove.isWalking;
+        GetHit = EStat.GetHit;
 
         moveCool += Time.deltaTime * moveCoef;
 
@@ -45,6 +48,8 @@ public class Enemy_Sound_Manage : MonoBehaviour
                 moveCoef = 2;
             }
         }
+        if (GetHit)
+            Pain.Play();
     }
 
     void WeaponSoundUpdate()

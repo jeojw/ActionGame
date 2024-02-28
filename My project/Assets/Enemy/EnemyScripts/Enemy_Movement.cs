@@ -201,6 +201,10 @@ public class Enemy_Movement : MonoBehaviour
                  AttackType == ATTACKTYPE.RIFLE)
         {
             isShooting = true;
+            if (AttackType == ATTACKTYPE.PISTOL)
+                PistolM.Shot();
+            else if (AttackType == ATTACKTYPE.RIFLE)
+                RifleM.Shot();
             if (ShotCount == 0)
                 ShotCount = 1;
             if (ShotCount == 1)

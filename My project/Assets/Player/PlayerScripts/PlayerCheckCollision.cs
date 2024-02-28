@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerCheckCollision : MonoBehaviour
 {
@@ -72,7 +73,7 @@ public class PlayerCheckCollision : MonoBehaviour
                     RifleBulletHit = false;
                 }
 
-                if (KnifeHit && gameObject.name != "HeadHitbox")
+                if (KnifeHit)
                 {
                     Physic.SetPhysics(new Vector2((int)Control.direction * (-1) * 15, 0));
                     PlayerStat.SetGetDamage(150f);

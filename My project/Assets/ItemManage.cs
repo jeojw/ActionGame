@@ -21,10 +21,11 @@ public class ItemManage : MonoBehaviour
     List<Transform> EnemyPosList;
     List<ITEMTYPE> TypeList;
     List<GameObject> ItemList;
+    List<bool> IsDropList;
 
     float RifleRate = 0.1f;
     float HealRate = 0.1f;
-    float PistolRate = 0.4f;
+    float PistolRate = 0.3f;
 
     bool isDropItem = false;
 
@@ -38,6 +39,7 @@ public class ItemManage : MonoBehaviour
         playerControl = Player.GetComponent<PlayerControl>();
         EnemyStatList = GetComponent<SetGame>().EnemyStatList;
         EnemyPosList = GetComponent<SetGame>().EnemyPosList;
+        IsDropList = GetComponent<SetGame>().isDropItem;
         Item = Resources.Load<GameObject>(Path);
     }
 
@@ -85,7 +87,7 @@ public class ItemManage : MonoBehaviour
     {
         for (int i = 0; i < EnemyStatList.Count; i++)
         {
-            if (EnemyStatList[i].isDead && EnemyStatList[i].isDrop && !isDropItem)
+            if (EnemyStatList[i].isDead && EnemyStatList[i].isDrop && !IsDropList[i])
             {
                 ChooseItem();
                 playerControl.SetGetItem(ItemType);
@@ -94,7 +96,7 @@ public class ItemManage : MonoBehaviour
                     DropItem = Instantiate(DropItem, EnemyPosList[i].position, Quaternion.identity);
                     ItemList.Add(DropItem);
                     TypeList.Add(ItemType);
-                    isDropItem = true;
+                    IsDropList[i] = true;
                 }
 
             }
