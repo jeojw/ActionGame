@@ -540,6 +540,7 @@ public class PlayerControl : MonoBehaviour
     {
         transform.position = PlayerPos;
         weaponPos = 0;
+        PistolManage.ReloadReset();
         RifleManage.ResetMagazine();
         PistolManage.ResetMagazine();
     }

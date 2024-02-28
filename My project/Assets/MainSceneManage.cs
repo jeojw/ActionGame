@@ -93,11 +93,13 @@ public class MainSceneManage : MonoBehaviour
         if (SG.isClear)
         {
             ClearPopup.SetActive(true);
+            Time.timeScale = 0f;
         }
 
-        else
+        else if (SG.isClear || !isPaused)
         {
             ClearPopup.SetActive(false);
+            Time.timeScale = 1f;
         }
             
         GameProgress();

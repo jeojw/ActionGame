@@ -34,9 +34,17 @@ public class PistolManage : MonoBehaviour
     public void ResetMagazine()
     {
         if (AmmunitionZero)
+        {
             isReload = true;
-        AmmunitionZero = false;
-        curAmmunition = maxAmmunition;
+            AmmunitionZero = false;
+        }
+         
+        else
+        {
+            curAmmunition = maxAmmunition;
+        }
+        
+       
     }
 
     void Shot()
@@ -77,6 +85,11 @@ public class PistolManage : MonoBehaviour
                 isReloading = true;
             }
         }
+    }
+
+    public void ReloadReset()
+    {
+        isReloading = false;
     }
 
     // Update is called once per frame

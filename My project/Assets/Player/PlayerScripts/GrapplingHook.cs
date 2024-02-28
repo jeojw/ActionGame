@@ -148,7 +148,6 @@ public class GrapplingHook : MonoBehaviour
                 }
                 else if (Input.GetKeyDown(KeyCode.W))
                 {
-                    isLineMax = false;
                     playerRigid.AddForce((hook.transform.position - hand.transform.position).normalized * 250f, ForceMode2D.Impulse);
                 }
             }

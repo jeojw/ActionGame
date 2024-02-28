@@ -23,9 +23,9 @@ public class ItemManage : MonoBehaviour
     List<GameObject> ItemList;
     List<bool> IsDropList;
 
-    float RifleRate = 0.1f;
+    float RifleRate = 0.05f;
     float HealRate = 0.1f;
-    float PistolRate = 0.3f;
+    float PistolRate = 0.1f;
 
     bool isDropItem = false;
 
@@ -109,6 +109,7 @@ public class ItemManage : MonoBehaviour
                 {
                     GameObject DeleteItem = ItemList[i];
                     statManage.SetGetItem(TypeList[i]);
+                    playerControl.SetGetItem(TypeList[i]);
                     ItemList[i] = null;
                     Destroy(DeleteItem);
                 }

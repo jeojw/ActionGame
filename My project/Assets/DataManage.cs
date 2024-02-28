@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor.ShaderGraph.Serialization;
 using UnityEngine;
 using Newtonsoft.Json;
 using System;
@@ -91,27 +90,30 @@ public class DataManage : MonoBehaviour
     }
     public void StoreRecord()
     {
-        string file = File.ReadAllText(Application.dataPath + "/Records.json");
-        var RecordList = JsonUtility.FromJson<RecordList>(file);
-        if (RecordList != null)
+        if (File.Exists(Application.persistentDataPath + "/Records.json"))
         {
-            if (RecordList.Count < 5) 
+            string file = File.ReadAllText(Application.persistentDataPath + "/Records.json");
+            var RecordList = JsonUtility.FromJson<RecordList>(file);
+            if (RecordList != null)
             {
-                RecordList.RecordStore(record);
-                ListSort(RecordList);
+                if (RecordList.Count < 5)
+                {
+                    RecordList.RecordStore(record);
+                    ListSort(RecordList);
+                }
+                else
+                {
+                    RecordList.RecordDelete(RecordList.Count - 1);
+                    RecordList.RecordStore(record);
+                    ListSort(RecordList);
+                }
+                File.WriteAllText(Application.persistentDataPath + "/Records.json", JsonUtility.ToJson(RecordList));
             }
-            else
-            {
-                RecordList.RecordDelete(RecordList.Count - 1);
-                RecordList.RecordStore(record);
-                ListSort(RecordList);
-            }
-            File.WriteAllText(Application.dataPath + "/Records.json", JsonUtility.ToJson(RecordList));
         }
         else
         {
             recordList.RecordStore(record);
-            File.WriteAllText(Application.dataPath + "/Records.json", JsonUtility.ToJson(recordList));
+            File.WriteAllText(Application.persistentDataPath + "/Records.json", JsonUtility.ToJson(recordList));
         }
         
     }

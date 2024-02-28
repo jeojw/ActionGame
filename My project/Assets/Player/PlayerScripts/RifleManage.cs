@@ -53,7 +53,6 @@ public class RifleManage : MonoBehaviour
     {
         if (playControl.isGetItem && playControl.GetItemType == ItemManage.ITEMTYPE.RIFLE)
         {
-            Debug.Log(true);
             isReload = true;
         }
         else

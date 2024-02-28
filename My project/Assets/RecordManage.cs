@@ -29,14 +29,17 @@ public class RecordManage : MonoBehaviour
             SetRecordList.Add(new Tuple<TextMeshProUGUI, TextMeshProUGUI> (Records.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>(),
                                                                            Records.transform.GetChild(i).GetChild(1).GetComponent<TextMeshProUGUI>()));
         }
-
-        string file = File.ReadAllText(Application.dataPath + "/Records.json");
-        newRecords = JsonUtility.FromJson<RecordList>(file);
-
-        for (int i = 0; i < newRecords.Count; i++)
+        
+        if (File.Exists(Application.persistentDataPath + "/Records.json"))
         {
-            SetRecordList[i].Item1.text = newRecords.Scorerecords[i].ToString();
-            SetRecordList[i].Item2.text = newRecords.Timerecords[i].ToString();
+            string file = File.ReadAllText(Application.persistentDataPath + "/Records.json");
+            newRecords = JsonUtility.FromJson<RecordList>(file);
+
+            for (int i = 0; i < newRecords.Count; i++)
+            {
+                SetRecordList[i].Item1.text = newRecords.Scorerecords[i].ToString();
+                SetRecordList[i].Item2.text = newRecords.Timerecords[i].ToString();
+            }
         }
     }
 
