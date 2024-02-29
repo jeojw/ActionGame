@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Networking.PlayerConnection;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -29,6 +30,8 @@ public class GrapplingHook : MonoBehaviour
 
     private float RotateAngle;
     private float gravity = 0;
+
+    private bool isPulling = false;
 
     public PlayerControl.Weapons CurWeapon;
     // Start is called before the first frame update
@@ -137,7 +140,7 @@ public class GrapplingHook : MonoBehaviour
             }
             else if (isAttach)
             {
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E) && !isPulling)
                 {
                     isAttach = false;
                     isHookActive = false;
@@ -148,7 +151,19 @@ public class GrapplingHook : MonoBehaviour
                 }
                 else if (Input.GetKeyDown(KeyCode.W))
                 {
+                    isPulling = true;
                     playerRigid.AddForce((hook.transform.position - hand.transform.position).normalized * 250f, ForceMode2D.Impulse);
+                    
+                }
+                if (playerRigid.velocity.y <= 0 && isPulling)
+                {
+                    isPulling = false;
+                    isAttach = false;
+                    isHookActive = false;
+                    isLineMax = false;
+                    isHookThrow = false;
+                    hookg.joint2D.enabled = false;
+                    hook.gameObject.SetActive(false);
                 }
             }
         }
