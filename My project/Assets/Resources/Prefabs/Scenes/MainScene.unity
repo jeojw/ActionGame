@@ -2150,8 +2150,8 @@ GameObject:
   - component: {fileID: 333325410}
   - component: {fileID: 333325411}
   m_Layer: 9
-  m_Name: RightPiste
-  m_TagString: Piste
+  m_Name: RightFist
+  m_TagString: Fist
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13969,8 +13969,8 @@ GameObject:
   - component: {fileID: 1405294368}
   - component: {fileID: 1405294369}
   m_Layer: 9
-  m_Name: LeftPiste
-  m_TagString: Piste
+  m_Name: LeftFist
+  m_TagString: Fist
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

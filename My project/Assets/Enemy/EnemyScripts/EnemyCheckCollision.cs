@@ -14,7 +14,7 @@ public class EnemyCheckCollision : MonoBehaviour
     public bool KnifeHit = false;
     public bool PistolBulletHit = false;
     public bool RifleBulletHit = false;
-    public bool PisteHit = false;
+    public bool FistHit = false;
 
     public bool isHit = false;
     private bool isDead;
@@ -35,9 +35,9 @@ public class EnemyCheckCollision : MonoBehaviour
     {
         if (HitDelayElapsed == 0)
         {
-            if (collision.CompareTag("Piste"))
+            if (collision.CompareTag("Fist"))
             {
-                PisteHit = true;
+                FistHit = true;
             }
             if (collision.CompareTag("Pistol_Bullet"))
             {
@@ -73,7 +73,7 @@ public class EnemyCheckCollision : MonoBehaviour
         isDead = Estat.isDead;
         if (!isDead)
         {
-            isHit = (KnifeHit || RifleBulletHit || PistolBulletHit || PisteHit);
+            isHit = (KnifeHit || RifleBulletHit || PistolBulletHit || FistHit);
             if (isHit)
             {
                 Pcollider.enabled = false;
@@ -84,10 +84,10 @@ public class EnemyCheckCollision : MonoBehaviour
                     PistolBulletHit = false;
                 }
 
-                if (PisteHit)
+                if (FistHit)
                 {
                     Physic.SetPhysics(new Vector2((int)EMove.detectDirection * (-1) * 10, 0));
-                    PisteHit = false;
+                    FistHit = false;
                 }
 
                 if (KnifeHit)

@@ -26,7 +26,7 @@ public class Enemy_StatManage : MonoBehaviour
     private bool KnifeHit = false;
     private bool RifleHit = false;
     private bool PistolHit = false;
-    private bool PisteHit = false;
+    private bool FistHit = false;
     private bool zeroPhysic = false;
 
     private float Damage = 0;
@@ -73,16 +73,16 @@ public class Enemy_StatManage : MonoBehaviour
         RifleHit = (Head_Hit.RifleBulletHit || Body_Hit.RifleBulletHit ||  
                     LeftLeg_1_Hit.RifleBulletHit || LeftLeg_2_Hit.RifleBulletHit || 
                     RightLeg_1_Hit.RifleBulletHit || RightLeg_2_Hit.RifleBulletHit);
-        PisteHit = (Head_Hit.PisteHit || Body_Hit.PisteHit || 
-                    LeftLeg_1_Hit.PisteHit || LeftLeg_2_Hit.PisteHit || 
-                    RightLeg_1_Hit.PisteHit || RightLeg_2_Hit.PisteHit);
+        FistHit = (Head_Hit.FistHit || Body_Hit.FistHit || 
+                    LeftLeg_1_Hit.FistHit || LeftLeg_2_Hit.FistHit || 
+                    RightLeg_1_Hit.FistHit || RightLeg_2_Hit.FistHit);
 
         if (CurHp > 0)
         {
-            if (PisteHit)
+            if (FistHit)
             {
                 SetDamage(30f);
-                PisteHit = false;
+                FistHit = false;
             }
             if (RifleHit)
             {

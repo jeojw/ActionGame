@@ -66,9 +66,9 @@ public class PlayerControl : MonoBehaviour
         set { _ShotDelayElapsed = value; }
     }
 
-    private float PisteDelay = 0.5f;
-    private float PisteDelayStart = 0;
-    private float PisteDelayElapsed = 0;
+    private float FistDelay = 0.5f;
+    private float FistDelayStart = 0;
+    private float FistDelayElapsed = 0;
 
     private float lastKeyPressTime = 0;
     public float RunningInterval = 0.5f;
@@ -254,7 +254,7 @@ public class PlayerControl : MonoBehaviour
                 isLowerBody = false;
 
             if (weapon == Weapons.NONE)
-                PisteControl();
+                FistControl();
             if (weapon == Weapons.PISTOL || weapon == Weapons.RIFLE)
                 GunControl();
             if (weapon == Weapons.KNIFE)
@@ -262,28 +262,28 @@ public class PlayerControl : MonoBehaviour
         }
 
     }
-    void PisteControl()
+    void FistControl()
     {
         if (Input.GetKey(KeyCode.X))
         {
-            if (PisteDelayStart == 0)
+            if (FistDelayStart == 0)
             {
                 isAttack = true;
-                PisteDelayStart = Time.time;
+                FistDelayStart = Time.time;
             }
             else
             {
-                PisteDelayElapsed = Time.time - PisteDelayStart;
-                if (PisteDelayElapsed >= PisteDelay)
+                FistDelayElapsed = Time.time - FistDelayStart;
+                if (FistDelayElapsed >= FistDelay)
                 {
-                    PisteDelayElapsed = 0;
-                    PisteDelayStart = 0;
+                    FistDelayElapsed = 0;
+                    FistDelayStart = 0;
                 }
             }
         }
         else
         {
-            PisteDelayElapsed = 0;
+            FistDelayElapsed = 0;
             isAttack = false;
         }
     }
