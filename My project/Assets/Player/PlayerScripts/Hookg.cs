@@ -26,11 +26,9 @@ public class Hookg : MonoBehaviour
     private void Circlecast()
     {
         RaycastHit2D Hit = Physics2D.CircleCast(transform.position, CC.radius, (joint2D.connectedAnchor - joint2D.anchor).normalized, 0.01f, LayerMask.GetMask("Ring"));
-        if (Hit.collider != null)
-        {
-            joint2D.enabled = true;
-            grappling.isAttach = true;
-        }
+
+        joint2D.enabled = Hit.collider != null;
+        grappling.isAttach = Hit.collider != null;
     }
 
     private void Update()
