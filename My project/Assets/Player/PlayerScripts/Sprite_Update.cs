@@ -277,10 +277,6 @@ public class SpriteUpdate : MonoBehaviour
             if (graphook.isAttach)
             {
                 anim.SetBool("isAttach", true);
-                if (playerControl.isShooting)
-                    anim.SetBool("isHookShooting", true);
-                else
-                    anim.SetBool("isHookShooting", false);
             }
         }
         else
