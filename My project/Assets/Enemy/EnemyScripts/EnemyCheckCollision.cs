@@ -81,24 +81,28 @@ public class EnemyCheckCollision : MonoBehaviour
                 if (PistolBulletHit)
                 {
                     Physic.SetPhysics(new Vector2((int)EMove.detectDirection * (-1) * 50, 0));
+                    Estat.SetDamage(75f);
                     PistolBulletHit = false;
                 }
 
                 if (FistHit)
                 {
                     Physic.SetPhysics(new Vector2((int)EMove.detectDirection * (-1) * 10, 0));
+                    Estat.SetDamage(30f);
                     FistHit = false;
                 }
 
                 if (KnifeHit)
                 {
                     Physic.SetPhysics(new Vector2((int)EMove.detectDirection * (-1) * 15, 0));
+                    Estat.SetDamage(75f);
                     KnifeHit = false;
                 }
 
                 if (RifleBulletHit)
                 {
                     Physic.SetPhysics(new Vector2((int)EMove.detectDirection * (-1) * 80, 0));
+                    Estat.SetDamage(150f);
                     RifleBulletHit = false;
                 }
             }

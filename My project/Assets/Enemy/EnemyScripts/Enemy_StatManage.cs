@@ -23,10 +23,6 @@ public class Enemy_StatManage : MonoBehaviour
     public float CurHp;
 
     public bool GetHit = false;
-    private bool KnifeHit = false;
-    private bool RifleHit = false;
-    private bool PistolHit = false;
-    private bool FistHit = false;
     private bool zeroPhysic = false;
 
     private float Damage = 0;
@@ -44,7 +40,7 @@ public class Enemy_StatManage : MonoBehaviour
         CurHp = MaxHp;
     }
 
-    void SetDamage(float _damage)
+    public void SetDamage(float _damage)
     {
         Damage = _damage;
     }
@@ -64,41 +60,9 @@ public class Enemy_StatManage : MonoBehaviour
         GetHit = (Head_Hit.isHit || Body_Hit.isHit ||
                   LeftLeg_1_Hit.isHit || LeftLeg_2_Hit.isHit ||
                   RightLeg_1_Hit.isHit || RightLeg_1_Hit.isHit);
-        KnifeHit = (Body_Hit.KnifeHit ||
-                    LeftLeg_1_Hit.KnifeHit || LeftLeg_2_Hit.KnifeHit ||
-                    RightLeg_1_Hit.KnifeHit || RightLeg_2_Hit.KnifeHit);
-        PistolHit = (Head_Hit.PistolBulletHit || Body_Hit.PistolBulletHit || 
-                     LeftLeg_1_Hit.PistolBulletHit || LeftLeg_2_Hit.PistolBulletHit ||
-                     RightLeg_1_Hit.PistolBulletHit || RightLeg_2_Hit.PistolBulletHit);
-        RifleHit = (Head_Hit.RifleBulletHit || Body_Hit.RifleBulletHit ||  
-                    LeftLeg_1_Hit.RifleBulletHit || LeftLeg_2_Hit.RifleBulletHit || 
-                    RightLeg_1_Hit.RifleBulletHit || RightLeg_2_Hit.RifleBulletHit);
-        FistHit = (Head_Hit.FistHit || Body_Hit.FistHit || 
-                    LeftLeg_1_Hit.FistHit || LeftLeg_2_Hit.FistHit || 
-                    RightLeg_1_Hit.FistHit || RightLeg_2_Hit.FistHit);
 
         if (CurHp > 0)
         {
-            if (FistHit)
-            {
-                SetDamage(30f);
-                FistHit = false;
-            }
-            if (RifleHit)
-            {
-                SetDamage(150f);
-                RifleHit = false;
-            } 
-            if (PistolHit)
-            {
-                SetDamage(75f);
-                PistolHit = false;
-            }
-            if (KnifeHit)
-            {
-                SetDamage(75f);
-                KnifeHit = false;
-            } 
             if (Damage != 0)
             {
                 CurHp -= Damage;
