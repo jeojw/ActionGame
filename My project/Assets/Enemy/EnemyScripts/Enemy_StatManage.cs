@@ -59,7 +59,7 @@ public class Enemy_StatManage : MonoBehaviour
     {
         GetHit = (Head_Hit.isHit || Body_Hit.isHit ||
                   LeftLeg_1_Hit.isHit || LeftLeg_2_Hit.isHit ||
-                  RightLeg_1_Hit.isHit || RightLeg_1_Hit.isHit);
+                  RightLeg_1_Hit.isHit || RightLeg_2_Hit.isHit);
 
         if (CurHp > 0)
         {
