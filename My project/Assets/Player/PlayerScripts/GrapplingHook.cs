@@ -140,6 +140,7 @@ public class GrapplingHook : MonoBehaviour
             }
             else if (isAttach)
             {
+                
                 if (Input.GetKeyDown(KeyCode.E) && !isPulling)
                 {
                     isAttach = false;
@@ -155,16 +156,17 @@ public class GrapplingHook : MonoBehaviour
                     playerRigid.AddForce((hook.transform.position - hand.transform.position).normalized * 250f, ForceMode2D.Impulse);
                     
                 }
-                if (playerRigid.velocity.y <= 0 && isPulling)
-                {
-                    isPulling = false;
-                    isAttach = false;
-                    isHookActive = false;
-                    isLineMax = false;
-                    isHookThrow = false;
-                    hookg.joint2D.enabled = false;
-                    hook.gameObject.SetActive(false);
-                }
+                
+            }
+            if (playerRigid.velocity.y <= 0 && isPulling)
+            {
+                isPulling = false;
+                isAttach = false;
+                isHookActive = false;
+                isLineMax = false;
+                isHookThrow = false;
+                hookg.joint2D.enabled = false;
+                hook.gameObject.SetActive(false);
             }
         }
         else

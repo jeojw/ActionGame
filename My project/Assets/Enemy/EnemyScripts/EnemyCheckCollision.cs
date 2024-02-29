@@ -80,14 +80,14 @@ public class EnemyCheckCollision : MonoBehaviour
                 HitDelayStart = Time.time;
                 if (PistolBulletHit)
                 {
-                    Physic.SetPhysics(new Vector2((int)EMove.detectDirection * (-1) * 50, 0));
+                    Physic.SetPhysics(new Vector2((int)EMove.detectDirection * (-1) * 70, 0));
                     Estat.SetDamage(75f);
                     PistolBulletHit = false;
                 }
 
                 if (FistHit)
                 {
-                    Physic.SetPhysics(new Vector2((int)EMove.detectDirection * (-1) * 10, 0));
+                    Physic.SetPhysics(new Vector2((int)EMove.detectDirection * (-1) * 15, 0));
                     Estat.SetDamage(30f);
                     FistHit = false;
                 }
@@ -101,7 +101,7 @@ public class EnemyCheckCollision : MonoBehaviour
 
                 if (RifleBulletHit)
                 {
-                    Physic.SetPhysics(new Vector2((int)EMove.detectDirection * (-1) * 80, 0));
+                    Physic.SetPhysics(new Vector2((int)EMove.detectDirection * (-1) * 90, 0));
                     Estat.SetDamage(150f);
                     RifleBulletHit = false;
                 }

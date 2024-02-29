@@ -7,6 +7,7 @@ using UnityEngine.XR;
 
 public class Hookg : MonoBehaviour
 {
+    CircleCollider2D CC;
     GrapplingHook grappling;
     Rigidbody2D rigid;
     public DistanceJoint2D joint2D;
@@ -16,19 +17,25 @@ public class Hookg : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        CC = GetComponent<CircleCollider2D>();  
         grappling = GameObject.Find("Player").GetComponent<GrapplingHook>();
         rigid = GetComponent<Rigidbody2D>();
         joint2D = GetComponent<DistanceJoint2D>();
     }
 
-    // Update is called once per frame
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Circlecast()
     {
-        if (collision.CompareTag("Ring"))
+        RaycastHit2D Hit = Physics2D.CircleCast(transform.position, CC.radius, (joint2D.connectedAnchor - joint2D.anchor).normalized, 0.01f, LayerMask.GetMask("Ring"));
+        if (Hit.collider != null)
         {
             joint2D.enabled = true;
             grappling.isAttach = true;
         }
+    }
+
+    private void Update()
+    {
+        Circlecast();
     }
 
 }
