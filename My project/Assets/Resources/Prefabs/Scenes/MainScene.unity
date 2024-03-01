@@ -15036,7 +15036,7 @@ Transform:
   m_GameObject: {fileID: 1706799846}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.17, y: -4.53, z: 0}
+  m_LocalPosition: {x: -15.61, y: -1.14, z: 0}
   m_LocalScale: {x: 0.3016115, y: 0.3016115, z: 0.3016115}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15114,7 +15114,7 @@ MonoBehaviour:
   isReload: 0
   BulletDamage: 0
   ShotDelay: 0.2
-  curAmmunition: 0
+  curAmmunition: 30
   maxAmmunition: 30
 --- !u!1 &1712972752
 GameObject:
@@ -16130,7 +16130,6 @@ MonoBehaviour:
   Rifle: {fileID: 1706799846}
   Event: {fileID: 2062443783}
   speed: 10
-  RopeDelayElapsed: 0
   RunningInterval: 0.5
   pressedFirstTime: 0
   KnifeStep: 1

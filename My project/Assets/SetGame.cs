@@ -43,12 +43,16 @@ public class SetGame : MonoBehaviour
         EnemyList.Clear();
         EnemyMovementList.Clear();
         EnemyStatList.Clear();
-        EnemyMovementList.Clear();
         DeadboolList.Clear();
         isDropItem.Clear();
     }
     public void SetObjects()
     {
+        EnemyList = new List<GameObject>();
+        EnemyStatList = new List<Enemy_StatManage>();
+        EnemyPosList = new List<Transform>();
+        EnemyMovementList = new List<Enemy_Movement>();
+        
         EnemyList.Add(Instantiate(Enemy, new Vector3(30f, 1f, 147.699f), Quaternion.identity)); //0
         EnemyList.Add(Instantiate(Enemy, new Vector3(81f, 24f, 147.699f), Quaternion.identity)); //1
         EnemyList.Add(Instantiate(Enemy, new Vector3(94, 24f, 147.699f), Quaternion.identity)); //2
@@ -88,6 +92,7 @@ public class SetGame : MonoBehaviour
             EnemyMovementList.Add(EnemyList[i].GetComponent<Enemy_Movement>());
             isDropItem.Add(false);
         }
+        ITM.SetList(EnemyStatList, EnemyPosList, isDropItem);
     }
         
     public void ResetGame()
@@ -114,6 +119,9 @@ public class SetGame : MonoBehaviour
             for (int i = 0; i < EnemyList.Count; i++)
             {
                 Destroy(EnemyList[i]);
+                Destroy(EnemyStatList[i]);
+                Destroy(EnemyPosList[i]);
+                Destroy(EnemyMovementList[i]);
             }
             GM.Reset();
             PTM.ResetList();
@@ -125,6 +133,5 @@ public class SetGame : MonoBehaviour
             isReset = false;
             isClear = false;
         }
-            
     }
 }

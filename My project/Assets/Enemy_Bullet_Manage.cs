@@ -40,7 +40,7 @@ public class Enemy_Bullet_Manage : MonoBehaviour
 
     private void CastColliderCheck()
     {
-        RaycastHit2D Hit = Physics2D.BoxCast(transform.position, BoxC.size * 0.2f, 90f, new Vector2(direct, 0), 0.02f, LayerMask.GetMask("Player"));
+        RaycastHit2D Hit = Physics2D.BoxCast(transform.position, BoxC.size * 0.08f, 90f, new Vector2(direct, 0), 0.02f, LayerMask.GetMask("Player"));
         if (Hit.collider != null)
             Destroy(gameObject);
     }

@@ -21,8 +21,6 @@ public class RifleManage : MonoBehaviour
     PlayerControl playControl;
     void Start()
     {
-        curAmmunition = 0;
-        AmmunitionZero = true;
         playControl = Player.GetComponent<PlayerControl>();
     }
 

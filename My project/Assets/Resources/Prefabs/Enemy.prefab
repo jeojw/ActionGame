@@ -107,7 +107,7 @@ Transform:
   m_GameObject: {fileID: 94740398738130211}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.012, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -370,7 +370,7 @@ MonoBehaviour:
   KnifeHit: 0
   PistolBulletHit: 0
   RifleBulletHit: 0
-  PisteHit: 0
+  FistHit: 0
   isHit: 0
 --- !u!60 &675055972344692887
 PolygonCollider2D:
@@ -768,7 +768,7 @@ MonoBehaviour:
   KnifeHit: 0
   PistolBulletHit: 0
   RifleBulletHit: 0
-  PisteHit: 0
+  FistHit: 0
   isHit: 0
 --- !u!1 &2214419389179352022
 GameObject:
@@ -1599,7 +1599,7 @@ MonoBehaviour:
   KnifeHit: 0
   PistolBulletHit: 0
   RifleBulletHit: 0
-  PisteHit: 0
+  FistHit: 0
   isHit: 0
 --- !u!1 &3716750712589783216
 GameObject:
@@ -2122,7 +2122,7 @@ MonoBehaviour:
   KnifeHit: 0
   PistolBulletHit: 0
   RifleBulletHit: 0
-  PisteHit: 0
+  FistHit: 0
   isHit: 0
 --- !u!1 &4678170548867786963
 GameObject:
@@ -2296,7 +2296,7 @@ Transform:
   m_GameObject: {fileID: 4911401903473198697}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.883, y: 1.071, z: 0}
+  m_LocalPosition: {x: 7.883, y: 1.104, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2791,7 +2791,7 @@ Transform:
   m_GameObject: {fileID: 6208375580214827233}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.138, y: 1.669, z: 0}
+  m_LocalPosition: {x: 3.138, y: 1.689, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3479,7 +3479,7 @@ MonoBehaviour:
   KnifeHit: 0
   PistolBulletHit: 0
   RifleBulletHit: 0
-  PisteHit: 0
+  FistHit: 0
   isHit: 0
 --- !u!1 &7409568941672355321
 GameObject:
@@ -4029,7 +4029,7 @@ MonoBehaviour:
   KnifeHit: 0
   PistolBulletHit: 0
   RifleBulletHit: 0
-  PisteHit: 0
+  FistHit: 0
   isHit: 0
 --- !u!60 &2189756322613078373
 PolygonCollider2D:

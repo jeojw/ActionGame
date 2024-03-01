@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class EnemyCheckCollision : MonoBehaviour
@@ -55,6 +56,25 @@ public class EnemyCheckCollision : MonoBehaviour
             }
         }
     }
+    private void RaycastHit()
+    {
+        RaycastHit2D Hit;
+        if (transform.parent.name != "bone_1")
+            Hit = Physics2D.BoxCast(transform.position, new Vector2(0.75f, 1.7f), transform.parent.transform.localRotation.z, transform.forward, 0.1f, LayerMask.GetMask("Player"));
+        else
+            Hit = Physics2D.CircleCast(transform.position, 1.11f, transform.forward, 0.1f, LayerMask.GetMask("Player"));
+        if (Hit.collider != null)
+        {
+            if (Hit.collider.tag == "Fist")
+                FistHit = true;
+            if (Hit.collider.tag == "Pistol_Bullet")
+                PistolBulletHit = true;
+            if (Hit.collider.tag == "Rifle_Bullet")
+                RifleBulletHit = true;
+            if (Hit.collider.tag == "Knife")
+                KnifeHit = true;
+        }
+    }
 
     void HitDelayProcess()
     {
@@ -70,6 +90,7 @@ public class EnemyCheckCollision : MonoBehaviour
 
     void Update()
     {
+        RaycastHit();
         isDead = Estat.isDead;
         if (!isDead)
         {

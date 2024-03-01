@@ -90,6 +90,7 @@ public class PistolManage : MonoBehaviour
     public void ReloadReset()
     {
         isReloading = false;
+        isReload = false;
     }
 
     // Update is called once per frame

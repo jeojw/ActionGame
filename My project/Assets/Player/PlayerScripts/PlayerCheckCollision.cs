@@ -49,9 +49,28 @@ public class PlayerCheckCollision : MonoBehaviour
             }
         }
     }
+
+    private void RaycastHit()
+    {
+        RaycastHit2D Hit;
+        if (transform.parent.name != "bone_1")
+            Hit = Physics2D.BoxCast(transform.position, new Vector2(0.75f, 1.7f), transform.parent.transform.localRotation.z, transform.forward, 0.1f, LayerMask.GetMask("Player"));
+        else
+            Hit = Physics2D.CircleCast(transform.position, 1.11f, transform.forward, 0.1f, LayerMask.GetMask("Player"));
+        if (Hit.collider != null)
+        {
+            if (Hit.collider.tag == "Enemy_Pistol_Bullet")
+                PistolBulletHit = true;
+            if (Hit.collider.tag == "Enemy_Rifle_Bullet")
+                RifleBulletHit = true;
+            if (Hit.collider.tag == "EnemuKnife")
+                KnifeHit = true;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
+        RaycastHit();
         if (!PlayerStat.isDead)
         {
             isHit = (KnifeHit || PistolBulletHit || RifleBulletHit);

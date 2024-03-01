@@ -37,10 +37,14 @@ public class ItemManage : MonoBehaviour
         ItemList= new List<GameObject>();
         statManage = Player.GetComponent<StatManage>();
         playerControl = Player.GetComponent<PlayerControl>();
-        EnemyStatList = GetComponent<SetGame>().EnemyStatList;
-        EnemyPosList = GetComponent<SetGame>().EnemyPosList;
-        IsDropList = GetComponent<SetGame>().isDropItem;
         Item = Resources.Load<GameObject>(Path);
+    }
+
+    public void SetList(List<Enemy_StatManage> _ESL,
+                        List<Transform> _ETL,
+                        List<bool> _IsDropList)
+    {
+        EnemyStatList = _ESL;   EnemyPosList = _ETL;    IsDropList = _IsDropList;
     }
 
     void ChooseItem()

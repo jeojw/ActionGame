@@ -53,10 +53,6 @@ public class PlayerControl : MonoBehaviour
     private float jumpV = 50f;
     private int weaponPos = 0;
 
-    private float RopeDelay = 0;
-    private float RopeDelayStart = 0;
-    public float RopeDelayElapsed = 0;
-
     private float ShotDelay;
     private float ShotDelayStart = 0;
     private float _ShotDelayElapsed = 0;
@@ -101,8 +97,6 @@ public class PlayerControl : MonoBehaviour
     private bool IsDoublePressed = false;
 
     public ItemManage.ITEMTYPE GetItemType;
-
-    private float SlopeAngle;
 
     void Start()
     {
@@ -445,7 +439,6 @@ public class PlayerControl : MonoBehaviour
             if (isSlope)
             {
                 RaycastHit2D hit = Physics2D.Raycast(rigid.position, Vector2.down, 5f, LayerMask.GetMask("Slope"));
-                SlopeAngle = Vector2.Angle(Vector2.up, hit.normal);
 
                 rigid.velocity = Vector3.ProjectOnPlane(Vector3.right * (int)direction, hit.normal).normalized * speed + Vector3.down * rigid.gravityScale;
 
@@ -468,7 +461,6 @@ public class PlayerControl : MonoBehaviour
             if (isSlope)
             {
                 RaycastHit2D hit = Physics2D.Raycast(rigid.position, Vector2.down, 5f, LayerMask.GetMask("Slope"));
-                SlopeAngle = Vector2.Angle(Vector2.up, hit.normal);
 
                 rigid.velocity = Vector3.ProjectOnPlane(Vector3.right * x, hit.normal).normalized * speed * 2 + Vector3.down * rigid.gravityScale * 2;
 
@@ -527,7 +519,6 @@ public class PlayerControl : MonoBehaviour
         if (isSlope)
         {
             RaycastHit2D hit = Physics2D.Raycast(rigid.position, Vector2.down, 5f, LayerMask.GetMask("Slope"));
-            SlopeAngle = Vector2.Angle(Vector2.up, hit.normal);
 
             rigid.velocity = Vector3.ProjectOnPlane(Vector3.right * x, hit.normal).normalized * speed * 2f + Vector3.down * rigid.gravityScale;
 
