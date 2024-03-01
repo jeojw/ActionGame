@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e9d91c18efb24424998c4f733cbd1670
+guid: d578faebd148328418cf6b9b7205b3a9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -53,7 +53,7 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: 0
+  spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -123,14 +123,10 @@ TextureImporter:
     serializedVersion: 2
     sprites: []
     outline: []
-    physicsShape:
-    - - {x: -300, y: -300}
-      - {x: -300, y: 300}
-      - {x: 300, y: 300}
-      - {x: 300, y: -300}
+    physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []

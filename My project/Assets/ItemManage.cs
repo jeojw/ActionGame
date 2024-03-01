@@ -93,9 +93,7 @@ public class ItemManage : MonoBehaviour
         {
             if (EnemyStatList[i].isDead && EnemyStatList[i].isDrop && !IsDropList[i])
             {
-                //ChooseItem();
-                DropItem = Item.transform.GetChild(2).gameObject;
-                ItemType = ITEMTYPE.PISTOL;
+                ChooseItem();
                 if (DropItem != null)
                 {
                     DropItem = Instantiate(DropItem, EnemyPosList[i].position, Quaternion.identity);

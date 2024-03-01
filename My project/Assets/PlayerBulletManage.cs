@@ -27,8 +27,10 @@ public class PlayerBulletManage : MonoBehaviour
 
     private void CastColliderCheck()
     {
-        RaycastHit2D Hit = Physics2D.BoxCast(transform.position, BoxC.size * 0.08f, -90f, new Vector2((int)direct, 0), 0.02f, LayerMask.GetMask("Enemy"));
-        if (Hit.collider != null)
+        RaycastHit2D Hit = Physics2D.BoxCast(transform.position, BoxC.size * 0.24f, -90f, new Vector2((int)direct, 0), 0.02f, LayerMask.GetMask("Enemy"));
+        RaycastHit2D Hit2 = Physics2D.BoxCast(transform.position, BoxC.size * 0.24f, -90f, new Vector2((int)direct, 0), 0.02f, LayerMask.GetMask("Slope"));
+        RaycastHit2D Hit3 = Physics2D.BoxCast(transform.position, BoxC.size * 0.24f, -90f, new Vector2((int)direct, 0), 0.02f, LayerMask.GetMask("Ground"));
+        if (Hit.collider != null || Hit2.collider != null || Hit3.collider != null)
             Destroy(gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision)

@@ -146,7 +146,8 @@ public class PlayerControl : MonoBehaviour
     private void checkSlope()
     {
         RaycastHit2D hit = Physics2D.Raycast(rigid.position, Vector2.down, 5f, LayerMask.GetMask("Slope"));
-        RaycastHit2D hit2 = Physics2D.BoxCast(bodyPos.position, new Vector2(3, 1), 0f, Vector2.down, 0.01f, LayerMask.GetMask("Slope"));
+        RaycastHit2D hit2 = Physics2D.BoxCast(bodyPos.position, new Vector2(4, 1), 0f, Vector2.down, 1f, LayerMask.GetMask("Slope"));
+
 
         isSlope = hit.collider != null || hit2.collider != null;
     }
@@ -439,6 +440,7 @@ public class PlayerControl : MonoBehaviour
             if (isSlope)
             {
                 RaycastHit2D hit = Physics2D.Raycast(rigid.position, Vector2.down, 5f, LayerMask.GetMask("Slope"));
+                Debug.DrawRay(rigid.position, Vector2.down * 5f, Color.red, hit.distance);
 
                 rigid.velocity = Vector3.ProjectOnPlane(Vector3.right * (int)direction, hit.normal).normalized * speed + Vector3.down * rigid.gravityScale;
 
