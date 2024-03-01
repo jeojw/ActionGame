@@ -20,7 +20,7 @@ public class EnemyCheckCollision : MonoBehaviour
     public bool isHit = false;
     private bool isDead;
 
-    private float HitDelay = 0.5f;
+    private float HitDelay = 0.4f;
     private float HitDelayStart = 0;
     private float HitDelayElapsed = 0;
 
@@ -90,10 +90,11 @@ public class EnemyCheckCollision : MonoBehaviour
 
     void Update()
     {
-        RaycastHit();
+        
         isDead = Estat.isDead;
         if (!isDead)
         {
+            RaycastHit();
             isHit = (KnifeHit || RifleBulletHit || PistolBulletHit || FistHit);
             if (isHit)
             {

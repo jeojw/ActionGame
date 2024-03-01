@@ -70,9 +70,10 @@ public class PlayerCheckCollision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit();
+        
         if (!PlayerStat.isDead)
         {
+            RaycastHit();
             isHit = (KnifeHit || PistolBulletHit || RifleBulletHit);
             if (isHit)
             {
