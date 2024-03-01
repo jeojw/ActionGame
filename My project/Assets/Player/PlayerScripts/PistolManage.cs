@@ -11,14 +11,25 @@ public class PistolManage : MonoBehaviour
     public GameObject WeaponUI;
 
     public bool AmmunitionZero;
-    public bool isReload;
-    public bool isReloading;
+    private bool _isReload;
+    private bool _isReloading;
+    public bool isReload
+    {
+        get { return _isReload; }
+        set { _isReload = value; }
+    }
+    public bool isReloading { 
+        get { return _isReloading; }
+        set { _isReloading = value; }
+    }
     public bool isShot;
 
     public float BulletDamage;
     public float ShotDelay = 0.7f;
     public float curAmmunition;
     public float maxAmmunition;
+
+    public float curMagazines;
 
     public float Reload_Delay;
 
@@ -27,24 +38,14 @@ public class PistolManage : MonoBehaviour
     void Start()
     {
         curAmmunition = maxAmmunition;
+        curMagazines = 0;
         playControl = Player.GetComponent<PlayerControl>();
         playerAnim = Player.GetComponent<Animator>();  
     }
 
     public void ResetMagazine()
     {
-        if (AmmunitionZero)
-        {
-            isReload = true;
-            AmmunitionZero = false;
-        }
-         
-        else
-        {
-            curAmmunition = maxAmmunition;
-        }
-        
-       
+        curAmmunition = maxAmmunition;
     }
 
     void Shot()
@@ -68,6 +69,14 @@ public class PistolManage : MonoBehaviour
             isShot = false;
 
     }
+    public void GetMagazine()
+    {
+        if (curMagazines <= 3)
+        {
+            curMagazines++;
+        }
+            
+    }
 
     void Reload()
     {
@@ -75,6 +84,8 @@ public class PistolManage : MonoBehaviour
         {
             if (playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
             {
+                if (curMagazines > 0)
+                    curMagazines--;
                 curAmmunition = maxAmmunition;
                 AmmunitionZero = false;
                 isReload = false;
@@ -97,9 +108,9 @@ public class PistolManage : MonoBehaviour
     void Update()         
     {
         Shot();
-        if (isReload) {
+        if (curMagazines > 0 && AmmunitionZero) {
+            isReload = true;
             Reload();
         }
-            
     }
 }

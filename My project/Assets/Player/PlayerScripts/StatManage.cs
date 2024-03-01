@@ -89,7 +89,7 @@ public class StatManage : MonoBehaviour
             if (ItemType == ItemManage.ITEMTYPE.PISTOL)
             {
                 UseItem = true;
-                PistolM.ResetMagazine();
+                PistolM.GetMagazine();
                 ItemType = ItemManage.ITEMTYPE.NONE;
             }
         }

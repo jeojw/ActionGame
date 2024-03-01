@@ -12,7 +12,10 @@ public class SceneUI : MonoBehaviour
     DataManage DataM;
     ScoreManage ScoreM;
     SetGame SG;
-    List<Enemy_StatManage> ESList;
+
+    public Image GuideImage;
+    public TextMeshProUGUI text_Guide;
+    RectTransform GuidePos;
 
     public TextMeshProUGUI text_Timer;
     public TextMeshProUGUI text_Score;
@@ -34,8 +37,10 @@ public class SceneUI : MonoBehaviour
     public Image Rope;
 
     public Image Pistol_Ammunition;
+    public Image Pistol_Magazine;
     public Image Rifle_Ammunition;
     public TextMeshProUGUI Pistol_Ammunition_Text;
+    public TextMeshProUGUI Pistol_Magazine_Text;
     public TextMeshProUGUI Rifle_Ammunition_Text;
 
     public TextMeshProUGUI ScoreText;
@@ -47,10 +52,10 @@ public class SceneUI : MonoBehaviour
 
     void Start()
     {
+        GuidePos = GuideImage.GetComponent<RectTransform>();
         DataM = Event.GetComponent<DataManage>();
         ScoreM = Event.GetComponent<ScoreManage>();
         SG = Event.GetComponent<SetGame>();
-        ESList = SG.EnemyStatList;
         MaxHealth = Player.GetComponent<StatManage>().MaxHp;
 
         Pistol.gameObject.SetActive(true);
@@ -108,6 +113,37 @@ public class SceneUI : MonoBehaviour
         text_ResultTimer.text = $"{time_current:N2} sec";
     }
 
+    void GuideUI()
+    {
+        Vector3 CameraPos = Camera.main.transform.position;
+        if (CameraPos.x >= 276 && CameraPos.x <= 314 && CameraPos.y < 52)
+        {
+            GuideImage.gameObject.SetActive(true);
+            text_Guide.gameObject.SetActive(true);
+        }
+
+        else if (CameraPos.x >= 491 && CameraPos.x <= 532 && CameraPos.y < 59)
+        {
+            GuideImage.gameObject.SetActive(true);
+            text_Guide.gameObject.SetActive(true);
+        }
+        else
+        {
+            GuideImage.gameObject.SetActive(false);
+            text_Guide.gameObject.SetActive(false);
+        }
+
+        if (playControl.weapon == PlayerControl.Weapons.PISTOL ||
+            playControl.weapon == PlayerControl.Weapons.RIFLE)
+        {
+            GuidePos.anchoredPosition = new Vector3(525.7f, 95f, 0f);
+        }
+        else
+        {
+            GuidePos.anchoredPosition = new Vector3(525.7f, 145f, 0f);
+        }
+    }
+
     void WeaponUI()
     {
         weapon = playControl.weapon;
@@ -122,6 +158,8 @@ public class SceneUI : MonoBehaviour
                 Pistol.gameObject.SetActive(false);
                 Pistol_Ammunition.gameObject.SetActive(false);
                 Pistol_Ammunition_Text.gameObject.SetActive(false);
+                Pistol_Magazine.gameObject.SetActive(false);
+                Pistol_Magazine_Text.gameObject.SetActive(false);
             }
 
             if (Rifle.gameObject != null &&
@@ -149,6 +187,8 @@ public class SceneUI : MonoBehaviour
                 Pistol.gameObject.SetActive(true);
                 Pistol_Ammunition.gameObject.SetActive(true);
                 Pistol_Ammunition_Text.gameObject.SetActive(true);
+                Pistol_Magazine.gameObject.SetActive(true);
+                Pistol_Magazine_Text.gameObject.SetActive(true);
             }
             if (Rifle.gameObject != null &&
                 Rifle_Ammunition.gameObject != null &&
@@ -175,6 +215,8 @@ public class SceneUI : MonoBehaviour
                 Pistol.gameObject.SetActive(false);
                 Pistol_Ammunition.gameObject.SetActive(false);
                 Pistol_Ammunition_Text.gameObject.SetActive(false);
+                Pistol_Magazine.gameObject.SetActive(false);
+                Pistol_Magazine_Text.gameObject.SetActive(false);
             }
             if (Rifle.gameObject != null &&
                 Rifle_Ammunition.gameObject != null &&
@@ -201,6 +243,8 @@ public class SceneUI : MonoBehaviour
                 Pistol.gameObject.SetActive(false);
                 Pistol_Ammunition.gameObject.SetActive(false);
                 Pistol_Ammunition_Text.gameObject.SetActive(false);
+                Pistol_Magazine.gameObject.SetActive(false);
+                Pistol_Magazine_Text.gameObject.SetActive(false);
             }
             if (Rifle.gameObject != null &&
                 Rifle_Ammunition.gameObject != null &&
@@ -230,6 +274,8 @@ public class SceneUI : MonoBehaviour
                 Pistol.gameObject.SetActive(false);
                 Pistol_Ammunition.gameObject.SetActive(false);
                 Pistol_Ammunition_Text.gameObject.SetActive(false);
+                Pistol_Magazine.gameObject.SetActive(false);
+                Pistol_Magazine_Text.gameObject.SetActive(false);
             }
             if (Rifle.gameObject != null &&
                 Rifle_Ammunition.gameObject != null &&
@@ -269,6 +315,7 @@ public class SceneUI : MonoBehaviour
             isStored = true;
         }
 
+        GuideUI();
         WeaponUI();
         Check_Timer();
         CheckHp();

@@ -7,6 +7,7 @@ public class WeaponUIManage : MonoBehaviour
 {
     private TextMeshProUGUI Pistol_Ammunition;
     private TextMeshProUGUI Rifle_Ammunition;
+    private TextMeshProUGUI Pistol_Magazines;
     public GameObject PlayerInfo;
     public GameObject Pistol;
     public GameObject Rifle;
@@ -16,6 +17,7 @@ public class WeaponUIManage : MonoBehaviour
     RifleManage RifleManage;
 
     private float Pistol_Cur_Ammunition;
+    private float Pistol_Cur_Magazines;
     private float Rifle_Cur_Ammunition;
 
     public bool IsZeroPistol = false;
@@ -31,11 +33,14 @@ public class WeaponUIManage : MonoBehaviour
     void Pistol_Manage()
     {
         Pistol_Ammunition = AllUI.Pistol_Ammunition_Text;
+        Pistol_Magazines = AllUI.Pistol_Magazine_Text;
         Pistol_Cur_Ammunition = PistolManage.curAmmunition;
+        Pistol_Cur_Magazines = PistolManage.curMagazines;
 
         IsZeroPistol = (Pistol_Cur_Ammunition == 0);
         
         Pistol_Ammunition.text = "X " + Pistol_Cur_Ammunition.ToString();
+        Pistol_Magazines.text = "X " + Pistol_Cur_Magazines.ToString();
     }
 
 
