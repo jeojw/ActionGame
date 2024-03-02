@@ -10,6 +10,8 @@ public class PistolManage : MonoBehaviour
     public GameObject Player;
     public GameObject WeaponUI;
 
+    ParticleSystem PS;
+
     public bool AmmunitionZero;
     private bool _isReload;
     private bool _isReloading;
@@ -37,6 +39,7 @@ public class PistolManage : MonoBehaviour
     Animator playerAnim;
     void Start()
     {
+        PS = transform.GetChild(0).GetComponent<ParticleSystem>();
         curAmmunition = maxAmmunition;
         curMagazines = 0;
         playControl = Player.GetComponent<PlayerControl>();
@@ -54,6 +57,8 @@ public class PistolManage : MonoBehaviour
             playControl.isShooting &&
             playControl.weapon == PlayerControl.Weapons.PISTOL)
         {
+            PS.Play();
+            PS.Emit(20);
             isShot = true;
             if (curAmmunition != 0)
             {
@@ -65,8 +70,12 @@ public class PistolManage : MonoBehaviour
                 AmmunitionZero = true;
             }
         }
-        else
+        else 
+        {
             isShot = false;
+            PS.Stop();
+        }
+            
 
     }
     public void GetMagazine()
