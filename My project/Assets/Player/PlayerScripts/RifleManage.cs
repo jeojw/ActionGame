@@ -9,25 +9,39 @@ public class RifleManage : MonoBehaviour
     public GameObject Player;
     public GameObject WeaponUI;
 
-    public bool AmmunitionZero = true;
+    public bool AmmunitionZero;
     public bool isShot;
     public bool isReload;
+    public bool isReloading;
 
     public float BulletDamage;
     public float ShotDelay = 0.01f;
-    public float curAmmunition = 0;
-    public float maxAmmunition;
+    public int curAmmunition = 0;
+    public int maxAmmunition;
+    public int curMagazines;
 
     PlayerControl playControl;
+    Animator playerAnim;
     void Start()
     {
         playControl = Player.GetComponent<PlayerControl>();
+        playerAnim = playControl.GetComponent<Animator>();
+        curAmmunition = maxAmmunition;
+        curMagazines = 0;
+        AmmunitionZero = false;
     }
 
     public void ResetMagazine()
     {
-        AmmunitionZero = false;
         curAmmunition = maxAmmunition;
+    }
+
+    public void GetMagazine()
+    {
+        if (curMagazines < 3)
+        {
+            curMagazines++;
+        }
     }
 
     void Shot()
@@ -41,6 +55,10 @@ public class RifleManage : MonoBehaviour
             {
                 curAmmunition -= 1;
             }
+            if (curAmmunition == 0)
+            {
+                AmmunitionZero = true;
+            }
         }
         else
             isShot = false;
@@ -49,21 +67,40 @@ public class RifleManage : MonoBehaviour
 
     void Reload()
     {
-        if (playControl.isGetItem && playControl.GetItemType == ItemManage.ITEMTYPE.RIFLE)
+        if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Reloading_Rifle"))
         {
-            isReload = true;
+            if (playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            {
+                if (curMagazines > 0)
+                    curMagazines--;
+                curAmmunition = maxAmmunition;
+                AmmunitionZero = false;
+                isReload = false;
+                isReloading = false;
+            }
+            else
+            {
+                isReloading = true;
+            }
         }
-        else
-            isReload = false;
+    }
+
+    public void ReloadReset()
+    {
+        isReloading = false;
+        isReload = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (curAmmunition <= 0)
-            AmmunitionZero = true;
         Shot();
-        Reload();
+        if (curMagazines > 0 && AmmunitionZero)
+        {
+            isReload = true;
+            Reload();
+        }
+        
     }
 }
 

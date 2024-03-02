@@ -355,7 +355,8 @@ public class PlayerControl : MonoBehaviour
             case 0:
                 weapon = Weapons.NONE; break;
             case 1:
-                if (RifleManage.AmmunitionZero)
+                if (RifleManage.AmmunitionZero &&
+                    RifleManage.curMagazines == 0)
                     weapon = Weapons.PISTOL;
                 else
                     weapon = Weapons.RIFLE;
@@ -413,7 +414,8 @@ public class PlayerControl : MonoBehaviour
                 case 0:
                     weapon = Weapons.NONE; break;
                 case 1:
-                    if (RifleManage.AmmunitionZero)
+                    if (RifleManage.AmmunitionZero &&
+                        RifleManage.curMagazines == 0)
                         weapon = Weapons.PISTOL;
 
                     else
@@ -533,6 +535,7 @@ public class PlayerControl : MonoBehaviour
         transform.position = PlayerPos;
         weaponPos = 0;
         PistolManage.ReloadReset();
+        RifleManage.ReloadReset();
         RifleManage.ResetMagazine();
         PistolManage.ResetMagazine();
     }

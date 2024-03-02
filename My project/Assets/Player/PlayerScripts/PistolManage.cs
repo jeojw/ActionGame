@@ -26,10 +26,10 @@ public class PistolManage : MonoBehaviour
 
     public float BulletDamage;
     public float ShotDelay = 0.7f;
-    public float curAmmunition;
-    public float maxAmmunition;
+    public int curAmmunition;
+    public int maxAmmunition;
 
-    public float curMagazines;
+    public int curMagazines;
 
     public float Reload_Delay;
 
@@ -71,7 +71,7 @@ public class PistolManage : MonoBehaviour
     }
     public void GetMagazine()
     {
-        if (curMagazines <= 3)
+        if (curMagazines < 3)
         {
             curMagazines++;
         }
@@ -108,7 +108,8 @@ public class PistolManage : MonoBehaviour
     void Update()         
     {
         Shot();
-        if (curMagazines > 0 && AmmunitionZero) {
+        if (curMagazines > 0 && AmmunitionZero) 
+        {
             isReload = true;
             Reload();
         }

@@ -80,10 +80,13 @@ public class StatManage : MonoBehaviour
             if (ItemType == ItemManage.ITEMTYPE.RIFLE)
             {
                 UseItem = true;
-                RifleM.ResetMagazine();
-                GunDamage = RifleM.BulletDamage;
-                GunShotDelay = RifleM.ShotDelay;
-                playControl.SetShotDelay(GunShotDelay);
+                RifleM.GetMagazine();
+                if (RifleM.curMagazines > 0 || !RifleM.AmmunitionZero)
+                {
+                    GunDamage = RifleM.BulletDamage;
+                    GunShotDelay = RifleM.ShotDelay;
+                    playControl.SetShotDelay(GunShotDelay);
+                }
                 ItemType = ItemManage.ITEMTYPE.NONE;
             }
             if (ItemType == ItemManage.ITEMTYPE.PISTOL)
@@ -99,7 +102,7 @@ public class StatManage : MonoBehaviour
             UseItem = false;
         }
 
-        if (RifleM.AmmunitionZero)
+        if (RifleM.AmmunitionZero && RifleM.curMagazines == 0)
         {
             GunDamage = PistolM.BulletDamage;
             GunShotDelay = PistolM.ShotDelay;

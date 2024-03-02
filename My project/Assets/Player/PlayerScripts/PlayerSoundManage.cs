@@ -112,7 +112,7 @@ public class PlayeroundManage : MonoBehaviour
             {
                 RifleShot.Play();
             }
-            if (isReload)
+            if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Reloading_Rifle") && playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
             {
                 RifleReload.Play();
             }

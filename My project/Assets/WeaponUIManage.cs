@@ -8,6 +8,7 @@ public class WeaponUIManage : MonoBehaviour
     private TextMeshProUGUI Pistol_Ammunition;
     private TextMeshProUGUI Rifle_Ammunition;
     private TextMeshProUGUI Pistol_Magazines;
+    private TextMeshProUGUI Rifle_Magazines;
     public GameObject PlayerInfo;
     public GameObject Pistol;
     public GameObject Rifle;
@@ -16,9 +17,10 @@ public class WeaponUIManage : MonoBehaviour
     PistolManage PistolManage;
     RifleManage RifleManage;
 
-    private float Pistol_Cur_Ammunition;
-    private float Pistol_Cur_Magazines;
-    private float Rifle_Cur_Ammunition;
+    private int Pistol_Cur_Ammunition;
+    private int Pistol_Cur_Magazines;
+    private int Rifle_Cur_Ammunition;
+    private int Rifle_Cur_Magazines;
 
     public bool IsZeroPistol = false;
     public bool IsZeroRifle = false;
@@ -47,11 +49,14 @@ public class WeaponUIManage : MonoBehaviour
     void Rifle_Manage()
     {
         Rifle_Ammunition = AllUI.Rifle_Ammunition_Text;
+        Rifle_Magazines = AllUI.Rifle_Magazine_Text;
         Rifle_Cur_Ammunition = RifleManage.curAmmunition;
+        Rifle_Cur_Magazines = RifleManage.curMagazines;
 
         IsZeroRifle = (Rifle_Cur_Ammunition == 0);
 
         Rifle_Ammunition.text = "X " + Rifle_Cur_Ammunition.ToString();
+        Rifle_Magazines.text = "X " + Rifle_Cur_Magazines.ToString();
     }
     // Update is called once per frame
     void Update()

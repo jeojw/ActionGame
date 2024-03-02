@@ -39,9 +39,11 @@ public class SceneUI : MonoBehaviour
     public Image Pistol_Ammunition;
     public Image Pistol_Magazine;
     public Image Rifle_Ammunition;
+    public Image Rifle_Magazine;
     public TextMeshProUGUI Pistol_Ammunition_Text;
     public TextMeshProUGUI Pistol_Magazine_Text;
     public TextMeshProUGUI Rifle_Ammunition_Text;
+    public TextMeshProUGUI Rifle_Magazine_Text;
 
     public TextMeshProUGUI ScoreText;
 
@@ -134,7 +136,8 @@ public class SceneUI : MonoBehaviour
         }
 
         if (playControl.weapon == PlayerControl.Weapons.PISTOL ||
-            playControl.weapon == PlayerControl.Weapons.RIFLE)
+            playControl.weapon == PlayerControl.Weapons.RIFLE ||
+            playControl.weapon == PlayerControl.Weapons.KNIFE)
         {
             GuidePos.anchoredPosition = new Vector3(541.1f, 99.9f, 0f);
         }
@@ -169,6 +172,8 @@ public class SceneUI : MonoBehaviour
                 Rifle.gameObject.SetActive(false);
                 Rifle_Ammunition.gameObject.SetActive(false);
                 Rifle_Ammunition_Text.gameObject.SetActive(false);
+                Rifle_Magazine.gameObject.SetActive(false);
+                Rifle_Ammunition_Text.gameObject.SetActive(false);
             }
 
             if (Knife.gameObject != null)
@@ -196,6 +201,8 @@ public class SceneUI : MonoBehaviour
             {
                 Rifle.gameObject.SetActive(false);
                 Rifle_Ammunition.gameObject.SetActive(false);
+                Rifle_Ammunition_Text.gameObject.SetActive(false);
+                Rifle_Magazine.gameObject.SetActive(false);
                 Rifle_Ammunition_Text.gameObject.SetActive(false);
             }
 
@@ -225,6 +232,8 @@ public class SceneUI : MonoBehaviour
                 Rifle.gameObject.SetActive(true);
                 Rifle_Ammunition.gameObject.SetActive(true);
                 Rifle_Ammunition_Text.gameObject.SetActive(true);
+                Rifle_Magazine.gameObject.SetActive(true);
+                Rifle_Ammunition_Text.gameObject.SetActive(true);
             }
 
             if (Knife.gameObject != null)
@@ -252,6 +261,8 @@ public class SceneUI : MonoBehaviour
             {
                 Rifle.gameObject.SetActive(false);
                 Rifle_Ammunition.gameObject.SetActive(false);
+                Rifle_Ammunition_Text.gameObject.SetActive(false);
+                Rifle_Magazine.gameObject.SetActive(false);
                 Rifle_Ammunition_Text.gameObject.SetActive(false);
             }
             if (Knife.gameObject != null)
@@ -283,6 +294,8 @@ public class SceneUI : MonoBehaviour
             {
                 Rifle.gameObject.SetActive(false);
                 Rifle_Ammunition.gameObject.SetActive(false);
+                Rifle_Ammunition_Text.gameObject.SetActive(false);
+                Rifle_Magazine.gameObject.SetActive(false);
                 Rifle_Ammunition_Text.gameObject.SetActive(false);
             }
 

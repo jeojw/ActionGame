@@ -72,7 +72,7 @@ public class SpriteUpdate : MonoBehaviour
             anim.SetBool("isGetPistol", false);
         }
 
-        if (playerControl.weapon == PlayerControl.Weapons.RIFLE && !rifleManage.AmmunitionZero)
+        if (playerControl.weapon == PlayerControl.Weapons.RIFLE)
         {
             anim.SetBool("isGetRifle", true);
         }
@@ -177,7 +177,6 @@ public class SpriteUpdate : MonoBehaviour
             if (!pistolManage.isReload)
             {
                 anim.SetBool("isReloading", false);
-                
             }
             else
                 anim.SetBool("isReloading", true);
@@ -199,6 +198,12 @@ public class SpriteUpdate : MonoBehaviour
         if (playerControl.weapon == PlayerControl.Weapons.RIFLE)
         {
             rifleSprite.enabled = true;
+            if (!rifleManage.isReload)
+            {
+                anim.SetBool("isReloading", false);
+            }
+            else
+                anim.SetBool("isReloading", true);
             if (playerControl.isShooting)
             {
                 anim.SetBool("isRifleShooting", true);
