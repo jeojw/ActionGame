@@ -136,11 +136,11 @@ public class SceneUI : MonoBehaviour
         if (playControl.weapon == PlayerControl.Weapons.PISTOL ||
             playControl.weapon == PlayerControl.Weapons.RIFLE)
         {
-            GuidePos.anchoredPosition = new Vector3(525.7f, 95f, 0f);
+            GuidePos.anchoredPosition = new Vector3(541.1f, 99.9f, 0f);
         }
         else
         {
-            GuidePos.anchoredPosition = new Vector3(525.7f, 145f, 0f);
+            GuidePos.anchoredPosition = new Vector3(541.1f, 153f, 0f);
         }
     }
 
