@@ -781,6 +781,7 @@ GameObject:
   - component: {fileID: 8296572284893806995}
   - component: {fileID: 4832894185362137211}
   - component: {fileID: 7477459191943995884}
+  - component: {fileID: 1406906912506143075}
   m_Layer: 12
   m_Name: right_arms_2
   m_TagString: Untagged
@@ -823,7 +824,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: ce5a20c3535f75f41bd652ff695f5065, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -876,6 +877,20 @@ MonoBehaviour:
     m_Extent: {x: 0.3973549, y: 0.93002987, z: 0}
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
+--- !u!114 &1406906912506143075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2214419389179352022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af3e3f711e1e6f4c8f16e5e521cd4c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 0.22745098, b: 0, a: 0.8}
+  outlineSize: 8
 --- !u!1 &2541701769071609577
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,6 +991,7 @@ GameObject:
   - component: {fileID: 3571279693858692207}
   - component: {fileID: 1164614758741869970}
   - component: {fileID: 223629417620013303}
+  - component: {fileID: 8002703732726815735}
   m_Layer: 12
   m_Name: left_legs_1
   m_TagString: Untagged
@@ -1018,7 +1034,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: ce5a20c3535f75f41bd652ff695f5065, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1073,6 +1089,20 @@ MonoBehaviour:
     m_Extent: {x: 0.57500005, y: 1.1298203, z: 0}
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
+--- !u!114 &8002703732726815735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2657043580537839654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af3e3f711e1e6f4c8f16e5e521cd4c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 0.22745098, b: 0, a: 0.8}
+  outlineSize: 8
 --- !u!1 &2858342269764710207
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,6 +1114,7 @@ GameObject:
   - component: {fileID: 6282200156918757260}
   - component: {fileID: 5650952483162326780}
   - component: {fileID: 4142720881514711851}
+  - component: {fileID: 5985583104368476247}
   m_Layer: 12
   m_Name: left_arms_2
   m_TagString: Untagged
@@ -1126,7 +1157,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: ce5a20c3535f75f41bd652ff695f5065, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1179,6 +1210,20 @@ MonoBehaviour:
     m_Extent: {x: 0.4077853, y: 0.9307399, z: 0}
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
+--- !u!114 &5985583104368476247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2858342269764710207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af3e3f711e1e6f4c8f16e5e521cd4c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 0.22745098, b: 0, a: 0.8}
+  outlineSize: 8
 --- !u!1 &2869071779822324849
 GameObject:
   m_ObjectHideFlags: 0
@@ -1190,6 +1235,7 @@ GameObject:
   - component: {fileID: 8628150436025114290}
   - component: {fileID: 902746360065063909}
   - component: {fileID: 1523348840934408441}
+  - component: {fileID: 15425673107037433}
   m_Layer: 12
   m_Name: left_legs_2
   m_TagString: Untagged
@@ -1232,7 +1278,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: ce5a20c3535f75f41bd652ff695f5065, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1285,6 +1331,20 @@ MonoBehaviour:
     m_Extent: {x: 0.4549998, y: 1.0149999, z: 0}
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
+--- !u!114 &15425673107037433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2869071779822324849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af3e3f711e1e6f4c8f16e5e521cd4c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 0.22745098, b: 0, a: 0.8}
+  outlineSize: 8
 --- !u!1 &2987452865726353607
 GameObject:
   m_ObjectHideFlags: 0
@@ -1296,6 +1356,7 @@ GameObject:
   - component: {fileID: 4688241403430614834}
   - component: {fileID: 4465801753099059644}
   - component: {fileID: 5695424996712355497}
+  - component: {fileID: 928186379129767345}
   m_Layer: 12
   m_Name: right_legs_2
   m_TagString: Untagged
@@ -1338,7 +1399,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5b2f73eb1932c814aaafbd7b88aba315, type: 2}
+  - {fileID: 2100000, guid: ce5a20c3535f75f41bd652ff695f5065, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1391,6 +1452,20 @@ MonoBehaviour:
     m_Extent: {x: 0.31546992, y: 1.0082395, z: 0}
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
+--- !u!114 &928186379129767345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2987452865726353607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af3e3f711e1e6f4c8f16e5e521cd4c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 0.22745098, b: 0, a: 0.8}
+  outlineSize: 8
 --- !u!1 &3633875449477715300
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,6 +1477,7 @@ GameObject:
   - component: {fileID: 4245498526266305577}
   - component: {fileID: 6738497570380007838}
   - component: {fileID: 3574866049577246649}
+  - component: {fileID: 8058347612288351952}
   m_Layer: 12
   m_Name: left_arms_1
   m_TagString: Untagged
@@ -1444,7 +1520,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: ce5a20c3535f75f41bd652ff695f5065, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1499,6 +1575,20 @@ MonoBehaviour:
     m_Extent: {x: 0.59285975, y: 0.9230006, z: 0}
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
+--- !u!114 &8058347612288351952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3633875449477715300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af3e3f711e1e6f4c8f16e5e521cd4c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 0.22745098, b: 0, a: 0.8}
+  outlineSize: 8
 --- !u!1 &3655004453999271323
 GameObject:
   m_ObjectHideFlags: 0
@@ -2167,6 +2257,7 @@ GameObject:
   - component: {fileID: 7648081867579487681}
   - component: {fileID: 2976500059364747478}
   - component: {fileID: 1038531720846243641}
+  - component: {fileID: 2406822099241973886}
   m_Layer: 12
   m_Name: standing #1
   m_TagString: Untagged
@@ -2209,7 +2300,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: ce5a20c3535f75f41bd652ff695f5065, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2271,6 +2362,20 @@ MonoBehaviour:
     m_Extent: {x: 1.4188101, y: 4.4799848, z: 0}
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
+--- !u!114 &2406822099241973886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4852384452237219333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af3e3f711e1e6f4c8f16e5e521cd4c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 0.22743264, b: 0, a: 0.8}
+  outlineSize: 16
 --- !u!1 &4911401903473198697
 GameObject:
   m_ObjectHideFlags: 0
@@ -2388,6 +2493,7 @@ GameObject:
   - component: {fileID: 8608232884226591719}
   - component: {fileID: 1552539611955693307}
   - component: {fileID: 765586469598693953}
+  - component: {fileID: 1076377271195004323}
   m_Layer: 12
   m_Name: right_legs_1
   m_TagString: Untagged
@@ -2430,7 +2536,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: ce5a20c3535f75f41bd652ff695f5065, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2485,6 +2591,20 @@ MonoBehaviour:
     m_Extent: {x: 0.4764651, y: 1.1448396, z: 0}
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
+--- !u!114 &1076377271195004323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5077830160617967515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af3e3f711e1e6f4c8f16e5e521cd4c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 0.22745098, b: 0, a: 0.8}
+  outlineSize: 8
 --- !u!1 &5650600123460849048
 GameObject:
   m_ObjectHideFlags: 0
@@ -3648,6 +3768,7 @@ GameObject:
   - component: {fileID: 7065555522526343474}
   - component: {fileID: 1723953870388926274}
   - component: {fileID: 3422004550659149852}
+  - component: {fileID: 7635765968946885554}
   m_Layer: 12
   m_Name: right_arms_1
   m_TagString: Untagged
@@ -3690,7 +3811,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: ce5a20c3535f75f41bd652ff695f5065, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3745,6 +3866,20 @@ MonoBehaviour:
     m_Extent: {x: 1.0331049, y: 1.80299, z: 0}
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
+--- !u!114 &7635765968946885554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8213840871681511656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af3e3f711e1e6f4c8f16e5e521cd4c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 0.22745098, b: 0, a: 0.8}
+  outlineSize: 8
 --- !u!1 &8241128644198889099
 GameObject:
   m_ObjectHideFlags: 0
@@ -3852,6 +3987,7 @@ GameObject:
   - component: {fileID: 3955468579246613400}
   - component: {fileID: 1235345069404512058}
   - component: {fileID: 8117862841204170077}
+  - component: {fileID: 6258273074602938527}
   m_Layer: 12
   m_Name: head
   m_TagString: Untagged
@@ -3894,7 +4030,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: ce5a20c3535f75f41bd652ff695f5065, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3947,6 +4083,20 @@ MonoBehaviour:
     m_Extent: {x: 1.0997899, y: 1.1029844, z: 0}
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
+--- !u!114 &6258273074602938527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8579609265004811853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af3e3f711e1e6f4c8f16e5e521cd4c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 0.22745098, b: 0, a: 0.8}
+  outlineSize: 8
 --- !u!1 &8708988295787968304
 GameObject:
   m_ObjectHideFlags: 0
@@ -4248,6 +4398,7 @@ GameObject:
   - component: {fileID: 712772201493877846}
   - component: {fileID: 789132633580894803}
   - component: {fileID: 473513061131101551}
+  - component: {fileID: 6832541013396180715}
   m_Layer: 12
   m_Name: body
   m_TagString: Untagged
@@ -4290,7 +4441,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: ce5a20c3535f75f41bd652ff695f5065, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4346,6 +4497,20 @@ MonoBehaviour:
     m_Extent: {x: 0.36758018, y: 1.7684252, z: 0}
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
+--- !u!114 &6832541013396180715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9110455317497764929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af3e3f711e1e6f4c8f16e5e521cd4c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 0.22745098, b: 0, a: 0.8}
+  outlineSize: 8
 --- !u!1 &9125477591400610979
 GameObject:
   m_ObjectHideFlags: 0
