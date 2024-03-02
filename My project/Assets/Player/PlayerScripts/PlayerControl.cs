@@ -440,7 +440,6 @@ public class PlayerControl : MonoBehaviour
             if (isSlope)
             {
                 RaycastHit2D hit = Physics2D.Raycast(rigid.position, Vector2.down, 5f, LayerMask.GetMask("Slope"));
-                Debug.DrawRay(rigid.position, Vector2.down * 5f, Color.red, hit.distance);
 
                 rigid.velocity = Vector3.ProjectOnPlane(Vector3.right * (int)direction, hit.normal).normalized * speed + Vector3.down * rigid.gravityScale;
 
