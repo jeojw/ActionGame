@@ -15,6 +15,7 @@ public class MainSceneManage : MonoBehaviour
     StatManage StatM;
     public GameObject Event;
     SetGame SG;
+    public AudioSource ClickSound;
 
     public bool isPaused = false;
     public bool isReset = false;
@@ -33,6 +34,7 @@ public class MainSceneManage : MonoBehaviour
         {
             if (EventSystem.current.currentSelectedGameObject.name == "No")
             {
+                ClickSound.Play();
                 Time.timeScale = 1;
                 isPaused = false;
                 StopPopup.SetActive(false);
@@ -48,6 +50,7 @@ public class MainSceneManage : MonoBehaviour
                 EventSystem.current.currentSelectedGameObject.name == "DNo" ||
                 EventSystem.current.currentSelectedGameObject.name == "Quit")
             {
+                ClickSound.Play();
                 SceneManager.LoadScene("StartScene");
                 Time.timeScale = 1;
                 isPaused = false;
@@ -64,6 +67,7 @@ public class MainSceneManage : MonoBehaviour
             if (EventSystem.current.currentSelectedGameObject.name == "DYes" ||
                 EventSystem.current.currentSelectedGameObject.name == "Retry")
             {
+                ClickSound.Play();
                 isReset = true;
                 SG.ResetGame();
                 StatM.ResetHp();
@@ -101,7 +105,5 @@ public class MainSceneManage : MonoBehaviour
             ClearPopup.SetActive(false);
             Time.timeScale = 1f;
         }
-            
-        GameProgress();
     }
 }
