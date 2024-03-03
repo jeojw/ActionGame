@@ -90,7 +90,7 @@ public class GrapplingHook : MonoBehaviour
             }
             if (!isHookThrow)
             {
-                if (playControl.isGround && !playControl.isJumpStart)
+                if (playControl.isGround && !playControl.isJumpStart && !playControl.isLand)
                 {
                     Ready_To_Throw_Stand();
                     gravity = 0;
@@ -114,7 +114,6 @@ public class GrapplingHook : MonoBehaviour
                 mousedir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - hand.transform.position;
                 isHookActive = true;
                 isLineMax = false;
-                //hook.gameObject.SetActive(true);
             }
 
             if (isHookActive && !isLineMax && !isAttach)
@@ -134,7 +133,6 @@ public class GrapplingHook : MonoBehaviour
                     isLineMax = false;
                     isHookActive = false;
                     isHookThrow = false;
-                    //hook.gameObject.SetActive(false);
                 }
             }
             else if (isAttach)

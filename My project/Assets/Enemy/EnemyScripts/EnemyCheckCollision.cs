@@ -61,6 +61,7 @@ public class EnemyCheckCollision : MonoBehaviour
         RaycastHit2D Hit;
         if (transform.parent.name != "bone_1")
         {
+
             Hit = Physics2D.BoxCast(transform.position, new Vector2(0.75f, 1.7f), transform.parent.transform.localRotation.z, transform.forward, 0.1f);
         }
         else

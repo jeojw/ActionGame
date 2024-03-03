@@ -75,24 +75,95 @@ public class PlayerControl : MonoBehaviour
     public Direction direction = Direction.RIGHT;
     public Weapons weapon;
 
-    public bool isShooting = false;
-    public bool isFencing = false;
-    public bool isGrapplingShot = false;
-    public bool isPunching = false;
+    private bool _isShooting = false;
+    private bool _isFencing = false;
+    private bool _isPunching = false;
 
-    public bool isMoving = false;
-    public bool isJumpStart = false;
-    public bool isJump = false;
-    public bool isLanding = false;
-    public bool isLand = false;
-    public bool isRolling = false;
-    public bool isAttack = false;
-    public bool isWalking = false;
-    public bool isGround = false;
-    public bool isOnDead = false;
-    public bool isRunning = false;
-    public bool isLowerBody = false;
-    public bool isGetItem = false;
+    public bool isShooting
+    {
+        get { return _isShooting; }
+        set { _isShooting = value; }
+    }
+    public bool isFencing { 
+        get { return _isFencing; } 
+        set { _isFencing = value; }
+    }
+    public bool isPunching { 
+        get { return _isPunching; } 
+        set { _isPunching = value;}
+    }
+
+    private bool _isMoving = false;
+    private bool _isJumpStart = false;
+    private bool _isJump = false;
+    private bool _isLanding = false;
+    private bool _isLand = false;
+    private bool _isRolling = false;
+    private bool _isAttack = false;
+    private bool _isWalking = false;
+    private bool _isGround = false;
+    private bool _isOnDead = false;
+    private bool _isRunning = false;
+    private bool _isLowerBody = false;
+    private bool _isGetItem = false;
+
+    public bool isMoving { 
+        get { return _isMoving; }
+        set { _isMoving = value; }
+    }
+    public bool isJumpStart { 
+        get { return _isJumpStart; }   
+        set { _isJumpStart = value; }
+    }
+    public bool isJump
+    {
+        get { return _isJump; }
+        set { _isJump = value; }
+    }
+    public bool isLanding
+    {
+        get { return _isLanding; }
+        set { _isLanding = value; }
+    }
+    public bool isLand
+    {
+        get { return _isLand; }
+        set { _isLand = value; }
+    }
+    public bool isRolling
+    {
+        get { return _isRolling; }
+        set { _isRolling = value; }
+    }
+    public bool isAttack
+    {
+        get { return _isAttack; }
+        set { _isAttack = value; }
+    }
+    public bool isWalking { 
+        get { return _isWalking; }
+        set { _isWalking = value; }
+    }
+    public bool isGround { 
+        get { return _isGround; }
+        set { _isGround = value; }
+    }
+    public bool isOnDead { 
+        get { return _isOnDead; }
+        set { _isOnDead = value; }  
+    }
+    public bool isRunning { 
+        get { return _isRunning; }
+        set { _isRunning = value; }
+    }
+    public bool isLowerBody {
+        get { return _isLowerBody; }
+        set { _isLowerBody = value; }
+    }
+    public bool isGetItem { 
+        get { return _isGetItem; }
+        set { _isGetItem = value; }
+    }
 
     private bool IsDoublePressed = false;
 
@@ -121,12 +192,12 @@ public class PlayerControl : MonoBehaviour
 
         if (hit.collider != null || hit2.collider != null)
         {
-            isGround = true;
+            _isGround = true;
             jumpCount = 1;
         }
         else
         {
-            isGround = false;
+            _isGround = false;
             jumpCount = 0;
         }
 
@@ -137,10 +208,10 @@ public class PlayerControl : MonoBehaviour
         RaycastHit2D hit = Physics2D.BoxCast(bodyPos.position, new Vector2(3, 1), 0f, Vector2.down, 0.02f, LayerMask.GetMask("DeadGround"));
         if (!statManage.isDead)
         {
-            isOnDead = hit.collider != null;
+            _isOnDead = hit.collider != null;
         }
         else
-            isOnDead = false;
+            _isOnDead = false;
     }
 
     private void checkSlope()
@@ -167,12 +238,12 @@ public class PlayerControl : MonoBehaviour
         if (!sceneManage.isPaused || !statManage.isDead)
         {
 
-            if (isWalking || isRunning || isJump || isLanding || isJumpStart)
+            if (_isWalking || _isRunning || _isJump || _isLanding || _isJumpStart)
                 isMoving = true;
             else
                 isMoving = false;
 
-            if (!isRolling && !isJumpStart && !isLowerBody)
+            if (!_isRolling && !_isJumpStart && !_isLowerBody)
             {
                 bool leftPressed = Input.GetKeyDown(KeyCode.A);
                 bool rightPressed = Input.GetKeyDown(KeyCode.D);
@@ -196,19 +267,19 @@ public class PlayerControl : MonoBehaviour
                 {
                     if (IsDoublePressed && weapon == Weapons.NONE)
                     {
-                        isWalking = false;
-                        isRunning = true;
+                        _isWalking = false;
+                        _isRunning = true;
                     }
                     else
                     {
-                        isWalking = true;
-                        isRunning = false;
+                        _isWalking = true;
+                        _isRunning = false;
                     }
                 }
                 else
                 {
-                    isWalking = false;
-                    isRunning = false;
+                    _isWalking = false;
+                    _isRunning = false;
                 }
             }
 
@@ -218,10 +289,10 @@ public class PlayerControl : MonoBehaviour
                 if (Input.GetKey(KeyCode.Space) &&
                     (weapon == Weapons.NONE ||
                     weapon == Weapons.ROPE) &&
-                    !isWalking &&
+                    !_isWalking &&
                     jumpCount == 1)
                 {
-                    isJumpStart = true;
+                    _isJumpStart = true;
                 }
 
                 else if (Input.GetKeyUp(KeyCode.Space) &&
@@ -229,24 +300,24 @@ public class PlayerControl : MonoBehaviour
                     weapon == Weapons.ROPE) &&
                     jumpCount == 1)
                 {
-                    isJumpStart = false;
-                    isJump = true;
+                    _isJumpStart = false;
+                    _isJump = true;
                     jumpCount = 0;
                 }
             }
 
 
-            if (!isLowerBody && isWalking && !isRunning && !isJump && Input.GetKey(KeyCode.LeftShift))
+            if (!_isLowerBody && _isWalking && !_isRunning && !_isJump && Input.GetKey(KeyCode.LeftShift))
             {
-                isRolling = true;
+                _isRolling = true;
             }
             else
-                isRolling = false;
+                _isRolling = false;
 
             if (Input.GetKey(KeyCode.S))
-                isLowerBody = true;
+                _isLowerBody = true;
             else
-                isLowerBody = false;
+                _isLowerBody = false;
 
             if (weapon == Weapons.NONE)
                 FistControl();
@@ -279,7 +350,7 @@ public class PlayerControl : MonoBehaviour
         else
         {
             FistDelayElapsed = 0;
-            isAttack = false;
+            _isAttack = false;
         }
     }
     void GunControl()
@@ -288,7 +359,7 @@ public class PlayerControl : MonoBehaviour
         {
             if (ShotDelayStart == 0)
             {
-                isAttack = true;
+                _isAttack = true;
                 ShotDelayStart = Time.time;
             }
             else
@@ -305,7 +376,7 @@ public class PlayerControl : MonoBehaviour
         else
         {
             _ShotDelayElapsed = 0;
-            isAttack = false;
+            _isAttack = false;
         }
 
     }
@@ -379,9 +450,9 @@ public class PlayerControl : MonoBehaviour
             !grappling.isAttach &&
             !grappling.isHookActive &&
             !grappling.isLineMax &&
-            !isMoving &&
+            !_isMoving &&
             !PistolManage.isReloading &&
-            !isJumpStart &&
+            !_isJumpStart &&
             weapon != Weapons.ROPE) {
             weaponPos++;
             if (weaponPos > 2)
@@ -391,9 +462,9 @@ public class PlayerControl : MonoBehaviour
         if (!grappling.isAttach &&
             !grappling.isHookActive &&
             !grappling.isLineMax &&
-            !isMoving &&
+            !_isMoving &&
             !PistolManage.isReloading &&
-            !isJumpStart)
+            !_isJumpStart)
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
@@ -476,41 +547,33 @@ public class PlayerControl : MonoBehaviour
     void Attack()
     {
         if (weapon == Weapons.NONE)
-            isPunching = true;
+            _isPunching = true;
         else
-            isPunching = false;
-        if ((weapon == Weapons.RIFLE && !weaponUIManage.IsZeroRifle) || (weapon == Weapons.PISTOL && !weaponUIManage.IsZeroPistol) && isGround) 
+            _isPunching = false;
+        if ((weapon == Weapons.RIFLE && !weaponUIManage.IsZeroRifle) || (weapon == Weapons.PISTOL && !weaponUIManage.IsZeroPistol) && _isGround) 
         {
-            isShooting = true; 
+            _isShooting = true; 
         }
         else 
         {
-            isShooting = false; 
+            _isShooting = false; 
         }
-        if (weapon == Weapons.KNIFE && isGround) 
+        if (weapon == Weapons.KNIFE && _isGround) 
         { 
-            isFencing = true; 
+            _isFencing = true; 
         }
         else 
         { 
-            isFencing = false; 
-        }
-        if (weapon == Weapons.ROPE && !isGround) 
-        {
-            isGrapplingShot = true; 
-        }
-        else 
-        { 
-            isGrapplingShot = false; 
+            _isFencing = false; 
         }
     }
 
     void Jump()
     { 
         rigid.AddForce(Vector3.up * jumpV, ForceMode2D.Impulse);
-        if (isJump)
+        if (_isJump)
         {
-            isJump = false;
+            _isJump = false;
             jumpCount = 0;
         }
     }
@@ -549,20 +612,19 @@ public class PlayerControl : MonoBehaviour
     {
         if (!statManage.isDead)
         {
-            isGetItem = CheckGetItem();
+            _isGetItem = CheckGetItem();
 
             Control();
             WeaponControl();
-            if (isAttack)
+            if (_isAttack)
             {
                 Attack();
             }
             else
             {
-                isShooting = false;
-                isFencing = false;
-                isGrapplingShot = false;
-                isPunching = false;
+                _isShooting = false;
+                _isFencing = false;
+                _isPunching = false;
             }
         }
     }
@@ -574,19 +636,19 @@ public class PlayerControl : MonoBehaviour
         CheckOnDeadGround();
         if (!statManage.isDead)
         {
-            if (isWalking)
+            if (_isWalking)
             {
                 Walk();
             }
-            if (isRunning)
+            if (_isRunning)
             {
                 Run();
             }
-            if (isJump)
+            if (_isJump)
             {
                 Jump();
             }
-            if (isRolling ||
+            if (_isRolling ||
                 (anim.GetCurrentAnimatorStateInfo(0).IsName("Rolling") &&
                 anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f))
             {
@@ -594,20 +656,20 @@ public class PlayerControl : MonoBehaviour
             }
             if (rigid.velocity.y < 0 && !isGround)
             {
-                isLanding = true;
+                _isLanding = true;
             }
             else
             {
-                isLanding = false;
+                _isLanding = false;
             }
 
             if (anim.GetCurrentAnimatorStateInfo(0).IsTag("Land"))
             {
-                isLand = true;
+                _isLand = true;
                 
             }
             else
-                isLand = false;
+                _isLand = false;
         }
     }
 }
