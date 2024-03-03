@@ -17,7 +17,7 @@ public class PlayerControl : MonoBehaviour
 
     public GameObject Event;
 
-    Vector3 PlayerPos = new Vector3(-10.82f, -0.4f, -0.1751058f);
+    Vector3 PlayerPos = new Vector3(-19.13f, 0.19f, -0.1751058f);
 
     MainSceneManage sceneManage;
     WeaponUIManage weaponUIManage;
