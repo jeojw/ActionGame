@@ -22780,7 +22780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0.6627451, b: 1, a: 0.8}
-  outlineSize: 1
+  outlineSize: 8
 --- !u!1 &1858455039
 GameObject:
   m_ObjectHideFlags: 0
