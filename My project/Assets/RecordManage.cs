@@ -15,13 +15,6 @@ public class RecordManage : MonoBehaviour
     List<TextMeshProUGUI> Rank = new List<TextMeshProUGUI>();
     List<Tuple<TextMeshProUGUI, TextMeshProUGUI>> SetRecordList = new List<Tuple<TextMeshProUGUI, TextMeshProUGUI>>();
 
-    private float preScore = 0f;
-    private float preTime = 0f;
-
-    private float score;
-    private float time;
-
-    private bool isRenewal;
     // Start is called before the first frame update
     void Start()
     {
