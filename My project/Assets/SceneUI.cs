@@ -29,6 +29,9 @@ public class SceneUI : MonoBehaviour
     private float MaxHealth;
     private float Score;
 
+    float ScreenHeightHalf;
+    float ScreenWidthHalf;
+
     PlayerControl.Weapons weapon;
     public Image None;
     public Image Pistol;
@@ -54,6 +57,9 @@ public class SceneUI : MonoBehaviour
 
     void Start()
     {
+        ScreenHeightHalf = Camera.main.orthographicSize;
+        ScreenWidthHalf = ScreenHeightHalf * Camera.main.aspect;
+
         GuidePos = GuideImage.GetComponent<RectTransform>();
         DataM = Event.GetComponent<DataManage>();
         ScoreM = Event.GetComponent<ScoreManage>();
@@ -118,6 +124,7 @@ public class SceneUI : MonoBehaviour
     void GuideUI()
     {
         Vector3 CameraPos = Camera.main.transform.position;
+        
         if (CameraPos.x >= 276 && CameraPos.x <= 314 && CameraPos.y < 52)
         {
             GuideImage.gameObject.SetActive(true);
@@ -129,22 +136,14 @@ public class SceneUI : MonoBehaviour
             GuideImage.gameObject.SetActive(true);
             text_Guide.gameObject.SetActive(true);
         }
+
         else
         {
             GuideImage.gameObject.SetActive(false);
             text_Guide.gameObject.SetActive(false);
         }
 
-        if (playControl.weapon == PlayerControl.Weapons.PISTOL ||
-            playControl.weapon == PlayerControl.Weapons.RIFLE ||
-            playControl.weapon == PlayerControl.Weapons.KNIFE)
-        {
-            GuidePos.anchoredPosition = new Vector3(541.1f, 99.9f, 0f);
-        }
-        else
-        {
-            GuidePos.anchoredPosition = new Vector3(541.1f, 153f, 0f);
-        }
+        GuidePos.anchoredPosition = new Vector3(ScreenWidthHalf * 2 - GuidePos.rect.width * 1.2f, ScreenHeightHalf * 2 - GuidePos.rect.height * 2, 0f);
     }
 
     void WeaponUI()
