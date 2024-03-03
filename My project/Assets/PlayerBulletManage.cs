@@ -39,7 +39,6 @@ public class PlayerBulletManage : MonoBehaviour
             collision.CompareTag("Slope") ||
             collision.CompareTag("Enemy"))
         {
-            physics.velocity = Vector2.zero;
             Destroy(gameObject);
         }
     }

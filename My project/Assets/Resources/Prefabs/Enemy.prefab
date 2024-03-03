@@ -576,7 +576,7 @@ GameObject:
   - component: {fileID: 5142097442501033032}
   - component: {fileID: 2435229947397578954}
   - component: {fileID: 2369055655452630919}
-  m_Layer: 12
+  m_Layer: 26
   m_Name: EnemyRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -664,7 +664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 3909242729696192919}
-  FirePos: {fileID: 4911401903473198697}
+  FirePos: {fileID: 9179563569707471377}
   ShotDelay: 0
   curAmmunition: 0
   isZero: 0
@@ -1619,7 +1619,8 @@ Transform:
   m_LocalPosition: {x: 0.76, y: -0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2055242606941563824}
   m_Father: {fileID: 1180939803459888097}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &7780706251836790483
@@ -2238,13 +2239,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4678170548867786963}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.00700812, w: 0.99997544}
-  m_LocalPosition: {x: 1.6719501, y: 0.00000010230988, z: 0}
-  m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.0070081204, w: 0.99997544}
+  m_LocalPosition: {x: 0.9119506, y: 0.010000834, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8024278198273396133}
-  m_Father: {fileID: 1180939803459888097}
+  m_Father: {fileID: 6178194867887123245}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4852384452237219333
 GameObject:
@@ -2385,7 +2386,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9179563569707471377}
-  m_Layer: 12
+  m_Layer: 26
   m_Name: EnemyRifleFirePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2804,7 +2805,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6178194867887123245}
-  - {fileID: 2055242606941563824}
   m_Father: {fileID: 4352650282685922278}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6117705563671431472
@@ -2861,7 +2861,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5149926384390699256}
-  m_Layer: 12
+  m_Layer: 26
   m_Name: EnemyWeapons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2895,7 +2895,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4683438271928353050}
-  m_Layer: 12
+  m_Layer: 26
   m_Name: EnemyPistolFirePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3279,7 +3279,7 @@ GameObject:
   - component: {fileID: 1133699751837809336}
   - component: {fileID: 2564868662337609121}
   - component: {fileID: 5579674913045713585}
-  m_Layer: 12
+  m_Layer: 26
   m_Name: EnemyPistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3920,7 +3920,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5953909670917115034}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: EnemyPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}

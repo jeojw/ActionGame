@@ -43,12 +43,12 @@ TagManager:
   - Player_Knife
   - Enemy_Knife
   - CrackedGround
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Pistol_Bullet
+  - Rifle_Bullet
+  - Enemy_Pistol_Bullet
+  - Enemy_Rifle_Bullet
+  - Weapon
+  - Enemy_Weapon
   - 
   - 
   - 

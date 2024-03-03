@@ -60,9 +60,11 @@ public class EnemyCheckCollision : MonoBehaviour
     {
         RaycastHit2D Hit;
         if (transform.parent.name != "bone_1")
-            Hit = Physics2D.BoxCast(transform.position, new Vector2(0.75f, 1.7f), transform.parent.transform.localRotation.z, transform.forward, 0.1f, LayerMask.GetMask("Player"));
+        {
+            Hit = Physics2D.BoxCast(transform.position, new Vector2(0.75f, 1.7f), transform.parent.transform.localRotation.z, transform.forward, 0.1f);
+        }
         else
-            Hit = Physics2D.CircleCast(transform.position, 1.11f, transform.forward, 0.1f, LayerMask.GetMask("Player"));
+            Hit = Physics2D.CircleCast(transform.position, 1.11f, transform.forward, 0.1f);
         if (Hit.collider != null)
         {
             if (Hit.collider.tag == "Fist")

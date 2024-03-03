@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4614552409043210462}
   - component: {fileID: 7041691058080595740}
   - component: {fileID: 5170988225569609516}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Player_Rifle_Bullet
   m_TagString: Rifle_Bullet
   m_Icon: {fileID: 0}
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 8022203326205260069}
   - component: {fileID: 8328746600700768993}
   - component: {fileID: 1452069643558449373}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: Enemy_Pistol_Bullet
   m_TagString: Enemy_Pistol_Bullet
   m_Icon: {fileID: 0}
@@ -584,7 +584,7 @@ GameObject:
   - component: {fileID: 1703151923770982361}
   - component: {fileID: 5232774987708404884}
   - component: {fileID: 8806432490247494040}
-  m_Layer: 0
+  m_Layer: 24
   m_Name: Enemy_Rifle_Bullet
   m_TagString: Enemy_Rifle_Bullet
   m_Icon: {fileID: 0}
@@ -869,7 +869,7 @@ GameObject:
   - component: {fileID: 4416984762993358110}
   - component: {fileID: 1165863820544804154}
   - component: {fileID: 2246397769458809119}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Player_Pistol_Bullet
   m_TagString: Pistol_Bullet
   m_Icon: {fileID: 0}
