@@ -6651,7 +6651,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 402
-      y: 1798
+      y: 1795
       width: 115
       height: 226
     spriteID: 978513c1be7245246be2122ff437b34e
@@ -27671,8 +27671,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 402
-      y: 1798
+      x: 561
+      y: 1760
       width: 115
       height: 226
     spriteID: 7c82420096923674aab81a265a2fc986
@@ -27683,7 +27683,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 402, y: 1798}
+    uvTransform: {x: 561, y: 1760}
     spritePosition: {x: 0, y: 0}
   characterData:
     bones:
