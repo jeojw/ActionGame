@@ -666,7 +666,6 @@ public class PlayerControl : MonoBehaviour
             if (anim.GetCurrentAnimatorStateInfo(0).IsTag("Land"))
             {
                 _isLand = true;
-                
             }
             else
                 _isLand = false;

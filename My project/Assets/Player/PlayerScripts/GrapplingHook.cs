@@ -60,11 +60,15 @@ public class GrapplingHook : MonoBehaviour
     void Ready_To_Throw_OnAir()
     {
         
-        if (Vector2.Distance(hook.transform.position, hand.transform.position) <= 3f ||
+        if (Mathf.Abs(hook.transform.position.y - hand.transform.position.y) <= 2f ||
             hook.transform.position.y > hand.transform.position.y)
         {
             gravity += hookRigid.gravityScale * Time.deltaTime * 10;
-            hook.transform.position = hand.transform.position + new Vector3(Mathf.Cos(RotateAngle), Mathf.Sin(RotateAngle) - gravity, 1);
+            hook.transform.Translate(new Vector3(Mathf.Cos(RotateAngle), Mathf.Sin(RotateAngle) - gravity, 1) * Time.deltaTime);
+        }
+        if (Mathf.Abs(hook.transform.position.x - hand.transform.position.x) >= 2f)
+        {
+            hook.transform.Translate(new Vector3(Mathf.Cos(RotateAngle) + playerRigid.velocity.x, Mathf.Sin(RotateAngle), 1) * Time.deltaTime);
         }
     }
     // Update is called once per frame
@@ -90,7 +94,7 @@ public class GrapplingHook : MonoBehaviour
             }
             if (!isHookThrow)
             {
-                if (playControl.isGround && !playControl.isJumpStart && !playControl.isLand)
+                if (playControl.isGround && !playControl.isJumpStart)
                 {
                     Ready_To_Throw_Stand();
                     gravity = 0;
