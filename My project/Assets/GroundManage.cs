@@ -44,7 +44,7 @@ public class GroundManage : MonoBehaviour
             RaycastHit2D hit = Physics2D.BoxCast(new Vector2(CrackedList[i].x, CrackedList[i].y), new Vector2(2.5f, 5.5f), 0f, Vector2.up, 5f, LayerMask.GetMask("Player"));
             if (hit.collider != null)
             {
-                Tile.animationFrameRate = 1.5f;
+                Tile.animationFrameRate = 0.5f;
                 if (Tile.GetAnimationFrameCount(CrackedList[i]) >= 3)
                     this.gameObject.SetActive(false);
             }
