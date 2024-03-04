@@ -42,13 +42,24 @@ public class EnemyCheckCollision : MonoBehaviour
     {
         if (Pcollider.enabled)
         {
-            FistHit = collision.CompareTag("Fist");
+            if (collision.CompareTag("Fist"))
+            {
+                FistHit = true;
+            }
+            if (collision.CompareTag("Pistol_Bullet"))
+            {
+                PistolBulletHit = true;
+            }
 
-            PistolBulletHit = collision.CompareTag("Pistol_Bullet");
+            if (collision.CompareTag("Rifle_Bullet"))
+            {
+                RifleBulletHit = true;
+            }
 
-            RifleBulletHit = collision.CompareTag("Rifle_Bullet");
-
-            KnifeHit = collision.CompareTag("Knife");
+            if (collision.CompareTag("Knife"))
+            {
+                KnifeHit = true;
+            }
         }
     }
     private void RaycastHit()
@@ -65,10 +76,15 @@ public class EnemyCheckCollision : MonoBehaviour
                 Hit = Physics2D.CircleCast(transform.position, 1.11f, transform.forward, 0.1f);
             if (Hit.collider != null)
             {
-                FistHit = Hit.collider.tag == "Fist";
-                PistolBulletHit = Hit.collider.tag == "Pistol_Bullet";
-                RifleBulletHit = Hit.collider.tag == "Rifle_Bullet";
-                KnifeHit = Hit.collider.tag == "Knife";
+
+                if (Hit.collider.tag == "Fist")
+                    FistHit = true;
+                if (Hit.collider.tag == "Pistol_Bullet")
+                    PistolBulletHit = true;
+                if (Hit.collider.tag == "Rifle_Bullet")
+                    RifleBulletHit = true;
+                if (Hit.collider.tag == "Knife")
+                    KnifeHit = true;
             }
         }
     }
