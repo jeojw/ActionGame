@@ -125,13 +125,13 @@ public class SceneUI : MonoBehaviour
     {
         Vector3 CameraPos = Camera.main.transform.position;
         
-        if (CameraPos.x >= 276 && CameraPos.x <= 314 && CameraPos.y < 52)
+        if (CameraPos.x >= 251.8408f && CameraPos.x <= 278f && CameraPos.y < 35f)
         {
             GuideImage.gameObject.SetActive(true);
             text_Guide.gameObject.SetActive(true);
         }
 
-        else if (CameraPos.x >= 491 && CameraPos.x <= 532 && CameraPos.y < 59)
+        else if (CameraPos.x >= 430f && CameraPos.x <= 530f && CameraPos.y < 47)
         {
             GuideImage.gameObject.SetActive(true);
             text_Guide.gameObject.SetActive(true);

@@ -848,8 +848,8 @@ MonoBehaviour:
   Player: {fileID: 2060703201}
   Event: {fileID: 2062443783}
   ClickSound: {fileID: 736104635}
-  StopSound: {fileID: 0}
-  BGM: {fileID: 0}
+  StopSound: {fileID: 20509863}
+  BGM: {fileID: 1295332027}
   isPaused: 0
   isReset: 0
 --- !u!1 &120690362
@@ -2511,8 +2511,8 @@ MonoBehaviour:
   Player: {fileID: 2060703201}
   Event: {fileID: 2062443783}
   ClickSound: {fileID: 736104635}
-  StopSound: {fileID: 0}
-  BGM: {fileID: 0}
+  StopSound: {fileID: 20509863}
+  BGM: {fileID: 1295332027}
   isPaused: 0
   isReset: 0
 --- !u!1 &347456013
@@ -9871,8 +9871,8 @@ RectTransform:
   - {fileID: 1902584873}
   - {fileID: 2060774655}
   - {fileID: 385183421}
-  - {fileID: 1223508619}
   - {fileID: 380251151}
+  - {fileID: 1223508619}
   - {fileID: 428916052}
   - {fileID: 510646466}
   m_Father: {fileID: 0}
@@ -18534,7 +18534,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1223508618}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.561552, y: 2.561552, z: 2.561552}
   m_ConstrainProportionsScale: 0
@@ -18545,7 +18545,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -151, y: -33}
+  m_AnchoredPosition: {x: -151.00024, y: -33.00006}
   m_SizeDelta: {x: 124.806, y: 35.8268}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1223508620
@@ -19127,8 +19127,8 @@ MonoBehaviour:
   Player: {fileID: 2060703201}
   Event: {fileID: 2062443783}
   ClickSound: {fileID: 736104635}
-  StopSound: {fileID: 0}
-  BGM: {fileID: 0}
+  StopSound: {fileID: 20509863}
+  BGM: {fileID: 1295332027}
   isPaused: 0
   isReset: 0
 --- !u!114 &1311646607
@@ -19561,8 +19561,8 @@ MonoBehaviour:
   Player: {fileID: 2060703201}
   Event: {fileID: 2062443783}
   ClickSound: {fileID: 736104635}
-  StopSound: {fileID: 0}
-  BGM: {fileID: 0}
+  StopSound: {fileID: 20509863}
+  BGM: {fileID: 1295332027}
   isPaused: 0
   isReset: 0
 --- !u!1 &1386725758
@@ -19623,8 +19623,8 @@ MonoBehaviour:
   Player: {fileID: 2060703201}
   Event: {fileID: 2062443783}
   ClickSound: {fileID: 736104635}
-  StopSound: {fileID: 0}
-  BGM: {fileID: 0}
+  StopSound: {fileID: 20509863}
+  BGM: {fileID: 1295332027}
   isPaused: 0
   isReset: 0
 --- !u!114 &1386725761
@@ -21068,8 +21068,8 @@ MonoBehaviour:
   Player: {fileID: 2060703201}
   Event: {fileID: 2062443783}
   ClickSound: {fileID: 736104635}
-  StopSound: {fileID: 0}
-  BGM: {fileID: 0}
+  StopSound: {fileID: 20509863}
+  BGM: {fileID: 1295332027}
   isPaused: 0
   isReset: 0
 --- !u!1 &1843421786 stripped
