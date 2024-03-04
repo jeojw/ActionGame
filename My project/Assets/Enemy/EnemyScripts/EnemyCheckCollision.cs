@@ -48,7 +48,7 @@ public class EnemyCheckCollision : MonoBehaviour
 
             RifleBulletHit = collision.CompareTag("Rifle_Bullet");
 
-            KnifeHit = collision.CompareTag("EnemyKnife");
+            KnifeHit = collision.CompareTag("Knife");
         }
     }
     private void RaycastHit()
