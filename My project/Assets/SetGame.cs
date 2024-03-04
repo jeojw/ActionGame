@@ -53,7 +53,7 @@ public class SetGame : MonoBehaviour
         EnemyPosList = new List<Transform>();
         EnemyMovementList = new List<Enemy_Movement>();
         
-        EnemyList.Add(Instantiate(Enemy, new Vector3(32f, 0.8f, 147.699f), Quaternion.identity)); //0
+        EnemyList.Add(Instantiate(Enemy, new Vector3(14.5f, 0.8f, 147.699f), Quaternion.identity)); //0
         EnemyList.Add(Instantiate(Enemy, new Vector3(81f, 24f, 147.699f), Quaternion.identity)); //1
         EnemyList.Add(Instantiate(Enemy, new Vector3(94f, 24f, 147.699f), Quaternion.identity)); //2
         EnemyList.Add(Instantiate(Enemy, new Vector3(260f, 18f, 147.699f), Quaternion.identity)); //3
