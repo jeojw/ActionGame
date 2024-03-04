@@ -16,6 +16,8 @@ public class MainSceneManage : MonoBehaviour
     public GameObject Event;
     SetGame SG;
     public AudioSource ClickSound;
+    public AudioSource StopSound;
+    public AudioSource BGM;
 
     public bool isPaused = false;
     public bool isReset = false;
@@ -35,6 +37,7 @@ public class MainSceneManage : MonoBehaviour
             if (EventSystem.current.currentSelectedGameObject.name == "No")
             {
                 ClickSound.Play();
+                BGM.Play();
                 Time.timeScale = 1;
                 isPaused = false;
                 StopPopup.SetActive(false);
@@ -80,12 +83,16 @@ public class MainSceneManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape) && !StopPopup.activeSelf)
+            StopSound.Play();
         if (Input.GetKey(KeyCode.Escape))
         {
-            isPaused = true;
+            BGM.Pause();
             StopPopup.SetActive(true);
             Time.timeScale = 0f;
         }
+
+        isPaused = StopPopup.activeSelf;
 
         if (StatM.isDead)
         {
