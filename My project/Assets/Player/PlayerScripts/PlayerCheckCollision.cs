@@ -38,20 +38,11 @@ public class PlayerCheckCollision : MonoBehaviour
     {
         if (Pcollider.enabled)
         {
-            if (collision.CompareTag("Enemy_Pistol_Bullet"))
-            {
-                PistolBulletHit = true;
-            }
+            PistolBulletHit = collision.CompareTag("Enemy_Pistol_Bullet");
 
-            if (collision.CompareTag("Enemy_Rifle_Bullet"))
-            {
-                RifleBulletHit = true;
-            }
+            RifleBulletHit = collision.CompareTag("Enemy_Rifle_Bullet");
 
-            if (collision.CompareTag("EnemyKnife"))
-            {
-                KnifeHit = true;
-            }
+            KnifeHit = collision.CompareTag("EnemyKnife");
         }
     }
 
@@ -66,12 +57,9 @@ public class PlayerCheckCollision : MonoBehaviour
                 Hit = Physics2D.CircleCast(transform.position, 1.11f, transform.forward, 0.1f);
             if (Hit.collider != null)
             {
-                if (Hit.collider.tag == "Enemy_Pistol_Bullet")
-                    PistolBulletHit = true;
-                if (Hit.collider.tag == "Enemy_Rifle_Bullet")
-                    RifleBulletHit = true;
-                if (Hit.collider.tag == "EnemuKnife")
-                    KnifeHit = true;
+                PistolBulletHit = Hit.collider.tag == "Enemy_Pistol_Bullet";
+                RifleBulletHit = Hit.collider.tag == "Enemy_Rifle_Bullet";
+                KnifeHit = Hit.collider.tag == "EnemyKnife";
             }
         }
     }
