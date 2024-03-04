@@ -9532,7 +9532,7 @@ Tilemap:
       - {fileID: -387218300, guid: 6251941c4c7e8fa42aa5676302b380a7, type: 3}
       - {fileID: 109190740, guid: 6251941c4c7e8fa42aa5676302b380a7, type: 3}
       - {fileID: 2082593426, guid: 6251941c4c7e8fa42aa5676302b380a7, type: 3}
-      m_AnimationSpeed: 3
+      m_AnimationSpeed: 3.0000002
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 383, y: -1, z: 0}
@@ -19868,13 +19868,22 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.2160492
         inSlope: 0
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.8181752
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -19913,7 +19922,7 @@ TrailRenderer:
     alignment: 0
     textureMode: 0
     textureScale: {x: 1, y: 1}
-    shadowBias: 0.5
+    shadowBias: 0.1
     generateLightingData: 0
   m_MinVertexDistance: 0.1
   m_MaskInteraction: 0
