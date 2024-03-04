@@ -10,11 +10,13 @@ public class KnifeManage : MonoBehaviour
     PolygonCollider2D Pcollider;
     PlayerControl control;
     Animator playerAnim;
+    TrailRenderer Trail;
 
     public bool isFence;
     // Start is called before the first frame update
     void Start()
     {
+        Trail = transform.GetChild(0).GetComponent<TrailRenderer>();
         Pcollider = GetComponent<PolygonCollider2D>();
         control = Player.GetComponent<PlayerControl>();
         playerAnim = Player.GetComponent<Animator>();
@@ -30,5 +32,7 @@ public class KnifeManage : MonoBehaviour
                             playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Knife_Fighting_1") ||
                             playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Knife_Fighting_2") ||
                             playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Knife_Fighting_3"));
+
+        Trail.enabled = Pcollider.enabled;
     }
 }
