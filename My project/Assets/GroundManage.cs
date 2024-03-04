@@ -6,17 +6,16 @@ using UnityEngine.Tilemaps;
 public class GroundManage : MonoBehaviour
 {
     Tilemap Tile;
-    public Transform Pos_1;
-    public Transform Pos_2;
+    List<Vector3Int> CrackedList;
     // Start is called before the first frame update
     void Start()
     {
         Tile = GetComponent<Tilemap>();
-    }
-
-    Vector3Int WorldToCell(Vector3 _Vector)
-    {
-        return new Vector3Int(0, 0, 0);
+        CrackedList = new List<Vector3Int>();
+        foreach (Vector3Int pos in Tile.cellBounds.allPositionsWithin)
+        {
+            CrackedList.Add(pos);
+        }
     }
 
     //void OnDrawGizmos()
@@ -40,18 +39,20 @@ public class GroundManage : MonoBehaviour
     }
     void Update()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(Pos_1.position, new Vector2(2.5f, 5.5f), 0f, Vector2.up, 0.5f, LayerMask.GetMask("Player"));
-        RaycastHit2D hit2 = Physics2D.BoxCast(Pos_2.position, new Vector2(2.5f, 5.5f), 0f, Vector2.up, 0.5f, LayerMask.GetMask("Player"));
-        if (hit.collider != null)
+        for (int i = 0; i < CrackedList.Count; i++)
         {
-            Tile.animationFrameRate = 1.5f;
-            if (Tile.GetAnimationFrameCount(new Vector3Int(230, 5, 0)) >= 3 ||
-                Tile.GetAnimationFrameCount(new Vector3Int(233, 5, 0)) >= 3)
-                this.gameObject.SetActive(false);
-
+            RaycastHit2D hit = Physics2D.BoxCast(new Vector2(CrackedList[i].x, CrackedList[i].y), new Vector2(2.5f, 5.5f), 0f, Vector2.up, 5f, LayerMask.GetMask("Player"));
+            if (hit.collider != null)
+            {
+                Tile.animationFrameRate = 1.5f;
+                if (Tile.GetAnimationFrameCount(CrackedList[i]) >= 3)
+                    this.gameObject.SetActive(false);
+            }
+            else
+                Tile.animationFrameRate = 0f;
         }
-        else
-            Tile.animationFrameRate = 0f;
+        
 
+        
     }
 }
