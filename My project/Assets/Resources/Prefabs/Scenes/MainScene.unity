@@ -846,8 +846,6 @@ MonoBehaviour:
   ClickSound: {fileID: 736104635}
   StopSound: {fileID: 20509863}
   BGM: {fileID: 1295332027}
-  isPaused: 0
-  isReset: 0
 --- !u!1 &120690362
 GameObject:
   m_ObjectHideFlags: 0
@@ -2509,8 +2507,6 @@ MonoBehaviour:
   ClickSound: {fileID: 736104635}
   StopSound: {fileID: 20509863}
   BGM: {fileID: 1295332027}
-  isPaused: 0
-  isReset: 0
 --- !u!1 &347456013
 GameObject:
   m_ObjectHideFlags: 0
@@ -9929,8 +9925,6 @@ MonoBehaviour:
   ClickSound: {fileID: 736104635}
   StopSound: {fileID: 20509863}
   BGM: {fileID: 1295332027}
-  isPaused: 0
-  isReset: 0
 --- !u!114 &634688086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9946,8 +9940,6 @@ MonoBehaviour:
   PlayerInfo: {fileID: 2060703201}
   Pistol: {fileID: 655444226}
   Rifle: {fileID: 1706799846}
-  IsZeroPistol: 0
-  IsZeroRifle: 0
 --- !u!1 &636376788
 GameObject:
   m_ObjectHideFlags: 0
@@ -12035,12 +12027,12 @@ Transform:
   m_GameObject: {fileID: 1155949163}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.93, y: 11.56, z: 213.5948}
+  m_LocalPosition: {x: -12.929999, y: 11.56, z: 213.5948}
   m_LocalScale: {x: 1.0442, y: 1.0442, z: 1.0442}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 371980634}
-  m_Father: {fileID: 1340781994}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1155949168
 SpriteRenderer:
@@ -19111,8 +19103,6 @@ MonoBehaviour:
   ClickSound: {fileID: 736104635}
   StopSound: {fileID: 20509863}
   BGM: {fileID: 1295332027}
-  isPaused: 0
-  isReset: 0
 --- !u!114 &1311646607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19388,7 +19378,6 @@ Transform:
   - {fileID: 182458511}
   - {fileID: 1158233434}
   - {fileID: 586358617}
-  - {fileID: 1155949167}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1362492626
@@ -19545,8 +19534,6 @@ MonoBehaviour:
   ClickSound: {fileID: 736104635}
   StopSound: {fileID: 20509863}
   BGM: {fileID: 1295332027}
-  isPaused: 0
-  isReset: 0
 --- !u!1 &1386725758
 GameObject:
   m_ObjectHideFlags: 0
@@ -19607,8 +19594,6 @@ MonoBehaviour:
   ClickSound: {fileID: 736104635}
   StopSound: {fileID: 20509863}
   BGM: {fileID: 1295332027}
-  isPaused: 0
-  isReset: 0
 --- !u!114 &1386725761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21040,8 +21025,6 @@ MonoBehaviour:
   ClickSound: {fileID: 736104635}
   StopSound: {fileID: 20509863}
   BGM: {fileID: 1295332027}
-  isPaused: 0
-  isReset: 0
 --- !u!1 &1843421786 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1858086156497145381, guid: caa50bfe09a69e246b2297953dea414b, type: 3}
@@ -27499,3 +27482,4 @@ SceneRoots:
   - {fileID: 1340781994}
   - {fileID: 634688083}
   - {fileID: 2026719762}
+  - {fileID: 1155949167}

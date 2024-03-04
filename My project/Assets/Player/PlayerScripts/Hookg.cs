@@ -18,7 +18,7 @@ public class Hookg : MonoBehaviour
     void Start()
     {
         CC = GetComponent<CircleCollider2D>();  
-        grappling = GameObject.Find("Player").GetComponent<GrapplingHook>();
+        grappling = Player.GetComponent<GrapplingHook>();
         rigid = GetComponent<Rigidbody2D>();
         joint2D = GetComponent<DistanceJoint2D>();
     }
