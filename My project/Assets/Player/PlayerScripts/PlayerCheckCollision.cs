@@ -12,10 +12,15 @@ public class PlayerCheckCollision : MonoBehaviour
     StatManage PlayerStat;
     CollisionPhysics Physic;
 
-    public bool isHit = false;
-    public bool KnifeHit = false;
-    public bool PistolBulletHit = false;
-    public bool RifleBulletHit = false;
+    private bool _isHit = false;
+    private bool KnifeHit = false;
+    private bool PistolBulletHit = false;
+    private bool RifleBulletHit = false;
+
+    public bool isHit { 
+        get { return _isHit; }
+        set { _isHit = value; }
+    }
 
     private float HitCoolElapsed = 0;
     private float HitCoolStart = 0;
@@ -74,8 +79,8 @@ public class PlayerCheckCollision : MonoBehaviour
         if (!PlayerStat.isDead)
         {
             RaycastHit();
-            isHit = (KnifeHit || PistolBulletHit || RifleBulletHit);
-            if (isHit)
+            _isHit = (KnifeHit || PistolBulletHit || RifleBulletHit);
+            if (_isHit)
             {
                 Pcollider.enabled = false;
                 HitCoolStart = Time.time;

@@ -367,11 +367,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemy: {fileID: 3909242729696192919}
   Pcollider: {fileID: 0}
-  KnifeHit: 0
-  PistolBulletHit: 0
-  RifleBulletHit: 0
-  FistHit: 0
-  isHit: 0
 --- !u!60 &675055972344692887
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -764,12 +759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 3909242729696192919}
-  Pcollider: {fileID: 0}
-  KnifeHit: 0
-  PistolBulletHit: 0
-  RifleBulletHit: 0
-  FistHit: 0
-  isHit: 0
+  Pcollider: {fileID: 3582715001450921509}
 --- !u!1 &2214419389179352022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1686,12 +1676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 3909242729696192919}
-  Pcollider: {fileID: 0}
-  KnifeHit: 0
-  PistolBulletHit: 0
-  RifleBulletHit: 0
-  FistHit: 0
-  isHit: 0
+  Pcollider: {fileID: 7780706251836790483}
 --- !u!1 &3716750712589783216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1810,13 +1795,6 @@ MonoBehaviour:
   detectDirection: 0
   Pistol: {fileID: 6900954180227360800}
   Rifle: {fileID: 1830024102058558941}
-  isDetect: 0
-  isWalking: 0
-  isAttack: 0
-  isFencing: 0
-  isShooting: 0
-  isDead: 0
-  GetCool: 0
   speed: 10
 --- !u!114 &3248733471323707316
 MonoBehaviour:
@@ -1874,9 +1852,6 @@ MonoBehaviour:
   Right_Leg_2: {fileID: 7392136417710141736}
   MaxHp: 200
   CurHp: 200
-  GetHit: 0
-  isDrop: 0
-  isDead: 0
 --- !u!114 &4250099791741382103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2209,12 +2184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 3909242729696192919}
-  Pcollider: {fileID: 0}
-  KnifeHit: 0
-  PistolBulletHit: 0
-  RifleBulletHit: 0
-  FistHit: 0
-  isHit: 0
+  Pcollider: {fileID: 3925365114763072497}
 --- !u!1 &4678170548867786963
 GameObject:
   m_ObjectHideFlags: 0
@@ -3595,12 +3565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 3909242729696192919}
-  Pcollider: {fileID: 0}
-  KnifeHit: 0
-  PistolBulletHit: 0
-  RifleBulletHit: 0
-  FistHit: 0
-  isHit: 0
+  Pcollider: {fileID: 6235174794181262428}
 --- !u!1 &7409568941672355321
 GameObject:
   m_ObjectHideFlags: 0
@@ -4175,12 +4140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 3909242729696192919}
-  Pcollider: {fileID: 0}
-  KnifeHit: 0
-  PistolBulletHit: 0
-  RifleBulletHit: 0
-  FistHit: 0
-  isHit: 0
+  Pcollider: {fileID: 2189756322613078373}
 --- !u!60 &2189756322613078373
 PolygonCollider2D:
   m_ObjectHideFlags: 0

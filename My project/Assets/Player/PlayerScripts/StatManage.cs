@@ -25,22 +25,22 @@ public class StatManage : MonoBehaviour
     PlayerCheckCollision LeftLegCheck_1;
     PlayerCheckCollision LeftLegCheck_2;
 
-    public bool UseItem = false;
+    private bool UseItem = false;
     ItemManage.ITEMTYPE ItemType;
 
     PlayerControl playControl;
 
-    private float ATK;
     private float Damage = 0;
-    public bool GetHit = false;
+    private bool _GetHit = false;
+    private bool _isDead;
+    public bool GetHit { 
+        get { return _GetHit; }
+        set { _GetHit = value; }
+    }
 
-    public bool isDead;
-
-    public enum ATTACKCOEF
-    {
-        PISTOL = 10,
-        KNIFE = 10,
-        RIFLE = 10
+    public bool isDead { 
+        get { return _isDead; }
+        set { _isDead = value; }
     }
 
     public float MaxHp;
@@ -65,7 +65,7 @@ public class StatManage : MonoBehaviour
         curHp = MaxHp;
         ItemType = ItemManage.ITEMTYPE.NONE;
 
-        isDead = false;
+        _isDead = false;
     }
 
     void ATKUpdate()
@@ -134,7 +134,7 @@ public class StatManage : MonoBehaviour
     {
         if (curHp > 0)
         {
-            isDead = false;
+            _isDead = false;
             if (Damage != 0)
             {
                 curHp -= Damage;
@@ -143,6 +143,7 @@ public class StatManage : MonoBehaviour
 
             if (playControl.isGetItem)
             {
+                
                 UseItem = false;
                 if (ItemType == ItemManage.ITEMTYPE.HEAL && !UseItem)
                 {
@@ -154,13 +155,13 @@ public class StatManage : MonoBehaviour
                 curHp = 0;
         }
         else
-            isDead = true;
+            _isDead = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetHit = (HeadCheck.isHit || BodyCheck.isHit ||
+        _GetHit = (HeadCheck.isHit || BodyCheck.isHit ||
                  RightLegCheck_1.isHit || RightLegCheck_2.isHit ||
                  LeftLegCheck_1.isHit || LeftLegCheck_2.isHit);
 

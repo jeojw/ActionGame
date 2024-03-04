@@ -22,8 +22,17 @@ public class WeaponUIManage : MonoBehaviour
     private int Rifle_Cur_Ammunition;
     private int Rifle_Cur_Magazines;
 
-    public bool IsZeroPistol = false;
-    public bool IsZeroRifle = false;
+    private bool _isZeroPistol = false;
+    private bool _isZeroRifle = false;
+
+    public bool IsZeroPistol {
+        get { return _isZeroPistol; }
+        set { _isZeroPistol = value; }
+    }
+    public bool IsZeroRifle { 
+        get { return _isZeroRifle; }
+        set { _isZeroRifle = value; }
+    }
 
     void Start()
     {
@@ -39,7 +48,7 @@ public class WeaponUIManage : MonoBehaviour
         Pistol_Cur_Ammunition = PistolManage.curAmmunition;
         Pistol_Cur_Magazines = PistolManage.curMagazines;
 
-        IsZeroPistol = (Pistol_Cur_Ammunition == 0);
+        _isZeroPistol = (Pistol_Cur_Ammunition == 0);
         
         Pistol_Ammunition.text = "X " + Pistol_Cur_Ammunition.ToString();
         Pistol_Magazines.text = "X " + Pistol_Cur_Magazines.ToString();
@@ -53,7 +62,7 @@ public class WeaponUIManage : MonoBehaviour
         Rifle_Cur_Ammunition = RifleManage.curAmmunition;
         Rifle_Cur_Magazines = RifleManage.curMagazines;
 
-        IsZeroRifle = (Rifle_Cur_Ammunition == 0);
+        _isZeroRifle = (Rifle_Cur_Ammunition == 0);
 
         Rifle_Ammunition.text = "X " + Rifle_Cur_Ammunition.ToString();
         Rifle_Magazines.text = "X " + Rifle_Cur_Magazines.ToString();

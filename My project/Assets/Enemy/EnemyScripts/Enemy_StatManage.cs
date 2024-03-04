@@ -22,13 +22,23 @@ public class Enemy_StatManage : MonoBehaviour
     public float MaxHp;
     public float CurHp;
 
-    public bool GetHit = false;
-    private bool zeroPhysic = false;
+    private bool _GetHit = false;
+    public bool GetHit { 
+        get { return _GetHit; }
+        set { _GetHit = value; }
+    }
 
     private float Damage = 0;
-    public bool isDrop = false;
-
-    public bool isDead;
+    private bool _isDrop = false;
+    public bool isDrop { 
+        get { return _isDrop; }
+        set { _isDrop = value; }
+    }
+    private bool _isDead;
+    public bool isDead {
+        get { return _isDead; }
+        set { _isDead = value; }
+    }
     void Start()
     {
         Head_Hit = Head.GetComponent<EnemyCheckCollision>();
@@ -57,7 +67,7 @@ public class Enemy_StatManage : MonoBehaviour
 
     void HpUpdate()
     {
-        GetHit = (Head_Hit.isHit || Body_Hit.isHit ||
+        _GetHit = (Head_Hit.isHit || Body_Hit.isHit ||
                   LeftLeg_1_Hit.isHit || LeftLeg_2_Hit.isHit ||
                   RightLeg_1_Hit.isHit || RightLeg_2_Hit.isHit);
 
@@ -72,8 +82,8 @@ public class Enemy_StatManage : MonoBehaviour
         }
         else
         {
-            isDead = true;
-            isDrop = true;
+            _isDead = true;
+            _isDrop = true;
         }
             
     }

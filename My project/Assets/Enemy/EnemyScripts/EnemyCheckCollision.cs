@@ -7,17 +7,23 @@ public class EnemyCheckCollision : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject Enemy;
-    public PolygonCollider2D Pcollider;
+    PolygonCollider2D Pcollider;
     CollisionPhysics Physic;
     Enemy_Movement EMove;
     Enemy_StatManage Estat;
 
-    public bool KnifeHit = false;
-    public bool PistolBulletHit = false;
-    public bool RifleBulletHit = false;
-    public bool FistHit = false;
+    private bool KnifeHit = false;
+    private bool PistolBulletHit = false;
+    private bool RifleBulletHit = false;
+    private bool FistHit = false;
 
-    public bool isHit = false;
+    private bool _isHit = false;
+
+    public bool isHit
+    {
+        get { return _isHit; }
+        set { _isHit = value; }
+    }
     private bool isDead;
 
     private float HitDelay = 0.4f;
@@ -98,8 +104,8 @@ public class EnemyCheckCollision : MonoBehaviour
         if (!isDead)
         {
             RaycastHit();
-            isHit = (KnifeHit || RifleBulletHit || PistolBulletHit || FistHit);
-            if (isHit)
+            _isHit = (KnifeHit || RifleBulletHit || PistolBulletHit || FistHit);
+            if (_isHit)
             {
                 Pcollider.enabled = false;
                 HitDelayStart = Time.time;

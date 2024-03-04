@@ -169,10 +169,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2060703201}
-  isHit: 0
-  KnifeHit: 0
-  PistolBulletHit: 0
-  RifleBulletHit: 0
 --- !u!60 &1080734
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -9327,10 +9323,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2060703201}
-  isHit: 0
-  KnifeHit: 0
-  PistolBulletHit: 0
-  RifleBulletHit: 0
 --- !u!60 &578683831
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -10195,8 +10187,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 2060703201}
   WeaponUI: {fileID: 380251150}
-  AmmunitionZero: 0
-  isShot: 0
   BulletDamage: 0
   ShotDelay: 0.7
   curAmmunition: 6
@@ -10921,10 +10911,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2060703201}
-  isHit: 0
-  KnifeHit: 0
-  PistolBulletHit: 0
-  RifleBulletHit: 0
 --- !u!60 &869260583
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -11887,10 +11873,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2060703201}
-  isHit: 0
-  KnifeHit: 0
-  PistolBulletHit: 0
-  RifleBulletHit: 0
 --- !u!60 &1150241310
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -19894,10 +19876,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2060703201}
-  isHit: 0
-  KnifeHit: 0
-  PistolBulletHit: 0
-  RifleBulletHit: 0
 --- !u!60 &1436064076
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -20491,10 +20469,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2060703201}
-  isHit: 0
-  KnifeHit: 0
-  PistolBulletHit: 0
-  RifleBulletHit: 0
 --- !u!60 &1653638812
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -20773,10 +20747,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 2060703201}
   WeaponUI: {fileID: 380251150}
-  AmmunitionZero: 0
-  isShot: 0
-  isReload: 0
-  isReloading: 0
   BulletDamage: 0
   ShotDelay: 0.2
   curAmmunition: 30
@@ -21961,9 +21931,6 @@ MonoBehaviour:
   Pistol: {fileID: 655444226}
   Rifle: {fileID: 1706799846}
   Knife: {fileID: 655386840}
-  UseItem: 0
-  GetHit: 0
-  isDead: 0
   MaxHp: 500
   curHp: 500
   GunDamage: 0
@@ -21986,10 +21953,6 @@ MonoBehaviour:
   waist: {fileID: 1981390659}
   RopeDelay: 2
   RopeDelayElapsed: 0
-  isHookActive: 0
-  isHookThrow: 0
-  isLineMax: 0
-  isAttach: 0
   MaxLine: 20
   CurWeapon: 0
 --- !u!114 &2060703206
@@ -22034,7 +21997,6 @@ MonoBehaviour:
   KnifeStep: 1
   direction: 1
   weapon: 0
-  GetItemType: 0
 --- !u!95 &2060703208
 Animator:
   serializedVersion: 5
@@ -22095,7 +22057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af9907ca132b8144d822d75a8e8c74a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigid: {fileID: 0}
+  rigid: {fileID: 2060703209}
   PhysicsVelocity: {x: 0, y: 0}
 --- !u!114 &2060703211
 MonoBehaviour:

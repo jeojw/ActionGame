@@ -32,13 +32,31 @@ public class Enemy_Movement : MonoBehaviour
     Rigidbody2D rigid;
     Enemy_StatManage Estat;
 
-    public bool isDetect = false;
-    public bool isWalking = false;
-    public bool isAttack = false;
-    public bool isFencing = false;
-    public bool isShooting = false;
-    public bool isDead = false;
-    public bool GetCool = false;
+    private bool _isDetect = false;
+    private bool _isWalking = false;
+    private bool isAttack = false;
+    private bool _isFencing = false;
+    private bool _isShooting = false;
+    private bool isDead = false;
+    private bool GetCool = false;
+
+    public bool isDetect {
+        get { return _isDetect; }
+        set { _isDetect = value; }
+    }
+    public bool isWalking {
+        get { return _isWalking; } 
+        set {  _isWalking = value; }
+    }
+    public bool isFencing {
+        get { return _isFencing; }
+        set { _isFencing = value; }
+    }
+    public bool isShooting
+    {
+        get { return _isShooting; }
+        set { _isShooting = value; }
+    }
 
     private bool isZero;
 
@@ -120,26 +138,26 @@ public class Enemy_Movement : MonoBehaviour
         
         if (hit1.collider != null || hit2.collider != null)
         {
-            isDetect = true;
+            _isDetect = true;
             if (hit1.collider != null)
                 detectDirection = DIRECTION.LEFT;
             else if (hit2.collider != null)
                 detectDirection = DIRECTION.RIGHT;
         }
         else
-            isDetect = false;
+            _isDetect = false;
     }
     void Enemy_AI()
     {
         RaycastHit2D AttackHit = Physics2D.BoxCast(Pos.position, new Vector2(AtkRange, 8), 0, (int)detectDirection * Vector2.left, AtkRange, LayerMask.GetMask("Player"));
-        if (isDetect)
+        if (_isDetect)
         {
             if (!AttackHit)
-                isWalking = true;
+                _isWalking = true;
 
             if (AttackHit) 
             {
-                isWalking = false;
+                _isWalking = false;
                 if (!GetCool)
                 {
                     if (AttackType == ATTACKTYPE.SWORD)
@@ -165,7 +183,7 @@ public class Enemy_Movement : MonoBehaviour
         }
         else
         {
-            isWalking = false;
+            _isWalking = false;
             isAttack = false;
         }
 
@@ -190,7 +208,7 @@ public class Enemy_Movement : MonoBehaviour
     {
         if (AttackType == ATTACKTYPE.SWORD)
         {
-            isFencing = true;
+            _isFencing = true;
             if (Enemyanim.GetCurrentAnimatorStateInfo(0).IsName("Fencing_Enemy") &&
                 Enemyanim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
             {
@@ -200,7 +218,7 @@ public class Enemy_Movement : MonoBehaviour
         else if (AttackType == ATTACKTYPE.PISTOL ||
                  AttackType == ATTACKTYPE.RIFLE)
         {
-            isShooting = true;
+            _isShooting = true;
             if (AttackType == ATTACKTYPE.PISTOL)
                 PistolM.Shot();
             else if (AttackType == ATTACKTYPE.RIFLE)
@@ -228,15 +246,15 @@ public class Enemy_Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isWalking && !isHit)
+        if (_isWalking && !isHit)
             Move();
 
         if (isAttack)
             Attack();
         else
         {
-            isFencing = false;
-            isShooting = false;
+            _isFencing = false;
+            _isShooting = false;
         }
     }
     // Update is called once per frame
@@ -249,11 +267,11 @@ public class Enemy_Movement : MonoBehaviour
             Enemy_AI();
         else
         {
-            isFencing = false;
-            isWalking = false;
+            _isFencing = false;
+            _isWalking = false;
             isAttack = false;
-            isDetect = false;
-            isShooting = false;
+            _isDetect = false;
+            _isShooting = false;
         }
     }
 }

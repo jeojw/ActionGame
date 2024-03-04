@@ -20,10 +20,23 @@ public class GrapplingHook : MonoBehaviour
     private float RopeDelayStart = 0;
     public float RopeDelayElapsed = 0;
 
-    public bool isHookActive;
-    public bool isHookThrow;
-    public bool isLineMax;
-    public bool isAttach;
+    private bool _isHookActive;
+    private bool isHookThrow;
+    private bool _isLineMax;
+    private bool _isAttach;
+
+    public bool isHookActive {
+        get { return _isHookActive; }
+        set { _isHookActive = value; }  
+    }
+    public bool isLineMax { 
+        get { return _isLineMax; }
+        set { _isLineMax = value; }
+    }
+    public bool isAttach { 
+        get { return _isAttach; }
+        set { _isAttach = value; }
+    }
 
     public float MaxLine;
 

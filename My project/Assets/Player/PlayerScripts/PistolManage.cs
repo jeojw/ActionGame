@@ -12,9 +12,10 @@ public class PistolManage : MonoBehaviour
 
     ParticleSystem PS;
 
-    public bool AmmunitionZero;
+    private bool _AmmunitionZero;
     private bool _isReload;
     private bool _isReloading;
+    private bool _isShot;
     public bool isReload
     {
         get { return _isReload; }
@@ -24,7 +25,15 @@ public class PistolManage : MonoBehaviour
         get { return _isReloading; }
         set { _isReloading = value; }
     }
-    public bool isShot;
+    public bool isShot { 
+        get { return _isShot; }
+        set { _isShot = value; }
+    }
+    public bool AmmunitionZero
+    {
+        get { return _AmmunitionZero; }
+        set { _AmmunitionZero = value; }
+    }
 
     public float BulletDamage;
     public float ShotDelay = 0.7f;
@@ -60,7 +69,8 @@ public class PistolManage : MonoBehaviour
         {
             PS.Play();
             PS.Emit(20);
-            isShot = true;
+            
+            _isShot = true;
             if (curAmmunition != 0)
             {
                 curAmmunition -= 1;
@@ -68,12 +78,12 @@ public class PistolManage : MonoBehaviour
 
             if (curAmmunition == 0)
             {
-                AmmunitionZero = true;
+                _AmmunitionZero = true;
             }
         }
         else 
         {
-            isShot = false;
+            _isShot = false;
             PS.Stop();
         }
             
@@ -97,30 +107,30 @@ public class PistolManage : MonoBehaviour
                 if (curMagazines > 0)
                     curMagazines--;
                 curAmmunition = maxAmmunition;
-                AmmunitionZero = false;
-                isReload = false;
-                isReloading = false;
+                _AmmunitionZero = false;
+                _isReload = false;
+                _isReloading = false;
             }
             else
             {
-                isReloading = true;
+                _isReloading = true;
             }
         }
     }
 
     public void ReloadReset()
     {
-        isReloading = false;
-        isReload = false;
+        _isReloading = false;
+        _isReload = false;
     }
 
     // Update is called once per frame
     void Update()         
     {
         Shot();
-        if (curMagazines > 0 && AmmunitionZero) 
+        if (curMagazines > 0 && _AmmunitionZero) 
         {
-            isReload = true;
+            _isReload = true;
             Reload();
         }
     }

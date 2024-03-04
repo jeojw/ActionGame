@@ -19,8 +19,13 @@ public class MainSceneManage : MonoBehaviour
     public AudioSource StopSound;
     public AudioSource BGM;
 
-    public bool isPaused = false;
-    public bool isReset = false;
+    private bool _isPaused = false;
+    private bool isReset = false;
+
+    public bool isPaused { 
+        get { return _isPaused; }
+        set { _isPaused = value; }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -32,14 +37,14 @@ public class MainSceneManage : MonoBehaviour
 
     public void GameProgress()
     {
-        if (isPaused && EventSystem.current.currentSelectedGameObject != null)
+        if (_isPaused && EventSystem.current.currentSelectedGameObject != null)
         {
             if (EventSystem.current.currentSelectedGameObject.name == "No")
             {
                 ClickSound.Play();
                 BGM.Play();
                 Time.timeScale = 1;
-                isPaused = false;
+                _isPaused = false;
                 StopPopup.SetActive(false);
             }
         }
@@ -56,7 +61,7 @@ public class MainSceneManage : MonoBehaviour
                 ClickSound.Play();
                 SceneManager.LoadScene("StartScene");
                 Time.timeScale = 1;
-                isPaused = false;
+                _isPaused = false;
                 StopPopup.SetActive(false);
                 DeadPopup.SetActive(false);
             }
@@ -92,7 +97,7 @@ public class MainSceneManage : MonoBehaviour
             Time.timeScale = 0f;
         }
 
-        isPaused = StopPopup.activeSelf;
+        _isPaused = StopPopup.activeSelf;
 
         if (StatM.isDead)
         {
@@ -107,7 +112,7 @@ public class MainSceneManage : MonoBehaviour
             Time.timeScale = 0f;
         }
 
-        else if (SG.isClear || !isPaused)
+        else if (SG.isClear || !_isPaused)
         {
             ClearPopup.SetActive(false);
             Time.timeScale = 1f;
