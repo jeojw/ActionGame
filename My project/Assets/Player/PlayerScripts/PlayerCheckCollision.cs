@@ -36,7 +36,7 @@ public class PlayerCheckCollision : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (HitCoolElapsed == 0)
+        if (Pcollider.enabled)
         {
             if (collision.CompareTag("Enemy_Pistol_Bullet"))
             {
@@ -57,19 +57,22 @@ public class PlayerCheckCollision : MonoBehaviour
 
     private void RaycastHit()
     {
-        RaycastHit2D Hit;
-        if (transform.parent.name != "bone_1")
-            Hit = Physics2D.BoxCast(transform.position, new Vector2(0.75f, 1.7f), transform.parent.transform.localRotation.z, transform.forward, 0.1f);
-        else
-            Hit = Physics2D.CircleCast(transform.position, 1.11f, transform.forward, 0.1f);
-        if (Hit.collider != null)
+        if (Pcollider.enabled)
         {
-            if (Hit.collider.tag == "Enemy_Pistol_Bullet")
-                PistolBulletHit = true;
-            if (Hit.collider.tag == "Enemy_Rifle_Bullet")
-                RifleBulletHit = true;
-            if (Hit.collider.tag == "EnemuKnife")
-                KnifeHit = true;
+            RaycastHit2D Hit;
+            if (transform.parent.name != "bone_1")
+                Hit = Physics2D.BoxCast(transform.position, new Vector2(0.75f, 1.7f), transform.parent.transform.localRotation.z, transform.forward, 0.1f);
+            else
+                Hit = Physics2D.CircleCast(transform.position, 1.11f, transform.forward, 0.1f);
+            if (Hit.collider != null)
+            {
+                if (Hit.collider.tag == "Enemy_Pistol_Bullet")
+                    PistolBulletHit = true;
+                if (Hit.collider.tag == "Enemy_Rifle_Bullet")
+                    RifleBulletHit = true;
+                if (Hit.collider.tag == "EnemuKnife")
+                    KnifeHit = true;
+            }
         }
     }
     // Update is called once per frame
