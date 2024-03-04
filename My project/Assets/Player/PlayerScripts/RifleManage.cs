@@ -25,8 +25,8 @@ public class RifleManage : MonoBehaviour
         set { _isShot = value; }
     }
     public bool isReload { 
-        get { return _isReloading; }
-        set { _isReloading = value; }
+        get { return _isReload; }
+        set { _isReload = value; }
     }
     public bool isReloading {
         get { return _isReloading; }
@@ -34,7 +34,7 @@ public class RifleManage : MonoBehaviour
     }
 
     public float BulletDamage;
-    public float ShotDelay = 0.01f;
+    public float ShotDelay = 0.2f;
     public int curAmmunition;
     public int maxAmmunition;
     public int curMagazines;

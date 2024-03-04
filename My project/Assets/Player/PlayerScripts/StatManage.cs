@@ -105,6 +105,12 @@ public class StatManage : MonoBehaviour
             GunShotDelay = PistolM.ShotDelay;
             playControl.SetShotDelay(GunShotDelay);
         }
+        else
+        {
+            GunDamage = RifleM.BulletDamage;
+            GunShotDelay = RifleM.ShotDelay;
+            playControl.SetShotDelay(GunShotDelay);
+        }
     }
 
     public void ResetHp()
