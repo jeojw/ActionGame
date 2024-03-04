@@ -18,7 +18,7 @@ public class RifleManage : MonoBehaviour
 
     public float BulletDamage;
     public float ShotDelay = 0.01f;
-    public int curAmmunition = 0;
+    public int curAmmunition;
     public int maxAmmunition;
     public int curMagazines;
 
@@ -30,13 +30,14 @@ public class RifleManage : MonoBehaviour
         playControl = Player.GetComponent<PlayerControl>();
         playerAnim = playControl.GetComponent<Animator>();
         curAmmunition = maxAmmunition;
-        curMagazines = 0;
+        curMagazines = 1;
         AmmunitionZero = false;
     }
 
     public void ResetMagazine()
     {
         curAmmunition = maxAmmunition;
+        curMagazines = 1;
     }
 
     public void GetMagazine()

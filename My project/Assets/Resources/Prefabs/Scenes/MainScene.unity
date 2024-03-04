@@ -20773,7 +20773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 2060703201}
   WeaponUI: {fileID: 380251150}
-  AmmunitionZero: 1
+  AmmunitionZero: 0
   isShot: 0
   isReload: 0
   isReloading: 0

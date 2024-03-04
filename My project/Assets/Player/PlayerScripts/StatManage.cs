@@ -15,11 +15,8 @@ public class StatManage : MonoBehaviour
     public GameObject Rifle;
     public GameObject Knife;
 
-    KnifeManage KnifeM;
     PistolManage PistolM;
     RifleManage RifleM;
-
-    StatManage StatM;
 
     PlayerCheckCollision HeadCheck;
     PlayerCheckCollision BodyCheck;
@@ -63,10 +60,10 @@ public class StatManage : MonoBehaviour
 
         PistolM = Pistol.GetComponent<PistolManage>();
         RifleM = Rifle.GetComponent<RifleManage>();
-        KnifeM = Knife.GetComponent<KnifeManage>();
 
         playControl = GetComponent<PlayerControl>();
         curHp = MaxHp;
+        ItemType = ItemManage.ITEMTYPE.NONE;
 
         isDead = false;
     }
@@ -147,7 +144,6 @@ public class StatManage : MonoBehaviour
             if (playControl.isGetItem)
             {
                 UseItem = false;
-                ItemType = playControl.GetItemType;
                 if (ItemType == ItemManage.ITEMTYPE.HEAL && !UseItem)
                 {
                     curHp += 50f;

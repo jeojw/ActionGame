@@ -23,13 +23,13 @@ public class ItemManage : MonoBehaviour
     List<GameObject> ItemList;
     List<bool> IsDropList;
 
-    float RifleRate = 0.05f;
-    float HealRate = 0.1f;
-    float PistolRate = 0.1f;
+    readonly float RifleRate = 0.05f;
+    readonly float HealRate = 0.1f;
+    readonly float PistolRate = 0.1f;
 
     bool isDropItem = false;
 
-    string Path = "Prefabs/Items";
+    readonly string Path = "Prefabs/Items";
     // Start is called before the first frame update
     void Start()
     {
@@ -103,6 +103,8 @@ public class ItemManage : MonoBehaviour
                 }
 
             }
+            else
+                DropItem = null;
         }
         
         if (ItemList.Count > 0)
@@ -112,7 +114,6 @@ public class ItemManage : MonoBehaviour
                 {
                     GameObject DeleteItem = ItemList[i];
                     statManage.SetGetItem(TypeList[i]);
-                    playerControl.SetGetItem(TypeList[i]);
                     ItemList[i] = null;
                     Destroy(DeleteItem);
                 }

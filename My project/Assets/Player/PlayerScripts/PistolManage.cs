@@ -41,7 +41,7 @@ public class PistolManage : MonoBehaviour
     {
         PS = transform.GetChild(0).GetComponent<ParticleSystem>();
         curAmmunition = maxAmmunition;
-        curMagazines = 0;
+        curMagazines = 1;
         playControl = Player.GetComponent<PlayerControl>();
         playerAnim = Player.GetComponent<Animator>();  
     }
@@ -49,6 +49,7 @@ public class PistolManage : MonoBehaviour
     public void ResetMagazine()
     {
         curAmmunition = maxAmmunition;
+        curMagazines = 1;
     }
 
     void Shot()

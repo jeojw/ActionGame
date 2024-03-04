@@ -167,8 +167,6 @@ public class PlayerControl : MonoBehaviour
 
     private bool IsDoublePressed = false;
 
-    public ItemManage.ITEMTYPE GetItemType;
-
     void Start()
     {
         transform.position = PlayerPos;
@@ -601,11 +599,6 @@ public class PlayerControl : MonoBehaviour
         RifleManage.ReloadReset();
         RifleManage.ResetMagazine();
         PistolManage.ResetMagazine();
-    }
-
-    public void SetGetItem(ItemManage.ITEMTYPE _type)
-    {
-        GetItemType = _type;
     }
 
     void Update()
