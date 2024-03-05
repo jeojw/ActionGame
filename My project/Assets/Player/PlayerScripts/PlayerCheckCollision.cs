@@ -5,9 +5,7 @@ public class PlayerCheckCollision : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public GameObject Player;
-
-    PolygonCollider2D Pcollider;
+    CustomCollider2D CCollider;
     PlayerControl Control;
     StatManage PlayerStat;
     CollisionPhysics Physic;
@@ -28,15 +26,15 @@ public class PlayerCheckCollision : MonoBehaviour
 
     void Start()
     {
-        Control = Player.GetComponent<PlayerControl>();
-        PlayerStat = Player.GetComponent<StatManage>();
-        Pcollider = GetComponent<PolygonCollider2D>();
-        Physic = Player.GetComponent<CollisionPhysics>();
+        Control = GetComponent<PlayerControl>();
+        PlayerStat = GetComponent<StatManage>();
+        CCollider = GetComponent<CustomCollider2D>();
+        Physic = GetComponent<CollisionPhysics>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Pcollider.enabled)
+        if (CCollider.enabled)
         {
             if (collision.CompareTag("Enemy_Pistol_Bullet"))
             {
@@ -54,38 +52,15 @@ public class PlayerCheckCollision : MonoBehaviour
             }
         }
     }
-
-    private void RaycastHit()
-    {
-        if (Pcollider.enabled)
-        {
-            RaycastHit2D Hit;
-            if (transform.parent.name != "bone_1")
-                Hit = Physics2D.BoxCast(transform.position, new Vector2(0.75f, 1.7f), transform.parent.transform.localRotation.z, transform.forward, 0.1f);
-            else
-                Hit = Physics2D.CircleCast(transform.position, 1.11f, transform.forward, 0.1f);
-            if (Hit.collider != null)
-            {
-                if (Hit.collider.tag == "Enemy_Pistol_Bullet")
-                    PistolBulletHit = true;
-                if (Hit.collider.tag == "Enemy_Rifle_Bullet")
-                    RifleBulletHit = true;
-                if (Hit.collider.tag == "EnemuKnife")
-                    KnifeHit = true;
-            }
-        }
-    }
     // Update is called once per frame
     void Update()
     {
-        
         if (!PlayerStat.isDead)
         {
-            RaycastHit();
             _isHit = (KnifeHit || PistolBulletHit || RifleBulletHit);
             if (_isHit)
             {
-                Pcollider.enabled = false;
+                CCollider.enabled = false;
                 HitCoolStart = Time.time;
                 if (PistolBulletHit)
                 {
@@ -113,7 +88,7 @@ public class PlayerCheckCollision : MonoBehaviour
                 HitCoolElapsed = Time.time - HitCoolStart;
                 if (HitCoolElapsed >= HitCool)
                 {
-                    Pcollider.enabled = true;
+                    CCollider.enabled = true;
                     HitCoolElapsed = 0;
                     HitCoolStart = 0;
                 }
@@ -121,7 +96,7 @@ public class PlayerCheckCollision : MonoBehaviour
         }
         else
         {
-            Pcollider.enabled = false;
+            CCollider.enabled = false;
             Physic.SetPhysics(new Vector2(0, 0));
         }
     }

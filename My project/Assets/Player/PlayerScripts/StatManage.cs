@@ -4,12 +4,6 @@ using UnityEngine;
 public class StatManage : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject HeadHitbox;
-    public GameObject BodyHitbox;
-    public GameObject RightLegHitbox_1;
-    public GameObject RightLegHitbox_2;
-    public GameObject LeftLegHitbox_1;
-    public GameObject LeftLegHitbox_2;
 
     public GameObject Pistol;
     public GameObject Rifle;
@@ -18,12 +12,7 @@ public class StatManage : MonoBehaviour
     PistolManage PistolM;
     RifleManage RifleM;
 
-    PlayerCheckCollision HeadCheck;
-    PlayerCheckCollision BodyCheck;
-    PlayerCheckCollision RightLegCheck_1;
-    PlayerCheckCollision RightLegCheck_2;
-    PlayerCheckCollision LeftLegCheck_1;
-    PlayerCheckCollision LeftLegCheck_2;
+    PlayerCheckCollision HitCheck;
 
     private bool UseItem = false;
     ItemManage.ITEMTYPE ItemType;
@@ -51,12 +40,7 @@ public class StatManage : MonoBehaviour
 
     void Start()
     {
-        HeadCheck = HeadHitbox.GetComponent<PlayerCheckCollision>();
-        BodyCheck = BodyHitbox.GetComponent<PlayerCheckCollision>();
-        RightLegCheck_1 = RightLegHitbox_1.GetComponent<PlayerCheckCollision>();
-        RightLegCheck_2 = RightLegHitbox_2.GetComponent<PlayerCheckCollision>();
-        LeftLegCheck_1 = LeftLegHitbox_1.GetComponent<PlayerCheckCollision>();
-        LeftLegCheck_2 = LeftLegHitbox_2.GetComponent<PlayerCheckCollision>();
+        HitCheck = GetComponent<PlayerCheckCollision>();
 
         PistolM = Pistol.GetComponent<PistolManage>();
         RifleM = Rifle.GetComponent<RifleManage>();
@@ -167,9 +151,7 @@ public class StatManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _GetHit = (HeadCheck.isHit || BodyCheck.isHit ||
-                 RightLegCheck_1.isHit || RightLegCheck_2.isHit ||
-                 LeftLegCheck_1.isHit || LeftLegCheck_2.isHit);
+        _GetHit = (HitCheck.isHit);
 
         HpUpdate();
         ATKUpdate();

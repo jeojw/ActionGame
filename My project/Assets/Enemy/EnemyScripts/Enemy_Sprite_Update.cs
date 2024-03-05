@@ -88,8 +88,7 @@ public class Enemy_Sprite_Update : MonoBehaviour
         {
             if (isDetect)
                 anim.SetBool("isDetect", true);
-            else
-                anim.SetBool("isDetect", false);
+
             if (Walking)
             {
                 anim.SetBool("isWalking", true);

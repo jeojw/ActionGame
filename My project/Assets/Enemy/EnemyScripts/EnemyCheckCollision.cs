@@ -6,8 +6,7 @@ using UnityEngine;
 public class EnemyCheckCollision : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject Enemy;
-    PolygonCollider2D Pcollider;
+    CustomCollider2D Ccollider;
     CollisionPhysics Physic;
     Enemy_Movement EMove;
     Enemy_StatManage Estat;
@@ -27,20 +26,20 @@ public class EnemyCheckCollision : MonoBehaviour
     private bool isDead;
 
     private float HitDelay = 0.4f;
-    private float HitDelayStart = 0;
+    private float HitDelayStart = 0; 
     private float HitDelayElapsed = 0;
 
     void Start()
     {
-        Estat = Enemy.GetComponent<Enemy_StatManage>();
-        Physic = Enemy.GetComponent<CollisionPhysics>();
-        Pcollider = GetComponent<PolygonCollider2D>();
-        isDead = Enemy.GetComponent<Enemy_StatManage>().isDead;
-        EMove = Enemy.GetComponent<Enemy_Movement>();
+        Estat = GetComponent<Enemy_StatManage>();
+        Physic = GetComponent<CollisionPhysics>();
+        Ccollider = GetComponent<CustomCollider2D>();
+        isDead = GetComponent<Enemy_StatManage>().isDead;
+        EMove = GetComponent<Enemy_Movement>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Pcollider.enabled)
+        if (Ccollider.enabled)
         {
             if (collision.CompareTag("Fist"))
             {
@@ -56,35 +55,9 @@ public class EnemyCheckCollision : MonoBehaviour
                 RifleBulletHit = true;
             }
 
-            if (collision.CompareTag("Knife"))
+            if (collision.CompareTag("PlayerKnife"))
             {
                 KnifeHit = true;
-            }
-        }
-    }
-    private void RaycastHit()
-    {
-        if (Pcollider.enabled)
-        {
-            RaycastHit2D Hit;
-            if (transform.parent.name != "bone_1")
-            {
-
-                Hit = Physics2D.BoxCast(transform.position, new Vector2(0.75f, 1.7f), transform.parent.transform.localRotation.z, transform.forward, 0.1f);
-            }
-            else
-                Hit = Physics2D.CircleCast(transform.position, 1.11f, transform.forward, 0.1f);
-            if (Hit.collider != null)
-            {
-
-                if (Hit.collider.tag == "Fist")
-                    FistHit = true;
-                if (Hit.collider.tag == "Pistol_Bullet")
-                    PistolBulletHit = true;
-                if (Hit.collider.tag == "Rifle_Bullet")
-                    RifleBulletHit = true;
-                if (Hit.collider.tag == "Knife")
-                    KnifeHit = true;
             }
         }
     }
@@ -95,7 +68,7 @@ public class EnemyCheckCollision : MonoBehaviour
 
         if (HitDelayElapsed >= HitDelay)
         {
-            Pcollider.enabled = true;
+            Ccollider.enabled = true;
             HitDelayElapsed = 0;
             HitDelayStart = 0;
         }
@@ -107,11 +80,10 @@ public class EnemyCheckCollision : MonoBehaviour
         isDead = Estat.isDead;
         if (!isDead)
         {
-            RaycastHit();
             _isHit = (KnifeHit || RifleBulletHit || PistolBulletHit || FistHit);
             if (_isHit)
             {
-                Pcollider.enabled = false;
+                Ccollider.enabled = false;
                 HitDelayStart = Time.time;
                 if (PistolBulletHit)
                 {
@@ -149,7 +121,7 @@ public class EnemyCheckCollision : MonoBehaviour
         else
         {
             Physic.SetPhysics(new Vector2(0, 0));
-            Pcollider.enabled = false;
+            Ccollider.enabled = false;
         }
     }
 }
