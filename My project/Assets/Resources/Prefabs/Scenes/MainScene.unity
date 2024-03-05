@@ -453,12 +453,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 79237896}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.8417664, y: -1.1096884, z: 2.847231}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1694930076}
+  m_Father: {fileID: 1928488374}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &79237898
 AudioSource:
@@ -1488,6 +1488,7 @@ Transform:
   m_Children:
   - {fileID: 1694930076}
   - {fileID: 445316981}
+  - {fileID: 1928488374}
   m_Father: {fileID: 2060703202}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &259311527
@@ -18623,12 +18624,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212377766}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.8417664, y: -1.1096884, z: 2.847231}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1694930076}
+  m_Father: {fileID: 1928488374}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1212377768
 AudioSource:
@@ -20984,8 +20985,6 @@ Transform:
   - {fileID: 1898823462}
   - {fileID: 2133205719}
   - {fileID: 422078144}
-  - {fileID: 1212377767}
-  - {fileID: 79237897}
   m_Father: {fileID: 214034877}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1706799846
@@ -21944,6 +21943,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 2060703201}
   isFence: 0
+--- !u!1 &1928488373
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1928488374}
+  m_Layer: 0
+  m_Name: ConditionSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1928488374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928488373}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1212377767}
+  - {fileID: 79237897}
+  m_Father: {fileID: 214034877}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1943224304
 GameObject:
   m_ObjectHideFlags: 0
@@ -22413,16 +22445,9 @@ MonoBehaviour:
   Pistol: {fileID: 655444226}
   Rifle: {fileID: 1706799846}
   Knife: {fileID: 655386840}
-  Walk: {fileID: 1061224532}
-  Run: {fileID: 1898823463}
-  Jump: {fileID: 2133205720}
-  Land: {fileID: 422078145}
-  PistolShot: {fileID: 200662088}
-  PistolReload: {fileID: 1089762452}
-  RifleShot: {fileID: 1858455041}
-  RifleReload: {fileID: 268354677}
-  Pain: {fileID: 1212377768}
-  Dead: {fileID: 79237898}
+  MoveSound: {fileID: 1694930075}
+  WeaponSound: {fileID: 445316980}
+  ConditionSound: {fileID: 1928488373}
 --- !u!1 &2060774652
 GameObject:
   m_ObjectHideFlags: 0

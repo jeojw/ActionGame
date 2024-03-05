@@ -93,7 +93,8 @@ public class RifleManage : MonoBehaviour
 
     void Reload()
     {
-        if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Reloading_Rifle"))
+        if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Reloading_Rifle") ||
+            playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Reloading_Rifle_Lower"))
         {
             if (playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
             {

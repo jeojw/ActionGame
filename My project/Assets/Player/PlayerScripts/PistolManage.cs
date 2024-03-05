@@ -100,7 +100,9 @@ public class PistolManage : MonoBehaviour
 
     void Reload()
     {
-        if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Reloading_Pistol"))
+        if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Reloading_Pistol") ||
+            playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Reloading_Pistol_Lower"))
+
         {
             if (playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
             {

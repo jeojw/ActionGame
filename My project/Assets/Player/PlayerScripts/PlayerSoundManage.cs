@@ -8,18 +8,22 @@ public class PlayeroundManage : MonoBehaviour
     public GameObject Rifle;
     public GameObject Knife;
 
-    public AudioSource Walk;
-    public AudioSource Run;
-    public AudioSource Jump;
-    public AudioSource Land;
+    public GameObject MoveSound;
+    public GameObject WeaponSound;
+    public GameObject ConditionSound;
 
-    public AudioSource PistolShot;
-    public AudioSource PistolReload;
-    public AudioSource RifleShot;
-    public AudioSource RifleReload;
+    AudioSource Walk;
+    AudioSource Run;
+    AudioSource Jump;
+    AudioSource Land;
 
-    public AudioSource Pain;
-    public AudioSource Dead;
+    AudioSource PistolShot;
+    AudioSource PistolReload;
+    AudioSource RifleShot;
+    AudioSource RifleReload;
+
+    AudioSource Pain;
+    AudioSource Dead;
 
     PlayerControl playerControl;
     StatManage Pstm;
@@ -42,6 +46,19 @@ public class PlayeroundManage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Walk = MoveSound.transform.GetChild(0).GetComponent<AudioSource>();
+        Run = MoveSound.transform.GetChild(1).GetComponent<AudioSource>();
+        Jump = MoveSound.transform.GetChild(2).GetComponent<AudioSource>();
+        Land = MoveSound.transform.GetChild(3).GetComponent<AudioSource>();
+
+        PistolShot = WeaponSound.transform.GetChild(0).GetComponent<AudioSource>();
+        PistolReload = WeaponSound.transform.GetChild(1).GetComponent<AudioSource>();
+        RifleShot = WeaponSound.transform.GetChild(2).GetComponent<AudioSource>();
+        RifleReload = WeaponSound.transform.GetChild(3).GetComponent<AudioSource>();
+
+        Pain = ConditionSound.transform.GetChild(0).GetComponent<AudioSource>();
+        Dead = ConditionSound.transform.GetChild(1).GetComponent<AudioSource>();
+
         playerControl = GetComponent<PlayerControl>();
         PistolM = Pistol.GetComponent<PistolManage>();
         RifleM = Rifle.GetComponent<RifleManage>();
@@ -99,7 +116,9 @@ public class PlayeroundManage : MonoBehaviour
             {
                 PistolShot.Play();
             }
-            if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Reloading_Pistol") && playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            if ((playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Reloading_Pistol") ||
+                playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Reloading_Pistol_Lower"))
+                && playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
             {
                 PistolReload.Play();
             }
@@ -112,7 +131,9 @@ public class PlayeroundManage : MonoBehaviour
             {
                 RifleShot.Play();
             }
-            if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Reloading_Rifle") && playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            if ((playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Reloading_Rifle") ||
+                playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Reloading_Rifle_Lower"))
+                && playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
             {
                 RifleReload.Play();
             }
