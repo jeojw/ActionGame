@@ -451,6 +451,7 @@ public class PlayerControl : MonoBehaviour
             !_isMoving &&
             !PistolManage.isReloading &&
             !_isJumpStart &&
+            !_isAttack &&
             weapon != Weapons.ROPE) {
             weaponPos++;
             if (weaponPos > 2)
@@ -461,6 +462,7 @@ public class PlayerControl : MonoBehaviour
             !grappling.isHookActive &&
             !grappling.isLineMax &&
             !_isMoving &&
+            !_isAttack &&
             !PistolManage.isReloading &&
             !_isJumpStart)
         {
