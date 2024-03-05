@@ -135,10 +135,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: 73, y: 75}
-        - {x: -75, y: -73}
-        - {x: -75, y: -73}
-        - {x: 73, y: -73}
-        - {x: 73, y: 75}
+        - {x: -75, y: -75}
+        - {x: -75, y: -75}
+        - {x: 75, y: -75}
+        - {x: 75, y: 75}
       physicsShape:
       - - {x: 75, y: 75}
         - {x: -75, y: -75}
@@ -166,8 +166,8 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: -75, y: 75}
-        - {x: -74, y: 75}
-        - {x: -74, y: -75}
+        - {x: -75, y: 75}
+        - {x: -75, y: -75}
         - {x: 75, y: -75}
         - {x: 75, y: 75}
       physicsShape:
