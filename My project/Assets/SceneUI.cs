@@ -13,8 +13,10 @@ public class SceneUI : MonoBehaviour
     ScoreManage ScoreM;
     SetGame SG;
 
+    public Image DetectImage;
+    RectTransform DetectPos;
+
     public Image GuideImage;
-    public TextMeshProUGUI text_Guide;
     RectTransform GuidePos;
 
     public TextMeshProUGUI text_Timer;
@@ -61,6 +63,7 @@ public class SceneUI : MonoBehaviour
         ScreenWidthHalf = ScreenHeightHalf * Camera.main.aspect;
 
         GuidePos = GuideImage.GetComponent<RectTransform>();
+        DetectPos = DetectImage.GetComponent<RectTransform>();
         DataM = Event.GetComponent<DataManage>();
         ScoreM = Event.GetComponent<ScoreManage>();
         SG = Event.GetComponent<SetGame>();
@@ -121,6 +124,19 @@ public class SceneUI : MonoBehaviour
         text_ResultTimer.text = $"{time_current:N2} sec";
     }
 
+    void DetectUI()
+    {
+        Vector3 CameraPos = Camera.main.transform.position;
+        RaycastHit2D DetectHit = Physics2D.Raycast(CameraPos, new Vector2((int)playControl.direction, 0), 60f, LayerMask.GetMask("Enemy"), 20f);
+        if (DetectHit.collider != null)
+        {
+            DetectImage.gameObject.SetActive(true);
+        }
+        else
+            DetectImage.gameObject.SetActive(false);
+        DetectPos.anchoredPosition = new Vector3(ScreenWidthHalf * 2 - DetectPos.rect.width * 1.2f, ScreenHeightHalf, 0f);
+    }
+
     void GuideUI()
     {
         Vector3 CameraPos = Camera.main.transform.position;
@@ -128,19 +144,16 @@ public class SceneUI : MonoBehaviour
         if (CameraPos.x >= 251.8408f && CameraPos.x <= 278f && CameraPos.y < 35f)
         {
             GuideImage.gameObject.SetActive(true);
-            text_Guide.gameObject.SetActive(true);
         }
 
         else if (CameraPos.x >= 430f && CameraPos.x <= 530f && CameraPos.y < 47)
         {
             GuideImage.gameObject.SetActive(true);
-            text_Guide.gameObject.SetActive(true);
         }
 
         else
         {
             GuideImage.gameObject.SetActive(false);
-            text_Guide.gameObject.SetActive(false);
         }
 
         GuidePos.anchoredPosition = new Vector3(ScreenWidthHalf * 2 - GuidePos.rect.width * 1.2f, ScreenHeightHalf * 2 - GuidePos.rect.height * 2, 0f);
@@ -328,6 +341,7 @@ public class SceneUI : MonoBehaviour
         }
 
         GuideUI();
+        DetectUI();
         WeaponUI();
         Check_Timer();
         CheckHp();
