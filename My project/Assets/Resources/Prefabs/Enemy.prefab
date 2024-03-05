@@ -366,7 +366,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 3909242729696192919}
-  Pcollider: {fileID: 0}
 --- !u!60 &675055972344692887
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -759,7 +758,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 3909242729696192919}
-  Pcollider: {fileID: 3582715001450921509}
 --- !u!1 &2214419389179352022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1609,8 +1607,7 @@ Transform:
   m_LocalPosition: {x: 0.76, y: -0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2055242606941563824}
+  m_Children: []
   m_Father: {fileID: 1180939803459888097}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &7780706251836790483
@@ -1676,7 +1673,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 3909242729696192919}
-  Pcollider: {fileID: 7780706251836790483}
 --- !u!1 &3716750712589783216
 GameObject:
   m_ObjectHideFlags: 0
@@ -2184,7 +2180,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 3909242729696192919}
-  Pcollider: {fileID: 3925365114763072497}
 --- !u!1 &4678170548867786963
 GameObject:
   m_ObjectHideFlags: 0
@@ -2210,12 +2205,12 @@ Transform:
   m_GameObject: {fileID: 4678170548867786963}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.0070081204, w: 0.99997544}
-  m_LocalPosition: {x: 0.9119506, y: 0.010000834, z: 0}
+  m_LocalPosition: {x: 1.6719507, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8024278198273396133}
-  m_Father: {fileID: 6178194867887123245}
+  m_Father: {fileID: 1180939803459888097}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4852384452237219333
 GameObject:
@@ -2775,6 +2770,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6178194867887123245}
+  - {fileID: 2055242606941563824}
   m_Father: {fileID: 4352650282685922278}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6117705563671431472
@@ -3565,7 +3561,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 3909242729696192919}
-  Pcollider: {fileID: 6235174794181262428}
 --- !u!1 &7409568941672355321
 GameObject:
   m_ObjectHideFlags: 0
@@ -4140,7 +4135,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 3909242729696192919}
-  Pcollider: {fileID: 2189756322613078373}
 --- !u!60 &2189756322613078373
 PolygonCollider2D:
   m_ObjectHideFlags: 0
