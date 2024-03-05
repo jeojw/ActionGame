@@ -1556,7 +1556,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300006, guid: a1d46cd3f2614cc43be92ab44ea7d819, type: 3}
+  m_Sprite: {fileID: 21300006, guid: 5163ae49a0de665458bba61cd20c99b1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2248,7 +2248,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300006, guid: a1d46cd3f2614cc43be92ab44ea7d819, type: 3}
+  m_Sprite: {fileID: 21300006, guid: 5163ae49a0de665458bba61cd20c99b1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9743,7 +9743,7 @@ Tilemap:
       - {fileID: -387218300, guid: 6251941c4c7e8fa42aa5676302b380a7, type: 3}
       - {fileID: 109190740, guid: 6251941c4c7e8fa42aa5676302b380a7, type: 3}
       - {fileID: 2082593426, guid: 6251941c4c7e8fa42aa5676302b380a7, type: 3}
-      m_AnimationSpeed: 3.0000002
+      m_AnimationSpeed: 3
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 383, y: -1, z: 0}
@@ -9949,7 +9949,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300046, guid: 5acb27b603af6d44ea6113c4b7b15385, type: 3}
+  m_Sprite: {fileID: 21300046, guid: 6674e8c43c63e4f4184cbd009379498d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -22037,7 +22037,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300028, guid: 5acb27b603af6d44ea6113c4b7b15385, type: 3}
+  m_Sprite: {fileID: 21300028, guid: 6674e8c43c63e4f4184cbd009379498d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
