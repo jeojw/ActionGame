@@ -7,6 +7,8 @@ public class Enemy_GunManage : MonoBehaviour
     public GameObject Enemy;
     public Transform FirePos;
 
+    ParticleSystem PS;
+
     Enemy_Movement EMove;
     public float ShotDelay;
     public float curAmmunition;
@@ -15,6 +17,7 @@ public class Enemy_GunManage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PS = transform.GetChild(0).GetComponent<ParticleSystem>();
         EMove = Enemy.GetComponent<Enemy_Movement>();
         if (EMove.AttackType == Enemy_Movement.ATTACKTYPE.PISTOL)
         {
@@ -40,6 +43,18 @@ public class Enemy_GunManage : MonoBehaviour
         {
             isZero = true;
         }
+    }
+
+   public void Effect()
+    {
+
+        PS.Emit(100);
+        PS.Play();
+    }
+
+    public void EffectStop()
+    {
+        PS.Stop();
     }
 
     // Update is called once per frame

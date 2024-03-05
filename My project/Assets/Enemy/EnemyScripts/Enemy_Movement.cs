@@ -75,7 +75,7 @@ public class Enemy_Movement : MonoBehaviour
 
     private bool isHit;
 
-    private float NDetectInterval =40f;
+    private float NDetectInterval = 40f;
     private float RifleDetectInterval = 60f;
     public float speed;
 
@@ -220,13 +220,23 @@ public class Enemy_Movement : MonoBehaviour
         {
             _isShooting = true;
             if (AttackType == ATTACKTYPE.PISTOL)
+            {
+                PistolM.Effect();
+                RifleM.EffectStop();
                 PistolM.Shot();
+            }
             else if (AttackType == ATTACKTYPE.RIFLE)
+            {
+                RifleM.Effect();
+                PistolM.EffectStop();
                 RifleM.Shot();
+            }
             if (ShotCount == 0)
                 ShotCount = 1;
             if (ShotCount == 1)
             {
+                PistolM.EffectStop();
+                RifleM.EffectStop();
                 GetCool = true;
                 ShotCount = 0;
             }
