@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2771613159857447415}
   - component: {fileID: 6927135491052231984}
   - component: {fileID: 2068760578982476529}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Layer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,9 +173,9 @@ GameObject:
   m_Component:
   - component: {fileID: 824889647130859634}
   - component: {fileID: 5827687287267832633}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: CrackedGround
-  m_TagString: Untagged
+  m_TagString: CrackedGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
