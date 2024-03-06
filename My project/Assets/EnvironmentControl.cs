@@ -12,7 +12,7 @@ public class EnvironmentControl : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         spriteRenderer.enabled = true;
         
