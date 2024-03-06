@@ -451,6 +451,8 @@ public class PlayerControl : MonoBehaviour
             !PistolManage.isReloading &&
             !_isJumpStart &&
             !_isAttack &&
+            (!PistolManage.isReloading ||
+            !RifleManage.isReloading) &&
             weapon != Weapons.ROPE) {
             weaponPos++;
             if (weaponPos > 2)
@@ -462,7 +464,8 @@ public class PlayerControl : MonoBehaviour
             !grappling.isLineMax &&
             !_isMoving &&
             !_isAttack &&
-            !PistolManage.isReloading &&
+            (!PistolManage.isReloading ||
+            !RifleManage.isReloading) &&
             !_isJumpStart)
         {
             if (Input.GetKeyDown(KeyCode.R))
