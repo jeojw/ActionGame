@@ -21,8 +21,16 @@ public class SetGame : MonoBehaviour
     ItemManage ITM;
     ScoreManage ScoreM;
     ProjectilesManage PTM;
-    public bool isReset;
-    public bool isClear;
+    private bool _isReset;
+    private bool _isClear;
+    public bool isReset { 
+        get { return _isReset; }
+        set { _isReset = value; }
+    }
+    public bool isClear { 
+        get { return _isClear; }
+        set { _isClear = value; }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +41,7 @@ public class SetGame : MonoBehaviour
         ScoreM = GetComponent<ScoreManage>();   
         EnemyList = new List<GameObject>();
         Enemy = Resources.Load<GameObject>("Prefabs/Enemy");
-        isClear = false;
+        _isClear = false;
         PC = Player.GetComponent<PlayerControl>();
         SetObjects();
             
@@ -97,8 +105,8 @@ public class SetGame : MonoBehaviour
         
     public void ResetGame()
     {
-        isReset = true;
-        isClear = false;
+        _isReset = true;
+        _isClear = false;
     }
 
     // Update is called once per frame
@@ -112,9 +120,9 @@ public class SetGame : MonoBehaviour
             DeadboolList[i] = EnemyStatList[i].isDead;   
             NotDeadCount++;
         }
-        isClear = (NotDeadCount == 0);
+        _isClear = (NotDeadCount == 0);
 
-        if (isReset)
+        if (_isReset)
         {
             for (int i = 0; i < EnemyList.Count; i++)
             {
@@ -130,8 +138,8 @@ public class SetGame : MonoBehaviour
             ObjectClear();
             ScoreM.ResetScore();
             SetObjects();
-            isReset = false;
-            isClear = false;
+            _isReset = false;
+            _isClear = false;
         }
     }
 }

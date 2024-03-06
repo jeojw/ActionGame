@@ -68,7 +68,6 @@ public class PlayerControl : MonoBehaviour
 
     private float lastKeyPressTime = 0;
     public float RunningInterval = 0.5f;
-    public bool pressedFirstTime = false;
 
     public int KnifeStep = 1;
 

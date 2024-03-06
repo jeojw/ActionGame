@@ -42,8 +42,6 @@ public class PistolManage : MonoBehaviour
 
     public int curMagazines;
 
-    public float Reload_Delay;
-
     PlayerControl playControl;
     Animator playerAnim;
     void Start()

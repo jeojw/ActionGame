@@ -38,14 +38,14 @@ public class GrapplingHook : MonoBehaviour
         set { _isAttach = value; }
     }
 
-    public float MaxLine;
+    private float MaxLine = 20f;
 
     private float RotateAngle;
     private float gravity = 0;
 
     private bool isPulling = false;
 
-    public PlayerControl.Weapons CurWeapon;
+    PlayerControl.Weapons CurWeapon;
     // Start is called before the first frame update
     void Start()
     {

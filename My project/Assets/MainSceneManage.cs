@@ -20,7 +20,6 @@ public class MainSceneManage : MonoBehaviour
     public AudioSource BGM;
 
     private bool _isPaused = false;
-    private bool isReset = false;
 
     public bool isPaused { 
         get { return _isPaused; }
@@ -76,7 +75,6 @@ public class MainSceneManage : MonoBehaviour
                 EventSystem.current.currentSelectedGameObject.name == "Retry")
             {
                 ClickSound.Play();
-                isReset = true;
                 SG.ResetGame();
                 StatM.ResetHp();
                 DeadPopup.SetActive(false);
