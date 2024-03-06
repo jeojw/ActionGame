@@ -49403,7 +49403,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -62.386047, y: -13.5}
+  m_AnchoredPosition: {x: -61.7, y: -13.4}
   m_SizeDelta: {x: 124.806, y: 13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &406009213
@@ -58098,7 +58098,7 @@ RectTransform:
   m_GameObject: {fileID: 1223508618}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.561552, y: 2.561552, z: 2.561552}
+  m_LocalScale: {x: 2.6364, y: 2.6364, z: 2.6364}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1235937051}
@@ -58107,8 +58107,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -151.00024, y: -28.500061}
-  m_SizeDelta: {x: 124.80603, y: 26.826813}
+  m_AnchoredPosition: {x: -157.1, y: -27.6}
+  m_SizeDelta: {x: 125, y: 26}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1223508620
 MonoBehaviour:
@@ -58311,7 +58311,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1235937050}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!114 &1235937054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60307,15 +60307,15 @@ RectTransform:
   m_GameObject: {fileID: 1666169005}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.9798029, z: 0.9798029}
+  m_LocalScale: {x: 1, y: 0.97980297, z: 0.97980297}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 395211504}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -63, y: -6.7}
-  m_SizeDelta: {x: 125, y: 13}
+  m_AnchoredPosition: {x: -0.00011062622, y: -0.000029087067}
+  m_SizeDelta: {x: -0.000053406, y: 0.268}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1666169007
 MonoBehaviour:
@@ -60354,7 +60354,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1666169005}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!114 &1666169009
 MonoBehaviour:
   m_ObjectHideFlags: 0
