@@ -21,6 +21,7 @@ TagManager:
   - CrackedGround
   - Fist
   - PlayerKnife
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -49,7 +50,7 @@ TagManager:
   - Enemy_Rifle_Bullet
   - Weapon
   - Enemy_Weapon
-  - 
+  - Wall
   - 
   - 
   - 

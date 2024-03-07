@@ -13,6 +13,9 @@ public class SceneUI : MonoBehaviour
     ScoreManage ScoreM;
     SetGame SG;
 
+    public Image HookImage;
+    RectTransform HookImagePos;
+
     public Image DetectImage;
     RectTransform DetectPos;
 
@@ -64,6 +67,8 @@ public class SceneUI : MonoBehaviour
 
         GuidePos = GuideImage.GetComponent<RectTransform>();
         DetectPos = DetectImage.GetComponent<RectTransform>();
+        HookImagePos = HookImage.GetComponent<RectTransform>();
+
         DataM = Event.GetComponent<DataManage>();
         ScoreM = Event.GetComponent<ScoreManage>();
         SG = Event.GetComponent<SetGame>();
@@ -135,6 +140,18 @@ public class SceneUI : MonoBehaviour
         else
             DetectImage.gameObject.SetActive(false);
         DetectPos.anchoredPosition = new Vector3(ScreenWidthHalf * 2 - DetectPos.rect.width * 1.2f, ScreenHeightHalf, 0f);
+    }
+
+    void HookUI()
+    {
+        Vector3 Pos = Input.mousePosition;
+        if (playControl.weapon == PlayerControl.Weapons.ROPE)
+        {
+            HookImage.gameObject.SetActive(true);
+            HookImagePos.anchoredPosition = Pos;
+        }
+        else
+            HookImage.gameObject.SetActive(false);
     }
 
     void GuideUI()
@@ -340,6 +357,7 @@ public class SceneUI : MonoBehaviour
             isStored = true;
         }
 
+        HookUI();
         GuideUI();
         DetectUI();
         WeaponUI();
