@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class SceneUI : MonoBehaviour
 {
+    Vector3 HookPos;
+    float HookAngle;
+
     public GameObject Player;
     public GameObject Event;
 
@@ -144,11 +147,14 @@ public class SceneUI : MonoBehaviour
 
     void HookUI()
     {
-        Vector3 Pos = Input.mousePosition;
+        HookPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        HookAngle = Mathf.Atan2(HookPos.y - Player.transform.position.y, HookPos.x - Player.transform.position.x) * Mathf.Rad2Deg;
         if (playControl.weapon == PlayerControl.Weapons.ROPE)
         {
             HookImage.gameObject.SetActive(true);
-            HookImagePos.anchoredPosition = Pos;
+
+            HookImage.gameObject.transform.rotation = Quaternion.AngleAxis(HookAngle, Vector3.forward);
+            HookImagePos.anchoredPosition = HookPos;
         }
         else
             HookImage.gameObject.SetActive(false);
