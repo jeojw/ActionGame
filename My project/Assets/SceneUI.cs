@@ -147,14 +147,14 @@ public class SceneUI : MonoBehaviour
 
     void HookUI()
     {
-        HookPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        HookPos = Input.mousePosition;
         HookAngle = Mathf.Atan2(HookPos.y - Player.transform.position.y, HookPos.x - Player.transform.position.x) * Mathf.Rad2Deg;
         if (playControl.weapon == PlayerControl.Weapons.ROPE)
         {
             HookImage.gameObject.SetActive(true);
 
             HookImage.gameObject.transform.rotation = Quaternion.AngleAxis(HookAngle, Vector3.forward);
-            HookImagePos.anchoredPosition = HookPos;
+            HookImage.gameObject.transform.localPosition = new Vector2(HookPos.x - Screen.width / 2, HookPos.y - Screen.height / 2);
         }
         else
             HookImage.gameObject.SetActive(false);

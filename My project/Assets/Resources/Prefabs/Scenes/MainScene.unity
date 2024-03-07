@@ -70040,7 +70040,7 @@ Tilemap:
       - {fileID: -1965425684, guid: ba35b522142c7ae4b8267cc8541efbbe, type: 3}
       - {fileID: 128381859, guid: ba35b522142c7ae4b8267cc8541efbbe, type: 3}
       - {fileID: -576144700, guid: ba35b522142c7ae4b8267cc8541efbbe, type: 3}
-      m_AnimationSpeed: 3
+      m_AnimationSpeed: 3.0000002
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -70926,9 +70926,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 634688083}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 565.56323, y: -117.418365}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 1205.5632, y: 132.58163}
   m_SizeDelta: {x: 50, y: 51}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &2034239597
