@@ -70029,7 +70029,7 @@ Tilemap:
       - {fileID: -1965425684, guid: ba35b522142c7ae4b8267cc8541efbbe, type: 3}
       - {fileID: 128381859, guid: ba35b522142c7ae4b8267cc8541efbbe, type: 3}
       - {fileID: -576144700, guid: ba35b522142c7ae4b8267cc8541efbbe, type: 3}
-      m_AnimationSpeed: 3.0000002
+      m_AnimationSpeed: 3
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 412, y: 2, z: 0}

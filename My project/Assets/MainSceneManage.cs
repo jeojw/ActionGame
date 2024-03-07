@@ -86,9 +86,11 @@ public class MainSceneManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !StopPopup.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Escape) && 
+            !StopPopup.activeSelf && !DeadPopup.activeSelf && !ClearPopup.activeSelf)
             StopSound.Play();
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKey(KeyCode.Escape) &&
+            !DeadPopup.activeSelf && !ClearPopup.activeSelf)
         {
             BGM.Pause();
             StopPopup.SetActive(true);
