@@ -11,6 +11,7 @@ public class ScoreManage : MonoBehaviour
     private int PlayerDeath;
     private int PlayerGetHit;
     private int GetItem;
+    private bool GetBonus = false;
 
     SetGame SG;
     PlayerControl PC;
@@ -31,11 +32,17 @@ public class ScoreManage : MonoBehaviour
     public void ResetScore()
     {
         score = 0;
+        GetBonus = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (SG.isClear && !GetBonus)
+        {
+            score += StM.curHp * 10 + 300;
+            GetBonus = true;
+        }
         for (int i = 0; i < DeadboolList.Count; i++)    
         {
             if (DeadboolList[i] && !GetScore[i])

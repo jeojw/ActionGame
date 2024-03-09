@@ -91,7 +91,7 @@ public class SceneUI : MonoBehaviour
 
     void StoreRecord()
     {
-        DataM.MakeRecord(Score, time_current);
+        DataM.MakeRecord(ScoreM.score, time_current);
         DataM.StoreRecord();
     }
 
