@@ -40,7 +40,7 @@ public class ScoreManage : MonoBehaviour
     {
         if (SG.isClear && !GetBonus)
         {
-            score += StM.curHp * 10 + 300;
+            score += StM.curHp * 2 + 300;
             GetBonus = true;
         }
         for (int i = 0; i < DeadboolList.Count; i++)    
