@@ -140,8 +140,8 @@ TextureImporter:
         - {x: 75, y: -75}
         - {x: 75, y: 75}
       physicsShape:
-      - - {x: 75, y: 48}
-        - {x: -48, y: -75}
+      - - {x: 75, y: 48.508423}
+        - {x: -48.500008, y: -75}
         - {x: 75, y: -75}
       tessellationDetail: 0
       bones: []
