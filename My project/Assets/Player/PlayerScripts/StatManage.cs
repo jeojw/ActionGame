@@ -139,6 +139,7 @@ public class StatManage : MonoBehaviour
                 {
                     curHp += 50f;
                     UseItem = true;
+                    ItemType = ItemManage.ITEMTYPE.NONE;
                 }
             }
             if (playControl.isOnDead)

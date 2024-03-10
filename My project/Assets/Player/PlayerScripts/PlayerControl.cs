@@ -224,9 +224,10 @@ public class PlayerControl : MonoBehaviour
     {
         PlayerPos = _Pos;
     }
+
     public bool CheckGetItem()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(bodyPos.position, new Vector2(2, 1), 0f, Vector2.down, 0.02f, LayerMask.GetMask("Item"));
+        RaycastHit2D hit = Physics2D.BoxCast(bodyPos.position, new Vector2(1.5f, 1), 0f, Vector2.down, 0.02f, LayerMask.GetMask("Item"));
 
         return (hit.collider != null);
     }

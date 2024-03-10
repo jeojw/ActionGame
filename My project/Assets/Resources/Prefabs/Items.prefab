@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7244064944474928448}
   m_Layer: 14
   m_Name: Pistol
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -156,7 +156,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!1 &6173387735083578347
 GameObject:
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 1604140733833137978}
   m_Layer: 14
   m_Name: Heal
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -186,7 +186,7 @@ Transform:
   m_GameObject: {fileID: 6173387735083578347}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.14, y: -7.5, z: 0}
+  m_LocalPosition: {x: 22.332457, y: -7.413933, z: 0}
   m_LocalScale: {x: 0.2531784, y: 0.2531784, z: 0.2531784}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -314,7 +314,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!1 &6253564380386665973
 GameObject:
@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 8849931772518036878}
   m_Layer: 14
   m_Name: Rifle
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -344,7 +344,7 @@ Transform:
   m_GameObject: {fileID: 6253564380386665973}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.35, y: -7.71, z: 0}
+  m_LocalPosition: {x: 15.332457, y: -7.413933, z: 0}
   m_LocalScale: {x: 0.25089332, y: 0.25089332, z: 0.25089332}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -472,7 +472,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!1 &8077363025857490428
 GameObject:

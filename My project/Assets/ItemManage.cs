@@ -22,12 +22,11 @@ public class ItemManage : MonoBehaviour
     List<ITEMTYPE> TypeList;
     List<GameObject> ItemList;
     List<bool> IsDropList;
+    GameObject DeleteItem;
 
-    readonly float RifleRate = 0.05f;
+    readonly float RifleRate = 0.15f;
     readonly float HealRate = 0.1f;
-    readonly float PistolRate = 0.1f;
-
-    bool isDropItem = false;
+    readonly float PistolRate = 0.2f;
 
     readonly string Path = "Prefabs/Items";
     // Start is called before the first frame update
@@ -49,7 +48,7 @@ public class ItemManage : MonoBehaviour
 
     void ChooseItem()
     {
-        float RandomCoef = 10000f;
+        float RandomCoef = 100f;
         float RifleRange = RandomCoef * RifleRate;
         float PistolRange = RandomCoef * PistolRate;
         float HealRange = RandomCoef * HealRate;
@@ -99,22 +98,19 @@ public class ItemManage : MonoBehaviour
                     DropItem = Instantiate(DropItem, EnemyPosList[i].position, Quaternion.identity);
                     ItemList.Add(DropItem);
                     TypeList.Add(ItemType);
-                    IsDropList[i] = true;
                 }
-
+                IsDropList[i] = true;
             }
-            else
-                DropItem = null;
         }
         
         if (ItemList.Count > 0)
         {
-            for (int i = 0; i < ItemList.Count;i++) {
-                if (playerControl.CheckGetItem() && ItemList[i] != null)
+            for (int i = ItemList.Count - 1; i >= 0; i--) {
+                if (playerControl.isGetItem && ItemList[i] != null)
                 {
-                    GameObject DeleteItem = ItemList[i];
+                    DeleteItem = ItemList[i];
                     statManage.SetGetItem(TypeList[i]);
-                    ItemList[i] = null;
+                    ItemList.Remove(ItemList[i]);
                     Destroy(DeleteItem);
                 }
             }
