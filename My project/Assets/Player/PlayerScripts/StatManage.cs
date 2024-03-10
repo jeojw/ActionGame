@@ -137,7 +137,7 @@ public class StatManage : MonoBehaviour
                 UseItem = false;
                 if (ItemType == ItemManage.ITEMTYPE.HEAL && !UseItem)
                 {
-                    curHp += 50f;
+                    curHp += 150f;
                     UseItem = true;
                     ItemType = ItemManage.ITEMTYPE.NONE;
                 }
