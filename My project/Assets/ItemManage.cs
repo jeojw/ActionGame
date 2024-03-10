@@ -112,6 +112,7 @@ public class ItemManage : MonoBehaviour
                     statManage.SetGetItem(TypeList[i]);
                     ItemList.Remove(ItemList[i]);
                     Destroy(DeleteItem);
+                    break;
                 }
             }
         }

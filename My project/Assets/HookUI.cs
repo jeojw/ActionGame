@@ -22,13 +22,13 @@ public class HookUI : MonoBehaviour
     {
         if (playerControl.weapon == PlayerControl.Weapons.ROPE)
         {
-            this.gameObject.SetActive(true);
+            spriteRenderer.enabled = true;
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Angle = Mathf.Atan2(transform.position.y - Player.transform.position.y, transform.position.x - Player.transform.position.x) * Mathf.Rad2Deg;
             transform.position = new Vector2(mousePos.x, mousePos.y);
             transform.rotation = Quaternion.AngleAxis(Angle, Vector3.forward);
         }
         else
-            this.gameObject.SetActive(false);
+            spriteRenderer.enabled = false;
     }
 }
