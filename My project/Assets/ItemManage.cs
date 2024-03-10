@@ -25,8 +25,8 @@ public class ItemManage : MonoBehaviour
     GameObject DeleteItem;
 
     readonly float RifleRate = 0.15f;
-    readonly float HealRate = 0.15f;
-    readonly float PistolRate = 0.2f;
+    readonly float HealRate = 0.2f;
+    readonly float PistolRate = 0.4f;
 
     readonly string Path = "Prefabs/Items";
     // Start is called before the first frame update
