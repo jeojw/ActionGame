@@ -25,7 +25,7 @@ public class EnemyCheckCollision : MonoBehaviour
     }
     private bool isDead;
 
-    private float HitDelay = 0.4f;
+    private float HitDelay = 0.2f;
     private float HitDelayStart = 0; 
     private float HitDelayElapsed = 0;
 
