@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Ring
+  - Ground
+  - Weapons
+  - Slope
+  - Pistol_Bullet
+  - Rifle_Bullet
+  - Enemy
+  - Pistol
+  - Rifle
+  - Item
+  - DeadGround
+  - EnemyKnife
+  - Enemy_Pistol_Bullet
+  - Enemy_Rifle_Bullet
+  - CrackedGround
+  - Fist
+  - PlayerKnife
+  - Wall
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Background
+  - Water
+  - UI
+  - Ground
+  - Slope
+  - Ring
+  - Player
+  - PlayerFoot
+  - EnemyFoot
+  - Enemy
+  - Terrain
+  - Item
+  - DeadGround
+  - PlayerBody
+  - DeadHitbox
+  - Player_Knife
+  - Enemy_Knife
+  - CrackedGround
+  - Pistol_Bullet
+  - Rifle_Bullet
+  - Enemy_Pistol_Bullet
+  - Enemy_Rifle_Bullet
+  - Weapon
+  - Enemy_Weapon
+  - Wall
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 440363137
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
